@@ -511,6 +511,18 @@ main,
   backdrop-filter: blur(18px);
 }
 
+.footer-easter-egg {
+  color: inherit;
+  text-decoration: none;
+  opacity: 1;
+  transition: opacity var(--transition);
+}
+
+.footer-easter-egg:hover,
+.footer-easter-egg:focus-visible {
+  opacity: 1;
+}
+
 @media (max-width: 1024px) {
   .site-header {
     flex-wrap: wrap;

@@ -47,7 +47,7 @@ const copy = {
       },
     },
     footer: {
-      note: "© 2025 Rexileer. Available for remote opportunities.",
+      note: " 2025 Rexileer. Available for remote opportunities.",
     },
   },
   ru: {
@@ -98,7 +98,7 @@ const copy = {
       },
     },
     footer: {
-      note: "© 2025 Rexileer. Открыт к удалённым предложениям.",
+      note: " 2025 Rexileer. Открыт к удалённым предложениям.",
     },
   },
 };
