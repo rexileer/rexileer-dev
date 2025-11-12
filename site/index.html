@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Minimalist bilingual portfolio for Rexileer · Python backend developer."
+    />
+    <title>Rexileer · Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="background-grid" aria-hidden="true"></div>
+    <header class="site-header">
+      <div class="brand">
+        <span class="brand-initial">R</span>
+        <span class="brand-text" data-i18n="brand.name">Rexileer</span>
+      </div>
+      <nav class="site-nav">
+        <a class="nav-link" href="#about" data-i18n="nav.about">About</a>
+        <a class="nav-link" href="#skills" data-i18n="nav.skills">Skills</a>
+        <a class="nav-link" href="#projects" data-i18n="nav.projects">Projects</a>
+        <a class="nav-link" href="#contact" data-i18n="nav.contact">Contact</a>
+      </nav>
+      <button id="lang-toggle" class="lang-toggle" type="button" aria-live="polite">
+        <span class="lang-toggle-label" data-i18n="langToggle.label">Language</span>
+        <span class="lang-toggle-current" data-lang-display>EN</span>
+      </button>
+    </header>
+
+    <main>
+      <section id="hero" class="hero" aria-labelledby="hero-title">
+        <div class="hero-content">
+          <p class="hero-eyebrow" data-i18n="hero.eyebrow">Backend Developer</p>
+          <h1 id="hero-title" class="hero-title" data-i18n="hero.title">
+            Building reliable backend systems with Python.
+          </h1>
+          <p class="hero-subtitle" data-i18n="hero.subtitle">
+            I design, ship, and operate data-intensive services with a focus on clarity, maintainability,
+            and measurable impact.
+          </p>
+          <div class="hero-cta">
+            <a class="button primary" href="#projects" data-i18n="hero.ctaProjects">See projects</a>
+            <a class="button ghost" href="#contact" data-i18n="hero.ctaContact">Let's connect</a>
+          </div>
+        </div>
+        <div class="hero-visual" aria-hidden="true">
+          <div class="terminal-card">
+            <div class="terminal-header">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+            </div>
+            <pre class="terminal-body"><code>// deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rexileer-api
+spec:
+  replicas: 3
+  template:
+    spec:
+      containers:
+        - image: ghcr.io/rexileer/api:latest
+          env:
+            - name: STACK
+              value: "python+fastapi"</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section id="about" class="section about" aria-labelledby="about-title">
+        <div class="section-heading">
+          <span class="section-eyebrow" data-i18n="about.eyebrow">Profile</span>
+          <h2 id="about-title" data-i18n="about.title">Short intro</h2>
+        </div>
+        <div class="section-content">
+          <p data-i18n="about.paragraph1">
+            I help teams transform prototypes into production services, focusing on resilient architecture,
+            observability, and clean delivery pipelines.
+          </p>
+          <p data-i18n="about.paragraph2">
+            My workflow combines disciplined backend engineering with pragmatic deployment strategies so new
+            features reach users quickly and safely.
+          </p>
+        </div>
+      </section>
+
+      <section id="skills" class="section skills" aria-labelledby="skills-title">
+        <div class="section-heading">
+          <span class="section-eyebrow" data-i18n="skills.eyebrow">Stack</span>
+          <h2 id="skills-title" data-i18n="skills.title">Skills & tools</h2>
+        </div>
+        <div class="section-content">
+          <p data-i18n="skills.description">
+            I work across the Python ecosystem, orchestrating services with cloud-native tooling and modern DevOps
+            practices.
+          </p>
+          <ul id="skills-list" class="chip-list" aria-label="Skills"></ul>
+        </div>
+      </section>
+
+      <section id="projects" class="section projects" aria-labelledby="projects-title">
+        <div class="section-heading">
+          <span class="section-eyebrow" data-i18n="projects.eyebrow">Selected Work</span>
+          <h2 id="projects-title" data-i18n="projects.title">Projects</h2>
+        </div>
+        <div id="project-grid" class="project-grid" role="list"></div>
+      </section>
+
+      <section id="contact" class="section contact" aria-labelledby="contact-title">
+        <div class="section-heading">
+          <span class="section-eyebrow" data-i18n="contact.eyebrow">Let’s Talk</span>
+          <h2 id="contact-title" data-i18n="contact.title">Contact</h2>
+        </div>
+        <div class="section-content">
+          <p data-i18n="contact.description">
+            Reach out if you’re looking for a backend engineer to ship reliable services or to collaborate on new ideas.
+          </p>
+          <div class="contact-grid">
+            <a class="contact-card" href="mailto:hi@rexileer.dev">
+              <span class="contact-label" data-i18n="contact.labels.email">Email</span>
+              <span class="contact-value">hi@rexileer.dev</span>
+            </a>
+            <a class="contact-card" href="https://github.com/rexileer" target="_blank" rel="noreferrer">
+              <span class="contact-label" data-i18n="contact.labels.github">GitHub</span>
+              <span class="contact-value">github.com/rexileer</span>
+            </a>
+            <a class="contact-card" href="https://www.linkedin.com/in/rexileer" target="_blank" rel="noreferrer">
+              <span class="contact-label" data-i18n="contact.labels.linkedin">LinkedIn</span>
+              <span class="contact-value">linkedin.com/in/rexileer</span>
+            </a>
+            <a class="contact-card" href="https://t.me/rexileer" target="_blank" rel="noreferrer">
+              <span class="contact-label" data-i18n="contact.labels.telegram">Telegram</span>
+              <span class="contact-value">@rexileer</span>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span class="footer-note" data-i18n="footer.note">© 2025 Rexileer. Available for remote opportunities.</span>
+    </footer>
+
+    <script type="module" src="script.js"></script>
+  </body>
+</html>
+
