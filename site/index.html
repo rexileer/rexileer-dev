@@ -40,11 +40,12 @@
         <div class="hero-content">
           <p class="hero-eyebrow" data-i18n="hero.eyebrow">Backend Developer</p>
           <h1 id="hero-title" class="hero-title" data-i18n="hero.title">
-            Building reliable backend systems with Python.
+            I develop backend systems and automated services in Python with a focus on resilience, 
+            scalability, and clear architecture.
           </h1>
           <p class="hero-subtitle" data-i18n="hero.subtitle">
-            I design, ship, and operate data-intensive services with a focus on clarity, maintainability,
-            and measurable impact.
+            I design and evolve data-stream services with attention to stability, observability, 
+            and fast feature delivery.
           </p>
           <div class="hero-cta">
             <a class="button primary" href="#projects" data-i18n="hero.ctaProjects">See projects</a>
@@ -58,20 +59,29 @@
               <span class="dot yellow"></span>
               <span class="dot green"></span>
             </div>
-            <pre class="terminal-body"><code>// deployment.yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: rexileer-api
-spec:
-  replicas: 3
-  template:
-    spec:
-      containers:
-        - image: ghcr.io/rexileer/api:latest
-          env:
-            - name: STACK
-              value: "python+fastapi"</code></pre>
+            <pre class="terminal-body"><code>from fastapi import FastAPI, HTTPException
+from pydantic import BaseModel
+from typing import List
+
+app = FastAPI()
+
+class DataRequest(BaseModel):
+    numbers: List[int]
+
+@app.post("/process")
+async def process_numbers(req: DataRequest):
+    if not req.numbers:
+        raise HTTPException(status_code=400, detail="List of numbers required")
+    mean = sum(req.numbers) / len(req.numbers)
+    median = sorted(req.numbers)[len(req.numbers)//2]
+    unique = len(set(req.numbers))
+    return {
+        "mean": mean,
+        "median": median,
+        "unique_count": unique,
+        "input": req.numbers
+    }
+</code></pre>
           </div>
         </div>
       </section>
@@ -122,12 +132,11 @@ spec:
         </div>
         <div class="section-content">
           <p data-i18n="contact.description">
-            Reach out if you’re looking for a backend engineer to ship reliable services or to collaborate on new ideas.
-          </p>
+            I'm available for remote backend roles (full-time or contract). If you have a technical challenge — let's discuss scope and timelines.          </p>
           <div class="contact-grid">
-            <a class="contact-card" href="mailto:hi@rexileer.dev">
+            <a class="contact-card" href="mailto:rexileer@mail.ru">
               <span class="contact-label" data-i18n="contact.labels.email">Email</span>
-              <span class="contact-value">hi@rexileer.dev</span>
+              <span class="contact-value">rexileer@mail.ru</span>
             </a>
             <a class="contact-card" href="https://github.com/rexileer" target="_blank" rel="noreferrer">
               <span class="contact-label" data-i18n="contact.labels.github">GitHub</span>

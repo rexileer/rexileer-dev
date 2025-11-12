@@ -376,6 +376,7 @@ main,
   inset: 0;
   background: radial-gradient(circle at top right, rgba(90, 215, 255, 0.18), transparent 55%);
   opacity: 0;
+  pointer-events: none;
   transition: opacity 220ms ease;
 }
 

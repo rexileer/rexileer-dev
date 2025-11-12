@@ -12,7 +12,7 @@ const copy = {
       eyebrow: "Backend Developer",
       title: "Building reliable backend systems with Python.",
       subtitle:
-        "I design, ship, and operate data-intensive services with a focus on clarity, maintainability, and measurable impact.",
+        "I design and evolve data-stream services with attention to stability, observability, and fast feature delivery.",
       ctaProjects: "See projects",
       ctaContact: "Let's connect",
     },
@@ -20,9 +20,9 @@ const copy = {
       eyebrow: "Profile",
       title: "Short intro",
       paragraph1:
-        "I help teams transform prototypes into production services, focusing on resilient architecture, observability, and clean delivery pipelines.",
+        "I help teams and companies take solutions from prototype to production, engineering architecture and CI/CD that handle real-world load.",
       paragraph2:
-        "My workflow combines disciplined backend engineering with pragmatic deployment strategies so new features reach users quickly and safely.",
+        "I combine engineering discipline with pragmatism — shipping production systems without losing control of quality or infrastructure.",
     },
     skills: {
       eyebrow: "Stack",
@@ -71,15 +71,15 @@ const copy = {
       eyebrow: "Профиль",
       title: "Коротко обо мне",
       paragraph1:
-        "Помогаю командам превращать прототипы в продакшн-сервисы, уделяя внимание стабильной архитектуре, наблюдаемости и понятным CI/CD.",
+        "Помогаю командам и компаниям выводить решения из прототипа в продакшн, проектируя архитектуру и CI/CD под реальные нагрузки.",
       paragraph2:
-        "Сочетаю инженерную дисциплину с прагматичным подходом к деплою, чтобы новые фичи добирались до пользователей быстро и безопасно.",
+        "Сочетаю инженерный подход с прагматикой — выпускаю продакшн-решения без потери контроля над качеством и инфраструктурой.",
     },
     skills: {
       eyebrow: "Стек",
       title: "Навыки и инструменты",
       description:
-        "Работаю в экосистеме Python, оркестрирую сервисы с помощью cloud-native инструментов и современных DevOps практик.",
+        "Работаю в экосистеме Python, создаю микросервисы и backend-архитектуру с использованием Docker, Redis, Celery и CI/CD-практик.",
     },
     projects: {
       eyebrow: "Избранное",
@@ -89,7 +89,7 @@ const copy = {
       eyebrow: "На связи",
       title: "Контакты",
       description:
-        "Напишите, если нужен бэкенд-инженер для надёжных сервисов или есть идея для совместного проекта.",
+        "Доступен для удалённой работы (full-time / contract). Пишите, если нужен инженер по backend-части — обсудим объём и сроки.",
       labels: {
         email: "Email",
         github: "GitHub",
@@ -110,15 +110,17 @@ const skills = {
     "FastAPI",
     "PostgreSQL",
     "SQLAlchemy",
-    "Redis",
+    "Docker · Docker Compose",
+    "GitLab CI · GitHub Actions",
+    "Selenium Wire · undetected-chromedriver",
     "Celery",
-    "Docker",
-    "Docker Compose",
-    "Kubernetes (basic)",
+    "Linux",
+    "Monitoring: Prometheus & Grafana (worked with)",
     "Nginx",
-    "Grafana",
-    "Prometheus",
-    "GitHub Actions",
+    "Go · Rust — cross-stack tooling (personal projects)",
+    "Redis",
+    "WebSockets · Background workers · Observability",
+    "Kubernetes (basic)",
   ],
   ru: [
     "Python",
@@ -126,15 +128,17 @@ const skills = {
     "FastAPI",
     "PostgreSQL",
     "SQLAlchemy",
-    "Redis",
+    "Docker · Docker Compose",
+    "GitLab CI · GitHub Actions",
+    "Selenium Wire · undetected-chromedriver",
     "Celery",
-    "Docker",
-    "Docker Compose",
-    "Kubernetes (база)",
+    "Linux",
+    "Monitoring: Prometheus & Grafana (worked with)",
     "Nginx",
-    "Grafana",
-    "Prometheus",
-    "GitHub Actions",
+    "Go · Rust — cross-stack tooling (personal projects)",
+    "Redis",
+    "WebSockets · Background workers · Observability",
+    "Kubernetes (basic)",
   ],
 };
 
@@ -147,60 +151,40 @@ const projects = [
       ru: "Крипто скальпинг-бот",
     },
     description: {
-      en: "High-frequency trading bot with FastAPI control panel, streaming market data via WebSockets, and Redis-backed task queue for strategy execution.",
-      ru: "Бот для высокочастотного трейдинга с панелью управления на FastAPI, стримингом рыночных данных через WebSocket и очередью задач на Redis для исполнения стратегий.",
+      en: "Crypto trading bot executing scalping strategies via the MEXC API. Handles live market streams, trade automation, and monitoring.",
+      ru: "Бот для криптотрейдинга, исполняющий стратегии скальпинга через MEXC API. Работает с рыночными потоками в реальном времени, автоматизирует сделки и мониторинг.",
     },
-    tags: ["FastAPI", "Redis", "Celery", "Docker", "Prometheus"],
+    tags: ["Aiogram", "Django", "PostgreSQL", "Docker Compose", "GitHub Actions"],
     links: [
       {
         type: "demo",
-        href: "https://scalper.rexileer.dev",
+        href: "https://t.me/scalpingtest_bot",
         label: { en: "Open demo", ru: "Открыть демо" },
       },
       {
         type: "github",
-        href: "https://github.com/rexileer/scalping-bot",
+        href: "https://github.com/rexileer/scalping-mexc-bot",
         label: { en: "GitHub", ru: "GitHub" },
       },
     ],
   },
   {
-    id: "task-manager",
-    meta: { en: "Featured", ru: "Витрина" },
+    id: "telegram-channel",
+    meta: { en: "Telegram Channel", ru: "Телеграм-канал" },
     title: {
-      en: "Async Task Manager",
-      ru: "Асинхронный таск-менеджер",
+      en: "Telegram Channel",
+      ru: "Телеграм-канал",
     },
     description: {
-      en: "Task management web app with Django backend, Celery workers, and real-time progress updates via Channels and Redis.",
-      ru: "Веб-приложение для управления задачами: бэкенд на Django, асинхронные воркеры Celery и онлайн-обновления статуса через Channels и Redis.",
+      en: "Telegram channel about my experience in various projects.",
+      ru: "Телеграм-канал, в котором подробно описывается мой опыт в различных проектах.",
     },
-    tags: ["Django", "Celery", "Redis", "Docker Compose"],
+    tags: ["Telegram"],
     links: [
       {
-        type: "github",
-        href: "https://github.com/rexileer/task-manager",
-        label: { en: "GitHub", ru: "GitHub" },
-      },
-    ],
-  },
-  {
-    id: "analytics-api",
-    meta: { en: "API", ru: "API" },
-    title: {
-      en: "Usage Analytics API",
-      ru: "API аналитики использования",
-    },
-    description: {
-      en: "Observability-friendly analytics service on FastAPI with PostgreSQL, tuned for event ingestion, aggregation jobs, and Grafana dashboards.",
-      ru: "Сервис аналитики на FastAPI и PostgreSQL, оптимизированный для приёма событий, агрегирующих джобов и дашбордов в Grafana.",
-    },
-    tags: ["FastAPI", "PostgreSQL", "SQLAlchemy", "Grafana"],
-    links: [
-      {
-        type: "github",
-        href: "https://github.com/rexileer/analytics-api",
-        label: { en: "GitHub", ru: "GitHub" },
+        type: "telegram",
+        href: "https://t.me/rexileerdev",
+        label: { en: "Open channel", ru: "Открыть канал" },
       },
     ],
   },
