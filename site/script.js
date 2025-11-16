@@ -154,7 +154,13 @@ const projects = [
       en: "Crypto trading bot executing scalping strategies via the MEXC API. Handles live market streams, trade automation, and monitoring.",
       ru: "Бот для криптотрейдинга, исполняющий стратегии скальпинга через MEXC API. Работает с рыночными потоками в реальном времени, автоматизирует сделки и мониторинг.",
     },
-    tags: ["Aiogram", "Django", "PostgreSQL", "Docker Compose", "GitHub Actions"],
+    tags: [
+      "Aiogram",
+      "Django",
+      "PostgreSQL",
+      "Docker Compose",
+      "GitHub Actions",
+    ],
     links: [
       {
         type: "demo",
@@ -163,7 +169,103 @@ const projects = [
       },
       {
         type: "github",
-        href: "https://github.com/rexileer/scalping-mexc-bot",
+        href: "https://github.com/rexileer/scalping-bot-demo",
+        label: { en: "GitHub", ru: "GitHub" },
+      },
+    ],
+  },
+  {
+    id: "steps-bot",
+    meta: { en: "Featured", ru: "Витрина" },
+    title: {
+      en: "Steps Bot",
+      ru: "Шаги-бот",
+    },
+    description: {
+      en: "Bot for tracking steps/walks, balance and orders. There is an admin API and an optional Django admin panel.",
+      ru: "Бот для учета шагов/прогулок, баланса и заказов. Есть admin API и опциональная Django-админка.",
+    },
+    tags: [
+      "Aiogram",
+      "Django",
+      "PostgreSQL",
+      "Docker Compose",
+      "GitHub Actions",
+      "SQLAlchemy + Alembic",
+      "FastAPI",
+    ],
+    links: [
+      {
+        type: "github",
+        href: "https://github.com/rexileer/steps-bot-demo",
+        label: { en: "GitHub", ru: "GitHub" },
+      },
+    ],
+  },
+  {
+    id: "meat-bot",
+    meta: { en: "Featured", ru: "Витрина" },
+    title: {
+      en: "Meat Bot",
+      ru: "Мясо-бот",
+    },
+    description: {
+      en: "Production system: Telegram bot (workshop) + Django CRM (office).",
+      ru: "Производственная система: Telegram‑бот (цех) + Django CRM (офис).",
+    },
+    tags: [
+      "Aiogram",
+      "Django",
+      "PostgreSQL",
+      "Docker Compose",
+      "Minio",
+      "openpyxl",
+      "Redis",
+    ],
+    links: [
+      {
+        type: "github",
+        href: "https://github.com/rexileer/meat-bot-example",
+        label: { en: "GitHub", ru: "GitHub" },
+      },
+    ],
+  },
+  {
+    id: "freelance-bot",
+    meta: { en: "Featured", ru: "Витрина" },
+    title: {
+      en: "Freelance Bot",
+      ru: "Фриланс-бот",
+    },
+    description: {
+      en: "Telegram bot for automating the search and placement of freelance applications.",
+      ru: "Телеграм-бот для автоматизации поиска и размещения фриланс-заявок.",
+    },
+    tags: ["Aiogram", "Django", "PostgreSQL", "Docker Compose", "Telethon"],
+    links: [
+      {
+        type: "github",
+        href: "https://github.com/rexileer/freelance-bot-demo",
+        label: { en: "GitHub", ru: "GitHub" },
+      },
+    ],
+  },
+  {
+    id: "payment-broadcast-bot",
+    meta: { en: "Featured", ru: "Витрина" },
+    title: {
+      en: "Payment Broadcast Bot",
+      ru: "Бот для рассылки оплаты",
+    },
+    description: {
+      en: "Bot for paid subscriptions/payments and mailings.",
+      ru: "Бот для платных подписок/платежей и рассылок.",
+    },
+    tags: ["Aiogram", "Django", "PostgreSQL", "Docker Compose", "Yookassa API"],
+    links: [
+      {
+        type: "github",
+        href: "https://github.com/rexileer/payment-broadcast-bot-example",
         label: { en: "GitHub", ru: "GitHub" },
       },
     ],
@@ -208,7 +310,9 @@ const contactLabelElements = {
 };
 
 function getNestedCopy(lang, key) {
-  return key.split(".").reduce((acc, part) => (acc ? acc[part] : undefined), copy[lang]);
+  return key
+    .split(".")
+    .reduce((acc, part) => (acc ? acc[part] : undefined), copy[lang]);
 }
 
 function updateStaticText(lang) {
@@ -348,4 +452,3 @@ function init() {
 }
 
 document.addEventListener("DOMContentLoaded", init);
-
