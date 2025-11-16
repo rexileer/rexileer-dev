@@ -7,7 +7,11 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "8080:80"
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /etc/letsencrypt:/etc/letsencrypt:ro
+      - /srv/letsencrypt-webroot:/var/www/acme:ro
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "wget", "-q", "-O", "-", "http://127.0.0.1/"]
@@ -17,3 +21,15 @@ services:
       start_period: 10s
 
 
+  certbot:
+    image: certbot/certbot
+    container_name: certbot
+    volumes:
+      - /etc/letsencrypt:/etc/letsencrypt
+      - /srv/letsencrypt-webroot:/var/www/acme
+    entrypoint: ["/bin/sh", "-c"]
+    # Пример запуска (одноразово, вручную):
+    # docker compose run --rm certbot \
+    #   certonly --webroot -w /var/www/acme \
+    #   -d rexileer.ru -d www.rexileer.ru \
+    #   --agree-tos -m you@example.com --non-interactive
