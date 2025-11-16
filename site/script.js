@@ -147,8 +147,8 @@ const projects = [
     id: "scalping-bot",
     meta: { en: "Live Demo", ru: "Демо" },
     title: {
-      en: "Crypto Scalping Bot",
-      ru: "Крипто скальпинг-бот",
+      en: "Crypto Scalping MEXC",
+      ru: "Крипто скальпинг MEXC",
     },
     description: {
       en: "Crypto trading bot executing scalping strategies via the MEXC API. Handles live market streams, trade automation, and monitoring.",
@@ -206,8 +206,8 @@ const projects = [
     id: "meat-bot",
     meta: { en: "Featured", ru: "Витрина" },
     title: {
-      en: "Meat Bot",
-      ru: "Мясо-бот",
+      en: "Production System for Meat Factory",
+      ru: "Производственная система для мясного завода",
     },
     description: {
       en: "Production system: Telegram bot (workshop) + Django CRM (office).",
