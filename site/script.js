@@ -169,7 +169,7 @@ const projects = [
       },
       {
         type: "github",
-        href: "https://github.com/rexileer/scalping-bot-demo",
+        href: "https://github.com/rexileer/skalping-bot-demo",
         label: { en: "GitHub", ru: "GitHub" },
       },
     ],
