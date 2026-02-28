@@ -1,35 +1,23 @@
-version: "3.9"
-
 services:
-  portfolio:
+  app:
+    build: .
     container_name: rexileer-portfolio
-    build:
-      context: .
-      dockerfile: Dockerfile
     ports:
-      - "80:80"
-      - "443:443"
+      - "8080:8080"
     volumes:
-      - /etc/letsencrypt:/etc/letsencrypt:ro
-      - /srv/letsencrypt-webroot:/var/www/acme:ro
+      - ./site:/app/site:ro
+      - portfolio_data:/app/db
+    environment:
+      - DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY:-change-me-in-production}
+      - DJANGO_DEBUG=0
+      - DJANGO_DB_PATH=/app/db/db.sqlite3
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "wget", "-q", "-O", "-", "http://127.0.0.1/"]
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8080/')"]
       interval: 30s
       timeout: 5s
       retries: 3
       start_period: 10s
 
-
-  certbot:
-    image: certbot/certbot
-    container_name: certbot
-    volumes:
-      - /etc/letsencrypt:/etc/letsencrypt
-      - /srv/letsencrypt-webroot:/var/www/acme
-    entrypoint: ["/bin/sh", "-c"]
-    # Пример запуска (одноразово, вручную):
-    # docker compose run --rm certbot \
-    #   certonly --webroot -w /var/www/acme \
-    #   -d rexileer.ru -d www.rexileer.ru \
-    #   --agree-tos -m you@example.com --non-interactive
+volumes:
+  portfolio_data:

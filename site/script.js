@@ -433,6 +433,31 @@ function hydrateContactLabels(lang) {
   });
 }
 
+function deepMerge(target, source) {
+  if (!source || typeof source !== "object") return;
+  for (const key of Object.keys(source)) {
+    if (source[key] != null && typeof source[key] === "object" && !Array.isArray(source[key])) {
+      if (!target[key]) target[key] = {};
+      deepMerge(target[key], source[key]);
+    } else {
+      target[key] = source[key];
+    }
+  }
+}
+
+function applySiteData(data) {
+  if (data.copy) {
+    if (data.copy.en) deepMerge(copy.en, data.copy.en);
+    if (data.copy.ru) deepMerge(copy.ru, data.copy.ru);
+  }
+  if (data.skills && data.skills.en && data.skills.en.length) skills.en = data.skills.en;
+  if (data.skills && data.skills.ru && data.skills.ru.length) skills.ru = data.skills.ru;
+  if (data.projects && Array.isArray(data.projects) && data.projects.length) {
+    projects.length = 0;
+    projects.push(...data.projects);
+  }
+}
+
 function init() {
   const startingLang = initLanguage();
   updateLanguage(startingLang);
@@ -451,4 +476,12 @@ function init() {
   });
 }
 
-document.addEventListener("DOMContentLoaded", init);
+document.addEventListener("DOMContentLoaded", () => {
+  fetch("/api/site-data/")
+    .then((r) => (r.ok ? r.json() : Promise.reject()))
+    .then((data) => {
+      applySiteData(data);
+      init();
+    })
+    .catch(() => init());
+});

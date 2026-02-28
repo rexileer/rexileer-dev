@@ -1,17 +1,17 @@
-FROM nginx:1.25-alpine
+FROM python:3.12-slim
 
-LABEL org.opencontainers.image.source="https://github.com/rexileer/portfolio"
-LABEL org.opencontainers.image.description="Minimalist bilingual portfolio site served by Nginx."
+WORKDIR /app
 
-RUN rm -f /etc/nginx/conf.d/default.conf
+COPY backend/requirements.txt /app/requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
-COPY docker/nginx.conf /etc/nginx/conf.d/default.conf
-COPY site /usr/share/nginx/html
+COPY backend /app
+COPY site /app/site
 
-EXPOSE 80
-EXPOSE 443
+ENV DJANGO_SETTINGS_MODULE=portfolio.settings
+RUN python manage.py migrate --noinput
+RUN python manage.py load_initial_data || true
 
-HEALTHCHECK --interval=30s --timeout=3s --start-period=10s --retries=3 \
-  CMD wget -q --spider http://127.0.0.1/ || exit 1
-
-
+EXPOSE 8080
+RUN chmod +x /app/entrypoint.sh
+ENTRYPOINT ["/app/entrypoint.sh"]
