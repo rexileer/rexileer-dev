@@ -1,7 +1,14 @@
+import os
 from pathlib import Path
 from django.http import Http404, HttpResponse, JsonResponse
 
-SITE_DIR = Path(__file__).resolve().parent.parent.parent / "site"
+# В контейнере: /app/site. Локально: репо с backend/ и site/ — родитель репо / site
+_SITE_DIR = os.environ.get("SITE_DIR")
+if _SITE_DIR:
+    SITE_DIR = Path(_SITE_DIR)
+else:
+    _root = Path(__file__).resolve().parent.parent.parent
+    SITE_DIR = _root / "site"
 ALLOWED_SITE_FILES = {"index.html", "styles.css", "script.js"}
 
 
