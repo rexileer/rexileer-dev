@@ -10,6 +10,7 @@ COPY site /app/site
 
 ENV DJANGO_SETTINGS_MODULE=portfolio.settings
 RUN python manage.py migrate --noinput
+RUN python manage.py collectstatic --noinput --clear
 RUN python manage.py load_initial_data || true
 
 EXPOSE 8080
