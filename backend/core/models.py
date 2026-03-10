@@ -44,3 +44,20 @@ class Project(models.Model):
 
     def __str__(self):
         return self.slug
+
+
+class VisitLog(models.Model):
+    """Логи визитов для простой аналитики."""
+
+    path = models.CharField(max_length=255)
+    ip = models.GenericIPAddressField(null=True, blank=True)
+    user_agent = models.TextField(blank=True)
+    created_at = models.DateTimeField(auto_now_add=True, db_index=True)
+
+    class Meta:
+        ordering = ["-created_at"]
+        verbose_name = "Запись визита"
+        verbose_name_plural = "Записи визитов"
+
+    def __str__(self):
+        return f"{self.ip} {self.path} {self.created_at}"
