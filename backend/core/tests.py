@@ -6,6 +6,7 @@ from .models import (
     ProjectDraft,
     ProjectMedia,
     TelegramPostDraft,
+    VisitLog,
 )
 from .serializers import build_projects
 from .services.ai_portfolio import generate_portfolio_draft
@@ -126,3 +127,56 @@ class PortfolioWorkflowTests(TestCase):
         self.assertEqual(generated.model, "local-template")
         self.assertEqual(draft.status, ProjectDraft.Status.GENERATED)
         self.assertIn("Django", draft.tags)
+
+
+class VisitLoggingTests(TestCase):
+    def test_browser_visit_to_homepage_is_logged(self):
+        self.client.get(
+            "/",
+            HTTP_USER_AGENT=(
+                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                "AppleWebKit/537.36 Chrome/120.0.0.0 Safari/537.36"
+            ),
+            REMOTE_ADDR="203.0.113.10",
+        )
+
+        visit = VisitLog.objects.get()
+        self.assertEqual(visit.path, "/")
+        self.assertEqual(visit.ip, "203.0.113.10")
+
+    def test_scanner_homepage_request_is_not_logged(self):
+        response = self.client.get(
+            "/",
+            HTTP_USER_AGENT="Python-urllib/3.12",
+            REMOTE_ADDR="203.0.113.20",
+        )
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(VisitLog.objects.count(), 0)
+
+    def test_repeated_homepage_request_from_same_client_is_logged_once(self):
+        headers = {
+            "HTTP_USER_AGENT": (
+                "Mozilla/5.0 (Macintosh; Intel Mac OS X 13_1) "
+                "AppleWebKit/537.36 Chrome/120.0.0.0 Safari/537.36"
+            ),
+            "REMOTE_ADDR": "203.0.113.40",
+        }
+
+        self.client.get("/", **headers)
+        self.client.get("/", **headers)
+
+        self.assertEqual(VisitLog.objects.count(), 1)
+
+    def test_robots_txt_is_served_without_visit_log(self):
+        response = self.client.get(
+            "/robots.txt",
+            HTTP_USER_AGENT="Googlebot/2.1",
+            REMOTE_ADDR="203.0.113.30",
+        )
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response["Content-Type"], "text/plain; charset=utf-8")
+        self.assertIn("User-agent: *", response.content.decode())
+        self.assertIn("Disallow: /admin/", response.content.decode())
+        self.assertEqual(VisitLog.objects.count(), 0)

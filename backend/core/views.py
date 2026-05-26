@@ -34,3 +34,25 @@ def site_data(request):
     from .serializers import build_site_data
 
     return JsonResponse(build_site_data())
+
+
+def robots_txt(request):
+    content = "\n".join(
+        [
+            "User-agent: *",
+            "Disallow: /admin/",
+            "Disallow: /api/",
+            "Crawl-delay: 10",
+            "",
+            "User-agent: GPTBot",
+            "Disallow: /",
+            "",
+            "User-agent: CCBot",
+            "Disallow: /",
+            "",
+            "User-agent: ClaudeBot",
+            "Disallow: /",
+            "",
+        ]
+    )
+    return HttpResponse(content, content_type="text/plain; charset=utf-8")
