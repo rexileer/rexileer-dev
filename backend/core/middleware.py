@@ -25,4 +25,3 @@ class VisitLoggingMiddleware(MiddlewareMixin):
         ua = request.META.get("HTTP_USER_AGENT", "")
 
         VisitLog.objects.create(path=request.path, ip=ip, user_agent=ua)
-

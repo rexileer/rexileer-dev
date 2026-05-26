@@ -3,8 +3,11 @@ from django.db import models
 
 class SiteText(models.Model):
     """Тексты сайта по ключам (data-i18n). key например: hero.title, contact.labels.email"""
+
     key = models.CharField(max_length=120, db_index=True)
-    lang = models.CharField(max_length=5, choices=[("en", "English"), ("ru", "Русский")])
+    lang = models.CharField(
+        max_length=5, choices=[("en", "English"), ("ru", "Русский")]
+    )
     value = models.TextField(blank=True)
 
     class Meta:
@@ -16,7 +19,9 @@ class SiteText(models.Model):
 
 
 class Skill(models.Model):
-    lang = models.CharField(max_length=5, choices=[("en", "English"), ("ru", "Русский")])
+    lang = models.CharField(
+        max_length=5, choices=[("en", "English"), ("ru", "Русский")]
+    )
     text = models.CharField(max_length=200)
     order = models.PositiveIntegerField(default=0)
 
@@ -36,7 +41,9 @@ class Project(models.Model):
     description_en = models.TextField(blank=True)
     description_ru = models.TextField(blank=True)
     tags = models.JSONField(default=list)  # ["Django", "FastAPI", ...]
-    links = models.JSONField(default=list)  # [{"type":"github","href":"...","label":{"en":"...","ru":"..."}}]
+    links = models.JSONField(
+        default=list
+    )  # [{"type":"github","href":"...","label":{"en":"...","ru":"..."}}]
     order = models.PositiveIntegerField(default=0)
 
     class Meta:

@@ -4,7 +4,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
     dependencies = []
@@ -13,7 +12,15 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name="Project",
             fields=[
-                ("id", models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name="ID")),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
                 ("slug", models.SlugField(max_length=80, unique=True)),
                 ("meta_en", models.CharField(blank=True, max_length=80)),
                 ("meta_ru", models.CharField(blank=True, max_length=80)),
@@ -30,9 +37,22 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name="SiteText",
             fields=[
-                ("id", models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name="ID")),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
                 ("key", models.CharField(db_index=True, max_length=120)),
-                ("lang", models.CharField(choices=[("en", "English"), ("ru", "Русский")], max_length=5)),
+                (
+                    "lang",
+                    models.CharField(
+                        choices=[("en", "English"), ("ru", "Русский")], max_length=5
+                    ),
+                ),
                 ("value", models.TextField(blank=True)),
             ],
             options={"ordering": ["key", "lang"], "unique_together": {("key", "lang")}},
@@ -40,8 +60,21 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name="Skill",
             fields=[
-                ("id", models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name="ID")),
-                ("lang", models.CharField(choices=[("en", "English"), ("ru", "Русский")], max_length=5)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "lang",
+                    models.CharField(
+                        choices=[("en", "English"), ("ru", "Русский")], max_length=5
+                    ),
+                ),
                 ("text", models.CharField(max_length=200)),
                 ("order", models.PositiveIntegerField(default=0)),
             ],

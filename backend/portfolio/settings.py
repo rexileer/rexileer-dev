@@ -11,7 +11,9 @@ ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", "*").split(",")
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 CSRF_TRUSTED_ORIGINS = [
     s.strip()
-    for s in os.environ.get("DJANGO_CSRF_TRUSTED_ORIGINS", "https://rexileer.ru,https://www.rexileer.ru").split(",")
+    for s in os.environ.get(
+        "DJANGO_CSRF_TRUSTED_ORIGINS", "https://rexileer.ru,https://www.rexileer.ru"
+    ).split(",")
     if s.strip()
 ]
 
@@ -69,6 +71,8 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
-STATICFILES_DIRS = [BASE_DIR.parent / "site"] if (BASE_DIR.parent / "site").exists() else []
+STATICFILES_DIRS = (
+    [BASE_DIR.parent / "site"] if (BASE_DIR.parent / "site").exists() else []
+)
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"

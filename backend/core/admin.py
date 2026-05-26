@@ -1,5 +1,5 @@
 from django.contrib import admin
-from django.db.models import Count, DateField
+from django.db.models import Count
 from django.db.models.functions import TruncDate
 
 from .models import SiteText, Skill, Project, VisitLog
@@ -13,6 +13,7 @@ class SiteTextAdmin(admin.ModelAdmin):
 
     def value_preview(self, obj):
         return (obj.value[:60] + "…") if len(obj.value) > 60 else obj.value
+
     value_preview.short_description = "Value"
 
 

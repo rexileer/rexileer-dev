@@ -27,7 +27,10 @@ def build_copy():
             _set_nested(copy_en, st.key, st.value)
         else:
             _set_nested(copy_ru, st.key, st.value)
-    return {"en": _default_to_regular(dict(copy_en)), "ru": _default_to_regular(dict(copy_ru))}
+    return {
+        "en": _default_to_regular(dict(copy_en)),
+        "ru": _default_to_regular(dict(copy_ru)),
+    }
 
 
 def build_skills():
@@ -39,14 +42,16 @@ def build_skills():
 def build_projects():
     out = []
     for p in Project.objects.all():
-        out.append({
-            "id": p.slug,
-            "meta": {"en": p.meta_en, "ru": p.meta_ru},
-            "title": {"en": p.title_en, "ru": p.title_ru},
-            "description": {"en": p.description_en, "ru": p.description_ru},
-            "tags": p.tags or [],
-            "links": p.links or [],
-        })
+        out.append(
+            {
+                "id": p.slug,
+                "meta": {"en": p.meta_en, "ru": p.meta_ru},
+                "title": {"en": p.title_en, "ru": p.title_ru},
+                "description": {"en": p.description_en, "ru": p.description_ru},
+                "tags": p.tags or [],
+                "links": p.links or [],
+            }
+        )
     return out
 
 
