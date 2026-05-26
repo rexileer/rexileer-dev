@@ -71,6 +71,19 @@ jobs:
           ssh-keyscan -p "$DEPLOY_PORT" "$DEPLOY_HOST" >> ~/.ssh/known_hosts
           chmod 600 ~/.ssh/known_hosts
 
+      - name: Prepare remote host
+        env:
+          SSHPASS: ${{ env.DEPLOY_PASSWORD }}
+        run: |
+          sshpass -e ssh -p "$DEPLOY_PORT" "$DEPLOY_USER@$DEPLOY_HOST" "bash -s" <<REMOTE
+          set -eu
+          mkdir -p "$DEPLOY_PATH"
+          if ! command -v rsync >/dev/null 2>&1; then
+            apt-get update
+            apt-get install -y rsync
+          fi
+          REMOTE
+
       - name: Sync files
         env:
           SSHPASS: ${{ env.DEPLOY_PASSWORD }}
@@ -88,7 +101,7 @@ jobs:
         env:
           SSHPASS: ${{ env.DEPLOY_PASSWORD }}
         run: |
-          sshpass -e ssh -p "$DEPLOY_PORT" "$DEPLOY_USER@$DEPLOY_HOST" <<'REMOTE'
+          sshpass -e ssh -p "$DEPLOY_PORT" "$DEPLOY_USER@$DEPLOY_HOST" "bash -s" <<'REMOTE'
           set -eu
           cd /root/rexileer-dev
 
