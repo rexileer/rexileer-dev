@@ -58,7 +58,7 @@ jobs:
       - name: Install deploy tools
         run: |
           sudo apt-get update
-          sudo apt-get install -y rsync sshpass
+          sudo apt-get install -y sshpass
 
       - name: Validate deploy environment
         run: |
@@ -81,24 +81,7 @@ jobs:
           set -eu
           mkdir -p "$DEPLOY_PATH"
           git config --global --add safe.directory "$DEPLOY_PATH" || true
-          if ! command -v rsync >/dev/null 2>&1; then
-            apt-get update
-            apt-get install -y rsync
-          fi
           REMOTE
-
-      - name: Sync files
-        env:
-          SSHPASS: ${{ env.DEPLOY_PASSWORD }}
-        run: |
-          sshpass -e rsync -az --delete \
-            -e "ssh -p $DEPLOY_PORT" \
-            --exclude ".git/" \
-            --exclude "AGENTS.md" \
-            --exclude "agents.md" \
-            --exclude "ai-context/" \
-            --exclude "db.sqlite3" \
-            ./ "$DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH/"
 
       - name: Rebuild and verify
         env:
@@ -109,9 +92,12 @@ jobs:
           set -eu
           cd /root/rexileer-dev
 
+          git reset --hard
+          git clean -fd -e AGENTS.md -e agents.md -e ai-context/
           git fetch origin "$DEPLOY_REF"
           git checkout -B "$DEPLOY_REF" "origin/$DEPLOY_REF"
           git reset --hard "$DEPLOY_SHA"
+          git clean -fd -e AGENTS.md -e agents.md -e ai-context/
 
           mkdir -p .git/info
           grep -qxF 'AGENTS.md' .git/info/exclude || echo 'AGENTS.md' >> .git/info/exclude
