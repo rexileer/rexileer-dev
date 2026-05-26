@@ -1,7 +1,14 @@
 """Загружает начальные тексты/навыки/проекты из текущего фронта (одноразово)."""
 
 from django.core.management.base import BaseCommand
-from core.models import SiteText, Skill, Project
+from core.models import (
+    AIProviderConfig,
+    Project,
+    ProjectDraft,
+    SiteText,
+    Skill,
+    TelegramPostDraft,
+)
 
 # Минимальный набор ключей из data-i18n и copy в script.js
 DEFAULT_TEXTS = [
@@ -250,6 +257,57 @@ DEFAULT_PROJECTS = [
     },
 ]
 
+PROJECT_ENRICHMENT = {
+    "scalping-bot": {
+        "detail_en": "Trading automation project focused on short market movements, operational control, and clear monitoring for Telegram-first usage.",
+        "detail_ru": "Проект торговой автоматизации под короткие рыночные движения, управление рисками и удобный контроль через Telegram.",
+        "problem_en": "Manual scalping needs fast reactions, repeatable rules, and live visibility into bot state.",
+        "problem_ru": "Ручной скальпинг требует быстрой реакции, повторяемых правил и прозрачного контроля состояния бота.",
+        "solution_en": "Built a Django-backed Telegram bot with exchange API integration, deployment pipeline, and operational commands.",
+        "solution_ru": "Собрана связка Django + Telegram-бот с интеграцией биржевого API, деплоем и операционными командами.",
+        "result_en": "The project became a controlled demo-ready trading automation system with clear extension points.",
+        "result_ru": "Получилась управляемая demo-ready система торговой автоматизации с понятными точками расширения.",
+        "role_en": "Backend developer, bot architecture",
+        "role_ru": "Backend-разработчик, архитектура бота",
+        "year": "2026",
+        "cover_image_url": "https://images.unsplash.com/photo-1642790106117-e829e14a795f?auto=format&fit=crop&w=1400&q=80",
+        "cover_alt_en": "Trading dashboard with market charts",
+        "cover_alt_ru": "Торговый дашборд с графиками рынка",
+    },
+    "meat-bot": {
+        "detail_en": "Production workflow system combining a workshop Telegram bot and an office CRM for orders, files, and reporting.",
+        "detail_ru": "Производственная система, объединяющая Telegram-бот для цеха и офисную CRM для заказов, файлов и отчетности.",
+        "problem_en": "Production data lived across chats, spreadsheets, and manual office processes.",
+        "problem_ru": "Производственные данные жили в чатах, таблицах и ручных офисных процессах.",
+        "solution_en": "Designed a Django CRM and bot workflow with PostgreSQL, MinIO files, Excel exports, and role-based operations.",
+        "solution_ru": "Спроектирована Django CRM и bot workflow с PostgreSQL, MinIO, Excel-выгрузками и ролевыми операциями.",
+        "result_en": "Teams received one operational flow for shop-floor input and office control.",
+        "result_ru": "Команды получили единый операционный поток для ввода данных в цеху и контроля в офисе.",
+        "role_en": "Full-stack backend delivery",
+        "role_ru": "Полная backend-разработка",
+        "year": "2026",
+        "cover_image_url": "https://images.unsplash.com/photo-1581093458791-9d42e51f873a?auto=format&fit=crop&w=1400&q=80",
+        "cover_alt_en": "Production planning workspace",
+        "cover_alt_ru": "Рабочее место производственного планирования",
+    },
+    "freelance-bot": {
+        "detail_en": "Telegram automation for finding freelance requests, filtering relevant tasks, and helping respond faster.",
+        "detail_ru": "Telegram-автоматизация для поиска фриланс-заявок, фильтрации релевантных задач и ускорения отклика.",
+        "problem_en": "Relevant freelance leads are easy to miss when monitoring channels manually.",
+        "problem_ru": "Релевантные заявки легко пропустить при ручном мониторинге каналов.",
+        "solution_en": "Built a parser and bot workflow with filtering, storage, and structured delivery to Telegram.",
+        "solution_ru": "Собран workflow парсинга и бота с фильтрацией, хранением и структурированной доставкой в Telegram.",
+        "result_en": "Lead discovery became faster and less dependent on manual channel checks.",
+        "result_ru": "Поиск заявок стал быстрее и меньше зависел от ручной проверки каналов.",
+        "role_en": "Backend automation",
+        "role_ru": "Backend-автоматизация",
+        "year": "2025",
+        "cover_image_url": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1400&q=80",
+        "cover_alt_en": "Workspace with project communication",
+        "cover_alt_ru": "Рабочее пространство с проектной коммуникацией",
+    },
+}
+
 
 class Command(BaseCommand):
     def handle(self, *args, **options):
@@ -264,7 +322,7 @@ class Command(BaseCommand):
         for p in DEFAULT_PROJECTS:
             slug = p["slug"]
             order = p["order"]
-            Project.objects.get_or_create(
+            project, created = Project.objects.get_or_create(
                 slug=slug,
                 defaults={
                     "meta_en": p["meta_en"],
@@ -278,4 +336,57 @@ class Command(BaseCommand):
                     "order": order,
                 },
             )
+            enrichment = PROJECT_ENRICHMENT.get(slug)
+            if enrichment:
+                changed = False
+                for field, value in enrichment.items():
+                    if not getattr(project, field):
+                        setattr(project, field, value)
+                        changed = True
+                if changed:
+                    project.save()
+            if created:
+                project.status = Project.Status.PUBLISHED
+                project.save(update_fields=["status"])
+
+        if not ProjectDraft.objects.exists():
+            ProjectDraft.objects.create(
+                slug="new-project-draft",
+                prompt=(
+                    "Опишите здесь проект: задача, стек, что было сделано, "
+                    "какие результаты получили, ссылки на демо/GitHub."
+                ),
+                context="Стиль: уверенно, структурно, без лишнего маркетинга.",
+                title_ru="Новый проект",
+                title_en="New project",
+                meta_ru="Черновик",
+                meta_en="Draft",
+            )
+        if not TelegramPostDraft.objects.exists():
+            TelegramPostDraft.objects.create(
+                title="Шаблон поста о проекте",
+                body=(
+                    "Короткий черновик для будущей публикации в Telegram. "
+                    "После подключения бота этот раздел можно будет отправлять в канал."
+                ),
+                channel_hint="@rexileerdev",
+            )
+        AIProviderConfig.objects.get_or_create(
+            name="OpenAI cheap default",
+            defaults={
+                "provider": AIProviderConfig.Provider.OPENAI,
+                "model": AIProviderConfig.ModelChoice.OPENAI_GPT_4O_MINI,
+                "is_default": True,
+                "notes": "Paste an OpenAI API key here to enable admin generation.",
+            },
+        )
+        AIProviderConfig.objects.get_or_create(
+            name="OpenRouter free default",
+            defaults={
+                "provider": AIProviderConfig.Provider.OPENROUTER,
+                "model": AIProviderConfig.ModelChoice.OPENROUTER_LLAMA_FREE,
+                "base_url": "https://openrouter.ai/api/v1",
+                "notes": "Paste an OpenRouter key here if you prefer a free routed model.",
+            },
+        )
         self.stdout.write(self.style.SUCCESS("Initial data loaded."))

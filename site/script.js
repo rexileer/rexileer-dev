@@ -1,4 +1,4 @@
-const copy = {
+const fallbackCopy = {
   en: {
     brand: { name: "Rexileer" },
     nav: {
@@ -12,7 +12,7 @@ const copy = {
       eyebrow: "Backend Developer",
       title: "Building reliable backend systems with Python.",
       subtitle:
-        "I design and evolve data-stream services with attention to stability, observability, and fast feature delivery.",
+        "I turn rough product ideas into production-ready backend systems, bots, dashboards, and automation workflows.",
       ctaProjects: "See projects",
       ctaContact: "Let's connect",
     },
@@ -20,25 +20,22 @@ const copy = {
       eyebrow: "Profile",
       title: "Short intro",
       paragraph1:
-        "I help teams and companies take solutions from prototype to production, engineering architecture and CI/CD that handle real-world load.",
+        "I build Django, FastAPI, Telegram, and data-processing systems with clean deployment and practical admin tooling.",
       paragraph2:
-        "I combine engineering discipline with pragmatism — shipping production systems without losing control of quality or infrastructure.",
+        "This portfolio is managed from Django admin: projects can be drafted, expanded with AI, enriched with media, and published.",
     },
     skills: {
       eyebrow: "Stack",
       title: "Skills & tools",
       description:
-        "I work across the Python ecosystem, orchestrating services with cloud-native tooling and modern DevOps practices.",
+        "Core stack for backend systems, bots, automation, integrations, and deploy pipelines.",
     },
-    projects: {
-      eyebrow: "Selected Work",
-      title: "Projects",
-    },
+    projects: { eyebrow: "Selected Work", title: "Projects" },
     contact: {
-      eyebrow: "Let’s Talk",
+      eyebrow: "Let's Talk",
       title: "Contact",
       description:
-        "Reach out if you’re looking for a backend engineer to ship reliable services or to collaborate on new ideas.",
+        "Reach out if you need a backend engineer for production systems, Telegram automation, or internal tools.",
       labels: {
         email: "Email",
         github: "GitHub",
@@ -46,9 +43,7 @@ const copy = {
         telegram: "Telegram",
       },
     },
-    footer: {
-      note: " 2025 Rexileer. Available for remote opportunities.",
-    },
+    footer: { note: " 2026 Rexileer. Available for remote opportunities." },
   },
   ru: {
     brand: { name: "Rexileer" },
@@ -60,10 +55,10 @@ const copy = {
     },
     langToggle: { label: "Язык" },
     hero: {
-      eyebrow: "Бэкенд-разработчик",
-      title: "Создаю надёжные бэкенд-системы на Python.",
+      eyebrow: "Backend-разработчик",
+      title: "Создаю надежные backend-системы на Python.",
       subtitle:
-        "Проектирую, внедряю и поддерживаю сервисы, работающие с данными, концентрируясь на прозрачности, поддерживаемости и измеримом результате.",
+        "Превращаю идеи в production-ready сервисы, Telegram-ботов, CRM, админки и автоматизацию.",
       ctaProjects: "Смотреть проекты",
       ctaContact: "Связаться",
     },
@@ -71,25 +66,22 @@ const copy = {
       eyebrow: "Профиль",
       title: "Коротко обо мне",
       paragraph1:
-        "Помогаю командам и компаниям выводить решения из прототипа в продакшн, проектируя архитектуру и CI/CD под реальные нагрузки.",
+        "Разрабатываю Django, FastAPI, Telegram и data-processing системы с понятным деплоем и удобными админками.",
       paragraph2:
-        "Сочетаю инженерный подход с прагматикой — выпускаю продакшн-решения без потери контроля над качеством и инфраструктурой.",
+        "Это портфолио управляется из Django admin: проекты можно создавать как черновики, расширять через ИИ, добавлять медиа и публиковать.",
     },
     skills: {
       eyebrow: "Стек",
       title: "Навыки и инструменты",
       description:
-        "Работаю в экосистеме Python, создаю микросервисы и backend-архитектуру с использованием Docker, Redis, Celery и CI/CD-практик.",
+        "Основной стек для backend-систем, ботов, автоматизации, интеграций и деплоя.",
     },
-    projects: {
-      eyebrow: "Избранное",
-      title: "Проекты",
-    },
+    projects: { eyebrow: "Избранное", title: "Проекты" },
     contact: {
       eyebrow: "На связи",
       title: "Контакты",
       description:
-        "Доступен для удалённой работы (full-time / contract). Пишите, если нужен инженер по backend-части — обсудим объём и сроки.",
+        "Пишите, если нужен backend-разработчик для production-сервисов, Telegram-автоматизации или внутренних инструментов.",
       labels: {
         email: "Email",
         github: "GitHub",
@@ -97,217 +89,20 @@ const copy = {
         telegram: "Telegram",
       },
     },
-    footer: {
-      note: " 2025 Rexileer. Открыт к удалённым предложениям.",
-    },
+    footer: { note: " 2026 Rexileer. Открыт к удаленным предложениям." },
   },
 };
 
-const skills = {
-  en: [
-    "Python",
-    "Django",
-    "FastAPI",
-    "PostgreSQL",
-    "SQLAlchemy",
-    "Docker · Docker Compose",
-    "GitLab CI · GitHub Actions",
-    "Selenium Wire · undetected-chromedriver",
-    "Celery",
-    "Linux",
-    "Monitoring: Prometheus & Grafana (worked with)",
-    "Nginx",
-    "Go · Rust — cross-stack tooling (personal projects)",
-    "Redis",
-    "WebSockets · Background workers · Observability",
-    "Kubernetes (basic)",
-  ],
-  ru: [
-    "Python",
-    "Django",
-    "FastAPI",
-    "PostgreSQL",
-    "SQLAlchemy",
-    "Docker · Docker Compose",
-    "GitLab CI · GitHub Actions",
-    "Selenium Wire · undetected-chromedriver",
-    "Celery",
-    "Linux",
-    "Monitoring: Prometheus & Grafana (worked with)",
-    "Nginx",
-    "Go · Rust — cross-stack tooling (personal projects)",
-    "Redis",
-    "WebSockets · Background workers · Observability",
-    "Kubernetes (basic)",
-  ],
-};
-
-const projects = [
-  {
-    id: "scalping-bot",
-    meta: { en: "Live Demo", ru: "Демо" },
-    title: {
-      en: "Crypto Scalping MEXC",
-      ru: "Крипто скальпинг MEXC",
-    },
-    description: {
-      en: "Crypto trading bot executing scalping strategies via the MEXC API. Handles live market streams, trade automation, and monitoring.",
-      ru: "Бот для криптотрейдинга, исполняющий стратегии скальпинга через MEXC API. Работает с рыночными потоками в реальном времени, автоматизирует сделки и мониторинг.",
-    },
-    tags: [
-      "Aiogram",
-      "Django",
-      "PostgreSQL",
-      "Docker Compose",
-      "GitHub Actions",
-    ],
-    links: [
-      {
-        type: "demo",
-        href: "https://t.me/scalpingtest_bot",
-        label: { en: "Open demo", ru: "Открыть демо" },
-      },
-      {
-        type: "github",
-        href: "https://github.com/rexileer/skalping-bot-demo",
-        label: { en: "GitHub", ru: "GitHub" },
-      },
-    ],
-  },
-  {
-    id: "steps-bot",
-    meta: { en: "Featured", ru: "Витрина" },
-    title: {
-      en: "Steps Bot",
-      ru: "Шаги-бот",
-    },
-    description: {
-      en: "Bot for tracking steps/walks, balance and orders. There is an admin API and an optional Django admin panel.",
-      ru: "Бот для учета шагов/прогулок, баланса и заказов. Есть admin API и опциональная Django-админка.",
-    },
-    tags: [
-      "Aiogram",
-      "Django",
-      "PostgreSQL",
-      "Docker Compose",
-      "GitHub Actions",
-      "SQLAlchemy + Alembic",
-      "FastAPI",
-    ],
-    links: [
-      {
-        type: "github",
-        href: "https://github.com/rexileer/steps-bot-demo",
-        label: { en: "GitHub", ru: "GitHub" },
-      },
-    ],
-  },
-  {
-    id: "meat-bot",
-    meta: { en: "Featured", ru: "Витрина" },
-    title: {
-      en: "Production System for Meat Factory",
-      ru: "Производственная система для мясного завода",
-    },
-    description: {
-      en: "Production system: Telegram bot (workshop) + Django CRM (office).",
-      ru: "Производственная система: Telegram‑бот (цех) + Django CRM (офис).",
-    },
-    tags: [
-      "Aiogram",
-      "Django",
-      "PostgreSQL",
-      "Docker Compose",
-      "Minio",
-      "openpyxl",
-      "Redis",
-    ],
-    links: [
-      {
-        type: "github",
-        href: "https://github.com/rexileer/meat-bot-example",
-        label: { en: "GitHub", ru: "GitHub" },
-      },
-    ],
-  },
-  {
-    id: "freelance-bot",
-    meta: { en: "Featured", ru: "Витрина" },
-    title: {
-      en: "Freelance Bot",
-      ru: "Фриланс-бот",
-    },
-    description: {
-      en: "Telegram bot for automating the search and placement of freelance applications.",
-      ru: "Телеграм-бот для автоматизации поиска и размещения фриланс-заявок.",
-    },
-    tags: ["Aiogram", "Django", "PostgreSQL", "Docker Compose", "Telethon"],
-    links: [
-      {
-        type: "github",
-        href: "https://github.com/rexileer/freelance-bot-demo",
-        label: { en: "GitHub", ru: "GitHub" },
-      },
-    ],
-  },
-  {
-    id: "payment-broadcast-bot",
-    meta: { en: "Featured", ru: "Витрина" },
-    title: {
-      en: "Payment Broadcast Bot",
-      ru: "Бот для рассылки оплаты",
-    },
-    description: {
-      en: "Bot for paid subscriptions/payments and mailings.",
-      ru: "Бот для платных подписок/платежей и рассылок.",
-    },
-    tags: ["Aiogram", "Django", "PostgreSQL", "Docker Compose", "Yookassa API"],
-    links: [
-      {
-        type: "github",
-        href: "https://github.com/rexileer/payment-broadcast-bot-example",
-        label: { en: "GitHub", ru: "GitHub" },
-      },
-    ],
-  },
-  {
-    id: "telegram-channel",
-    meta: { en: "Telegram Channel", ru: "Телеграм-канал" },
-    title: {
-      en: "Telegram Channel",
-      ru: "Телеграм-канал",
-    },
-    description: {
-      en: "Telegram channel about my experience in various projects.",
-      ru: "Телеграм-канал, в котором подробно описывается мой опыт в различных проектах.",
-    },
-    tags: ["Telegram"],
-    links: [
-      {
-        type: "telegram",
-        href: "https://t.me/rexileerdev",
-        label: { en: "Open channel", ru: "Открыть канал" },
-      },
-    ],
-  },
-];
+let copy = structuredClone(fallbackCopy);
+let skills = { en: [], ru: [] };
+let projects = [];
 
 const storageKey = "rexileer.lang";
-const nextLanguageLabel = {
-  en: "Switch language to Russian",
-  ru: "Переключить язык на английский",
-};
 const langToggle = document.getElementById("lang-toggle");
 const langDisplay = document.querySelector("[data-lang-display]");
 const skillsList = document.getElementById("skills-list");
 const projectGrid = document.getElementById("project-grid");
 const i18nElements = [...document.querySelectorAll("[data-i18n]")];
-const contactLabelElements = {
-  email: document.querySelector('[data-i18n="contact.labels.email"]'),
-  github: document.querySelector('[data-i18n="contact.labels.github"]'),
-  linkedin: document.querySelector('[data-i18n="contact.labels.linkedin"]'),
-  telegram: document.querySelector('[data-i18n="contact.labels.telegram"]'),
-};
 
 function getNestedCopy(lang, key) {
   return key
@@ -315,24 +110,51 @@ function getNestedCopy(lang, key) {
     .reduce((acc, part) => (acc ? acc[part] : undefined), copy[lang]);
 }
 
+function text(value, lang) {
+  if (!value) return "";
+  if (typeof value === "string") return value;
+  return value[lang] || value.en || value.ru || "";
+}
+
 function updateStaticText(lang) {
   i18nElements.forEach((node) => {
-    const text = getNestedCopy(lang, node.dataset.i18n);
-    if (typeof text === "string") {
-      node.textContent = text;
-    }
+    const value = getNestedCopy(lang, node.dataset.i18n);
+    if (typeof value === "string") node.textContent = value;
   });
 }
 
 function renderSkills(lang) {
   skillsList.innerHTML = "";
-  const fragment = document.createDocumentFragment();
-  skills[lang].forEach((item) => {
+  const items = skills[lang]?.length ? skills[lang] : ["Python", "Django", "Docker"];
+  items.forEach((item) => {
     const li = document.createElement("li");
     li.textContent = item;
-    fragment.appendChild(li);
+    skillsList.appendChild(li);
   });
-  skillsList.appendChild(fragment);
+}
+
+function createMedia(project, lang) {
+  const coverUrl = project.cover?.url;
+  const firstMedia = project.media?.[0];
+  const media = document.createElement("div");
+  media.className = "project-card-media";
+
+  if (coverUrl) {
+    const image = document.createElement("img");
+    image.src = coverUrl;
+    image.alt = text(project.cover.alt, lang) || text(project.title, lang);
+    media.appendChild(image);
+  } else if (firstMedia?.url && firstMedia.type !== "video") {
+    const image = document.createElement("img");
+    image.src = firstMedia.thumbnailUrl || firstMedia.url;
+    image.alt = text(firstMedia.caption, lang) || text(project.title, lang);
+    media.appendChild(image);
+  } else {
+    media.classList.add("empty");
+    media.textContent = text(project.title, lang).slice(0, 2).toUpperCase();
+  }
+
+  return media;
 }
 
 function createLinkElement(link, lang) {
@@ -341,144 +163,186 @@ function createLinkElement(link, lang) {
   anchor.href = link.href;
   anchor.target = "_blank";
   anchor.rel = "noreferrer";
-  anchor.textContent = link.label[lang];
-  const arrow = document.createElement("span");
-  arrow.setAttribute("aria-hidden", "true");
-  arrow.textContent = "↗";
-  anchor.appendChild(arrow);
+  anchor.textContent = text(link.label, lang) || link.type;
   return anchor;
 }
 
 function renderProjects(lang) {
   projectGrid.innerHTML = "";
-  const fragment = document.createDocumentFragment();
-
   projects.forEach((project) => {
     const card = document.createElement("article");
     card.className = "project-card";
     card.role = "listitem";
 
+    const body = document.createElement("div");
+    body.className = "project-card-body";
+
     const meta = document.createElement("span");
     meta.className = "project-meta";
-    meta.textContent = project.meta[lang];
+    meta.textContent = text(project.meta, lang);
 
     const title = document.createElement("h3");
     title.className = "project-title";
-    title.textContent = project.title[lang];
+    title.textContent = text(project.title, lang);
 
     const description = document.createElement("p");
     description.className = "project-description";
-    description.textContent = project.description[lang];
+    description.textContent = text(project.description, lang);
 
-    const tagContainer = document.createElement("div");
-    tagContainer.className = "project-tags";
-    project.tags.forEach((tag) => {
+    const tags = document.createElement("div");
+    tags.className = "project-tags";
+    (project.tags || []).slice(0, 6).forEach((tag) => {
       const span = document.createElement("span");
       span.className = "project-tag";
       span.textContent = tag;
-      tagContainer.appendChild(span);
+      tags.appendChild(span);
     });
 
-    const linkContainer = document.createElement("div");
-    linkContainer.className = "project-links";
-    project.links.forEach((link) => {
-      linkContainer.appendChild(createLinkElement(link, lang));
-    });
+    const actions = document.createElement("div");
+    actions.className = "project-links";
+    const open = document.createElement("a");
+    open.className = "project-link primary-link";
+    open.href = project.detailUrl || `#project/${project.id}`;
+    open.textContent = lang === "ru" ? "Подробнее" : "Details";
+    actions.appendChild(open);
+    (project.links || []).slice(0, 2).forEach((link) => actions.appendChild(createLinkElement(link, lang)));
 
-    card.append(meta, title, description, tagContainer, linkContainer);
-    fragment.appendChild(card);
+    body.append(meta, title, description, tags, actions);
+    card.append(createMedia(project, lang), body);
+    projectGrid.appendChild(card);
+  });
+}
+
+function renderProjectDetail(lang) {
+  const route = window.location.hash.match(/^#project\/(.+)$/);
+  const existing = document.getElementById("project-detail");
+  if (existing) existing.remove();
+  if (!route) return;
+
+  const project = projects.find((item) => item.id === route[1]);
+  if (!project) return;
+
+  const section = document.createElement("section");
+  section.id = "project-detail";
+  section.className = "project-detail";
+
+  const back = document.createElement("a");
+  back.href = "#projects";
+  back.className = "project-back";
+  back.textContent = lang === "ru" ? "← Все проекты" : "← All projects";
+
+  const title = document.createElement("h2");
+  title.textContent = text(project.title, lang);
+
+  const summary = document.createElement("p");
+  summary.className = "project-detail-summary";
+  summary.textContent = text(project.detail, lang) || text(project.description, lang);
+
+  const grid = document.createElement("div");
+  grid.className = "project-detail-grid";
+  [
+    [lang === "ru" ? "Задача" : "Problem", project.sections?.problem],
+    [lang === "ru" ? "Решение" : "Solution", project.sections?.solution],
+    [lang === "ru" ? "Результат" : "Result", project.sections?.result],
+  ].forEach(([heading, value]) => {
+    const content = text(value, lang);
+    if (!content) return;
+    const item = document.createElement("div");
+    item.className = "project-detail-block";
+    const h3 = document.createElement("h3");
+    h3.textContent = heading;
+    const p = document.createElement("p");
+    p.textContent = content;
+    item.append(h3, p);
+    grid.appendChild(item);
   });
 
-  projectGrid.appendChild(fragment);
+  const gallery = document.createElement("div");
+  gallery.className = "project-gallery";
+  (project.media || []).forEach((item) => {
+    const figure = document.createElement("figure");
+    if (item.type === "video") {
+      const video = document.createElement("video");
+      video.src = item.url;
+      video.controls = true;
+      video.preload = "metadata";
+      figure.appendChild(video);
+    } else {
+      const image = document.createElement("img");
+      image.src = item.url;
+      image.alt = text(item.caption, lang) || text(item.title, lang);
+      figure.appendChild(image);
+    }
+    const caption = text(item.caption, lang);
+    if (caption) {
+      const figcaption = document.createElement("figcaption");
+      figcaption.textContent = caption;
+      figure.appendChild(figcaption);
+    }
+    gallery.appendChild(figure);
+  });
+
+  const meta = document.createElement("div");
+  meta.className = "project-detail-meta";
+  [project.year, text(project.role, lang), ...(project.tags || [])].filter(Boolean).forEach((item) => {
+    const span = document.createElement("span");
+    span.textContent = item;
+    meta.appendChild(span);
+  });
+
+  section.append(back, title, meta, summary, grid, gallery);
+  document.querySelector("main").insertBefore(section, document.getElementById("contact"));
+  section.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
 function updateLanguage(lang) {
   document.documentElement.lang = lang;
-  if (langDisplay) {
-    langDisplay.textContent = lang.toUpperCase();
-  }
+  if (langDisplay) langDisplay.textContent = lang.toUpperCase();
   updateStaticText(lang);
   renderSkills(lang);
   renderProjects(lang);
-  hydrateContactLabels(lang);
-  if (langToggle) {
-    langToggle.setAttribute("aria-label", nextLanguageLabel[lang]);
-    langToggle.dataset.nextLang = lang === "en" ? "ru" : "en";
-  }
+  renderProjectDetail(lang);
   localStorage.setItem(storageKey, lang);
 }
 
 function initLanguage() {
-  const savedLang = localStorage.getItem(storageKey);
-  if (savedLang && copy[savedLang]) {
-    return savedLang;
-  }
-  const prefersRu = navigator.language && navigator.language.startsWith("ru");
-  return prefersRu ? "ru" : "en";
-}
-
-function handleLangToggle() {
-  const nextLang = document.documentElement.lang === "en" ? "ru" : "en";
-  updateLanguage(nextLang);
-}
-
-function hydrateContactLabels(lang) {
-  Object.entries(contactLabelElements).forEach(([key, element]) => {
-    if (element) {
-      const value = copy[lang]?.contact?.labels?.[key];
-      if (value) {
-        element.textContent = value;
-      }
-    }
-  });
+  const saved = localStorage.getItem(storageKey);
+  if (saved && copy[saved]) return saved;
+  return navigator.language?.startsWith("ru") ? "ru" : "en";
 }
 
 function deepMerge(target, source) {
   if (!source || typeof source !== "object") return;
-  for (const key of Object.keys(source)) {
-    if (source[key] != null && typeof source[key] === "object" && !Array.isArray(source[key])) {
-      if (!target[key]) target[key] = {};
+  Object.keys(source).forEach((key) => {
+    if (source[key] && typeof source[key] === "object" && !Array.isArray(source[key])) {
+      target[key] = target[key] || {};
       deepMerge(target[key], source[key]);
     } else {
       target[key] = source[key];
     }
-  }
+  });
 }
 
 function applySiteData(data) {
-  if (data.copy) {
-    if (data.copy.en) deepMerge(copy.en, data.copy.en);
-    if (data.copy.ru) deepMerge(copy.ru, data.copy.ru);
-  }
-  if (data.skills && data.skills.en && data.skills.en.length) skills.en = data.skills.en;
-  if (data.skills && data.skills.ru && data.skills.ru.length) skills.ru = data.skills.ru;
-  if (data.projects && Array.isArray(data.projects) && data.projects.length) {
-    projects.length = 0;
-    projects.push(...data.projects);
-  }
+  if (data.copy?.en) deepMerge(copy.en, data.copy.en);
+  if (data.copy?.ru) deepMerge(copy.ru, data.copy.ru);
+  if (data.skills?.en?.length) skills.en = data.skills.en;
+  if (data.skills?.ru?.length) skills.ru = data.skills.ru;
+  if (Array.isArray(data.projects)) projects = data.projects;
 }
 
 function init() {
-  const startingLang = initLanguage();
-  updateLanguage(startingLang);
-
-  if (langToggle) {
-    langToggle.addEventListener("click", () => {
-      handleLangToggle();
-    });
-  }
-
-  window.addEventListener("hashchange", () => {
-    const target = document.querySelector(window.location.hash);
-    if (target) {
-      target.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
+  const lang = initLanguage();
+  updateLanguage(lang);
+  langToggle?.addEventListener("click", () => {
+    updateLanguage(document.documentElement.lang === "en" ? "ru" : "en");
   });
+  window.addEventListener("hashchange", () => updateLanguage(document.documentElement.lang));
 }
 
 document.addEventListener("DOMContentLoaded", () => {
   fetch("/api/site-data/")
-    .then((r) => (r.ok ? r.json() : Promise.reject()))
+    .then((response) => (response.ok ? response.json() : Promise.reject()))
     .then((data) => {
       applySiteData(data);
       init();

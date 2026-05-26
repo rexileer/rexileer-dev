@@ -51,6 +51,8 @@ jobs:
       DEPLOY_PATH: /root/rexileer-dev
       DEPLOY_REF: ${{ github.ref_name }}
       DEPLOY_SHA: ${{ github.sha }}
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY || vars.OPENAI_API_KEY }}
+      OPENAI_MODEL: ${{ secrets.OPENAI_MODEL || vars.OPENAI_MODEL || 'gpt-4o-mini' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -93,11 +95,11 @@ jobs:
           cd /root/rexileer-dev
 
           git reset --hard
-          git clean -fd -e AGENTS.md -e agents.md -e ai-context/
+          git clean -fd -e AGENTS.md -e agents.md -e ai-context/ -e .env
           git fetch origin "$DEPLOY_REF"
           git checkout -B "$DEPLOY_REF" "origin/$DEPLOY_REF"
           git reset --hard "$DEPLOY_SHA"
-          git clean -fd -e AGENTS.md -e agents.md -e ai-context/
+          git clean -fd -e AGENTS.md -e agents.md -e ai-context/ -e .env
 
           mkdir -p .git/info
           grep -qxF 'AGENTS.md' .git/info/exclude || echo 'AGENTS.md' >> .git/info/exclude

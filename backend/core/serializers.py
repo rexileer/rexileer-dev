@@ -1,5 +1,5 @@
 from collections import defaultdict
-from .models import SiteText, Skill, Project
+from .models import Project, SiteText, Skill
 
 
 def _nested_dict():
@@ -41,15 +41,46 @@ def build_skills():
 
 def build_projects():
     out = []
-    for p in Project.objects.all():
+    projects = (
+        Project.objects.filter(status=Project.Status.PUBLISHED)
+        .prefetch_related("media")
+        .order_by("order", "slug")
+    )
+    for p in projects:
         out.append(
             {
                 "id": p.slug,
+                "detailUrl": f"#project/{p.slug}",
+                "status": p.status,
+                "featured": p.featured,
                 "meta": {"en": p.meta_en, "ru": p.meta_ru},
                 "title": {"en": p.title_en, "ru": p.title_ru},
                 "description": {"en": p.description_en, "ru": p.description_ru},
+                "detail": {"en": p.detail_en, "ru": p.detail_ru},
+                "sections": {
+                    "problem": {"en": p.problem_en, "ru": p.problem_ru},
+                    "solution": {"en": p.solution_en, "ru": p.solution_ru},
+                    "result": {"en": p.result_en, "ru": p.result_ru},
+                },
+                "role": {"en": p.role_en, "ru": p.role_ru},
+                "year": p.year,
+                "cover": {
+                    "url": p.cover_image_url,
+                    "alt": {"en": p.cover_alt_en, "ru": p.cover_alt_ru},
+                },
+                "videoUrl": p.video_url,
                 "tags": p.tags or [],
                 "links": p.links or [],
+                "media": [
+                    {
+                        "type": item.media_type,
+                        "title": {"en": item.title_en, "ru": item.title_ru},
+                        "url": item.url,
+                        "thumbnailUrl": item.thumbnail_url,
+                        "caption": {"en": item.caption_en, "ru": item.caption_ru},
+                    }
+                    for item in p.media.all()
+                ],
             }
         )
     return out
