@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">AI media generation pipeline</title>
+  <desc id="desc">Abstract interface showing image and video generation moving through an asynchronous processing pipeline.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#12150f"/>
+      <stop offset="1" stop-color="#080908"/>
+    </linearGradient>
+    <linearGradient id="lime" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#e8ff8b"/>
+      <stop offset="1" stop-color="#a8d400"/>
+    </linearGradient>
+    <linearGradient id="violet" x1="0" y1="1" x2="1" y2="0">
+      <stop stop-color="#6b46ff"/>
+      <stop offset="1" stop-color="#ff61c7"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="18"/>
+    </filter>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <g opacity=".13" stroke="#fff">
+    <path d="M0 150h1600M0 300h1600M0 450h1600M0 600h1600M0 750h1600"/>
+    <path d="M160 0v900M320 0v900M480 0v900M640 0v900M800 0v900M960 0v900M1120 0v900M1280 0v900M1440 0v900"/>
+  </g>
+  <circle cx="1260" cy="220" r="180" fill="#8d5cff" opacity=".13" filter="url(#glow)"/>
+  <circle cx="380" cy="670" r="170" fill="#d8ff3e" opacity=".12" filter="url(#glow)"/>
+  <g fill="none" stroke="#d8ff3e" stroke-width="4" opacity=".75">
+    <path d="M535 450h190c55 0 55-170 110-170h120"/>
+    <path d="M535 450h190c55 0 55 170 110 170h120"/>
+  </g>
+  <g fill="#d8ff3e">
+    <circle cx="535" cy="450" r="10"/><circle cx="955" cy="280" r="10"/><circle cx="955" cy="620" r="10"/>
+  </g>
+  <g transform="translate(120 245)">
+    <rect width="420" height="410" rx="30" fill="#171a14" stroke="#454b39" stroke-width="3"/>
+    <rect x="34" y="34" width="352" height="234" rx="20" fill="url(#violet)"/>
+    <circle cx="123" cy="112" r="34" fill="#ffe77b" opacity=".88"/>
+    <path d="M34 236 135 146l72 64 63-51 116 109H34Z" fill="#0b0c0a" opacity=".52"/>
+    <rect x="34" y="302" width="218" height="18" rx="9" fill="#edf0e6" opacity=".82"/>
+    <rect x="34" y="340" width="300" height="12" rx="6" fill="#72776d"/>
+  </g>
+  <g transform="translate(950 95)">
+    <rect width="500" height="340" rx="30" fill="#171a14" stroke="#454b39" stroke-width="3"/>
+    <rect x="32" y="32" width="436" height="218" rx="20" fill="url(#lime)"/>
+    <path d="m222 87 93 54-93 54Z" fill="#0b0c0a"/>
+    <rect x="32" y="282" width="270" height="14" rx="7" fill="#a5aa9d"/>
+  </g>
+  <g transform="translate(950 480)">
+    <rect width="500" height="325" rx="30" fill="#171a14" stroke="#454b39" stroke-width="3"/>
+    <g transform="translate(34 34)">
+      <rect width="128" height="128" rx="18" fill="#262b20"/>
+      <rect x="152" width="128" height="128" rx="18" fill="url(#violet)" opacity=".86"/>
+      <rect x="304" width="128" height="128" rx="18" fill="url(#lime)" opacity=".9"/>
+      <rect y="162" width="432" height="15" rx="7" fill="#a5aa9d"/>
+      <rect y="203" width="344" height="11" rx="5" fill="#666b61"/>
+    </g>
+  </g>
+  <g font-family="monospace" font-size="24" fill="#d8ff3e" letter-spacing="4">
+    <text x="120" y="205">PROMPT</text>
+    <text x="950" y="67">VIDEO</text>
+    <text x="950" y="452">OUTPUTS</text>
+  </g>
+</svg>

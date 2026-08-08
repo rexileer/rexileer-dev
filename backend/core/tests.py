@@ -62,6 +62,9 @@ class PortfolioWorkflowTests(TestCase):
         self.assertEqual(data[0]["sections"]["problem"]["en"], "Manual operations")
         self.assertEqual(data[0]["media"][0]["url"], "https://example.com/screen.png")
         self.assertEqual(data[0]["detailUrl"], "/projects/demo-crm/")
+        self.assertEqual(data[0]["links"], [])
+        self.assertNotIn("client", data[0])
+        self.assertNotIn("year", data[0])
 
     def test_project_routes_serve_the_portfolio_app(self):
         self.assertEqual(self.client.get("/projects/").status_code, 200)

@@ -24,11 +24,42 @@ const projectTitle = (project) => project.title?.ru || project.title?.en || proj
 const projectDescription = (project) => project.description?.ru || project.description?.en || "";
 const projectText = (field) => field?.ru || field?.en || "";
 
+const sentenceCase = (value = "") => {
+  const text = String(value).trim().replace(/[.]+$/, "");
+  return text ? `${text.charAt(0).toUpperCase()}${text.slice(1)}` : "";
+};
+
+const publicDemoLink = (project) =>
+  (project.links || []).find((link) => link.public === true);
+
 const tagsMarkup = (tags = [], limit = 5) =>
   tags
     .slice(0, limit)
     .map((tag) => `<span class="tag">${escapeHTML(tag)}</span>`)
     .join("");
+
+const techMarkup = (tags = []) =>
+  tags
+    .slice(0, 20)
+    .map(
+      (tag, index) => `
+        <span class="tech-item">
+          <small>${String(index + 1).padStart(2, "0")}</small>
+          <b>${escapeHTML(tag)}</b>
+        </span>`,
+    )
+    .join("");
+
+const highlightMarkup = (item, index) => {
+  const title = typeof item === "string" ? sentenceCase(item) : sentenceCase(item.title);
+  const text = typeof item === "string" ? "" : item.text || "";
+  return `
+    <div class="highlight-item">
+      <span>${String(index + 1).padStart(2, "0")}</span>
+      <h3>${escapeHTML(title)}</h3>
+      ${text ? `<p>${escapeHTML(text)}</p>` : ""}
+    </div>`;
+};
 
 const imageMarkup = (project, eager = false) => {
   const url = project.cover?.url;
@@ -38,6 +69,7 @@ const imageMarkup = (project, eager = false) => {
 };
 
 function caseCard(project, index, eager = false) {
+  const focus = (project.tags || []).slice(0, 2).join(" · ");
   return `
     <a class="case-card" href="/projects/${encodeURIComponent(project.id)}/" data-reveal>
       <div class="case-media">
@@ -46,7 +78,7 @@ function caseCard(project, index, eager = false) {
         <span class="case-arrow" aria-hidden="true">↗</span>
       </div>
       <div class="case-body">
-        <p class="case-meta">${escapeHTML(project.client || projectText(project.meta))} · ${escapeHTML(project.year || "проект")}</p>
+        <p class="case-meta">Инженерный кейс${focus ? ` · ${escapeHTML(focus)}` : ""}</p>
         <h3 class="case-title">${escapeHTML(projectTitle(project))}</h3>
         <p class="case-description">${escapeHTML(truncate(projectDescription(project), 205))}</p>
         <div class="tag-list">${tagsMarkup(project.tags, 5)}</div>
@@ -70,7 +102,6 @@ function contactSection() {
 
 function renderHome() {
   const cases = projects.filter((project) => project.featured);
-  const additional = projects.filter((project) => !project.featured);
   const selected = cases.slice(0, 6);
 
   document.title = "Rexileer — backend-системы и автоматизация";
@@ -87,12 +118,9 @@ function renderHome() {
       </div>
       <div class="shell hero-bottom" data-reveal>
         <div class="hero-proof">
-          <span>Фокус</span>
-          <strong>Не просто пишу код — собираю рабочий контур продукта.</strong>
+          <span>Подход</span>
+          <strong>От бизнес-процесса и архитектуры — до запуска, наблюдаемости и спокойного развития продукта.</strong>
         </div>
-        <div class="hero-stat"><b>${projects.length}</b><span>проектов в реестре</span></div>
-        <div class="hero-stat"><b>${cases.length}</b><span>подробных кейсов</span></div>
-        <div class="hero-stat"><b>5+</b><span>предметных областей</span></div>
       </div>
     </section>
 
@@ -111,7 +139,7 @@ function renderHome() {
         <p class="section-intro">У каждого основного проекта есть отдельная страница: контекст, задача, решение, архитектурный вклад и практический результат.</p>
       </div>
       <div class="case-grid">${selected.map((project, index) => caseCard(project, index, index < 2)).join("")}</div>
-      <div class="section-action"><a class="button" href="/projects/">Все ${cases.length} основных кейсов <span>→</span></a></div>
+      <div class="section-action"><a class="button" href="/projects/">Смотреть все основные кейсы <span>→</span></a></div>
     </section>
 
     <section class="section expertise">
@@ -142,8 +170,8 @@ function renderHome() {
 
     <section class="section shell">
       <div class="archive-teaser" data-reveal>
-        <p class="eyebrow">Полный реестр</p>
-        <h2>Ещё ${additional.length} проектов — коротко и по делу.</h2>
+        <p class="eyebrow">Другие работы</p>
+        <h2>Другие проекты — коротко и по делу.</h2>
         <p>Коммерческие задачи, тестовые проекты и собственные эксперименты: парсеры, платежи, e-commerce, blockchain scoring и небольшие CRM.</p>
         <a class="button" href="/work/">Открыть все работы <span>→</span></a>
       </div>
@@ -161,7 +189,7 @@ function renderCasesCatalog() {
   document.title = "Основные проекты — Rexileer";
   app.innerHTML = `
     <section class="page-hero shell">
-      <p class="eyebrow" data-reveal>Основные проекты <span class="page-count">${cases.length}</span></p>
+      <p class="eyebrow" data-reveal>Основные проекты</p>
       <h1 class="display-title" data-reveal>Кейсы с контекстом, решениями и результатом.</h1>
       <p class="page-lead" data-reveal>Проекты, по которым собраны полноценные материалы. Внутри — не только стек, но и логика решения: зачем оно понадобилось, как устроено и какую работу закрывает.</p>
     </section>
@@ -172,20 +200,19 @@ function renderCasesCatalog() {
 }
 
 const sourceLabel = {
-  BOTTEC: "Коммерческие",
-  "Сторонние и ТЗ": "Тестовые и сторонние",
-  "Пет-проекты": "Собственные",
+  commercial: "Коммерческие",
+  external: "Тестовые и сторонние",
+  personal: "Собственные",
+  other: "Другие",
 };
 
 function workRow(project, index) {
-  const link = project.links?.[0];
   return `
     <article class="work-row" data-source="${escapeHTML(project.sourceGroup)}" data-reveal>
       <span class="work-index">${String(index + 1).padStart(2, "0")}</span>
       <h2>${escapeHTML(projectTitle(project))}</h2>
       <p>${escapeHTML(truncate(projectDescription(project), 190))}</p>
       <span class="work-stack">${escapeHTML((project.tags || []).slice(0, 4).join(" · "))}</span>
-      ${link ? `<a class="work-link" href="${escapeHTML(link.href)}" target="_blank" rel="noreferrer" aria-label="Открыть репозиторий ${escapeHTML(projectTitle(project))}">↗</a>` : "<span></span>"}
     </article>`;
 }
 
@@ -195,9 +222,9 @@ function renderWork() {
   document.title = "Все работы — Rexileer";
   app.innerHTML = `
     <section class="page-hero shell">
-      <p class="eyebrow" data-reveal>Дополнительные проекты <span class="page-count">${additional.length}</span></p>
+      <p class="eyebrow" data-reveal>Дополнительные проекты</p>
       <h1 class="display-title" data-reveal>Широкая практика. Без лишней упаковки.</h1>
-      <p class="page-lead" data-reveal>Здесь собраны остальные работы из реестра: компактно, с задачей, стеком и ссылкой на исходники там, где репозиторий доступен.</p>
+      <p class="page-lead" data-reveal>Здесь собраны остальные работы: компактно, с назначением, ключевой задачей и технологическим контуром.</p>
     </section>
     <section class="section shell">
       <div class="work-toolbar" data-reveal>
@@ -205,7 +232,6 @@ function renderWork() {
           <button class="filter-button active" type="button" data-filter="all">Все</button>
           ${groups.map((group) => `<button class="filter-button" type="button" data-filter="${escapeHTML(group)}">${escapeHTML(sourceLabel[group] || group)}</button>`).join("")}
         </div>
-        <span class="work-total">Показано: <b data-work-count>${additional.length}</b></span>
       </div>
       <div class="work-list">${additional.map(workRow).join("")}</div>
     </section>
@@ -214,20 +240,12 @@ function renderWork() {
   document.querySelectorAll("[data-filter]").forEach((button) => {
     button.addEventListener("click", () => {
       document.querySelectorAll("[data-filter]").forEach((item) => item.classList.toggle("active", item === button));
-      let visible = 0;
       document.querySelectorAll(".work-row").forEach((row) => {
         const show = button.dataset.filter === "all" || row.dataset.source === button.dataset.filter;
         row.hidden = !show;
-        if (show) visible += 1;
       });
-      document.querySelector("[data-work-count]").textContent = visible;
     });
   });
-}
-
-function fact(label, value) {
-  if (!value) return "";
-  return `<div class="project-fact"><span>${escapeHTML(label)}</span><b>${escapeHTML(value)}</b></div>`;
 }
 
 function storyBlock(index, label, heading, content) {
@@ -247,7 +265,7 @@ function renderProject(project) {
   const cases = projects.filter((item) => item.featured);
   const index = cases.findIndex((item) => item.id === project.id);
   const next = cases[(index + 1) % cases.length];
-  const repository = project.links?.[0];
+  const demo = publicDemoLink(project);
   const gallery = project.media || [];
   const role = projectText(project.role);
 
@@ -257,26 +275,21 @@ function renderProject(project) {
       <header class="project-hero shell">
         <a class="project-back" href="/projects/"><span>←</span> Все основные проекты</a>
         <div class="project-heading">
-          <div><p class="eyebrow">Кейс ${String(index + 1).padStart(2, "0")} / ${String(cases.length).padStart(2, "0")}</p><h1>${escapeHTML(projectTitle(project))}</h1></div>
-          <div class="project-heading-side"><p>${escapeHTML(projectDescription(project))}</p>${repository ? `<a class="button" href="${escapeHTML(repository.href)}" target="_blank" rel="noreferrer">Репозиторий <span>↗</span></a>` : ""}</div>
+          <div><p class="eyebrow">Инженерный кейс</p><h1>${escapeHTML(projectTitle(project))}</h1></div>
+          <div class="project-heading-side"><p>${escapeHTML(projectDescription(project))}</p>${demo ? `<a class="button" href="${escapeHTML(demo.href)}" target="_blank" rel="noreferrer">Открыть демо <span>↗</span></a>` : ""}</div>
         </div>
       </header>
-      <div class="project-cover" data-reveal>${imageMarkup(project, true)}<span class="project-cover-label">${escapeHTML(project.client || "Проект")}</span></div>
+      <div class="project-cover" data-reveal>${imageMarkup(project, true)}<span class="project-cover-label">${escapeHTML((project.tags || ["Backend"])[0])}</span></div>
       <section class="project-intro shell">
-        <div class="project-facts" data-reveal>
-          ${fact("Год", project.year)}
-          ${fact("Заказчик / тип", project.client)}
-          ${fact("Состояние", project.projectState)}
-          ${fact("Роль", role)}
-        </div>
         <p class="project-summary" data-reveal>${escapeHTML(projectText(project.detail) || projectDescription(project))}</p>
       </section>
       <section class="project-story shell">
         ${storyBlock(1, "Контекст", "Что требовалось решить", projectText(project.sections?.problem))}
         ${storyBlock(2, "Решение", "Как устроен продукт", projectText(project.sections?.solution))}
-        ${storyBlock(3, "Результат", "Что получил проект", projectText(project.sections?.result))}
-        ${project.highlights?.length ? `<article class="story-block" data-reveal><div class="story-label">04 · В фокусе</div><div class="story-content"><h2>Ключевые части системы</h2><div class="highlight-grid">${project.highlights.map((item, i) => `<div class="highlight-item"><span>${String(i + 1).padStart(2, "0")}</span><p>${escapeHTML(item)}</p></div>`).join("")}</div></div></article>` : ""}
-        <article class="story-block" data-reveal><div class="story-label">05 · Стек</div><div class="story-content"><h2>Технологический контур</h2><div class="tag-list">${tagsMarkup(project.tags, 20)}</div></div></article>
+        ${storyBlock(3, "Вклад", "За что отвечал в проекте", role)}
+        ${storyBlock(4, "Результат", "Что изменилось после запуска", projectText(project.sections?.result))}
+        ${project.highlights?.length ? `<article class="story-block" data-reveal><div class="story-label">05 · Инженерия</div><div class="story-content"><h2>Решения, на которых держится система</h2><p class="story-kicker">Не перечень экранов, а ключевые архитектурные выборы и причины, по которым продукт остаётся управляемым.</p><div class="highlight-grid">${project.highlights.map(highlightMarkup).join("")}</div></div></article>` : ""}
+        <article class="story-block tech-story" data-reveal><div class="story-label">06 · Стек</div><div class="story-content"><h2>Технологический контур</h2><p class="story-kicker">Инструменты подобраны под реальные интеграции, фоновые процессы, данные и эксплуатацию.</p><div class="tech-grid">${techMarkup(project.tags)}</div></div></article>
         ${gallery.length ? `<div class="project-gallery">${gallery.map((item) => `<figure data-reveal>${item.type === "video" ? `<video src="${escapeHTML(item.url)}" controls preload="metadata"></video>` : `<img src="${escapeHTML(item.url)}" alt="${escapeHTML(projectText(item.caption) || projectTitle(project))}" loading="lazy" />`}<figcaption>${escapeHTML(projectText(item.caption))}</figcaption></figure>`).join("")}</div>` : ""}
       </section>
       <nav class="project-next shell" aria-label="Следующий кейс" data-reveal><a href="/projects/${encodeURIComponent(next.id)}/"><div><span>Следующий кейс</span><strong>${escapeHTML(projectTitle(next))}</strong></div><i>→</i></a></nav>

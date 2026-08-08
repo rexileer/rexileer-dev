@@ -48,16 +48,18 @@ def build_projects():
         .order_by("order", "slug")
     )
     for p in projects:
+        source_group = {
+            "BOTTEC": "commercial",
+            "Сторонние и ТЗ": "external",
+            "Пет-проекты": "personal",
+        }.get(p.source_group, "other")
+        public_links = [link for link in (p.links or []) if link.get("public") is True]
         out.append(
             {
                 "id": p.slug,
                 "detailUrl": f"/projects/{p.slug}/",
-                "status": p.status,
                 "featured": p.featured,
-                "sourceGroup": p.source_group,
-                "client": p.client,
-                "projectState": p.project_state,
-                "meta": {"en": p.meta_en, "ru": p.meta_ru},
+                "sourceGroup": source_group,
                 "title": {"en": p.title_en, "ru": p.title_ru},
                 "description": {"en": p.description_en, "ru": p.description_ru},
                 "detail": {"en": p.detail_en, "ru": p.detail_ru},
@@ -67,7 +69,6 @@ def build_projects():
                     "result": {"en": p.result_en, "ru": p.result_ru},
                 },
                 "role": {"en": p.role_en, "ru": p.role_ru},
-                "year": p.year,
                 "cover": {
                     "url": p.cover_image_url,
                     "alt": {"en": p.cover_alt_en, "ru": p.cover_alt_ru},
@@ -75,7 +76,7 @@ def build_projects():
                 "videoUrl": p.video_url,
                 "tags": p.tags or [],
                 "highlights": p.highlights or [],
-                "links": p.links or [],
+                "links": public_links,
                 "media": [
                     {
                         "type": item.media_type,

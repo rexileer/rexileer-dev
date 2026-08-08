@@ -32,6 +32,11 @@ The deployment entrypoint runs this command automatically. It updates copy,
 classification, tags, links, and ordering, but preserves custom cover images,
 manually added media, private AI notes, and the original publication date.
 
+Client names, project state, year, and unapproved repository URLs are admin-only
+metadata and are not included in the public API. To publish a demo link later,
+add `"public": true` to that link in the registry after confirming that the
+target is intentionally public.
+
 ## AI providers
 
 Open `Core -> AI provider configs`.
