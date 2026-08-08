@@ -1,287 +1,69 @@
 <!doctype html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta
-            name="description"
-            content="rexileer · Portfolio · Python backend developer."
-        />
-        <title>Rexileer · Portfolio</title>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap"
-            rel="stylesheet"
-        />
-        <link rel="stylesheet" href="styles.css" />
-    </head>
-    <body>
-        <div class="background-grid" aria-hidden="true"></div>
-        <header class="site-header">
-            <div class="brand">
-                <span class="brand-initial">R</span>
-                <span class="brand-text" data-i18n="brand.name">Rexileer</span>
-            </div>
-            <nav class="site-nav">
-                <a class="nav-link" href="#about" data-i18n="nav.about"
-                    >About</a
-                >
-                <a class="nav-link" href="#skills" data-i18n="nav.skills"
-                    >Skills</a
-                >
-                <a class="nav-link" href="#projects" data-i18n="nav.projects"
-                    >Projects</a
-                >
-                <a class="nav-link" href="#contact" data-i18n="nav.contact"
-                    >Contact</a
-                >
-            </nav>
-            <button
-                id="lang-toggle"
-                class="lang-toggle"
-                type="button"
-                aria-live="polite"
-            >
-                <span class="lang-toggle-label" data-i18n="langToggle.label"
-                    >Language</span
-                >
-                <span class="lang-toggle-current" data-lang-display>EN</span>
-            </button>
-        </header>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0b0c0a" />
+    <meta
+      name="description"
+      content="Rexileer — backend-разработка, AI-интеграции, Telegram-продукты, CRM и автоматизация бизнес-процессов."
+    />
+    <title>Rexileer — backend-системы и автоматизация</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+    <script type="module" src="/script.js"></script>
+  </head>
+  <body>
+    <div class="page-noise" aria-hidden="true"></div>
 
-        <main>
-            <section id="hero" class="hero" aria-labelledby="hero-title">
-                <div class="hero-content">
-                    <p class="hero-eyebrow" data-i18n="hero.eyebrow">
-                        Backend Developer
-                    </p>
-                    <h1
-                        id="hero-title"
-                        class="hero-title"
-                        data-i18n="hero.title"
-                    >
-                        I develop backend systems and automated services in
-                        Python with a focus on resilience, scalability, and
-                        clear architecture.
-                    </h1>
-                    <p class="hero-subtitle" data-i18n="hero.subtitle">
-                        I design and evolve data-stream services with attention
-                        to stability, observability, and fast feature delivery.
-                    </p>
-                    <div class="hero-cta">
-                        <a
-                            class="button primary"
-                            href="#projects"
-                            data-i18n="hero.ctaProjects"
-                            >See projects</a
-                        >
-                        <a
-                            class="button ghost"
-                            href="#contact"
-                            data-i18n="hero.ctaContact"
-                            >Let's connect</a
-                        >
-                    </div>
-                </div>
-                <div class="hero-visual" aria-hidden="true">
-                    <div class="terminal-card">
-                        <div class="terminal-header">
-                            <span class="dot red"></span>
-                            <span class="dot yellow"></span>
-                            <span class="dot green"></span>
-                        </div>
-                        <pre
-                            class="terminal-body"
-                        ><code>from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel
-from typing import List
+    <header class="site-header" data-header>
+      <a class="brand" href="/" aria-label="Rexileer — на главную">
+        <span class="brand-mark" aria-hidden="true">R</span>
+        <span class="brand-name">rexileer<span>.dev</span></span>
+      </a>
 
-app = FastAPI()
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span></span><span></span>
+        <span class="sr-only">Открыть меню</span>
+      </button>
 
-class DataRequest(BaseModel):
-    numbers: List[int]
+      <nav class="site-nav" id="site-nav" aria-label="Основная навигация">
+        <a href="/#cases">Кейсы</a>
+        <a href="/projects/">Основные проекты</a>
+        <a href="/work/">Все работы</a>
+        <a href="/#contact">Контакты</a>
+      </nav>
 
-@app.post("/process")
-async def process_numbers(req: DataRequest):
-    if not req.numbers:
-        raise HTTPException(status_code=400, detail="List of numbers required")
-    mean = sum(req.numbers) / len(req.numbers)
-    median = sorted(req.numbers)[len(req.numbers)//2]
-    unique = len(set(req.numbers))
-    return {
-        "mean": mean,
-        "median": median,
-        "unique_count": unique,
-        "input": req.numbers
-    }
-</code></pre>
-                    </div>
-                </div>
-            </section>
+      <a class="header-cta" href="https://t.me/rexileer" target="_blank" rel="noreferrer">
+        Обсудить задачу <span aria-hidden="true">↗</span>
+      </a>
+    </header>
 
-            <section
-                id="about"
-                class="section about"
-                aria-labelledby="about-title"
-            >
-                <div class="section-heading">
-                    <span class="section-eyebrow" data-i18n="about.eyebrow"
-                        >Profile</span
-                    >
-                    <h2 id="about-title" data-i18n="about.title">
-                        Short intro
-                    </h2>
-                </div>
-                <div class="section-content">
-                    <p data-i18n="about.paragraph1">
-                        I help teams transform prototypes into production
-                        services, focusing on resilient architecture,
-                        observability, and clean delivery pipelines.
-                    </p>
-                    <p data-i18n="about.paragraph2">
-                        My workflow combines disciplined backend engineering
-                        with pragmatic deployment strategies so new features
-                        reach users quickly and safely.
-                    </p>
-                </div>
-            </section>
+    <main id="app" tabindex="-1">
+      <div class="route-loader" aria-live="polite">
+        <span></span><span></span><span></span>
+        <p>Собираю проекты…</p>
+      </div>
+    </main>
 
-            <section
-                id="skills"
-                class="section skills"
-                aria-labelledby="skills-title"
-            >
-                <div class="section-heading">
-                    <span class="section-eyebrow" data-i18n="skills.eyebrow"
-                        >Stack</span
-                    >
-                    <h2 id="skills-title" data-i18n="skills.title">
-                        Skills & tools
-                    </h2>
-                </div>
-                <div class="section-content">
-                    <p data-i18n="skills.description">
-                        I work across the Python ecosystem, orchestrating
-                        services with cloud-native tooling and modern DevOps
-                        practices.
-                    </p>
-                    <ul
-                        id="skills-list"
-                        class="chip-list"
-                        aria-label="Skills"
-                    ></ul>
-                </div>
-            </section>
-
-            <section
-                id="projects"
-                class="section projects"
-                aria-labelledby="projects-title"
-            >
-                <div class="section-heading">
-                    <span class="section-eyebrow" data-i18n="projects.eyebrow"
-                        >Selected Work</span
-                    >
-                    <h2 id="projects-title" data-i18n="projects.title">
-                        Projects
-                    </h2>
-                </div>
-                <div id="project-grid" class="project-grid" role="list"></div>
-            </section>
-
-            <section
-                id="contact"
-                class="section contact"
-                aria-labelledby="contact-title"
-            >
-                <div class="section-heading">
-                    <span class="section-eyebrow" data-i18n="contact.eyebrow"
-                        >Let’s Talk</span
-                    >
-                    <h2 id="contact-title" data-i18n="contact.title">
-                        Contact
-                    </h2>
-                </div>
-                <div class="section-content">
-                    <p data-i18n="contact.description">
-                        I'm available for remote backend roles (full-time or
-                        contract). If you have a technical challenge — let's
-                        discuss scope and timelines.
-                    </p>
-                    <div class="contact-grid">
-                        <a class="contact-card" href="mailto:rexileer@mail.ru">
-                            <span
-                                class="contact-label"
-                                data-i18n="contact.labels.email"
-                                >Email</span
-                            >
-                            <span class="contact-value">rexileer@mail.ru</span>
-                        </a>
-                        <a
-                            class="contact-card"
-                            href="https://github.com/rexileer"
-                            target="_blank"
-                            rel="noreferrer"
-                        >
-                            <span
-                                class="contact-label"
-                                data-i18n="contact.labels.github"
-                                >GitHub</span
-                            >
-                            <span class="contact-value"
-                                >github.com/rexileer</span
-                            >
-                        </a>
-                        <a
-                            class="contact-card"
-                            href="https://www.linkedin.com/in/rexileer"
-                            target="_blank"
-                            rel="noreferrer"
-                        >
-                            <span
-                                class="contact-label"
-                                data-i18n="contact.labels.linkedin"
-                                >LinkedIn</span
-                            >
-                            <span class="contact-value"
-                                >linkedin.com/in/rexileer</span
-                            >
-                        </a>
-                        <a
-                            class="contact-card"
-                            href="https://t.me/rexileer"
-                            target="_blank"
-                            rel="noreferrer"
-                        >
-                            <span
-                                class="contact-label"
-                                data-i18n="contact.labels.telegram"
-                                >Telegram</span
-                            >
-                            <span class="contact-value">@rexileer</span>
-                        </a>
-                    </div>
-                </div>
-            </section>
-        </main>
-
-        <footer class="site-footer">
-            <span class="footer-note">
-                <a
-                    href="https://radiokp.ru/sites/default/files/styles/kp_fullnode_730_486/public/2021-01/1-laptop-qoav8r7u-2_0.webp?itok=nt1Gz8sU"
-                    target="_blank"
-                    rel="noreferrer"
-                    aria-label="Hidden reference"
-                    class="footer-easter-egg"
-                    >©</a
-                >
-                <span data-i18n="footer.note">
-                    2025 Rexileer. Available for remote opportunities.</span
-                >
-            </span>
-        </footer>
-
-        <script type="module" src="script.js"></script>
-    </body>
+    <footer class="site-footer">
+      <a class="brand footer-brand" href="/">
+        <span class="brand-mark" aria-hidden="true">R</span>
+        <span class="brand-name">rexileer<span>.dev</span></span>
+      </a>
+      <p>Проектирую системы, которыми удобно пользоваться и спокойно управлять.</p>
+      <div class="footer-links">
+        <a href="mailto:rexileer@mail.ru">Email</a>
+        <a href="https://t.me/rexileer" target="_blank" rel="noreferrer">Telegram</a>
+        <a href="https://github.com/rexileer" target="_blank" rel="noreferrer">GitHub</a>
+        <a href="https://t.me/rexileerdev" target="_blank" rel="noreferrer">Канал</a>
+      </div>
+      <span class="footer-year">© <span data-year></span></span>
+    </footer>
+  </body>
 </html>

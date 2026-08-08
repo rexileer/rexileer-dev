@@ -8,7 +8,6 @@ from django.utils.text import slugify
 
 from core.models import AIProviderConfig, ProjectDraft
 
-
 DEFAULT_MODEL = os.environ.get("OPENAI_MODEL", "gpt-4o-mini")
 
 

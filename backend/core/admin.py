@@ -60,11 +60,13 @@ class ProjectAdmin(ModelAdmin):
         "slug",
         "status",
         "featured",
+        "project_state",
+        "client",
         "year",
         "order",
         "updated_at",
     )
-    list_filter = ("status", "featured", "year")
+    list_filter = ("status", "featured", "source_group", "project_state", "year")
     list_editable = ("status", "featured", "order")
     search_fields = ("slug", "title_en", "title_ru", "description_ru", "detail_ru")
     prepopulated_fields = {"slug": ("title_en",)}
@@ -81,6 +83,9 @@ class ProjectAdmin(ModelAdmin):
                     "published_at",
                     "slug",
                     "year",
+                    "source_group",
+                    "client",
+                    "project_state",
                 )
             },
         ),
@@ -93,6 +98,7 @@ class ProjectAdmin(ModelAdmin):
                     "description_ru",
                     "description_en",
                     "tags",
+                    "highlights",
                     "links",
                 )
             },

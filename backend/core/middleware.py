@@ -7,7 +7,6 @@ from django.utils.deprecation import MiddlewareMixin
 
 from .models import VisitLog
 
-
 SCANNER_USER_AGENT_TOKENS = (
     "ahrefs",
     "banner detection",

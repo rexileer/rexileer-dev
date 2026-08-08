@@ -1,5 +1,7 @@
+import mimetypes
 import os
 from pathlib import Path
+
 from django.http import Http404, HttpResponse, JsonResponse
 
 # В контейнере: /app/site. Локально: репо с backend/ и site/ — родитель репо / site
@@ -12,7 +14,7 @@ else:
 ALLOWED_SITE_FILES = {"index.html", "styles.css", "script.js"}
 
 
-def serve_site(request, path="index.html"):
+def serve_site(request, path="index.html", **_route_params):
     if path not in ALLOWED_SITE_FILES:
         raise Http404
     file_path = SITE_DIR / path
@@ -26,6 +28,21 @@ def serve_site(request, path="index.html"):
         else "application/javascript"
     )
     return HttpResponse(file_path.read_bytes(), content_type=content_type)
+
+
+def serve_asset(request, path):
+    asset_root = (SITE_DIR / "assets").resolve()
+    file_path = (asset_root / path).resolve()
+    try:
+        file_path.relative_to(asset_root)
+    except ValueError as exc:
+        raise Http404 from exc
+    if not file_path.is_file():
+        raise Http404
+    content_type = mimetypes.guess_type(file_path.name)[0] or "application/octet-stream"
+    response = HttpResponse(file_path.read_bytes(), content_type=content_type)
+    response["Cache-Control"] = "public, max-age=604800, immutable"
+    return response
 
 
 def site_data(request):

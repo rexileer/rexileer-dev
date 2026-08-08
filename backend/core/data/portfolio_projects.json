@@ -1,0 +1,1240 @@
+{
+  "source": "Реестр проектов rexileer.dev",
+  "updated": "2026-08-09",
+  "projects": [
+    {
+      "slug": "ai-consultant-bitrix-rag",
+      "featured": true,
+      "order": 1,
+      "source": "BOTTEC",
+      "status_label": "Приостановлен",
+      "client": "BOTTEC",
+      "title_ru": "AI Consultant — Bitrix24 RAG",
+      "title_en": "AI Consultant — Bitrix24 RAG",
+      "description_ru": "AI-консультант для Bitrix24 с RAG по каталогу и документам и сбором заказов.",
+      "description_en": "",
+      "detail_ru": "AI-консультант для Bitrix24 с RAG по каталогу и документам и сбором заказов.",
+      "problem_ru": "Автоматизировать ответы клиентам в Bitrix24 Open Lines, сохраняя привязку к проверенному каталогу и внутренним документам.",
+      "solution_ru": "Webhook Bitrix24, фоновые очереди, hybrid retrieval по SKU/vector/FTS/trigram/RRF, DOCX/XLSX ingestion, prompt management, order-flow и экспорт XLSX.",
+      "result_ru": "Система была развернута и работала стабильно на VPS; демонстрирует полноценный grounded AI-продукт, а не простой чат-бот.",
+      "role_ru": "Спроектировал controllable AI backend, RAG-пайплайн, интеграцию Bitrix24, защиту от галлюцинаций, работу с документами и заказами.",
+      "year": "2025",
+      "cover_image_url": "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1800&q=85",
+      "cover_alt_ru": "Тематическая обложка проекта «AI Consultant — Bitrix24 RAG»",
+      "tags": [
+        "Python 3.11",
+        "Django 5",
+        "DRF",
+        "PostgreSQL",
+        "pgvector",
+        "FastEmbed",
+        "Redis",
+        "Django RQ",
+        "OpenRouter/Qwen",
+        "Bitrix24 API",
+        "Docker"
+      ],
+      "links": [
+        {
+          "type": "github",
+          "href": "https://github.com/BottecRu/ai-consultant",
+          "label": {
+            "ru": "Репозиторий",
+            "en": "Repository"
+          }
+        }
+      ],
+      "showcase": [
+        "Диалог в Bitrix24",
+        "поиск по каталогу",
+        "документы RAG",
+        "заказ",
+        "админка промптов",
+        "архитектура pipeline."
+      ],
+      "doc_title": "AI Consultant — Bitrix24 RAG",
+      "screenshots": []
+    },
+    {
+      "slug": "bozon-medpreds",
+      "featured": true,
+      "order": 2,
+      "source": "BOTTEC",
+      "status_label": "Активный",
+      "client": "BOTTEC / BOZON",
+      "title_ru": "BOZON — Medpreds Bot",
+      "title_en": "BOZON — Medpreds Bot",
+      "description_ru": "Полевая CRM и рабочий бот для медицинских представителей компании BOZON.",
+      "description_en": "",
+      "detail_ru": "Полевая CRM и рабочий бот для медицинских представителей компании BOZON.",
+      "problem_ru": "BOZON требовался внутренний инструмент для работы медпредставителей: единый контур данных, фиксация активности и управляемые процессы вместо разрозненных сообщений и таблиц.",
+      "solution_ru": "Telegram/MAX-интерфейс, учет представителей и рабочих действий, внутренняя CRM-логика, административное управление и развитие интеграций.",
+      "result_ru": "Один из трех основных сервисов внутренней экосистемы BOZON; проект остается в эксплуатации.",
+      "role_ru": "Проектирование доменной модели, backend и bot-flow, административные сценарии, эксплуатационные доработки.",
+      "year": "2026",
+      "cover_image_url": "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1800&q=85",
+      "cover_alt_ru": "Тематическая обложка проекта «BOZON — Medpreds Bot»",
+      "tags": [
+        "Python",
+        "Django",
+        "Telegram/MAX",
+        "PostgreSQL",
+        "Docker"
+      ],
+      "links": [
+        {
+          "type": "github",
+          "href": "https://github.com/BottecRu/medpreds-bot",
+          "label": {
+            "ru": "Репозиторий",
+            "en": "Repository"
+          }
+        }
+      ],
+      "showcase": [
+        "Рабочий сценарий медпреда",
+        "админка",
+        "доменные сущности",
+        "общая схема экосистемы BOZON."
+      ],
+      "doc_title": "BOZON — Internal Medical Equipment Ecosystem",
+      "screenshots": []
+    },
+    {
+      "slug": "meatbot-production-crm",
+      "featured": true,
+      "order": 3,
+      "source": "BOTTEC",
+      "status_label": "Активный",
+      "client": "BOTTEC",
+      "title_ru": "MeatBot — Production CRM",
+      "title_en": "MeatBot — Production CRM",
+      "description_ru": "Производственная CRM для мясоперерабатывающего предприятия.",
+      "description_en": "",
+      "detail_ru": "Производственная CRM для мясоперерабатывающего предприятия.",
+      "problem_ru": "Связать офис и цех в одной системе: фиксировать производственные операции, документы, фото и файлы без разрозненных чатов и таблиц.",
+      "solution_ru": "Django CRM для офиса, рабочий интерфейс/бот для цеха, операции производства, документы, вложения, MinIO и единая доменная модель.",
+      "result_ru": "Один из крупнейших длительных коммерческих проектов; система продолжает развиваться и тестироваться.",
+      "role_ru": "Спроектировал доменную модель и backend, рабочие процессы офиса и цеха, файловое хранение и административные инструменты.",
+      "year": "2025",
+      "cover_image_url": "https://images.unsplash.com/photo-1560493676-04071c5f467b?auto=format&fit=crop&w=1800&q=85",
+      "cover_alt_ru": "Тематическая обложка проекта «MeatBot — Production CRM»",
+      "tags": [
+        "Python",
+        "Django",
+        "PostgreSQL",
+        "MinIO",
+        "Telegram",
+        "Docker"
+      ],
+      "links": [
+        {
+          "type": "github",
+          "href": "https://github.com/BottecRu/meat-bot",
+          "label": {
+            "ru": "Репозиторий",
+            "en": "Repository"
+          }
+        }
+      ],
+      "showcase": [
+        "CRM офиса",
+        "интерфейс цеха",
+        "производственная операция",
+        "документы/фото",
+        "схема доменной модели."
+      ],
+      "doc_title": "MeatBot — Production CRM",
+      "screenshots": []
+    },
+    {
+      "slug": "ai-media-platform",
+      "featured": true,
+      "order": 4,
+      "source": "Сторонние и ТЗ",
+      "status_label": "Завершён",
+      "client": "ТЗ / портфолио",
+      "title_ru": "AI Media Generation Platform",
+      "title_en": "AI Media Generation Platform",
+      "description_ru": "Микросервисная Telegram-платформа генерации изображений и видео с пользовательским и административным ботами.",
+      "description_en": "",
+      "detail_ru": "Микросервисная Telegram-платформа генерации изображений и видео с пользовательским и административным ботами.",
+      "problem_ru": "Построить цельный AI-продукт в Telegram: генерация несколькими моделями, управление пользователями, аналитика, монетизация и администрирование.",
+      "solution_ru": "Main Bot и Admin Bot, FastAPI, PostgreSQL, smart-router моделей, кэш генераций, обработка ошибок; в расширенной версии — Mini App, Celery, ClickHouse, YooKassa, энергия и рефералы.",
+      "result_ru": "Один из двух крупнейших личных/ТЗ-проектов; сильный кейс полного AI-продукта с инфраструктурой и монетизацией.",
+      "role_ru": "Спроектировал микросервисную архитектуру, интеграции AI-провайдеров, роутинг моделей, backend API, ботов и продуктовые механики.",
+      "year": "2026",
+      "cover_image_url": "https://images.unsplash.com/photo-1686191128892-3d6c6eb3c37c?auto=format&fit=crop&w=1800&q=85",
+      "cover_alt_ru": "Тематическая обложка проекта «AI Media Generation Platform»",
+      "tags": [
+        "Python 3.11",
+        "aiogram 3",
+        "FastAPI",
+        "PostgreSQL",
+        "SQLAlchemy",
+        "Redis",
+        "Celery",
+        "ClickHouse",
+        "Docker",
+        "YooKassa",
+        "Kie.ai"
+      ],
+      "links": [
+        {
+          "type": "github",
+          "href": "https://github.com/rexileer/tz25022026",
+          "label": {
+            "ru": "Репозиторий",
+            "en": "Repository"
+          }
+        }
+      ],
+      "showcase": [
+        "Выбор типа генерации",
+        "выбор модели и Smart",
+        "результат изображения/видео",
+        "админ-статистика",
+        "архитектура сервисов."
+      ],
+      "doc_title": "AI Media Generation Platform",
+      "screenshots": []
+    },
+    {
+      "slug": "mexc-scalping-autobuy",
+      "featured": true,
+      "order": 5,
+      "source": "BOTTEC",
+      "status_label": "Завершён",
+      "client": "BOTTEC",
+      "title_ru": "MEXC Scalping AutoBuy Bot",
+      "title_en": "MEXC Scalping AutoBuy Bot",
+      "description_ru": "Telegram-бот автоматической торговли на MEXC с realtime-потоками и стратегией AutoBuy.",
+      "description_en": "",
+      "detail_ru": "Telegram-бот автоматической торговли на MEXC с realtime-потоками и стратегией AutoBuy.",
+      "problem_ru": "Нужен был управляемый из Telegram торговый инструмент, реагирующий на рыночные события в реальном времени и автоматизирующий покупки и продажи.",
+      "solution_ru": "API-ключи и балансы, WebSocket цен/ордеров/стакана, AutoBuy, лесенка докупок, лимитные продажи, триггеры, статистика и журналы Django Admin.",
+      "result_ru": "Многоэтапный коммерческий realtime-проект с длительным периодом развития и эксплуатации.",
+      "role_ru": "Разработал асинхронную торговую логику, интеграцию MEXC, realtime-соединения, хранение сделок, конфигурацию стратегии и Telegram UX.",
+      "year": "2025",
+      "cover_image_url": "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=1800&q=85",
+      "cover_alt_ru": "Тематическая обложка проекта «MEXC Scalping AutoBuy Bot»",
+      "tags": [
+        "Python",
+        "asyncio",
+        "aiogram",
+        "Django",
+        "PostgreSQL",
+        "MEXC API",
+        "WebSocket",
+        "Docker"
+      ],
+      "links": [
+        {
+          "type": "github",
+          "href": "https://github.com/BottecRu/scalping-mexc-bot",
+          "label": {
+            "ru": "Репозиторий",
+            "en": "Repository"
+          }
+        }
+      ],
+      "showcase": [
+        "Настройки AutoBuy",
+        "realtime-цены",
+        "история сделок",
+        "статистика",
+        "схема WebSocket и торгового цикла."
+      ],
+      "doc_title": "MEXC Scalping AutoBuy Bot",
+      "screenshots": []
+    },
+    {
+      "slug": "underground-taxi-analytics",
+      "featured": true,
+      "order": 6,
+      "source": "BOTTEC",
+      "status_label": "Завершён",
+      "client": "BOTTEC",
+      "title_ru": "Underground — Taxi Fleet Analytics Platform",
+      "title_en": "Underground — Taxi Fleet Analytics Platform",
+      "description_ru": "Кастомная аналитическая платформа для таксопарка Underground.",
+      "description_en": "",
+      "detail_ru": "Кастомная аналитическая платформа для таксопарка Underground.",
+      "problem_ru": "Объединить данные Яндекса и внутренние данные парка, сделать прозрачными показатели водителей, городов, аномалии и результаты розыгрышей.",
+      "solution_ru": "Интеграция API, расчет 20+ метрик, аналитика 1500+ водителей в 10+ городах, поиск аномалий, рассылки и контроль корректности розыгрышей.",
+      "result_ru": "Ручная работа с большими выгрузками заменена воспроизводимой аналитической системой.",
+      "role_ru": "Разработал ingestion и расчетный слой, модели аналитики, отчеты, проверки аномалий и автоматические коммуникации.",
+      "year": "2026",
+      "cover_image_url": "https://images.unsplash.com/photo-1515569067071-ec3b51335dd0?auto=format&fit=crop&w=1800&q=85",
+      "cover_alt_ru": "Тематическая обложка проекта «Underground — Taxi Fleet Analytics Platform»",
+      "tags": [
+        "Python",
+        "Django",
+        "PostgreSQL",
+        "Celery",
+        "внешние API",
+        "Docker"
+      ],
+      "links": [
+        {
+          "type": "github",
+          "href": "https://github.com/BottecRu/taxi_analytics",
+          "label": {
+            "ru": "Репозиторий",
+            "en": "Repository"
+          }
+        }
+      ],
+      "showcase": [
+        "Дашборд",
+        "ключевые метрики",
+        "аномалии",
+        "география",
+        "пример отчета или рассылки."
+      ],
+      "doc_title": "Underground — Taxi Fleet Analytics Platform",
+      "screenshots": []
+    },
+    {
+      "slug": "ai-lead-scoring",
+      "featured": true,
+      "order": 7,
+      "source": "Пет-проекты",
+      "status_label": "Активный",
+      "client": "Пет-проект",
+      "title_ru": "AI Lead Scoring Platform",
+      "title_en": "AI Lead Scoring Platform",
+      "description_ru": "Платформа сбора и AI-оценки лидов из Telegram и других источников.",
+      "description_en": "",
+      "detail_ru": "Платформа сбора и AI-оценки лидов из Telegram и других источников.",
+      "problem_ru": "Не просто находить сообщения по ключевым словам, а оценивать релевантность каждого лида по настраиваемым критериям и приоритизировать поток.",
+      "solution_ru": "Pyrogram userbot, проекты и фильтры, AI scoring 0–10 с объяснением, Django Admin, аналитический dashboard, Telegram-авторизация; заложен Celery/Redis pipeline для web-парсеров.",
+      "result_ru": "Один из двух крупнейших личных проектов; превращает поток сообщений в ранжированную очередь лидов.",
+      "role_ru": "Спроектировал продукт и доменную модель, мониторинг, LLM scoring/classification layer, админку, аналитику и основу подключения новых источников.",
+      "year": "2026",
+      "cover_image_url": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1800&q=85",
+      "cover_alt_ru": "Тематическая обложка проекта «AI Lead Scoring Platform»",
+      "tags": [
+        "Python 3.11",
+        "Django 5",
+        "Pyrogram",
+        "PostgreSQL",
+        "Celery",
+        "Redis",
+        "OpenAI-compatible API",
+        "Docker",
+        "pytest"
+      ],
+      "links": [
+        {
+          "type": "github",
+          "href": "https://github.com/rexileer/ai-leads",
+          "label": {
+            "ru": "Репозиторий",
+            "en": "Repository"
+          }
+        }
+      ],
+      "showcase": [
+        "Карточка лида со score и rationale",
+        "настройка критериев",
+        "dashboard",
+        "Telegram account",
+        "pipeline источников."
+      ],
+      "doc_title": "AI Lead Scoring Platform",
+      "screenshots": []
+    },
+    {
+      "slug": "go-scalper",
+      "featured": true,
+      "order": 8,
+      "source": "Пет-проекты",
+      "status_label": "Активный",
+      "client": "Пет-проект",
+      "title_ru": "Go-Scalper",
+      "title_en": "Go-Scalper",
+      "description_ru": "Production-oriented торговая система на Go + Rust для MEXC.",
+      "description_en": "",
+      "detail_ru": "Production-oriented торговая система на Go + Rust для MEXC.",
+      "problem_ru": "Переосмыслить торгового бота как высокопроизводительную сервисную архитектуру с разделением realtime-контура и торгового движка.",
+      "solution_ru": "Go-сервис с MEXC WebSocket и Telegram Bot API, Rust trading engine по gRPC, AutoBuy, REST-интеграция биржи, PostgreSQL, retry/rate limiting, Prometheus и Grafana.",
+      "result_ru": "Сильный системный pet-case про realtime, производительность, надежность и observability; развитие идей коммерческого MEXC-бота.",
+      "role_ru": "Спроектировал межсервисную архитектуру Go/Rust, realtime-обработку, gRPC-контракт, торговую логику, наблюдаемость и контейнерный запуск.",
+      "year": "",
+      "cover_image_url": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1800&q=85",
+      "cover_alt_ru": "Тематическая обложка проекта «Go-Scalper»",
+      "tags": [
+        "Go 1.23",
+        "Rust",
+        "gRPC",
+        "PostgreSQL",
+        "MEXC REST/WebSocket",
+        "Telegram Bot API",
+        "Prometheus",
+        "Grafana",
+        "Docker"
+      ],
+      "links": [
+        {
+          "type": "github",
+          "href": "https://github.com/rexileer/Go-Scalper",
+          "label": {
+            "ru": "Репозиторий",
+            "en": "Repository"
+          }
+        }
+      ],
+      "showcase": [
+        "Архитектурная схема",
+        "Telegram-команды",
+        "Grafana",
+        "WebSocket-метрики",
+        "сделка/ордер",
+        "gRPC-взаимодействие."
+      ],
+      "doc_title": "Go-Scalper — Go + Rust Trading System",
+      "screenshots": []
+    },
+    {
+      "slug": "steps-corporate-gamification",
+      "featured": true,
+      "order": 9,
+      "source": "BOTTEC",
+      "status_label": "Активный",
+      "client": "BOTTEC",
+      "title_ru": "Steps Bot — Corporate Gamification",
+      "title_en": "Steps Bot — Corporate Gamification",
+      "description_ru": "Telegram-бот корпоративной активности и геймификации.",
+      "description_en": "",
+      "detail_ru": "Telegram-бот корпоративной активности и геймификации.",
+      "problem_ru": "Вовлечь сотрудников в физическую активность через учет прогулок/шагов, баллы, команды, награды и внутренний каталог.",
+      "solution_ru": "Баланс баллов, семьи/группы, промокоды, награды, каталог заказов, ПВЗ, рефералы, рассылки и Django Admin.",
+      "result_ru": "Долгоживущий активный продукт с регулярными небольшими улучшениями.",
+      "role_ru": "Разработал backend и Telegram UX, игровую экономику, каталог/заказы, реферальные и административные механики.",
+      "year": "2025",
+      "cover_image_url": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1800&q=85",
+      "cover_alt_ru": "Тематическая обложка проекта «Steps Bot — Corporate Gamification»",
+      "tags": [
+        "Python",
+        "Django",
+        "aiogram",
+        "PostgreSQL",
+        "Docker"
+      ],
+      "links": [
+        {
+          "type": "github",
+          "href": "https://github.com/BottecRu/steps-bot",
+          "label": {
+            "ru": "Репозиторий",
+            "en": "Repository"
+          }
+        }
+      ],
+      "showcase": [
+        "Баланс и награды",
+        "рейтинг/группы",
+        "каталог",
+        "промокоды",
+        "админка."
+      ],
+      "doc_title": "Steps Bot — Corporate Gamification",
+      "screenshots": []
+    },
+    {
+      "slug": "miyoumi-vk-analytics",
+      "featured": true,
+      "order": 10,
+      "source": "BOTTEC",
+      "status_label": "Завершён",
+      "client": "BOTTEC",
+      "title_ru": "Miyoumi — VK Community Analytics",
+      "title_en": "Miyoumi — VK Community Analytics",
+      "description_ru": "Внутренний сервис аналитики VK-сообществ и блогеров для команды Miyoumi.",
+      "description_en": "",
+      "detail_ru": "Внутренний сервис аналитики VK-сообществ и блогеров для команды Miyoumi.",
+      "problem_ru": "Команде требовалось системно собирать публикации и показатели блогеров, выявлять проблемы сбора и выгружать результаты в привычные инструменты.",
+      "solution_ru": "VK API, справочник блогеров и публикаций, сбор статистики, Google Sheets, collector-процессы, поиск аномалий, dashboard и Celery/Flower pipeline.",
+      "result_ru": "Создан единый внутренний контур сбора и контроля аналитики вместо ручного ведения данных.",
+      "role_ru": "Разработал сбор данных, фоновые задачи, модели аналитики, обработку аномалий, административные и отчетные представления.",
+      "year": "2026",
+      "cover_image_url": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1800&q=85",
+      "cover_alt_ru": "Тематическая обложка проекта «Miyoumi — VK Community Analytics»",
+      "tags": [
+        "Python",
+        "Django",
+        "VK API",
+        "PostgreSQL",
+        "Celery",
+        "Redis",
+        "Flower",
+        "Google Sheets",
+        "Docker"
+      ],
+      "links": [
+        {
+          "type": "github",
+          "href": "https://github.com/BottecRu/miyoumi-analytics",
+          "label": {
+            "ru": "Репозиторий",
+            "en": "Repository"
+          }
+        }
+      ],
+      "showcase": [
+        "Список блогеров",
+        "графики/метрики",
+        "состояние collector",
+        "аномалии",
+        "экспорт в Google Sheets."
+      ],
+      "doc_title": "Miyoumi — VK Community Analytics",
+      "screenshots": []
+    },
+    {
+      "slug": "hr-corporate-platform",
+      "featured": true,
+      "order": 11,
+      "source": "BOTTEC",
+      "status_label": "Завершён",
+      "client": "BOTTEC",
+      "title_ru": "HR Bot — Corporate Employee Platform",
+      "title_en": "HR Bot — Corporate Employee Platform",
+      "description_ru": "Корпоративный Telegram HR-бот для коммуникаций, обучения, опросов и контроля вовлеченности сотрудников.",
+      "description_en": "",
+      "detail_ru": "Корпоративный Telegram HR-бот для коммуникаций, обучения, опросов и контроля вовлеченности сотрудников.",
+      "problem_ru": "Требовалось доработать существующий HR-продукт: сделать управляемыми документы, обучение, обратную связь и рассылки, улучшить админку и подготовить систему к стабильному развертыванию.",
+      "solution_ru": "Сотрудники, подразделения и группы; документы с контролем ознакомления и напоминаниями; квизы; пульс-опросы; сбор обратной связи; адресные рассылки с вложениями; административная аналитика по подразделениям и сотрудникам; Docker/VPS deployment.",
+      "result_ru": "Единый HR-канал внутри Telegram: компания может доставлять материалы, проверять ознакомление и знания, собирать обратную связь и видеть аналитику без ручной консолидации.",
+      "role_ru": "Провел аудит и расширение существующей кодовой базы, доработал доменную модель и миграции, Telegram-сценарии, Django Admin/Unfold, аналитику, тесты и production-развертывание.",
+      "year": "2026",
+      "cover_image_url": "https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1800&q=85",
+      "cover_alt_ru": "Тематическая обложка проекта «HR Bot — Corporate Employee Platform»",
+      "tags": [
+        "Python",
+        "Django 5.2",
+        "aiogram 3",
+        "PostgreSQL",
+        "Celery",
+        "Redis",
+        "django-celery-beat",
+        "django-unfold",
+        "nginx",
+        "Docker"
+      ],
+      "links": [],
+      "showcase": [
+        "Главное меню бота",
+        "документ и статус ознакомления",
+        "квиз",
+        "пульс-опрос",
+        "обратная связь",
+        "рассылка",
+        "dashboard по подразделениям",
+        "архитектура сервисов."
+      ],
+      "doc_title": "HR Bot — Corporate Communications & Learning",
+      "screenshots": []
+    },
+    {
+      "slug": "avito-parts-parser",
+      "featured": true,
+      "order": 12,
+      "source": "Сторонние и ТЗ",
+      "status_label": "Завершён",
+      "client": "Сторонний клиент — Игорь",
+      "title_ru": "Avito Auto Parts Parsing Microservice",
+      "title_en": "Avito Auto Parts Parsing Microservice",
+      "description_ru": "Масштабируемый микросервис парсинга автозапчастей на Avito по артикулам и ID.",
+      "description_en": "",
+      "detail_ru": "Масштабируемый микросервис парсинга автозапчастей на Avito по артикулам и ID.",
+      "problem_ru": "Стороннему клиенту требовался устойчивый парсинг большого числа запросов с очередями, прокси и контролем фоновых воркеров.",
+      "solution_ru": "FastAPI API, Celery/Redis очереди, Selenium-парсеры, прокси, мониторинг Flower, статусы задач и горизонтальное масштабирование воркеров.",
+      "result_ru": "Самый дорогой отдельный клиентский заказ 2025 года; более длинные сроки и цена, чем у типичных работ BOTTEC.",
+      "role_ru": "Разработал архитектуру микросервиса, API и очереди, парсинг, обработку ошибок, инфраструктуру воркеров и финальную сдачу.",
+      "year": "2025",
+      "cover_image_url": "https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&w=1800&q=85",
+      "cover_alt_ru": "Тематическая обложка проекта «Avito Auto Parts Parsing Microservice»",
+      "tags": [
+        "Python",
+        "FastAPI",
+        "Celery",
+        "Redis",
+        "Selenium",
+        "Flower",
+        "Docker"
+      ],
+      "links": [
+        {
+          "type": "github",
+          "href": "https://github.com/VoronovIgor/avitopars",
+          "label": {
+            "ru": "Репозиторий",
+            "en": "Repository"
+          }
+        }
+      ],
+      "showcase": [
+        "Создание задания",
+        "очередь/Flower",
+        "результат по артикулам",
+        "масштабирование воркеров",
+        "обработка прокси."
+      ],
+      "doc_title": "Avito Auto Parts Parsing Microservice",
+      "screenshots": []
+    },
+    {
+      "slug": "bozon-medpreds-learn",
+      "featured": true,
+      "order": 13,
+      "source": "BOTTEC",
+      "status_label": "Поддержка",
+      "client": "BOTTEC / BOZON",
+      "title_ru": "BOZON — Medpreds Learn",
+      "title_en": "BOZON — Medpreds Learn",
+      "description_ru": "Система обучения и онбординга медицинских представителей BOZON.",
+      "description_en": "",
+      "detail_ru": "Система обучения и онбординга медицинских представителей BOZON.",
+      "problem_ru": "Стандартизировать ввод сотрудников в работу: материалы, документация, тестирование знаний и контроль прохождения.",
+      "solution_ru": "Учебные материалы, сценарии онбординга, тесты, результаты пользователей, административное управление контентом и внутренняя база знаний.",
+      "result_ru": "Снизил зависимость онбординга от ручного сопровождения и сделал знания компании повторно используемыми.",
+      "role_ru": "Разработал backend, bot-flow обучения, модели материалов и тестирования, управление прогрессом и админ-инструменты.",
+      "year": "2026",
+      "cover_image_url": "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1800&q=85",
+      "cover_alt_ru": "Тематическая обложка проекта «BOZON — Medpreds Learn»",
+      "tags": [
+        "Python",
+        "Django",
+        "Telegram/MAX",
+        "PostgreSQL",
+        "Docker"
+      ],
+      "links": [
+        {
+          "type": "github",
+          "href": "https://github.com/BottecRu/medpreds-learn",
+          "label": {
+            "ru": "Репозиторий",
+            "en": "Repository"
+          }
+        }
+      ],
+      "showcase": [
+        "Экран обучения",
+        "структура курса",
+        "тест",
+        "результаты",
+        "админка контента."
+      ],
+      "doc_title": "BOZON — Internal Medical Equipment Ecosystem",
+      "screenshots": []
+    },
+    {
+      "slug": "bozon-samples",
+      "featured": true,
+      "order": 14,
+      "source": "BOTTEC",
+      "status_label": "Активный",
+      "client": "BOTTEC / BOZON",
+      "title_ru": "BOZON — Samples Bot",
+      "title_en": "BOZON — Samples Bot",
+      "description_ru": "Внутренний бот BOZON для работы с образцами и связанными заявками.",
+      "description_en": "",
+      "detail_ru": "Внутренний бот BOZON для работы с образцами и связанными заявками.",
+      "problem_ru": "Упростить оформление и отслеживание заявок на образцы/оборудование внутри компании и связать процесс с общей экосистемой.",
+      "solution_ru": "Формы заявок, статусы, каталог/позиции, уведомления, административная обработка и эксплуатационные доработки.",
+      "result_ru": "Рабочий инструмент внутреннего заказа и контроля образцов, развиваемый вместе с другими сервисами BOZON.",
+      "role_ru": "Разработал backend и bot-flow, доменные модели заказов/позиций, статусы и административные сценарии.",
+      "year": "2026",
+      "cover_image_url": "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1800&q=85",
+      "cover_alt_ru": "Тематическая обложка проекта «BOZON — Samples Bot»",
+      "tags": [
+        "Python",
+        "Django",
+        "Telegram/MAX",
+        "PostgreSQL",
+        "Docker"
+      ],
+      "links": [
+        {
+          "type": "github",
+          "href": "https://github.com/BottecRu/bozon_samples_bot",
+          "label": {
+            "ru": "Репозиторий",
+            "en": "Repository"
+          }
+        }
+      ],
+      "showcase": [
+        "Создание заявки",
+        "каталог",
+        "статусы",
+        "админская обработка",
+        "связь с другими BOZON-сервисами."
+      ],
+      "doc_title": "BOZON — Internal Medical Equipment Ecosystem",
+      "screenshots": []
+    },
+    {
+      "slug": "auto-listings-parser",
+      "featured": false,
+      "order": 100,
+      "source": "BOTTEC",
+      "status_label": "Завершён",
+      "client": "BOTTEC",
+      "title_ru": "Auto Listings Parser",
+      "title_en": "Auto Listings Parser",
+      "description_ru": "Сервис мониторинга и парсинга автомобильных объявлений с Telegram-интерфейсом; позднее дополнен веб-сайтом.",
+      "description_en": "",
+      "detail_ru": "Сервис мониторинга и парсинга автомобильных объявлений с Telegram-интерфейсом; позднее дополнен веб-сайтом.",
+      "problem_ru": "Заказчику требовалось автоматически собирать объявления, применять пользовательские фильтры и быстро доставлять новые результаты в удобном интерфейсе.",
+      "solution_ru": "Парсинг источников объявлений, фильтрация, Telegram-бот, хранение и архив результатов, а также отдельный веб-интерфейс в июньской доработке.",
+      "result_ru": "Проект развился от Telegram-инструмента мониторинга объявлений до отдельного веб-интерфейса.",
+      "role_ru": "Backend-разработка, интеграция парсеров, бизнес-логика фильтров, Telegram UX, хранение данных и последующая web-доработка.",
+      "year": "2025",
+      "cover_image_url": "",
+      "cover_alt_ru": "Тематическая обложка проекта «Auto Listings Parser»",
+      "tags": [
+        "Python",
+        "Telegram Bot",
+        "web backend",
+        "PostgreSQL",
+        "Docker",
+        "парсинг"
+      ],
+      "links": [
+        {
+          "type": "github",
+          "href": "https://github.com/BottecRu/parser-daa-tg-bot",
+          "label": {
+            "ru": "Репозиторий",
+            "en": "Repository"
+          }
+        }
+      ],
+      "showcase": [
+        "Поиск и фильтры",
+        "карточка объявления",
+        "Telegram-сценарий",
+        "веб-интерфейс",
+        "архив объявлений."
+      ],
+      "doc_title": "",
+      "screenshots": []
+    },
+    {
+      "slug": "payment-broadcast-bot",
+      "featured": false,
+      "order": 101,
+      "source": "BOTTEC",
+      "status_label": "Завершён",
+      "client": "BOTTEC",
+      "title_ru": "Payment Broadcast Bot",
+      "title_en": "Payment Broadcast Bot",
+      "description_ru": "Telegram/Django-система платных подписок на приватные группы.",
+      "description_en": "",
+      "detail_ru": "Telegram/Django-система платных подписок на приватные группы.",
+      "problem_ru": "Автоматизировать оплату, выдачу доступа и контроль окончания подписок без ручной работы администратора.",
+      "solution_ru": "Платежи YooKassa, персональные инвайт-ссылки, уведомления об окончании подписки, удаление при неоплате, массовые рассылки и резервный userbot-сценарий.",
+      "result_ru": "Система закрывает полный жизненный цикл платной подписки: оплата → доступ → напоминание → продление или удаление.",
+      "role_ru": "Разработал backend подписок и платежей, Telegram-процессы, автоматические проверки доступа и административное управление.",
+      "year": "2025",
+      "cover_image_url": "",
+      "cover_alt_ru": "Тематическая обложка проекта «Payment Broadcast Bot»",
+      "tags": [
+        "Python",
+        "Django",
+        "Telegram Bot API",
+        "YooKassa",
+        "PostgreSQL",
+        "Docker"
+      ],
+      "links": [
+        {
+          "type": "github",
+          "href": "https://github.com/BottecRu/payment-broadcast-bot",
+          "label": {
+            "ru": "Репозиторий",
+            "en": "Repository"
+          }
+        }
+      ],
+      "showcase": [
+        "Оплата",
+        "выдача инвайта",
+        "статус подписки",
+        "рассылка",
+        "сценарий окончания доступа."
+      ],
+      "doc_title": "",
+      "screenshots": []
+    },
+    {
+      "slug": "freelance-bot",
+      "featured": false,
+      "order": 102,
+      "source": "BOTTEC",
+      "status_label": "Заброшен",
+      "client": "BOTTEC",
+      "title_ru": "Freelance Bot",
+      "title_en": "Freelance Bot",
+      "description_ru": "Telegram-система поиска и публикации фриланс-заявок.",
+      "description_en": "",
+      "detail_ru": "Telegram-система поиска и публикации фриланс-заявок.",
+      "problem_ru": "Автоматизировать сбор заявок из каналов и выдавать пользователям релевантные предложения по подписке.",
+      "solution_ru": "Парсер каналов, категории, тарифы, промокоды, рефералы, модерация, рассылки и Django Admin.",
+      "result_ru": "Небольшой и хорошо оплаченный короткий заказ, переданный после завершения основной части.",
+      "role_ru": "Быстро собрал основной backend и Telegram-сценарии, подписочную механику и администрирование.",
+      "year": "2025",
+      "cover_image_url": "",
+      "cover_alt_ru": "Тематическая обложка проекта «Freelance Bot»",
+      "tags": [
+        "Python",
+        "Django",
+        "Telegram",
+        "PostgreSQL",
+        "Docker"
+      ],
+      "links": [
+        {
+          "type": "github",
+          "href": "https://github.com/BottecRu/freelance_bot",
+          "label": {
+            "ru": "Репозиторий",
+            "en": "Repository"
+          }
+        }
+      ],
+      "showcase": [
+        "Лента заявок",
+        "подписка по категории",
+        "тарифы",
+        "модерация",
+        "админка."
+      ],
+      "doc_title": "",
+      "screenshots": []
+    },
+    {
+      "slug": "repair-requests-bot",
+      "featured": false,
+      "order": 103,
+      "source": "BOTTEC",
+      "status_label": "Завершён",
+      "client": "BOTTEC",
+      "title_ru": "Repair Requests Bot",
+      "title_en": "Repair Requests Bot",
+      "description_ru": "Нишевой Telegram-userbot для поиска заявок на ремонт и бытовые услуги.",
+      "description_en": "",
+      "detail_ru": "Нишевой Telegram-userbot для поиска заявок на ремонт и бытовые услуги.",
+      "problem_ru": "Находить потенциальных клиентов в Telegram по темам ремонта, мебели, кондиционеров, потолков, приемки квартир и смежных услуг.",
+      "solution_ru": "Мониторинг чатов, проекты и фильтры, ключевые/минус-слова, лиды, уведомления, админка и аналитика.",
+      "result_ru": "Автоматизирован регулярный поиск профильных заявок вместо ручного просмотра чатов.",
+      "role_ru": "Разработал userbot-мониторинг, фильтрацию, модели проектов и лидов, уведомления и административный интерфейс.",
+      "year": "2025",
+      "cover_image_url": "",
+      "cover_alt_ru": "Тематическая обложка проекта «Repair Requests Bot»",
+      "tags": [
+        "Python",
+        "Django",
+        "Pyrogram",
+        "PostgreSQL",
+        "Docker"
+      ],
+      "links": [
+        {
+          "type": "github",
+          "href": "https://github.com/BottecRu/repair-requests-bot",
+          "label": {
+            "ru": "Репозиторий",
+            "en": "Repository"
+          }
+        }
+      ],
+      "showcase": [
+        "Настройка проекта",
+        "найденный лид",
+        "фильтры",
+        "уведомление",
+        "аналитика."
+      ],
+      "doc_title": "",
+      "screenshots": []
+    },
+    {
+      "slug": "church-bot",
+      "featured": false,
+      "order": 104,
+      "source": "BOTTEC",
+      "status_label": "Завершён",
+      "client": "BOTTEC",
+      "title_ru": "Church Bot",
+      "title_en": "Church Bot",
+      "description_ru": "Telegram-бот для оформления и оплаты церковных записок.",
+      "description_en": "",
+      "detail_ru": "Telegram-бот для оформления и оплаты церковных записок.",
+      "problem_ru": "Перенести привычный офлайн-сценарий подачи записок в понятный цифровой процесс с оплатой.",
+      "solution_ru": "Пользовательский Telegram-сценарий, формы записок, Django REST API, интеграция YooKassa, тесты и Docker-развертывание.",
+      "result_ru": "Короткий законченный платежный продукт с понятным пользовательским результатом.",
+      "role_ru": "Разработал backend API, Telegram-flow, платежную интеграцию, проверки и контейнеризацию.",
+      "year": "2025",
+      "cover_image_url": "",
+      "cover_alt_ru": "Тематическая обложка проекта «Church Bot»",
+      "tags": [
+        "Python",
+        "Django REST Framework",
+        "Telegram",
+        "YooKassa",
+        "PostgreSQL",
+        "Docker"
+      ],
+      "links": [
+        {
+          "type": "github",
+          "href": "https://github.com/BottecRu/church-bot",
+          "label": {
+            "ru": "Репозиторий",
+            "en": "Repository"
+          }
+        }
+      ],
+      "showcase": [
+        "Выбор типа записки",
+        "заполнение имен",
+        "оплата",
+        "подтверждение",
+        "админка заказов."
+      ],
+      "doc_title": "",
+      "screenshots": []
+    },
+    {
+      "slug": "contact-parser-multi-tenant",
+      "featured": false,
+      "order": 105,
+      "source": "BOTTEC",
+      "status_label": "Завершён",
+      "client": "BOTTEC",
+      "title_ru": "Contact Parser Multi Tenant",
+      "title_en": "Contact Parser Multi Tenant",
+      "description_ru": "Мульти-инсталляционная система поиска и сбора контактов/лидов из Telegram.",
+      "description_en": "",
+      "detail_ru": "Мульти-инсталляционная система поиска и сбора контактов/лидов из Telegram.",
+      "problem_ru": "Нужно было параллельно обслуживать несколько независимых контуров парсинга: отдельные userbot-аккаунты, админки и базы для разных задач или клиентов.",
+      "solution_ru": "Мониторинг чатов и каналов, ключевые и минус-слова, фильтрация сообщений, создание лидов, уведомления, несколько изолированных инсталляций и администрирование.",
+      "result_ru": "Система превратила поток Telegram-сообщений в управляемый конвейер поиска лидов.",
+      "role_ru": "Разработал backend, userbot-мониторинг, модели лидов и проектов, фильтрацию шума и схему изолированного запуска нескольких экземпляров.",
+      "year": "2026",
+      "cover_image_url": "",
+      "cover_alt_ru": "Тематическая обложка проекта «Contact Parser Multi Tenant»",
+      "tags": [
+        "Python",
+        "Django",
+        "Pyrogram",
+        "PostgreSQL",
+        "Docker Compose"
+      ],
+      "links": [
+        {
+          "type": "github",
+          "href": "https://github.com/BottecRu/search-and-lead-generation-bot",
+          "label": {
+            "ru": "Репозиторий",
+            "en": "Repository"
+          }
+        }
+      ],
+      "showcase": [
+        "Админка проектов",
+        "схема нескольких userbot-инсталляций",
+        "карточка найденного лида",
+        "фильтры."
+      ],
+      "doc_title": "",
+      "screenshots": []
+    },
+    {
+      "slug": "priceflow-ai",
+      "featured": false,
+      "order": 146,
+      "source": "Сторонние и ТЗ",
+      "status_label": "Завершён",
+      "client": "ТЗ / портфолио",
+      "title_ru": "PriceFlow AI",
+      "title_en": "PriceFlow AI",
+      "description_ru": "Веб-приложение для работы с прайс-листами поставщиков, каталогом товаров и сметами.",
+      "description_en": "",
+      "detail_ru": "Веб-приложение для работы с прайс-листами поставщиков, каталогом товаров и сметами.",
+      "problem_ru": "Автоматизировать загрузку неоднородных Excel-прайсов и смет, сопоставление позиций и получение сводной закупочной аналитики.",
+      "solution_ru": "CRUD поставщиков, Excel upload/preview/mapping, фоновой парсинг, каталог, проекты и сметы, автоматическое и ручное сопоставление, аналитика закупки.",
+      "result_ru": "Сильный прикладной full-stack кейс на стыке импорта данных, фоновой обработки и закупочной аналитики.",
+      "role_ru": "Разработал backend, React-интерфейс, Excel ingestion, фоновые задачи, алгоритм сопоставления и сводную аналитику.",
+      "year": "2026",
+      "cover_image_url": "",
+      "cover_alt_ru": "Тематическая обложка проекта «PriceFlow AI»",
+      "tags": [
+        "Django",
+        "DRF",
+        "React",
+        "PostgreSQL",
+        "Celery",
+        "Redis",
+        "openpyxl",
+        "Docker Compose",
+        "OpenRouter"
+      ],
+      "links": [
+        {
+          "type": "github",
+          "href": "https://github.com/rexileer/priceflow-ai",
+          "label": {
+            "ru": "Репозиторий",
+            "en": "Repository"
+          }
+        }
+      ],
+      "showcase": [
+        "Загрузка Excel",
+        "mapping колонок",
+        "каталог",
+        "сопоставление",
+        "сводка закупки."
+      ],
+      "doc_title": "",
+      "screenshots": [
+        "https://github.com/user-attachments/assets/e1b7f9ce-b74f-4b7a-875f-644c33cc449e"
+      ]
+    },
+    {
+      "slug": "mini-crm-lead-distribution",
+      "featured": false,
+      "order": 147,
+      "source": "Сторонние и ТЗ",
+      "status_label": "Завершён",
+      "client": "ТЗ",
+      "title_ru": "TZ Mini CRM Lead Distribution",
+      "title_en": "TZ Mini CRM Lead Distribution",
+      "description_ru": "Мини-CRM для автоматического распределения лидов между операторами.",
+      "description_en": "",
+      "detail_ru": "Мини-CRM для автоматического распределения лидов между операторами.",
+      "problem_ru": "Распределять новые лиды с учетом источника, активности операторов, лимитов текущей нагрузки и весов/компетенций.",
+      "solution_ru": "FastAPI API, сущности операторов/источников/лидов, правила выбора исполнителя, ограничения нагрузки и Swagger-документация.",
+      "result_ru": "Небольшой, хорошо объяснимый system-design кейс про правила маршрутизации и справедливое распределение нагрузки.",
+      "role_ru": "Реализовал компактную доменную модель, алгоритм распределения и REST API тестового приложения.",
+      "year": "",
+      "cover_image_url": "",
+      "cover_alt_ru": "Тематическая обложка проекта «TZ Mini CRM Lead Distribution»",
+      "tags": [
+        "Python",
+        "FastAPI",
+        "Pydantic",
+        "REST API"
+      ],
+      "links": [
+        {
+          "type": "github",
+          "href": "https://github.com/rexileer/tz-mini-crm",
+          "label": {
+            "ru": "Репозиторий",
+            "en": "Repository"
+          }
+        }
+      ],
+      "showcase": [
+        "Swagger",
+        "создание лида",
+        "правила операторов",
+        "пример результата распределения."
+      ],
+      "doc_title": "",
+      "screenshots": []
+    },
+    {
+      "slug": "any-parse-bot",
+      "featured": false,
+      "order": 188,
+      "source": "Пет-проекты",
+      "status_label": "Заброшен",
+      "client": "Пет-проект",
+      "title_ru": "Any Parse Bot",
+      "title_en": "Any Parse Bot",
+      "description_ru": "Telegram + REST API сервис обычного и AI-парсинга веб-страниц.",
+      "description_en": "",
+      "detail_ru": "Telegram + REST API сервис обычного и AI-парсинга веб-страниц.",
+      "problem_ru": "Сделать универсальный инструмент: получить страницу по ссылке, извлечь данные обычным парсингом или по инструкции для LLM и сохранить историю.",
+      "solution_ru": "Endpoints /parse, /pwai, /ask, /history, Telegram-команды, Swagger/ReDoc, PostgreSQL, retry, логирование и тесты.",
+      "result_ru": "Хорошая техническая заготовка универсального parsing-as-a-service, остановленная из-за отсутствия коммерческой отдачи.",
+      "role_ru": "Разработал FastAPI backend, Telegram-интерфейс, обычный/AI parsing pipeline, историю запросов и документацию API.",
+      "year": "2025",
+      "cover_image_url": "",
+      "cover_alt_ru": "Тематическая обложка проекта «Any Parse Bot»",
+      "tags": [
+        "Python",
+        "FastAPI",
+        "Telegram/aiogram",
+        "PostgreSQL",
+        "OpenAI API",
+        "BeautifulSoup",
+        "Playwright",
+        "Docker",
+        "pytest"
+      ],
+      "links": [
+        {
+          "type": "github",
+          "href": "https://github.com/rexileer/any-parse-bot",
+          "label": {
+            "ru": "Репозиторий",
+            "en": "Repository"
+          }
+        }
+      ],
+      "showcase": [
+        "Swagger",
+        "Telegram-команды",
+        "пример AI extraction",
+        "история запросов",
+        "архитектура API+bot."
+      ],
+      "doc_title": "",
+      "screenshots": []
+    },
+    {
+      "slug": "real-estate-parser",
+      "featured": false,
+      "order": 189,
+      "source": "Пет-проекты",
+      "status_label": "Заброшен",
+      "client": "Пет-проект",
+      "title_ru": "Real Estate Parser",
+      "title_en": "Real Estate Parser",
+      "description_ru": "Личный локальный парсер недвижимости.",
+      "description_en": "",
+      "detail_ru": "Личный локальный парсер недвижимости.",
+      "problem_ru": "Экспериментальная автоматизация сбора объявлений недвижимости и их фильтрации.",
+      "solution_ru": "По словам пользователя, реализован локальный парсер; подробности архитектуры, источников и функций пока не зафиксированы.",
+      "result_ru": "Резервный проект для будущего аудита: его можно восстановить из локальных файлов и превратить в отдельную карточку.",
+      "role_ru": "Личная разработка и эксперимент с парсингом данных.",
+      "year": "2026",
+      "cover_image_url": "",
+      "cover_alt_ru": "Тематическая обложка проекта «Real Estate Parser»",
+      "tags": [
+        "Нужно уточнить"
+      ],
+      "links": [],
+      "showcase": [
+        "После поиска исходников: фильтры, карточка объекта, результат парсинга, архитектура."
+      ],
+      "doc_title": "",
+      "screenshots": []
+    },
+    {
+      "slug": "wallet-risk-scorer",
+      "featured": false,
+      "order": 190,
+      "source": "Пет-проекты",
+      "status_label": "Завершён",
+      "client": "Пет-проект",
+      "title_ru": "Wallet Risk Scorer",
+      "title_en": "Wallet Risk Scorer",
+      "description_ru": "Сервис оценки риска Ethereum-кошельков с ML-моделью Isolation Forest.",
+      "description_en": "",
+      "detail_ru": "Сервис оценки риска Ethereum-кошельков с ML-моделью Isolation Forest.",
+      "problem_ru": "По адресу кошелька собрать on-chain признаки и выдать понятный score риска с объяснениями и исходными фичами.",
+      "solution_ru": "FastAPI /score и /health, извлечение баланса, транзакций, возраста, gas, contract/EOA и token activity, обучение/инференс Isolation Forest, Docker и Dozzle.",
+      "result_ru": "Компактный ML/backend-кейс: от внешних blockchain-данных до объяснимого risk score 0–100.",
+      "role_ru": "Разработал feature extraction, ML scoring, API-контракт, объяснения результата, запуск и benchmark-сценарий.",
+      "year": "",
+      "cover_image_url": "",
+      "cover_alt_ru": "Тематическая обложка проекта «Wallet Risk Scorer»",
+      "tags": [
+        "Python",
+        "FastAPI",
+        "web3/RPC",
+        "Etherscan API",
+        "scikit-learn Isolation Forest",
+        "Docker",
+        "Dozzle"
+      ],
+      "links": [
+        {
+          "type": "github",
+          "href": "https://github.com/rexileer/wallet-risk-scorer",
+          "label": {
+            "ru": "Репозиторий",
+            "en": "Repository"
+          }
+        }
+      ],
+      "showcase": [
+        "Главный экран/API",
+        "score и reasons",
+        "таблица features",
+        "схема feature extraction → model → response."
+      ],
+      "doc_title": "",
+      "screenshots": [
+        "https://github.com/user-attachments/assets/49b4b39a-267b-44ed-a985-c7c669c16cc1",
+        "https://github.com/user-attachments/assets/cb601e7e-ff05-40e9-ae36-3c7d4f030977"
+      ]
+    },
+    {
+      "slug": "shopi",
+      "featured": false,
+      "order": 191,
+      "source": "Пет-проекты",
+      "status_label": "Завершён",
+      "client": "Пет-проект",
+      "title_ru": "Shopi",
+      "title_en": "Shopi",
+      "description_ru": "E-commerce платформа на Django с корзиной, заказами и платежами.",
+      "description_en": "",
+      "detail_ru": "E-commerce платформа на Django с корзиной, заказами и платежами.",
+      "problem_ru": "Собрать полноценный интернет-магазин с пользовательским интерфейсом, API, оплатой и административным управлением.",
+      "solution_ru": "Каталог, корзина, заказы, Stripe и YooKassa, JWT через Djoser/Simple JWT, отзывы, Celery/Redis, HTMX-интерфейс, Swagger/ReDoc и Docker deploy.",
+      "result_ru": "Широкий full-stack pet-case, демонстрирующий типовые процессы production e-commerce.",
+      "role_ru": "Разработал backend магазина, REST API, аутентификацию, платежные сценарии, фоновые задачи и server-rendered UX на HTMX.",
+      "year": "",
+      "cover_image_url": "",
+      "cover_alt_ru": "Тематическая обложка проекта «Shopi»",
+      "tags": [
+        "Django 5.1",
+        "DRF",
+        "PostgreSQL",
+        "Celery",
+        "Redis",
+        "Djoser",
+        "JWT",
+        "Stripe",
+        "YooKassa",
+        "HTMX",
+        "Bootstrap",
+        "Docker",
+        "Nginx"
+      ],
+      "links": [
+        {
+          "type": "github",
+          "href": "https://github.com/rexileer/shopi",
+          "label": {
+            "ru": "Репозиторий",
+            "en": "Repository"
+          }
+        }
+      ],
+      "showcase": [
+        "Каталог",
+        "карточка товара",
+        "корзина",
+        "checkout",
+        "платеж",
+        "админка",
+        "Swagger."
+      ],
+      "doc_title": "",
+      "screenshots": []
+    }
+  ]
+}

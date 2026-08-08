@@ -1,4 +1,5 @@
 from collections import defaultdict
+
 from .models import Project, SiteText, Skill
 
 
@@ -50,9 +51,12 @@ def build_projects():
         out.append(
             {
                 "id": p.slug,
-                "detailUrl": f"#project/{p.slug}",
+                "detailUrl": f"/projects/{p.slug}/",
                 "status": p.status,
                 "featured": p.featured,
+                "sourceGroup": p.source_group,
+                "client": p.client,
+                "projectState": p.project_state,
                 "meta": {"en": p.meta_en, "ru": p.meta_ru},
                 "title": {"en": p.title_en, "ru": p.title_ru},
                 "description": {"en": p.description_en, "ru": p.description_ru},
@@ -70,6 +74,7 @@ def build_projects():
                 },
                 "videoUrl": p.video_url,
                 "tags": p.tags or [],
+                "highlights": p.highlights or [],
                 "links": p.links or [],
                 "media": [
                     {

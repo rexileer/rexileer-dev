@@ -11,6 +11,27 @@
 7. Select the draft and run `Publish selected drafts`.
 8. The public site reads only projects with status `Published`.
 
+The public routes are:
+
+- `/` — sales-focused landing page and selected cases;
+- `/projects/` — all featured, full-size cases;
+- `/projects/<slug>/` — an individual case study;
+- `/work/` — the compact archive of additional projects.
+
+## Versioned project registry
+
+`backend/core/data/portfolio_projects.json` is the canonical, reviewable import
+file for projects supplied through chat or a spreadsheet. Run the following after
+changing it:
+
+```text
+python manage.py sync_portfolio_registry
+```
+
+The deployment entrypoint runs this command automatically. It updates copy,
+classification, tags, links, and ordering, but preserves custom cover images,
+manually added media, private AI notes, and the original publication date.
+
 ## AI providers
 
 Open `Core -> AI provider configs`.
@@ -34,7 +55,8 @@ If no key is configured, the admin action still creates a local structured draft
 - Card: `meta`, `title`, `description`, `tags`, `links`, `cover_image_url`.
 - Detail page: `detail`, `problem`, `solution`, `result`, `role`, `year`.
 - Media: image, GIF, and video URLs with captions.
-- Publication: `status`, `featured`, `published_at`.
+- Classification: `source_group`, `client`, `project_state`, `featured`.
+- Publication: `status`, `published_at`, `order`.
 
 ## Telegram Drafts
 

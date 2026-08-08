@@ -1,6 +1,5 @@
 """Загружает начальные тексты/навыки/проекты из текущего фронта (одноразово)."""
 
-from django.core.management.base import BaseCommand
 from core.models import (
     AIProviderConfig,
     Project,
@@ -9,6 +8,7 @@ from core.models import (
     Skill,
     TelegramPostDraft,
 )
+from django.core.management.base import BaseCommand
 
 # Минимальный набор ключей из data-i18n и copy в script.js
 DEFAULT_TEXTS = [

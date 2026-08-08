@@ -44,6 +44,9 @@ class Project(models.Model):
         max_length=20, choices=Status.choices, default=Status.PUBLISHED, db_index=True
     )
     featured = models.BooleanField(default=True)
+    source_group = models.CharField(max_length=80, blank=True)
+    client = models.CharField(max_length=160, blank=True)
+    project_state = models.CharField(max_length=80, blank=True)
     meta_en = models.CharField(max_length=80, blank=True)
     meta_ru = models.CharField(max_length=80, blank=True)
     title_en = models.CharField(max_length=200)
@@ -66,6 +69,7 @@ class Project(models.Model):
     cover_alt_ru = models.CharField(max_length=180, blank=True)
     video_url = models.URLField(blank=True)
     tags = models.JSONField(default=list)  # ["Django", "FastAPI", ...]
+    highlights = models.JSONField(default=list, blank=True)
     links = models.JSONField(
         default=list
     )  # [{"type":"github","href":"...","label":{"en":"...","ru":"..."}}]
