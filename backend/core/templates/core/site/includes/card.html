@@ -1,0 +1,15 @@
+<article class="case-card" data-categories="{{ project.category_ids }}" data-reveal>
+  <a class="case-media-link" href="{{ project.url }}" tabindex="-1" aria-hidden="true" data-event="case_open" data-location="cases">
+    <div class="media-toolbar"><span class="window-dots" aria-hidden="true"><i></i><i></i><i></i></span><span>{{ project.category_label }}</span><span>{{ forloop.counter|stringformat:'02d' }}</span></div>
+    <div class="case-media">{% include 'core/site/includes/image.html' with asset=project.cover %}</div>
+    {% if 'Иллюстрация' in project.cover.note or 'Flow illustration' in project.cover.note %}<p class="card-visual-note">{{ project.cover.note }}</p>{% endif %}
+  </a>
+  <div class="case-body">
+    <p class="case-meta">{{ project.category_label }}</p>
+    <h3 class="case-title"><a href="{{ project.url }}" data-event="case_open" data-location="cases">{{ project.title }}</a></h3>
+    <p class="case-description"><span class="case-problem-label">{{ ui.problem }}</span> {{ project.problem|default:project.description|truncatechars:185 }}</p>
+    <dl class="case-outcome"><dt>{{ ui.solution }}</dt><dd>{{ project.solution|truncatechars:145 }}</dd><dt>{{ ui.result }}</dt><dd>{{ project.result|truncatechars:160 }}</dd></dl>
+    <div class="tag-list">{% for tag in project.tags|slice:':4' %}<span class="tag">{{ tag }}</span>{% endfor %}</div>
+    <a class="case-read" href="{{ project.url }}" data-event="case_open" data-location="cases">{{ ui.read_case }} <span aria-hidden="true">↗</span></a>
+  </div>
+</article>

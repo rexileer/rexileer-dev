@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#0b0c0a"/>
+  <path d="M800 0V630M900 0V630M1000 0V630M1100 0V630M700 130H1200M700 230H1200M700 330H1200M700 430H1200M700 530H1200" stroke="#252b1c"/>
+  <rect x="75" y="67" width="54" height="54" rx="12" fill="#d8ff3e"/>
+  <text x="92" y="104" font-family="Arial,sans-serif" font-size="30" font-weight="700" fill="#0b0c0a">R</text>
+  <text x="148" y="104" font-family="Arial,sans-serif" font-size="28" fill="#f3f0e8">rexileer.dev</text>
+  <text x="75" y="240" font-family="Arial,sans-serif" font-size="68" font-weight="700" fill="#f3f0e8">Python backend.</text>
+  <text x="75" y="324" font-family="Arial,sans-serif" font-size="68" font-weight="700" fill="#f3f0e8">AI. Automation.</text>
+  <text x="75" y="414" font-family="Arial,sans-serif" font-size="68" font-weight="700" fill="#d8ff3e">Built to work.</text>
+  <path d="M918 194H1100V415H918Z" fill="#1b2413" stroke="#738c39"/>
+  <text x="946" y="285" font-family="monospace" font-size="37" fill="#d8ff3e">{ API }</text>
+  <text x="950" y="344" font-family="monospace" font-size="22" fill="#b6c69b">→ data</text>
+  <text x="75" y="550" font-family="Arial,sans-serif" font-size="25" fill="#a3ac94">Django / FastAPI · Telegram · AI / RAG · Integrations</text>
+</svg>

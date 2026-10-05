@@ -1,0 +1,5 @@
+<section class="section shell process-section">
+  <div class="process-grid"><div class="process-sticky"><p class="eyebrow">{{ ui.process_eyebrow }}</p><h2 class="section-title">{{ ui.process_title }}</h2></div>
+    <div class="process-list">{% for step in ui.process %}<div class="process-step" data-reveal><span>{{ forloop.counter|stringformat:'02d' }}</span><div><h3>{{ step.title }}</h3><p>{{ step.text }}</p></div></div>{% endfor %}</div>
+  </div>
+</section>

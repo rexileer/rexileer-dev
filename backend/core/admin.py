@@ -9,12 +9,27 @@ from .models import (
     Project,
     ProjectDraft,
     ProjectMedia,
+    SiteEvent,
     SiteText,
     Skill,
     TelegramPostDraft,
     VisitLog,
 )
 from .services.ai_portfolio import generate_portfolio_draft
+
+
+@admin.register(SiteEvent)
+class SiteEventAdmin(ModelAdmin):
+    list_display = ("created_at", "name", "location", "path", "lang")
+    list_filter = ("name", "location", "lang")
+    date_hierarchy = "created_at"
+    readonly_fields = ("created_at", "name", "location", "path", "lang")
+
+    def has_add_permission(self, request):
+        return False
+
+    def has_change_permission(self, request, obj=None):
+        return request.method in ("GET", "HEAD")
 
 
 class ProjectMediaInline(TabularInline):

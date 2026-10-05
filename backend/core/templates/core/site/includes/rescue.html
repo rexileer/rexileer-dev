@@ -1,0 +1,6 @@
+<section class="section shell rescue-section" id="existing-project">
+  <div class="rescue-card" data-reveal>
+    <div class="rescue-copy"><p class="eyebrow">{{ ui.rescue_eyebrow }}</p><h2 class="section-title">{{ ui.rescue_title }}</h2><p class="rescue-lead">{{ ui.rescue_lead }}</p><a class="button primary" href="https://t.me/rexileer" target="_blank" rel="noopener noreferrer" data-event="telegram_click" data-location="rescue">{{ ui.send_code }} <span aria-hidden="true">↗</span></a></div>
+    <div class="rescue-detail"><ol>{% for step in ui.rescue_steps %}<li><span>{{ forloop.counter|stringformat:'02d' }}</span>{{ step }}</li>{% endfor %}</ol><p class="audit-note">{{ ui.audit }}</p></div>
+  </div>
+</section>

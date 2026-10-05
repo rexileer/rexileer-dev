@@ -1,0 +1,8 @@
+{% extends 'core/site/base.html' %}
+{% block content %}
+<section class="page-hero shell"><p class="eyebrow">{{ ui.services }}</p><h1 class="display-title">{{ ui.services_title }}</h1><p class="page-lead">{{ ui.services_lead }}</p></section>
+<section class="section shell">{% include 'core/site/includes/services.html' %}</section>
+{% include 'core/site/includes/rescue.html' %}
+{% include 'core/site/includes/process.html' %}
+{% include 'core/site/includes/contact.html' %}
+{% endblock %}

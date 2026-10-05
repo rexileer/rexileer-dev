@@ -1,0 +1,19 @@
+{% extends 'core/site/base.html' %}
+{% block content %}
+<section class="hero home-hero">
+  <div class="shell hero-layout">
+    <div class="hero-copy"><p class="eyebrow">Python Backend / AI Integration Developer</p><h1 class="display-title">{{ ui.hero_title }} <em>{{ ui.hero_accent }}</em></h1><p class="hero-lead">{{ ui.hero_lead }}</p><div class="hero-actions"><a class="button primary" href="https://t.me/rexileer" target="_blank" rel="noopener noreferrer" data-event="telegram_click" data-location="hero">{{ ui.telegram }} <span aria-hidden="true">↗</span></a><a class="button" href="#cases">{{ ui.see_cases }} <span aria-hidden="true">↓</span></a></div></div>
+    <div class="pipeline-visual" role="img" aria-label="{{ ui.pipeline_label }}: Telegram/Web — Python API — workers/database — CRM/LLM">
+      <div class="pipeline-top"><span class="window-dots" aria-hidden="true"><i></i><i></i><i></i></span><span>system.flow</span><span class="pipeline-mark" aria-hidden="true">↗</span></div>
+      <div class="pipeline-content"><p class="pipeline-caption">{{ ui.pipeline_label }}</p><div class="pipeline-sources"><span>Telegram</span><span>Web</span><span>CRM</span></div><div class="pipeline-connector" aria-hidden="true">↓</div><div class="pipeline-core"><small>{{ ui.rules }}</small><strong>Python backend</strong><div><span>Django</span><span>FastAPI</span></div></div><div class="pipeline-connector" aria-hidden="true">↓</div><div class="pipeline-workers"><div><small>{{ ui.queue }}</small><b>Redis / workers</b></div><div><small>{{ ui.data }}</small><b>PostgreSQL</b></div></div><div class="pipeline-connector" aria-hidden="true">↓</div><div class="pipeline-output"><span>API / CRM</span><span>LLM / RAG</span></div><p class="pipeline-note">{{ ui.pipeline_note }}</p></div>
+    </div>
+  </div>
+  <div class="shell hero-footnote"><span>Django / FastAPI</span><span>Telegram / Aiogram</span><span>AI / RAG</span><span>Docker / VPS / CI/CD</span></div>
+</section>
+<section class="section shell" id="services"><div class="section-head"><div><p class="eyebrow">{{ ui.services }}</p><h2 class="section-title">{{ ui.direction_title }}</h2></div><p class="section-intro">{{ ui.direction_lead }}</p></div>{% include 'core/site/includes/services.html' %}</section>
+{% include 'core/site/includes/rescue.html' %}
+<section class="section shell" id="cases"><div class="section-head"><div><p class="eyebrow">{{ ui.selected }}</p><h2 class="section-title">{{ ui.cases_title }}</h2></div><p class="section-intro">{{ ui.cases_lead }}</p></div><div class="case-grid">{% for project in selected %}{% include 'core/site/includes/card.html' %}{% endfor %}</div><div class="section-action"><a class="button" href="{{ projects_url }}">{{ ui.all_cases }} <span aria-hidden="true">↗</span></a><a class="text-link" href="https://t.me/rexileer" target="_blank" rel="noopener noreferrer" data-event="telegram_click" data-location="cases">{{ ui.discuss }} ↗</a></div></section>
+{% include 'core/site/includes/process.html' %}
+<section class="section shell hiring-section"><div><p class="eyebrow">Python Backend / AI Integration Developer</p><h2>{% if lang == 'en' %}Engineering, from design to deployment.{% else %}От архитектуры до эксплуатации.{% endif %}</h2><p>{% if lang == 'en' %}Backend development, integration work, background processing and production deployment. My projects show the work; GitHub shows the public code.{% else %}Backend, интеграции, фоновые процессы и production-развёртывание. В кейсах — моя работа и решения; на GitHub — публичный код.{% endif %}</p></div><div class="hiring-links"><a class="button" href="https://github.com/rexileer" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a class="text-link" href="{{ work_url }}">{{ ui.work }} ↗</a></div></section>
+{% include 'core/site/includes/contact.html' %}
+{% endblock %}

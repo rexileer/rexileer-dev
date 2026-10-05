@@ -1,0 +1,10 @@
+{% extends 'core/site/base.html' %}
+{% block content %}
+<section class="page-hero shell"><p class="eyebrow">{% if is_work %}{{ ui.work }}{% else %}{{ ui.cases }}{% endif %}</p><h1 class="display-title">{% if is_work %}{{ ui.work_title }}{% else %}{{ ui.cases_title }}{% endif %}</h1><p class="page-lead">{{ description }}</p></section>
+<section class="section shell" data-project-catalog>
+  <div class="work-toolbar"><div class="filter-list" aria-label="{{ ui.cases }}"><button type="button" class="filter-button active" data-filter="all" aria-pressed="true">{{ ui.all }}</button>{% for category in categories %}<button type="button" class="filter-button" data-filter="{{ category.id }}" aria-pressed="false">{{ category.label }}</button>{% endfor %}</div></div>
+  <div class="catalog-grid">{% for project in selected %}{% include 'core/site/includes/card.html' %}{% endfor %}</div><p data-filter-empty hidden aria-live="polite">{{ ui.empty }}</p>
+  <div class="section-action"><a class="text-link" href="{% if is_work %}{{ projects_url }}{% else %}{{ work_url }}{% endif %}">{% if is_work %}{{ ui.all_cases }}{% else %}{{ ui.work }}{% endif %} ↗</a></div>
+</section>
+{% include 'core/site/includes/contact.html' %}
+{% endblock %}

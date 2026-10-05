@@ -9,18 +9,18 @@
       "source": "BOTTEC",
       "status_label": "Приостановлен",
       "client": "BOTTEC",
-      "title_ru": "AI Consultant — Bitrix24 RAG",
+      "title_ru": "AI-консультант для Bitrix24",
       "title_en": "AI Consultant — Bitrix24 RAG",
       "description_ru": "AI-консультант для Bitrix24 с RAG по каталогу и документам и сбором заказов.",
-      "description_en": "",
+      "description_en": "A knowledge-grounded assistant connected to Bitrix24.",
       "detail_ru": "AI-консультант для Bitrix24 с RAG по каталогу и документам и сбором заказов.",
       "problem_ru": "Автоматизировать ответы клиентам в Bitrix24 Open Lines, сохраняя привязку к проверенному каталогу и внутренним документам.",
       "solution_ru": "Webhook Bitrix24, фоновые очереди, hybrid retrieval по SKU/vector/FTS/trigram/RRF, DOCX/XLSX ingestion, prompt management, order-flow и экспорт XLSX.",
       "result_ru": "Система была развернута и работала стабильно на VPS; демонстрирует полноценный grounded AI-продукт, а не простой чат-бот.",
       "role_ru": "Спроектировал controllable AI backend, RAG-пайплайн, интеграцию Bitrix24, защиту от галлюцинаций, работу с документами и заказами.",
       "year": "2025",
-      "cover_image_url": "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1800&q=85",
-      "cover_alt_ru": "Тематическая обложка проекта «AI Consultant — Bitrix24 RAG»",
+      "cover_image_url": "/assets/projects/ai-consultant-bitrix-rag/products-220e16ff7f.webp",
+      "cover_alt_ru": "AI Consultant — Bitrix24 RAG — Реальный интерфейс проекта; обезличенные данные.",
       "tags": [
         "Python 3.11",
         "Django 5",
@@ -63,7 +63,133 @@
         }
       ],
       "doc_title": "AI Consultant — Bitrix24 RAG",
-      "screenshots": []
+      "screenshots": [],
+      "cover_asset": {
+        "url": "/assets/projects/ai-consultant-bitrix-rag/products-220e16ff7f.webp",
+        "width": 1280,
+        "height": 720,
+        "variants": [
+          {
+            "url": "/assets/projects/ai-consultant-bitrix-rag/products-220e16ff7f-640.webp",
+            "width": 640
+          },
+          {
+            "url": "/assets/projects/ai-consultant-bitrix-rag/products-220e16ff7f-960.webp",
+            "width": 960
+          }
+        ],
+        "caption_ru": "AI-консультант для Bitrix24",
+        "caption_en": "AI Consultant — Bitrix24 RAG",
+        "note_ru": "Реальный интерфейс проекта; обезличенные данные.",
+        "note_en": "Actual project interface with anonymized data."
+      },
+      "cover_alt_en": "AI Consultant — Bitrix24 RAG — Actual project interface with anonymized data.",
+      "media_assets": [
+        {
+          "url": "/assets/projects/ai-consultant-bitrix-rag/swagger-10b55953bb.webp",
+          "width": 1265,
+          "height": 712,
+          "variants": [
+            {
+              "url": "/assets/projects/ai-consultant-bitrix-rag/swagger-10b55953bb-640.webp",
+              "width": 640
+            },
+            {
+              "url": "/assets/projects/ai-consultant-bitrix-rag/swagger-10b55953bb-960.webp",
+              "width": 960
+            }
+          ],
+          "caption_ru": "Интеграционные endpoints",
+          "caption_en": "Integration endpoints",
+          "note_ru": "Реальный интерфейс проекта; обезличенные данные.",
+          "note_en": "Actual project interface with anonymized data."
+        },
+        {
+          "url": "/assets/projects/ai-consultant-bitrix-rag/messages-7b09690ebd.webp",
+          "width": 1280,
+          "height": 720,
+          "variants": [
+            {
+              "url": "/assets/projects/ai-consultant-bitrix-rag/messages-7b09690ebd-640.webp",
+              "width": 640
+            },
+            {
+              "url": "/assets/projects/ai-consultant-bitrix-rag/messages-7b09690ebd-960.webp",
+              "width": 960
+            }
+          ],
+          "caption_ru": "Сообщения и подготовленный ответ",
+          "caption_en": "Messages and prepared response",
+          "note_ru": "Реальный интерфейс проекта; обезличенные данные.",
+          "note_en": "Actual project interface with anonymized data."
+        },
+        {
+          "url": "/assets/projects/ai-consultant-bitrix-rag/prompts-e6e4a71c0c.webp",
+          "width": 1280,
+          "height": 720,
+          "variants": [
+            {
+              "url": "/assets/projects/ai-consultant-bitrix-rag/prompts-e6e4a71c0c-640.webp",
+              "width": 640
+            },
+            {
+              "url": "/assets/projects/ai-consultant-bitrix-rag/prompts-e6e4a71c0c-960.webp",
+              "width": 960
+            }
+          ],
+          "caption_ru": "Управление промптами",
+          "caption_en": "Prompt management",
+          "note_ru": "Реальный интерфейс проекта; обезличенные данные.",
+          "note_en": "Actual project interface with anonymized data."
+        },
+        {
+          "url": "/assets/projects/ai-consultant-bitrix-rag/05-architecture-cc2dc67529.webp",
+          "width": 1600,
+          "height": 1200,
+          "variants": [
+            {
+              "url": "/assets/projects/ai-consultant-bitrix-rag/05-architecture-cc2dc67529-640.webp",
+              "width": 640
+            },
+            {
+              "url": "/assets/projects/ai-consultant-bitrix-rag/05-architecture-cc2dc67529-960.webp",
+              "width": 960
+            }
+          ],
+          "caption_ru": "Архитектура решения",
+          "caption_en": "Solution architecture",
+          "note_ru": "Схема из предоставленных материалов проекта.",
+          "note_en": "Architecture diagram supplied with the project materials."
+        }
+      ],
+      "problem_en": "Answer customer questions using the verified catalog and company documents inside Bitrix24 Open Lines.",
+      "solution_en": "Built DOCX/XLSX ingestion, SKU/vector/full-text/trigram retrieval with RRF, background Redis/RQ jobs, prompt management and Bitrix24 webhooks.",
+      "result_en": "Documents, products, prompts and conversation history are managed in one backend; responses use retrieved context.",
+      "detail_en": "A knowledge-grounded assistant connected to Bitrix24. Built DOCX/XLSX ingestion, SKU/vector/full-text/trigram retrieval with RRF, background Redis/RQ jobs, prompt management and Bitrix24 webhooks.",
+      "role_en": "Architecture, backend implementation, integrations and workflow design.",
+      "categories": [
+        "ai",
+        "backend",
+        "integrations"
+      ],
+      "showcase_en": [
+        {
+          "title": "Queued webhooks",
+          "text": "Redis/RQ handles the assistant work after the Bitrix24 webhook, so model calls do not block the incoming request."
+        },
+        {
+          "title": "Hybrid retrieval",
+          "text": "Exact SKU matches, pgvector, full-text search and trigram matches are combined with reciprocal rank fusion."
+        },
+        {
+          "title": "Verified product facts",
+          "text": "Prices, product links and catalog details come from the retrieved records."
+        },
+        {
+          "title": "Editable knowledge",
+          "text": "Products, documents, prompts, conversations and orders can be managed without changing code."
+        }
+      ]
     },
     {
       "slug": "bozon-medpreds",
@@ -75,15 +201,15 @@
       "title_ru": "Medpreds — Field CRM",
       "title_en": "Medpreds — Field CRM",
       "description_ru": "Полевая CRM и рабочий бот для медицинских представителей.",
-      "description_en": "",
+      "description_en": "A field CRM and work bot for medical representatives.",
       "detail_ru": "Полевая CRM и рабочий бот для медицинских представителей: визиты, кампании, клиники и контроль процессов в одном контуре.",
       "problem_ru": "Требовался внутренний инструмент для работы медпредставителей: единый контур данных, фиксация активности и управляемые процессы вместо разрозненных сообщений и таблиц.",
       "solution_ru": "Telegram/MAX-интерфейс, учет представителей и рабочих действий, внутренняя CRM-логика, административное управление и развитие интеграций.",
       "result_ru": "Полевая работа, контроль визитов и управленческие данные объединены в одной внутренней системе, которая остаётся в эксплуатации.",
       "role_ru": "Проектирование доменной модели, backend и bot-flow, административные сценарии, эксплуатационные доработки.",
       "year": "2026",
-      "cover_image_url": "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1800&q=85",
-      "cover_alt_ru": "Тематическая обложка полевой CRM для медицинских представителей",
+      "cover_image_url": "",
+      "cover_alt_ru": "",
       "tags": [
         "Python",
         "Django",
@@ -120,7 +246,35 @@
         }
       ],
       "doc_title": "BOZON — Internal Medical Equipment Ecosystem",
-      "screenshots": []
+      "screenshots": [],
+      "problem_en": "Replace scattered messages and spreadsheets with structured visits and work activity.",
+      "solution_en": "Built a Telegram/MAX workflow, linked representatives, clinics, campaigns and visits, with administrative controls.",
+      "result_en": "Field activity and visit records are available in one internal system.",
+      "detail_en": "A field CRM and work bot for medical representatives. Built a Telegram/MAX workflow, linked representatives, clinics, campaigns and visits, with administrative controls.",
+      "role_en": "Architecture, backend implementation, integrations and workflow design.",
+      "categories": [
+        "telegram",
+        "backend"
+      ],
+      "showcase_en": [
+        {
+          "title": "Explicit visit states",
+          "text": "Allowed transitions and a history of changes make visits traceable, with administrative corrections where needed."
+        },
+        {
+          "title": "Resumable workflows",
+          "text": "The bot retains the user’s state when a visit flow is interrupted."
+        },
+        {
+          "title": "Connected records",
+          "text": "Employees, clinics, doctors, campaigns and visits are linked in the domain model."
+        },
+        {
+          "title": "Separate transport",
+          "text": "Business rules live in services rather than Telegram or MAX handlers."
+        }
+      ],
+      "cover_alt_en": ""
     },
     {
       "slug": "meatbot-production-crm",
@@ -129,18 +283,18 @@
       "source": "BOTTEC",
       "status_label": "Активный",
       "client": "BOTTEC",
-      "title_ru": "MeatBot — Production CRM",
+      "title_ru": "MeatBot — CRM для производства",
       "title_en": "MeatBot — Production CRM",
       "description_ru": "Производственная CRM для мясоперерабатывающего предприятия.",
-      "description_en": "",
+      "description_en": "A connected production workflow for the office and shop floor.",
       "detail_ru": "Производственная CRM для мясоперерабатывающего предприятия.",
       "problem_ru": "Связать офис и цех в одной системе: фиксировать производственные операции, документы, фото и файлы без разрозненных чатов и таблиц.",
       "solution_ru": "Django CRM для офиса, рабочий интерфейс/бот для цеха, операции производства, документы, вложения, MinIO и единая доменная модель.",
-      "result_ru": "Один из крупнейших длительных коммерческих проектов; система продолжает развиваться и тестироваться.",
+      "result_ru": "Сотрудники фиксируют операции в единой системе; партии сырья, документы и результат связаны прослеживаемой историей.",
       "role_ru": "Спроектировал доменную модель и backend, рабочие процессы офиса и цеха, файловое хранение и административные инструменты.",
       "year": "2025",
-      "cover_image_url": "https://images.unsplash.com/photo-1560493676-04071c5f467b?auto=format&fit=crop&w=1800&q=85",
-      "cover_alt_ru": "Тематическая обложка проекта «MeatBot — Production CRM»",
+      "cover_image_url": "/assets/projects/meatbot-production-crm/workstation-weighing-b54b50aaec.webp",
+      "cover_alt_ru": "MeatBot — Production CRM — Реальный интерфейс проекта; обезличенные данные.",
       "tags": [
         "Python",
         "Django",
@@ -178,7 +332,113 @@
         }
       ],
       "doc_title": "MeatBot — Production CRM",
-      "screenshots": []
+      "screenshots": [],
+      "cover_asset": {
+        "url": "/assets/projects/meatbot-production-crm/workstation-weighing-b54b50aaec.webp",
+        "width": 1265,
+        "height": 712,
+        "variants": [
+          {
+            "url": "/assets/projects/meatbot-production-crm/workstation-weighing-b54b50aaec-640.webp",
+            "width": 640
+          },
+          {
+            "url": "/assets/projects/meatbot-production-crm/workstation-weighing-b54b50aaec-960.webp",
+            "width": 960
+          }
+        ],
+        "caption_ru": "MeatBot — CRM для производства",
+        "caption_en": "MeatBot — Production CRM",
+        "note_ru": "Реальный интерфейс проекта; обезличенные данные.",
+        "note_en": "Actual project interface with anonymized data."
+      },
+      "cover_alt_en": "MeatBot — Production CRM — Actual project interface with anonymized data.",
+      "media_assets": [
+        {
+          "url": "/assets/projects/meatbot-production-crm/raw-batches-b51770656b.webp",
+          "width": 1280,
+          "height": 720,
+          "variants": [
+            {
+              "url": "/assets/projects/meatbot-production-crm/raw-batches-b51770656b-640.webp",
+              "width": 640
+            },
+            {
+              "url": "/assets/projects/meatbot-production-crm/raw-batches-b51770656b-960.webp",
+              "width": 960
+            }
+          ],
+          "caption_ru": "Учёт партий сырья",
+          "caption_en": "Raw material batches",
+          "note_ru": "Реальный интерфейс проекта; обезличенные данные.",
+          "note_en": "Actual project interface with anonymized data."
+        },
+        {
+          "url": "/assets/projects/meatbot-production-crm/workstation-result-9874d37802.webp",
+          "width": 1280,
+          "height": 720,
+          "variants": [
+            {
+              "url": "/assets/projects/meatbot-production-crm/workstation-result-9874d37802-640.webp",
+              "width": 640
+            },
+            {
+              "url": "/assets/projects/meatbot-production-crm/workstation-result-9874d37802-960.webp",
+              "width": 960
+            }
+          ],
+          "caption_ru": "Рабочее место сотрудника цеха",
+          "caption_en": "Shop-floor workstation",
+          "note_ru": "Реальный интерфейс проекта; обезличенные данные.",
+          "note_en": "Actual project interface with anonymized data."
+        },
+        {
+          "url": "/assets/projects/meatbot-production-crm/05-architecture-c97ba50ab6.webp",
+          "width": 1600,
+          "height": 1200,
+          "variants": [
+            {
+              "url": "/assets/projects/meatbot-production-crm/05-architecture-c97ba50ab6-640.webp",
+              "width": 640
+            },
+            {
+              "url": "/assets/projects/meatbot-production-crm/05-architecture-c97ba50ab6-960.webp",
+              "width": 960
+            }
+          ],
+          "caption_ru": "Архитектура решения",
+          "caption_en": "Solution architecture",
+          "note_ru": "Схема из предоставленных материалов проекта.",
+          "note_en": "Architecture diagram supplied with the project materials."
+        }
+      ],
+      "problem_en": "Track raw materials, production operations and documents across office and shop-floor teams.",
+      "solution_en": "Built a Django CRM, a tablet-ready workstation, batch and operation models, permissions and MinIO storage for photos and documents.",
+      "result_en": "Staff record operations in a shared system with a traceable history of raw materials and output.",
+      "detail_en": "A connected production workflow for the office and shop floor. Built a Django CRM, a tablet-ready workstation, batch and operation models, permissions and MinIO storage for photos and documents.",
+      "role_en": "Architecture, backend implementation, integrations and workflow design.",
+      "categories": [
+        "backend",
+        "integrations"
+      ],
+      "showcase_en": [
+        {
+          "title": "One production model",
+          "text": "Office and shop-floor workflows share the same database and business entities."
+        },
+        {
+          "title": "Guided operations",
+          "text": "A sequential workstation flow guides staff through entering an operation."
+        },
+        {
+          "title": "Stored attachments",
+          "text": "MinIO holds photos and documents linked to production records."
+        },
+        {
+          "title": "Evolving processes",
+          "text": "The application structure accommodates changes to the production workflow."
+        }
+      ]
     },
     {
       "slug": "ai-media-platform",
@@ -190,11 +450,11 @@
       "title_ru": "AI Media Generation Platform",
       "title_en": "AI Media Generation Platform",
       "description_ru": "Микросервисная Telegram-платформа генерации изображений и видео с пользовательским и административным ботами.",
-      "description_en": "",
+      "description_en": "A Telegram product for image and video generation.",
       "detail_ru": "Микросервисная Telegram-платформа генерации изображений и видео с пользовательским и административным ботами.",
       "problem_ru": "Построить цельный AI-продукт в Telegram: генерация несколькими моделями, управление пользователями, аналитика, монетизация и администрирование.",
       "solution_ru": "Main Bot и Admin Bot, FastAPI, PostgreSQL, smart-router моделей, кэш генераций, обработка ошибок; в расширенной версии — Mini App, Celery, ClickHouse, YooKassa, энергия и рефералы.",
-      "result_ru": "Один из двух крупнейших личных/ТЗ-проектов; сильный кейс полного AI-продукта с инфраструктурой и монетизацией.",
+      "result_ru": "Генерация, управление пользователями и монетизация объединены в одном Telegram-продукте.",
       "role_ru": "Спроектировал микросервисную архитектуру, интеграции AI-провайдеров, роутинг моделей, backend API, ботов и продуктовые механики.",
       "year": "2026",
       "cover_image_url": "/assets/covers/ai-media-platform.svg",
@@ -241,7 +501,35 @@
         }
       ],
       "doc_title": "AI Media Generation Platform",
-      "screenshots": []
+      "screenshots": [],
+      "problem_en": "Combine AI generation, user workflows, administration and monetization in one product.",
+      "solution_en": "Built user and admin bots, FastAPI, PostgreSQL, model routing and caching; an extended version adds Mini App, Celery, ClickHouse, YooKassa and referrals.",
+      "result_en": "Generation workflows, administration and payments share one application architecture.",
+      "detail_en": "A Telegram product for image and video generation. Built user and admin bots, FastAPI, PostgreSQL, model routing and caching; an extended version adds Mini App, Celery, ClickHouse, YooKassa and referrals.",
+      "role_en": "Architecture, backend implementation, integrations and workflow design.",
+      "categories": [
+        "ai",
+        "telegram",
+        "backend"
+      ],
+      "showcase_en": [
+        {
+          "title": "Background generation",
+          "text": "Celery runs generation tasks outside the request lifecycle."
+        },
+        {
+          "title": "Model routing",
+          "text": "Provider selection accounts for task requirements, capabilities, quality and cost."
+        },
+        {
+          "title": "Separate data workloads",
+          "text": "PostgreSQL stores transactional balances, while ClickHouse handles event data in the extended architecture."
+        },
+        {
+          "title": "Provider failure handling",
+          "text": "Fallbacks and caching support the workflow when an external provider is unavailable."
+        }
+      ]
     },
     {
       "slug": "mexc-scalping-autobuy",
@@ -251,17 +539,17 @@
       "status_label": "Завершён",
       "client": "BOTTEC",
       "title_ru": "MEXC Scalping AutoBuy Bot",
-      "title_en": "MEXC Scalping AutoBuy Bot",
+      "title_en": "MEXC AutoBuy Bot",
       "description_ru": "Telegram-бот автоматической торговли на MEXC с realtime-потоками и стратегией AutoBuy.",
-      "description_en": "",
+      "description_en": "A Telegram interface for a realtime trading strategy.",
       "detail_ru": "Telegram-бот автоматической торговли на MEXC с realtime-потоками и стратегией AutoBuy.",
       "problem_ru": "Нужен был управляемый из Telegram торговый инструмент, реагирующий на рыночные события в реальном времени и автоматизирующий покупки и продажи.",
       "solution_ru": "API-ключи и балансы, WebSocket цен/ордеров/стакана, AutoBuy, лесенка докупок, лимитные продажи, триггеры, статистика и журналы Django Admin.",
-      "result_ru": "Многоэтапный коммерческий realtime-проект с длительным периодом развития и эксплуатации.",
+      "result_ru": "Параметры, состояние и остановка стратегии доступны из Telegram. В визуалах — условные данные, без заявлений о доходности.",
       "role_ru": "Разработал асинхронную торговую логику, интеграцию MEXC, realtime-соединения, хранение сделок, конфигурацию стратегии и Telegram UX.",
       "year": "2025",
-      "cover_image_url": "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=1800&q=85",
-      "cover_alt_ru": "Тематическая обложка проекта «MEXC Scalping AutoBuy Bot»",
+      "cover_image_url": "/assets/projects/mexc-scalping-autobuy/02-workflow-572a218cf2.webp",
+      "cover_alt_ru": "MEXC Scalping AutoBuy Bot — Иллюстрация сценария по реальным обработчикам; условные данные.",
       "tags": [
         "Python",
         "asyncio",
@@ -301,7 +589,113 @@
         }
       ],
       "doc_title": "MEXC Scalping AutoBuy Bot",
-      "screenshots": []
+      "screenshots": [],
+      "cover_asset": {
+        "url": "/assets/projects/mexc-scalping-autobuy/02-workflow-572a218cf2.webp",
+        "width": 1600,
+        "height": 1200,
+        "variants": [
+          {
+            "url": "/assets/projects/mexc-scalping-autobuy/02-workflow-572a218cf2-640.webp",
+            "width": 640
+          },
+          {
+            "url": "/assets/projects/mexc-scalping-autobuy/02-workflow-572a218cf2-960.webp",
+            "width": 960
+          }
+        ],
+        "caption_ru": "MEXC Scalping AutoBuy Bot",
+        "caption_en": "MEXC AutoBuy Bot",
+        "note_ru": "Иллюстрация сценария по реальным обработчикам; условные данные.",
+        "note_en": "Flow illustration based on actual handlers; sample data."
+      },
+      "cover_alt_en": "MEXC AutoBuy Bot — Flow illustration based on actual handlers; sample data.",
+      "media_assets": [
+        {
+          "url": "/assets/projects/mexc-scalping-autobuy/03-result-12c8c73e34.webp",
+          "width": 1600,
+          "height": 1200,
+          "variants": [
+            {
+              "url": "/assets/projects/mexc-scalping-autobuy/03-result-12c8c73e34-640.webp",
+              "width": 640
+            },
+            {
+              "url": "/assets/projects/mexc-scalping-autobuy/03-result-12c8c73e34-960.webp",
+              "width": 960
+            }
+          ],
+          "caption_ru": "Состояния заявок и журнал",
+          "caption_en": "Order states and event log",
+          "note_ru": "Иллюстрация сценария по реальным обработчикам; условные данные.",
+          "note_en": "Flow illustration based on actual handlers; sample data."
+        },
+        {
+          "url": "/assets/projects/mexc-scalping-autobuy/04-technical-156ac69adf.webp",
+          "width": 1600,
+          "height": 1200,
+          "variants": [
+            {
+              "url": "/assets/projects/mexc-scalping-autobuy/04-technical-156ac69adf-640.webp",
+              "width": 640
+            },
+            {
+              "url": "/assets/projects/mexc-scalping-autobuy/04-technical-156ac69adf-960.webp",
+              "width": 960
+            }
+          ],
+          "caption_ru": "Остановка стратегии",
+          "caption_en": "Stopping the strategy",
+          "note_ru": "Иллюстрация сценария по реальным обработчикам; условные данные.",
+          "note_en": "Flow illustration based on actual handlers; sample data."
+        },
+        {
+          "url": "/assets/projects/mexc-scalping-autobuy/05-architecture-4b05d68829.webp",
+          "width": 1600,
+          "height": 1200,
+          "variants": [
+            {
+              "url": "/assets/projects/mexc-scalping-autobuy/05-architecture-4b05d68829-640.webp",
+              "width": 640
+            },
+            {
+              "url": "/assets/projects/mexc-scalping-autobuy/05-architecture-4b05d68829-960.webp",
+              "width": 960
+            }
+          ],
+          "caption_ru": "Архитектура решения",
+          "caption_en": "Solution architecture",
+          "note_ru": "Схема из предоставленных материалов проекта.",
+          "note_en": "Architecture diagram supplied with the project materials."
+        }
+      ],
+      "problem_en": "Control an automated strategy and its parameters without staying at a trading terminal.",
+      "solution_en": "Connected Telegram handlers to MEXC REST/WebSocket, AutoBuy states, price streams, order transitions and event history.",
+      "result_en": "Strategy settings, status and stop controls are available through Telegram. Portfolio illustrations use sample values and claim no trading returns.",
+      "detail_en": "A Telegram interface for a realtime trading strategy. Connected Telegram handlers to MEXC REST/WebSocket, AutoBuy states, price streams, order transitions and event history.",
+      "role_en": "Architecture, backend implementation, integrations and workflow design.",
+      "categories": [
+        "telegram",
+        "integrations"
+      ],
+      "showcase_en": [
+        {
+          "title": "Realtime prices",
+          "text": "WebSocket streams provide updates without repeatedly polling the exchange."
+        },
+        {
+          "title": "Strategy lifecycle",
+          "text": "Explicit AutoBuy states support starting, inspecting and stopping a strategy."
+        },
+        {
+          "title": "Idempotent events",
+          "text": "Event handling accounts for repeated exchange messages and order transitions."
+        },
+        {
+          "title": "Operational history",
+          "text": "Django Admin exposes strategy events for investigation. No trading returns are claimed."
+        }
+      ]
     },
     {
       "slug": "underground-taxi-analytics",
@@ -310,18 +704,18 @@
       "source": "BOTTEC",
       "status_label": "Завершён",
       "client": "BOTTEC",
-      "title_ru": "Taxi Fleet Analytics Platform",
-      "title_en": "Taxi Fleet Analytics Platform",
+      "title_ru": "Аналитика таксопарка",
+      "title_en": "Taxi Fleet Analytics",
       "description_ru": "Кастомная аналитическая платформа для крупного таксопарка.",
-      "description_en": "",
+      "description_en": "An operational dashboard for a taxi fleet.",
       "detail_ru": "Кастомная аналитическая платформа для крупного таксопарка: водители, города, показатели, аномалии и управленческие действия.",
       "problem_ru": "Объединить данные Яндекса и внутренние данные парка, сделать прозрачными показатели водителей, городов, аномалии и результаты розыгрышей.",
-      "solution_ru": "Интеграция API, расчет 20+ метрик, аналитика 1500+ водителей в 10+ городах, поиск аномалий, рассылки и контроль корректности розыгрышей.",
+      "solution_ru": "Регулярная загрузка данных API, расчёт показателей, аналитика водителей и городов, поиск аномалий и контроль розыгрышей.",
       "result_ru": "Ручная работа с большими выгрузками заменена воспроизводимой аналитической системой.",
       "role_ru": "Разработал ingestion и расчетный слой, модели аналитики, отчеты, проверки аномалий и автоматические коммуникации.",
       "year": "2026",
-      "cover_image_url": "https://images.unsplash.com/photo-1515569067071-ec3b51335dd0?auto=format&fit=crop&w=1800&q=85",
-      "cover_alt_ru": "Тематическая обложка аналитической платформы таксопарка",
+      "cover_image_url": "/assets/projects/underground-taxi-analytics/dashboard-overview-c969725965.webp",
+      "cover_alt_ru": "Taxi Fleet Analytics Platform — Реальный интерфейс проекта; обезличенные данные.",
       "tags": [
         "Python",
         "Django",
@@ -359,7 +753,132 @@
         }
       ],
       "doc_title": "Underground — Taxi Fleet Analytics Platform",
-      "screenshots": []
+      "screenshots": [],
+      "cover_asset": {
+        "url": "/assets/projects/underground-taxi-analytics/dashboard-overview-c969725965.webp",
+        "width": 1276,
+        "height": 718,
+        "variants": [
+          {
+            "url": "/assets/projects/underground-taxi-analytics/dashboard-overview-c969725965-640.webp",
+            "width": 640
+          },
+          {
+            "url": "/assets/projects/underground-taxi-analytics/dashboard-overview-c969725965-960.webp",
+            "width": 960
+          }
+        ],
+        "caption_ru": "Аналитика таксопарка",
+        "caption_en": "Taxi Fleet Analytics",
+        "note_ru": "Реальный интерфейс проекта; обезличенные данные.",
+        "note_en": "Actual project interface with anonymized data."
+      },
+      "cover_alt_en": "Taxi Fleet Analytics — Actual project interface with anonymized data.",
+      "media_assets": [
+        {
+          "url": "/assets/projects/underground-taxi-analytics/drivers-46362e04a7.webp",
+          "width": 1276,
+          "height": 718,
+          "variants": [
+            {
+              "url": "/assets/projects/underground-taxi-analytics/drivers-46362e04a7-640.webp",
+              "width": 640
+            },
+            {
+              "url": "/assets/projects/underground-taxi-analytics/drivers-46362e04a7-960.webp",
+              "width": 960
+            }
+          ],
+          "caption_ru": "Показатели водителей",
+          "caption_en": "Driver metrics",
+          "note_ru": "Реальный интерфейс проекта; обезличенные данные.",
+          "note_en": "Actual project interface with anonymized data."
+        },
+        {
+          "url": "/assets/projects/underground-taxi-analytics/cities-8d08bed466.webp",
+          "width": 1276,
+          "height": 718,
+          "variants": [
+            {
+              "url": "/assets/projects/underground-taxi-analytics/cities-8d08bed466-640.webp",
+              "width": 640
+            },
+            {
+              "url": "/assets/projects/underground-taxi-analytics/cities-8d08bed466-960.webp",
+              "width": 960
+            }
+          ],
+          "caption_ru": "Сравнение городов",
+          "caption_en": "City comparison",
+          "note_ru": "Реальный интерфейс проекта; обезличенные данные.",
+          "note_en": "Actual project interface with anonymized data."
+        },
+        {
+          "url": "/assets/projects/underground-taxi-analytics/anomalies-a6673d5311.webp",
+          "width": 1276,
+          "height": 718,
+          "variants": [
+            {
+              "url": "/assets/projects/underground-taxi-analytics/anomalies-a6673d5311-640.webp",
+              "width": 640
+            },
+            {
+              "url": "/assets/projects/underground-taxi-analytics/anomalies-a6673d5311-960.webp",
+              "width": 960
+            }
+          ],
+          "caption_ru": "Операционные аномалии",
+          "caption_en": "Operational anomalies",
+          "note_ru": "Реальный интерфейс проекта; обезличенные данные.",
+          "note_en": "Actual project interface with anonymized data."
+        },
+        {
+          "url": "/assets/projects/underground-taxi-analytics/05-architecture-d786f1327d.webp",
+          "width": 1600,
+          "height": 1200,
+          "variants": [
+            {
+              "url": "/assets/projects/underground-taxi-analytics/05-architecture-d786f1327d-640.webp",
+              "width": 640
+            },
+            {
+              "url": "/assets/projects/underground-taxi-analytics/05-architecture-d786f1327d-960.webp",
+              "width": 960
+            }
+          ],
+          "caption_ru": "Архитектура решения",
+          "caption_en": "Solution architecture",
+          "note_ru": "Схема из предоставленных материалов проекта.",
+          "note_en": "Architecture diagram supplied with the project materials."
+        }
+      ],
+      "problem_en": "Combine partner API data and internal fleet records to inspect drivers, cities and anomalies.",
+      "solution_en": "Implemented scheduled imports, KPI calculations, driver and city dashboards, anomaly checks and draw reporting.",
+      "result_en": "Recurring exports are replaced by a reproducible analytical workflow. Screenshot values describe the interface, not a claimed business improvement.",
+      "detail_en": "An operational dashboard for a taxi fleet. Implemented scheduled imports, KPI calculations, driver and city dashboards, anomaly checks and draw reporting.",
+      "role_en": "Architecture, backend implementation, integrations and workflow design.",
+      "categories": [
+        "backend",
+        "integrations"
+      ],
+      "showcase_en": [
+        {
+          "title": "Configurable thresholds",
+          "text": "Anomaly criteria are represented as configurable models rather than scattered spreadsheet formulas."
+        },
+        {
+          "title": "Anomaly workflow",
+          "text": "Anomalies have a status, change history and follow-up actions."
+        },
+        {
+          "title": "Scheduled analysis",
+          "text": "Imports, checks, segmentation and messages run as recurring workflows."
+        },
+        {
+          "title": "Operational views",
+          "text": "Dashboards follow the work of fleet staff rather than mirroring the structure of an external API."
+        }
+      ]
     },
     {
       "slug": "ai-lead-scoring",
@@ -368,18 +887,18 @@
       "source": "Пет-проекты",
       "status_label": "Активный",
       "client": "Пет-проект",
-      "title_ru": "AI Lead Scoring Platform",
+      "title_ru": "AI-оценка и сбор лидов",
       "title_en": "AI Lead Scoring Platform",
       "description_ru": "Платформа сбора и AI-оценки лидов из Telegram и других источников.",
-      "description_en": "",
+      "description_en": "An inbox of collected inquiries, ranked by relevance.",
       "detail_ru": "Платформа сбора и AI-оценки лидов из Telegram и других источников.",
       "problem_ru": "Не просто находить сообщения по ключевым словам, а оценивать релевантность каждого лида по настраиваемым критериям и приоритизировать поток.",
       "solution_ru": "Pyrogram userbot, проекты и фильтры, AI scoring 0–10 с объяснением, Django Admin, аналитический dashboard, Telegram-авторизация; заложен Celery/Redis pipeline для web-парсеров.",
-      "result_ru": "Один из двух крупнейших личных проектов; превращает поток сообщений в ранжированную очередь лидов.",
+      "result_ru": "Заявки собраны в единую ленту с приоритетом обработки и объяснением AI-оценки.",
       "role_ru": "Спроектировал продукт и доменную модель, мониторинг, LLM scoring/classification layer, админку, аналитику и основу подключения новых источников.",
       "year": "2026",
-      "cover_image_url": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1800&q=85",
-      "cover_alt_ru": "Тематическая обложка проекта «AI Lead Scoring Platform»",
+      "cover_image_url": "/assets/projects/ai-lead-scoring/analytics-47fdb8bc20.webp",
+      "cover_alt_ru": "AI Lead Scoring Platform — Реальный интерфейс проекта; обезличенные данные.",
       "tags": [
         "Python 3.11",
         "Django 5",
@@ -420,7 +939,133 @@
         }
       ],
       "doc_title": "AI Lead Scoring Platform",
-      "screenshots": []
+      "screenshots": [],
+      "cover_asset": {
+        "url": "/assets/projects/ai-lead-scoring/analytics-47fdb8bc20.webp",
+        "width": 1585,
+        "height": 1055,
+        "variants": [
+          {
+            "url": "/assets/projects/ai-lead-scoring/analytics-47fdb8bc20-640.webp",
+            "width": 640
+          },
+          {
+            "url": "/assets/projects/ai-lead-scoring/analytics-47fdb8bc20-960.webp",
+            "width": 960
+          }
+        ],
+        "caption_ru": "AI-оценка и сбор лидов",
+        "caption_en": "AI Lead Scoring Platform",
+        "note_ru": "Реальный интерфейс проекта; обезличенные данные.",
+        "note_en": "Actual project interface with anonymized data."
+      },
+      "cover_alt_en": "AI Lead Scoring Platform — Actual project interface with anonymized data.",
+      "media_assets": [
+        {
+          "url": "/assets/projects/ai-lead-scoring/leads-list-e567cbf506.webp",
+          "width": 1585,
+          "height": 1055,
+          "variants": [
+            {
+              "url": "/assets/projects/ai-lead-scoring/leads-list-e567cbf506-640.webp",
+              "width": 640
+            },
+            {
+              "url": "/assets/projects/ai-lead-scoring/leads-list-e567cbf506-960.webp",
+              "width": 960
+            }
+          ],
+          "caption_ru": "Единая лента заявок",
+          "caption_en": "Lead inbox",
+          "note_ru": "Реальный интерфейс проекта; обезличенные данные.",
+          "note_en": "Actual project interface with anonymized data."
+        },
+        {
+          "url": "/assets/projects/ai-lead-scoring/lead-ai-score-14d9f5d633.webp",
+          "width": 1585,
+          "height": 1055,
+          "variants": [
+            {
+              "url": "/assets/projects/ai-lead-scoring/lead-ai-score-14d9f5d633-640.webp",
+              "width": 640
+            },
+            {
+              "url": "/assets/projects/ai-lead-scoring/lead-ai-score-14d9f5d633-960.webp",
+              "width": 960
+            }
+          ],
+          "caption_ru": "Оценка и объяснение AI score",
+          "caption_en": "AI score and explanation",
+          "note_ru": "Реальный интерфейс проекта; обезличенные данные.",
+          "note_en": "Actual project interface with anonymized data."
+        },
+        {
+          "url": "/assets/projects/ai-lead-scoring/project-settings-6bcc2abe71.webp",
+          "width": 1585,
+          "height": 1055,
+          "variants": [
+            {
+              "url": "/assets/projects/ai-lead-scoring/project-settings-6bcc2abe71-640.webp",
+              "width": 640
+            },
+            {
+              "url": "/assets/projects/ai-lead-scoring/project-settings-6bcc2abe71-960.webp",
+              "width": 960
+            }
+          ],
+          "caption_ru": "Правила проекта и источники",
+          "caption_en": "Project rules and sources",
+          "note_ru": "Реальный интерфейс проекта; обезличенные данные.",
+          "note_en": "Actual project interface with anonymized data."
+        },
+        {
+          "url": "/assets/projects/ai-lead-scoring/05-architecture-d4a1615885.webp",
+          "width": 1600,
+          "height": 1200,
+          "variants": [
+            {
+              "url": "/assets/projects/ai-lead-scoring/05-architecture-d4a1615885-640.webp",
+              "width": 640
+            },
+            {
+              "url": "/assets/projects/ai-lead-scoring/05-architecture-d4a1615885-960.webp",
+              "width": 960
+            }
+          ],
+          "caption_ru": "Архитектура решения",
+          "caption_en": "Solution architecture",
+          "note_ru": "Схема из предоставленных материалов проекта.",
+          "note_en": "Architecture diagram supplied with the project materials."
+        }
+      ],
+      "problem_en": "Collect inquiries from multiple sources and assess them against configurable project criteria.",
+      "solution_en": "Built source collection, normalization, project filters, explainable AI scoring, a Django dashboard and Celery/Redis processing.",
+      "result_en": "The team gets a single stream of inquiries with an explicit processing priority and an explanation for each score.",
+      "detail_en": "An inbox of collected inquiries, ranked by relevance. Built source collection, normalization, project filters, explainable AI scoring, a Django dashboard and Celery/Redis processing.",
+      "role_en": "Architecture, backend implementation, integrations and workflow design.",
+      "categories": [
+        "ai",
+        "parsing",
+        "backend"
+      ],
+      "showcase_en": [
+        {
+          "title": "Filter before scoring",
+          "text": "Keyword filters remove irrelevant messages before sending candidates to a language model."
+        },
+        {
+          "title": "Project-specific criteria",
+          "text": "Each project controls its sources, criteria and scoring thresholds."
+        },
+        {
+          "title": "Explainable ranking",
+          "text": "A lead includes a score and rationale that a person can review."
+        },
+        {
+          "title": "Independent stages",
+          "text": "Collection, filtering, scoring and display are separate parts of the processing pipeline."
+        }
+      ]
     },
     {
       "slug": "go-scalper",
@@ -432,15 +1077,15 @@
       "title_ru": "Go-Scalper",
       "title_en": "Go-Scalper",
       "description_ru": "Production-oriented торговая система на Go + Rust для MEXC.",
-      "description_en": "",
+      "description_en": "A Go and Rust architecture for realtime trading.",
       "detail_ru": "Production-oriented торговая система на Go + Rust для MEXC.",
       "problem_ru": "Переосмыслить торгового бота как высокопроизводительную сервисную архитектуру с разделением realtime-контура и торгового движка.",
       "solution_ru": "Go-сервис с MEXC WebSocket и Telegram Bot API, Rust trading engine по gRPC, AutoBuy, REST-интеграция биржи, PostgreSQL, retry/rate limiting, Prometheus и Grafana.",
       "result_ru": "Сильный системный pet-case про realtime, производительность, надежность и observability; развитие идей коммерческого MEXC-бота.",
       "role_ru": "Спроектировал межсервисную архитектуру Go/Rust, realtime-обработку, gRPC-контракт, торговую логику, наблюдаемость и контейнерный запуск.",
       "year": "",
-      "cover_image_url": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1800&q=85",
-      "cover_alt_ru": "Тематическая обложка проекта «Go-Scalper»",
+      "cover_image_url": "",
+      "cover_alt_ru": "",
       "tags": [
         "Go 1.23",
         "Rust",
@@ -481,7 +1126,35 @@
         }
       ],
       "doc_title": "Go-Scalper — Go + Rust Trading System",
-      "screenshots": []
+      "screenshots": [],
+      "problem_en": "Separate realtime transport from the trading engine and make failure behavior observable.",
+      "solution_en": "Built a Go service for MEXC WebSocket and Telegram, a Rust engine over gRPC, PostgreSQL storage, retries, rate limits and Prometheus/Grafana monitoring.",
+      "result_en": "A personal engineering project with independent realtime and trading components; no performance or return figures are claimed.",
+      "detail_en": "A Go and Rust architecture for realtime trading. Built a Go service for MEXC WebSocket and Telegram, a Rust engine over gRPC, PostgreSQL storage, retries, rate limits and Prometheus/Grafana monitoring.",
+      "role_en": "Architecture, backend implementation, integrations and workflow design.",
+      "categories": [
+        "backend",
+        "integrations"
+      ],
+      "showcase_en": [
+        {
+          "title": "Separated components",
+          "text": "Go handles network orchestration; Rust runs the trading engine."
+        },
+        {
+          "title": "Typed communication",
+          "text": "A gRPC interface connects the components."
+        },
+        {
+          "title": "Observable events",
+          "text": "Prometheus and Grafana expose the system’s operational behavior."
+        },
+        {
+          "title": "Integration controls",
+          "text": "Retries and rate limits are handled at the exchange integration boundary."
+        }
+      ],
+      "cover_alt_en": ""
     },
     {
       "slug": "steps-corporate-gamification",
@@ -490,18 +1163,18 @@
       "source": "BOTTEC",
       "status_label": "Активный",
       "client": "BOTTEC",
-      "title_ru": "Steps Bot — Corporate Gamification",
-      "title_en": "Steps Bot — Corporate Gamification",
+      "title_ru": "Steps Bot — активность и награды",
+      "title_en": "Steps Bot — Activity & Rewards",
       "description_ru": "Telegram-бот корпоративной активности и геймификации.",
-      "description_en": "",
+      "description_en": "Walking, family teams and rewards in Telegram.",
       "detail_ru": "Telegram-бот корпоративной активности и геймификации.",
       "problem_ru": "Вовлечь сотрудников в физическую активность через учет прогулок/шагов, баллы, команды, награды и внутренний каталог.",
       "solution_ru": "Баланс баллов, семьи/группы, промокоды, награды, каталог заказов, ПВЗ, рефералы, рассылки и Django Admin.",
       "result_ru": "Долгоживущий активный продукт с регулярными небольшими улучшениями.",
       "role_ru": "Разработал backend и Telegram UX, игровую экономику, каталог/заказы, реферальные и административные механики.",
       "year": "2025",
-      "cover_image_url": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1800&q=85",
-      "cover_alt_ru": "Тематическая обложка проекта «Steps Bot — Corporate Gamification»",
+      "cover_image_url": "/assets/projects/steps-corporate-gamification/02-workflow-2716ccee4f.webp",
+      "cover_alt_ru": "Steps Bot — Corporate Gamification — Иллюстрация сценария по реальным обработчикам; условные данные.",
       "tags": [
         "Python",
         "Django",
@@ -538,7 +1211,113 @@
         }
       ],
       "doc_title": "Steps Bot — Corporate Gamification",
-      "screenshots": []
+      "screenshots": [],
+      "cover_asset": {
+        "url": "/assets/projects/steps-corporate-gamification/02-workflow-2716ccee4f.webp",
+        "width": 1600,
+        "height": 1200,
+        "variants": [
+          {
+            "url": "/assets/projects/steps-corporate-gamification/02-workflow-2716ccee4f-640.webp",
+            "width": 640
+          },
+          {
+            "url": "/assets/projects/steps-corporate-gamification/02-workflow-2716ccee4f-960.webp",
+            "width": 960
+          }
+        ],
+        "caption_ru": "Steps Bot — активность и награды",
+        "caption_en": "Steps Bot — Activity & Rewards",
+        "note_ru": "Иллюстрация сценария по реальным обработчикам; условные данные.",
+        "note_en": "Flow illustration based on actual handlers; sample data."
+      },
+      "cover_alt_en": "Steps Bot — Activity & Rewards — Flow illustration based on actual handlers; sample data.",
+      "media_assets": [
+        {
+          "url": "/assets/projects/steps-corporate-gamification/03-result-6b91a51c59.webp",
+          "width": 1600,
+          "height": 1200,
+          "variants": [
+            {
+              "url": "/assets/projects/steps-corporate-gamification/03-result-6b91a51c59-640.webp",
+              "width": 640
+            },
+            {
+              "url": "/assets/projects/steps-corporate-gamification/03-result-6b91a51c59-960.webp",
+              "width": 960
+            }
+          ],
+          "caption_ru": "Баланс и каталог наград",
+          "caption_en": "Balance and reward catalog",
+          "note_ru": "Иллюстрация сценария по реальным обработчикам; условные данные.",
+          "note_en": "Flow illustration based on actual handlers; sample data."
+        },
+        {
+          "url": "/assets/projects/steps-corporate-gamification/04-technical-3f9e663c45.webp",
+          "width": 1600,
+          "height": 1200,
+          "variants": [
+            {
+              "url": "/assets/projects/steps-corporate-gamification/04-technical-3f9e663c45-640.webp",
+              "width": 640
+            },
+            {
+              "url": "/assets/projects/steps-corporate-gamification/04-technical-3f9e663c45-960.webp",
+              "width": 960
+            }
+          ],
+          "caption_ru": "Оформление заказа",
+          "caption_en": "Order flow",
+          "note_ru": "Иллюстрация сценария по реальным обработчикам; условные данные.",
+          "note_en": "Flow illustration based on actual handlers; sample data."
+        },
+        {
+          "url": "/assets/projects/steps-corporate-gamification/05-architecture-c9afb4ec82.webp",
+          "width": 1600,
+          "height": 1200,
+          "variants": [
+            {
+              "url": "/assets/projects/steps-corporate-gamification/05-architecture-c9afb4ec82-640.webp",
+              "width": 640
+            },
+            {
+              "url": "/assets/projects/steps-corporate-gamification/05-architecture-c9afb4ec82-960.webp",
+              "width": 960
+            }
+          ],
+          "caption_ru": "Архитектура решения",
+          "caption_en": "Solution architecture",
+          "note_ru": "Схема из предоставленных материалов проекта.",
+          "note_en": "Architecture diagram supplied with the project materials."
+        }
+      ],
+      "problem_en": "Create a connected activity program with points, teams and redeemable rewards.",
+      "solution_en": "Implemented walk states, location input, step and point accounting, family results, a reward catalog and order flow with Aiogram and the backend.",
+      "result_en": "The user can move from starting a walk to redeeming a reward without a separate app. Images illustrate actual handler flows.",
+      "detail_en": "Walking, family teams and rewards in Telegram. Implemented walk states, location input, step and point accounting, family results, a reward catalog and order flow with Aiogram and the backend.",
+      "role_en": "Architecture, backend implementation, integrations and workflow design.",
+      "categories": [
+        "telegram",
+        "backend"
+      ],
+      "showcase_en": [
+        {
+          "title": "Thin bot handlers",
+          "text": "Services handle points and rewards instead of embedding those rules in chat handlers."
+        },
+        {
+          "title": "Repository layer",
+          "text": "Storage access is separate from business logic."
+        },
+        {
+          "title": "Asynchronous storage",
+          "text": "SQLAlchemy supports asynchronous database work."
+        },
+        {
+          "title": "Explicit point changes",
+          "text": "Balance operations retain their context, making rewards and deductions traceable."
+        }
+      ]
     },
     {
       "slug": "miyoumi-vk-analytics",
@@ -550,15 +1329,15 @@
       "title_ru": "VK Community Analytics",
       "title_en": "VK Community Analytics",
       "description_ru": "Внутренний сервис аналитики VK-сообществ, блогеров и публикаций.",
-      "description_en": "",
+      "description_en": "Collection and analysis of VK community publications.",
       "detail_ru": "Внутренний сервис аналитики VK-сообществ, блогеров и публикаций с автоматическим сбором и контролем аномалий.",
       "problem_ru": "Команде требовалось системно собирать публикации и показатели блогеров, выявлять проблемы сбора и выгружать результаты в привычные инструменты.",
       "solution_ru": "VK API, справочник блогеров и публикаций, сбор статистики, Google Sheets, collector-процессы, поиск аномалий, dashboard и Celery/Flower pipeline.",
       "result_ru": "Создан единый внутренний контур сбора и контроля аналитики вместо ручного ведения данных.",
       "role_ru": "Разработал сбор данных, фоновые задачи, модели аналитики, обработку аномалий, административные и отчетные представления.",
       "year": "2026",
-      "cover_image_url": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1800&q=85",
-      "cover_alt_ru": "Тематическая обложка сервиса аналитики VK-сообществ",
+      "cover_image_url": "/assets/projects/miyoumi-vk-analytics/publications-4cf6e998b9.webp",
+      "cover_alt_ru": "VK Community Analytics — Реальный интерфейс проекта; обезличенные данные.",
       "tags": [
         "Python",
         "Django",
@@ -599,7 +1378,114 @@
         }
       ],
       "doc_title": "Miyoumi — VK Community Analytics",
-      "screenshots": []
+      "screenshots": [],
+      "cover_asset": {
+        "url": "/assets/projects/miyoumi-vk-analytics/publications-4cf6e998b9.webp",
+        "width": 1265,
+        "height": 712,
+        "variants": [
+          {
+            "url": "/assets/projects/miyoumi-vk-analytics/publications-4cf6e998b9-640.webp",
+            "width": 640
+          },
+          {
+            "url": "/assets/projects/miyoumi-vk-analytics/publications-4cf6e998b9-960.webp",
+            "width": 960
+          }
+        ],
+        "caption_ru": "VK Community Analytics",
+        "caption_en": "VK Community Analytics",
+        "note_ru": "Реальный интерфейс проекта; обезличенные данные.",
+        "note_en": "Actual project interface with anonymized data."
+      },
+      "cover_alt_en": "VK Community Analytics — Actual project interface with anonymized data.",
+      "media_assets": [
+        {
+          "url": "/assets/projects/miyoumi-vk-analytics/anomalies-62798d3435.webp",
+          "width": 1265,
+          "height": 712,
+          "variants": [
+            {
+              "url": "/assets/projects/miyoumi-vk-analytics/anomalies-62798d3435-640.webp",
+              "width": 640
+            },
+            {
+              "url": "/assets/projects/miyoumi-vk-analytics/anomalies-62798d3435-960.webp",
+              "width": 960
+            }
+          ],
+          "caption_ru": "Ошибки доступа и сбора",
+          "caption_en": "Access and collection issues",
+          "note_ru": "Реальный интерфейс проекта; обезличенные данные.",
+          "note_en": "Actual project interface with anonymized data."
+        },
+        {
+          "url": "/assets/projects/miyoumi-vk-analytics/sheets-7b1a565812.webp",
+          "width": 1280,
+          "height": 720,
+          "variants": [
+            {
+              "url": "/assets/projects/miyoumi-vk-analytics/sheets-7b1a565812-640.webp",
+              "width": 640
+            },
+            {
+              "url": "/assets/projects/miyoumi-vk-analytics/sheets-7b1a565812-960.webp",
+              "width": 960
+            }
+          ],
+          "caption_ru": "Интеграция Google Sheets",
+          "caption_en": "Google Sheets integration",
+          "note_ru": "Реальный интерфейс проекта; обезличенные данные.",
+          "note_en": "Actual project interface with anonymized data."
+        },
+        {
+          "url": "/assets/projects/miyoumi-vk-analytics/05-architecture-8cf0d9d653.webp",
+          "width": 1600,
+          "height": 1200,
+          "variants": [
+            {
+              "url": "/assets/projects/miyoumi-vk-analytics/05-architecture-8cf0d9d653-640.webp",
+              "width": 640
+            },
+            {
+              "url": "/assets/projects/miyoumi-vk-analytics/05-architecture-8cf0d9d653-960.webp",
+              "width": 960
+            }
+          ],
+          "caption_ru": "Архитектура решения",
+          "caption_en": "Solution architecture",
+          "note_ru": "Схема из предоставленных материалов проекта.",
+          "note_en": "Architecture diagram supplied with the project materials."
+        }
+      ],
+      "problem_en": "Collect community content regularly, compare activity and identify data access issues.",
+      "solution_en": "Implemented OAuth, VK API collection, background aggregation, publication dashboards, anomaly views and Google Sheets synchronization.",
+      "result_en": "Content, authorization status and collection quality can be inspected in one workspace. Portfolio data is anonymized and illustrative.",
+      "detail_en": "Collection and analysis of VK community publications. Implemented OAuth, VK API collection, background aggregation, publication dashboards, anomaly views and Google Sheets synchronization.",
+      "role_en": "Architecture, backend implementation, integrations and workflow design.",
+      "categories": [
+        "parsing",
+        "integrations",
+        "backend"
+      ],
+      "showcase_en": [
+        {
+          "title": "Background collection",
+          "text": "Celery collects and aggregates VK data without blocking the dashboard."
+        },
+        {
+          "title": "Structured content",
+          "text": "Bloggers, publications and content types are separate entities."
+        },
+        {
+          "title": "Visible task processing",
+          "text": "Flower exposes the state of the collector’s background jobs."
+        },
+        {
+          "title": "Anomaly handling",
+          "text": "Data collection and authorization issues have their own inspection workflow."
+        }
+      ]
     },
     {
       "slug": "hr-corporate-platform",
@@ -609,17 +1495,17 @@
       "status_label": "Завершён",
       "client": "BOTTEC",
       "title_ru": "HR Bot — Corporate Employee Platform",
-      "title_en": "HR Bot — Corporate Employee Platform",
+      "title_en": "HR Bot — Employee Platform",
       "description_ru": "Корпоративный Telegram HR-бот для коммуникаций, обучения, опросов и контроля вовлеченности сотрудников.",
-      "description_en": "",
+      "description_en": "A Telegram workspace for employee communication and learning.",
       "detail_ru": "Корпоративный Telegram HR-бот для коммуникаций, обучения, опросов и контроля вовлеченности сотрудников.",
       "problem_ru": "Требовалось доработать существующий HR-продукт: сделать управляемыми документы, обучение, обратную связь и рассылки, улучшить админку и подготовить систему к стабильному развертыванию.",
       "solution_ru": "Сотрудники, подразделения и группы; документы с контролем ознакомления и напоминаниями; квизы; пульс-опросы; сбор обратной связи; адресные рассылки с вложениями; административная аналитика по подразделениям и сотрудникам; Docker/VPS deployment.",
       "result_ru": "Единый HR-канал внутри Telegram: компания может доставлять материалы, проверять ознакомление и знания, собирать обратную связь и видеть аналитику без ручной консолидации.",
       "role_ru": "Провел аудит и расширение существующей кодовой базы, доработал доменную модель и миграции, Telegram-сценарии, Django Admin/Unfold, аналитику, тесты и production-развертывание.",
       "year": "2026",
-      "cover_image_url": "https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1800&q=85",
-      "cover_alt_ru": "Тематическая обложка проекта «HR Bot — Corporate Employee Platform»",
+      "cover_image_url": "",
+      "cover_alt_ru": "",
       "tags": [
         "Python",
         "Django 5.2",
@@ -652,7 +1538,35 @@
         }
       ],
       "doc_title": "HR Bot — Corporate Communications & Learning",
-      "screenshots": []
+      "screenshots": [],
+      "problem_en": "Improve an existing HR product: documents, onboarding, feedback, administration and deployment.",
+      "solution_en": "Extended employee/group models, document acknowledgments, reminders, quizzes, surveys, targeted messages, administrative analytics and Docker/VPS deployment.",
+      "result_en": "The company can distribute materials, verify acknowledgments, collect feedback and inspect results in one HR channel.",
+      "detail_en": "A Telegram workspace for employee communication and learning. Extended employee/group models, document acknowledgments, reminders, quizzes, surveys, targeted messages, administrative analytics and Docker/VPS deployment.",
+      "role_en": "Architecture, backend implementation, integrations and workflow design.",
+      "categories": [
+        "telegram",
+        "backend"
+      ],
+      "showcase_en": [
+        {
+          "title": "Safe model changes",
+          "text": "A many-to-many department migration preserves existing employee assignments."
+        },
+        {
+          "title": "Employee drill-down",
+          "text": "Administrative analytics can be inspected at the employee level."
+        },
+        {
+          "title": "Usable administration",
+          "text": "Grouped, collapsible selectors simplify work with administrative forms."
+        },
+        {
+          "title": "Deployment checks",
+          "text": "Health checks and a separate migration service support deployment on the VPS."
+        }
+      ],
+      "cover_alt_en": ""
     },
     {
       "slug": "avito-parts-parser",
@@ -661,18 +1575,18 @@
       "source": "Сторонние и ТЗ",
       "status_label": "Завершён",
       "client": "Сторонний клиент — Игорь",
-      "title_ru": "Avito Auto Parts Parsing Microservice",
-      "title_en": "Avito Auto Parts Parsing Microservice",
+      "title_ru": "Распределённый парсер Avito",
+      "title_en": "Avito Parsing Microservice",
       "description_ru": "Масштабируемый микросервис парсинга автозапчастей на Avito по артикулам и ID.",
-      "description_en": "",
+      "description_en": "Queued browser collection behind a FastAPI interface.",
       "detail_ru": "Масштабируемый микросервис парсинга автозапчастей на Avito по артикулам и ID.",
       "problem_ru": "Стороннему клиенту требовался устойчивый парсинг большого числа запросов с очередями, прокси и контролем фоновых воркеров.",
       "solution_ru": "FastAPI API, Celery/Redis очереди, Selenium-парсеры, прокси, мониторинг Flower, статусы задач и горизонтальное масштабирование воркеров.",
       "result_ru": "Получен масштабируемый browser-automation сервис: производительность растёт добавлением workers и прокси без изменения клиентского API.",
       "role_ru": "Разработал архитектуру микросервиса, API и очереди, парсинг, обработку ошибок, инфраструктуру воркеров и финальную сдачу.",
       "year": "2025",
-      "cover_image_url": "https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&w=1800&q=85",
-      "cover_alt_ru": "Тематическая обложка проекта «Avito Auto Parts Parsing Microservice»",
+      "cover_image_url": "/assets/projects/avito-parts-parser/flower-582ff0ddb7.webp",
+      "cover_alt_ru": "Avito Auto Parts Parsing Microservice — Реальный интерфейс проекта; обезличенные данные.",
       "tags": [
         "Python",
         "FastAPI",
@@ -711,7 +1625,113 @@
         }
       ],
       "doc_title": "Avito Auto Parts Parsing Microservice",
-      "screenshots": []
+      "screenshots": [],
+      "cover_asset": {
+        "url": "/assets/projects/avito-parts-parser/flower-582ff0ddb7.webp",
+        "width": 1265,
+        "height": 712,
+        "variants": [
+          {
+            "url": "/assets/projects/avito-parts-parser/flower-582ff0ddb7-640.webp",
+            "width": 640
+          },
+          {
+            "url": "/assets/projects/avito-parts-parser/flower-582ff0ddb7-960.webp",
+            "width": 960
+          }
+        ],
+        "caption_ru": "Распределённый парсер Avito",
+        "caption_en": "Avito Parsing Microservice",
+        "note_ru": "Реальный интерфейс проекта; обезличенные данные.",
+        "note_en": "Actual project interface with anonymized data."
+      },
+      "cover_alt_en": "Avito Parsing Microservice — Actual project interface with anonymized data.",
+      "media_assets": [
+        {
+          "url": "/assets/projects/avito-parts-parser/swagger-48f829d587.webp",
+          "width": 1265,
+          "height": 712,
+          "variants": [
+            {
+              "url": "/assets/projects/avito-parts-parser/swagger-48f829d587-640.webp",
+              "width": 640
+            },
+            {
+              "url": "/assets/projects/avito-parts-parser/swagger-48f829d587-960.webp",
+              "width": 960
+            }
+          ],
+          "caption_ru": "API постановки задач",
+          "caption_en": "Task submission API",
+          "note_ru": "Реальный интерфейс проекта; обезличенные данные.",
+          "note_en": "Actual project interface with anonymized data."
+        },
+        {
+          "url": "/assets/projects/avito-parts-parser/health-response-c0269577b6.webp",
+          "width": 1265,
+          "height": 712,
+          "variants": [
+            {
+              "url": "/assets/projects/avito-parts-parser/health-response-c0269577b6-640.webp",
+              "width": 640
+            },
+            {
+              "url": "/assets/projects/avito-parts-parser/health-response-c0269577b6-960.webp",
+              "width": 960
+            }
+          ],
+          "caption_ru": "Проверка API и Redis",
+          "caption_en": "API and Redis health check",
+          "note_ru": "Реальный интерфейс проекта; обезличенные данные.",
+          "note_en": "Actual project interface with anonymized data."
+        },
+        {
+          "url": "/assets/projects/avito-parts-parser/05-architecture-55a76afcf0.webp",
+          "width": 1600,
+          "height": 1200,
+          "variants": [
+            {
+              "url": "/assets/projects/avito-parts-parser/05-architecture-55a76afcf0-640.webp",
+              "width": 640
+            },
+            {
+              "url": "/assets/projects/avito-parts-parser/05-architecture-55a76afcf0-960.webp",
+              "width": 960
+            }
+          ],
+          "caption_ru": "Архитектура решения",
+          "caption_en": "Solution architecture",
+          "note_ru": "Схема из предоставленных материалов проекта.",
+          "note_en": "Architecture diagram supplied with the project materials."
+        }
+      ],
+      "problem_en": "Run repeated collection jobs without blocking the API, and control workers and proxy use.",
+      "solution_en": "Implemented task submission in FastAPI, Celery/Redis queues, Selenium workers, a proxy pool, task states, health checks and Flower monitoring.",
+      "result_en": "Request handling is separated from browser work, and workers can be added without changing the client API.",
+      "detail_en": "Queued browser collection behind a FastAPI interface. Implemented task submission in FastAPI, Celery/Redis queues, Selenium workers, a proxy pool, task states, health checks and Flower monitoring.",
+      "role_en": "Architecture, backend implementation, integrations and workflow design.",
+      "categories": [
+        "parsing",
+        "backend"
+      ],
+      "showcase_en": [
+        {
+          "title": "Non-blocking API",
+          "text": "FastAPI submits work to Celery; browser collection runs in workers."
+        },
+        {
+          "title": "Independent workers",
+          "text": "Chrome workers and the proxy pool can be expanded separately from the client API."
+        },
+        {
+          "title": "Proxy integration",
+          "text": "Mobile proxy rotation is handled in the integration layer."
+        },
+        {
+          "title": "Resource planning",
+          "text": "Worker resource requirements were measured to guide deployment planning."
+        }
+      ]
     },
     {
       "slug": "bozon-medpreds-learn",
@@ -723,15 +1743,15 @@
       "title_ru": "Medpreds Learn",
       "title_en": "Medpreds Learn",
       "description_ru": "Система обучения и онбординга медицинских представителей.",
-      "description_en": "",
+      "description_en": "Training and onboarding for medical representatives.",
       "detail_ru": "Система обучения и онбординга медицинских представителей с материалами, тестами, результатами и RAG по внутренним документам.",
       "problem_ru": "Стандартизировать ввод сотрудников в работу: материалы, документация, тестирование знаний и контроль прохождения.",
       "solution_ru": "Учебные материалы, сценарии онбординга, тесты, результаты пользователей, административное управление контентом и внутренняя база знаний.",
       "result_ru": "Снизил зависимость онбординга от ручного сопровождения и сделал знания компании повторно используемыми.",
       "role_ru": "Разработал backend, bot-flow обучения, модели материалов и тестирования, управление прогрессом и админ-инструменты.",
       "year": "2026",
-      "cover_image_url": "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1800&q=85",
-      "cover_alt_ru": "Тематическая обложка системы обучения медицинских представителей",
+      "cover_image_url": "",
+      "cover_alt_ru": "",
       "tags": [
         "Python",
         "Django",
@@ -768,7 +1788,35 @@
         }
       ],
       "doc_title": "BOZON — Internal Medical Equipment Ecosystem",
-      "screenshots": []
+      "screenshots": [],
+      "problem_en": "Make learning materials, knowledge checks and progress easier to manage.",
+      "solution_en": "Implemented onboarding flows, learning materials, tests, user results and administrative content management.",
+      "result_en": "Training knowledge and progress are managed in a reusable internal workflow.",
+      "detail_en": "Training and onboarding for medical representatives. Implemented onboarding flows, learning materials, tests, user results and administrative content management.",
+      "role_en": "Architecture, backend implementation, integrations and workflow design.",
+      "categories": [
+        "telegram",
+        "backend"
+      ],
+      "showcase_en": [
+        {
+          "title": "Reviewed AI drafts",
+          "text": "AI-generated test drafts are reviewed before publication."
+        },
+        {
+          "title": "Approved knowledge",
+          "text": "RAG uses active, approved documents."
+        },
+        {
+          "title": "Shared learning records",
+          "text": "Materials, progress and test results belong to one application model."
+        },
+        {
+          "title": "Background work",
+          "text": "Celery/Redis handles indexing and generation outside the user interface."
+        }
+      ],
+      "cover_alt_en": ""
     },
     {
       "slug": "bozon-samples",
@@ -780,15 +1828,15 @@
       "title_ru": "Samples Bot",
       "title_en": "Samples Bot",
       "description_ru": "Внутренний бот для работы с образцами и связанными заявками.",
-      "description_en": "",
+      "description_en": "Internal requests for samples and equipment.",
       "detail_ru": "Внутренний бот для заказа и контроля образцов, связанный с общим каталогом и организационной моделью.",
       "problem_ru": "Упростить оформление и отслеживание заявок на образцы/оборудование внутри компании и связать процесс с общей экосистемой.",
       "solution_ru": "Формы заявок, статусы, каталог/позиции, уведомления, административная обработка и эксплуатационные доработки.",
       "result_ru": "Рабочий инструмент внутреннего заказа и контроля образцов, развиваемый как часть общей сервисной экосистемы.",
       "role_ru": "Разработал backend и bot-flow, доменные модели заказов/позиций, статусы и административные сценарии.",
       "year": "2026",
-      "cover_image_url": "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1800&q=85",
-      "cover_alt_ru": "Тематическая обложка сервиса заказа и контроля образцов",
+      "cover_image_url": "",
+      "cover_alt_ru": "",
       "tags": [
         "Python",
         "Django",
@@ -825,7 +1873,35 @@
         }
       ],
       "doc_title": "BOZON — Internal Medical Equipment Ecosystem",
-      "screenshots": []
+      "screenshots": [],
+      "problem_en": "Make sample requests and their status easier to track inside a shared ecosystem.",
+      "solution_en": "Built request forms, catalog entries, statuses, notifications and administrative processing.",
+      "result_en": "A working internal request flow with a visible status and processing history.",
+      "detail_en": "Internal requests for samples and equipment. Built request forms, catalog entries, statuses, notifications and administrative processing.",
+      "role_en": "Architecture, backend implementation, integrations and workflow design.",
+      "categories": [
+        "telegram",
+        "backend"
+      ],
+      "showcase_en": [
+        {
+          "title": "Request lifecycle",
+          "text": "Explicit states track a request through processing."
+        },
+        {
+          "title": "Shared catalog",
+          "text": "Catalog and employee records are connected to the internal ecosystem."
+        },
+        {
+          "title": "Transport-independent rules",
+          "text": "Services handle the workflow independently of the messenger interface."
+        },
+        {
+          "title": "Background notifications",
+          "text": "Celery/Redis processes notifications outside the chat request."
+        }
+      ],
+      "cover_alt_en": ""
     },
     {
       "slug": "auto-listings-parser",
@@ -837,7 +1913,7 @@
       "title_ru": "Auto Listings Parser",
       "title_en": "Auto Listings Parser",
       "description_ru": "Сервис мониторинга и парсинга автомобильных объявлений с Telegram-интерфейсом; позднее дополнен веб-сайтом.",
-      "description_en": "",
+      "description_en": "Listing monitoring with a Telegram and web interface.",
       "detail_ru": "Сервис мониторинга и парсинга автомобильных объявлений с Telegram-интерфейсом; позднее дополнен веб-сайтом.",
       "problem_ru": "Заказчику требовалось автоматически собирать объявления, применять пользовательские фильтры и быстро доставлять новые результаты в удобном интерфейсе.",
       "solution_ru": "Парсинг источников объявлений, фильтрация, Telegram-бот, хранение и архив результатов, а также отдельный веб-интерфейс в июньской доработке.",
@@ -872,27 +1948,58 @@
         "архив объявлений."
       ],
       "doc_title": "",
-      "screenshots": []
+      "screenshots": [],
+      "problem_en": "Collect vehicle listings, apply user filters and deliver new results.",
+      "solution_en": "Built source parsing, filtering, a Telegram bot, result storage and archive; later added a web interface.",
+      "result_en": "A listing-monitoring tool expanded from Telegram to a separate web interface.",
+      "detail_en": "Listing monitoring with a Telegram and web interface. Built source parsing, filtering, a Telegram bot, result storage and archive; later added a web interface.",
+      "role_en": "Architecture, backend implementation, integrations and workflow design.",
+      "categories": [
+        "parsing",
+        "telegram"
+      ],
+      "showcase_en": [
+        {
+          "title": "Search filters",
+          "text": ""
+        },
+        {
+          "title": "Listing details",
+          "text": ""
+        },
+        {
+          "title": "Telegram workflow",
+          "text": ""
+        },
+        {
+          "title": "Web interface",
+          "text": ""
+        },
+        {
+          "title": "Listing archive",
+          "text": ""
+        }
+      ]
     },
     {
       "slug": "payment-broadcast-bot",
-      "featured": false,
+      "featured": true,
       "order": 101,
       "source": "BOTTEC",
       "status_label": "Завершён",
       "client": "BOTTEC",
-      "title_ru": "Payment Broadcast Bot",
-      "title_en": "Payment Broadcast Bot",
+      "title_ru": "Telegram-бот платных подписок",
+      "title_en": "Payment Bot — Paid Subscriptions",
       "description_ru": "Telegram/Django-система платных подписок на приватные группы.",
-      "description_en": "",
+      "description_en": "Payment, access and renewal for private Telegram channels.",
       "detail_ru": "Telegram/Django-система платных подписок на приватные группы.",
       "problem_ru": "Автоматизировать оплату, выдачу доступа и контроль окончания подписок без ручной работы администратора.",
       "solution_ru": "Платежи YooKassa, персональные инвайт-ссылки, уведомления об окончании подписки, удаление при неоплате, массовые рассылки и резервный userbot-сценарий.",
       "result_ru": "Система закрывает полный жизненный цикл платной подписки: оплата → доступ → напоминание → продление или удаление.",
       "role_ru": "Разработал backend подписок и платежей, Telegram-процессы, автоматические проверки доступа и административное управление.",
       "year": "2025",
-      "cover_image_url": "",
-      "cover_alt_ru": "Тематическая обложка проекта «Payment Broadcast Bot»",
+      "cover_image_url": "/assets/projects/payment-broadcast-bot/02-workflow-71f1fb23a5.webp",
+      "cover_alt_ru": "Payment Broadcast Bot — Иллюстрация сценария по реальным обработчикам; условные данные.",
       "tags": [
         "Python",
         "Django",
@@ -919,7 +2026,117 @@
         "сценарий окончания доступа."
       ],
       "doc_title": "",
-      "screenshots": []
+      "screenshots": [],
+      "cover_asset": {
+        "url": "/assets/projects/payment-broadcast-bot/02-workflow-71f1fb23a5.webp",
+        "width": 1600,
+        "height": 1200,
+        "variants": [
+          {
+            "url": "/assets/projects/payment-broadcast-bot/02-workflow-71f1fb23a5-640.webp",
+            "width": 640
+          },
+          {
+            "url": "/assets/projects/payment-broadcast-bot/02-workflow-71f1fb23a5-960.webp",
+            "width": 960
+          }
+        ],
+        "caption_ru": "Telegram-бот платных подписок",
+        "caption_en": "Payment Bot — Paid Subscriptions",
+        "note_ru": "Иллюстрация сценария по реальным обработчикам; условные данные.",
+        "note_en": "Flow illustration based on actual handlers; sample data."
+      },
+      "cover_alt_en": "Payment Bot — Paid Subscriptions — Flow illustration based on actual handlers; sample data.",
+      "media_assets": [
+        {
+          "url": "/assets/projects/payment-broadcast-bot/03-result-ee45c77710.webp",
+          "width": 1600,
+          "height": 1200,
+          "variants": [
+            {
+              "url": "/assets/projects/payment-broadcast-bot/03-result-ee45c77710-640.webp",
+              "width": 640
+            },
+            {
+              "url": "/assets/projects/payment-broadcast-bot/03-result-ee45c77710-960.webp",
+              "width": 960
+            }
+          ],
+          "caption_ru": "Активация и invite-ссылка",
+          "caption_en": "Activation and invite link",
+          "note_ru": "Иллюстрация сценария по реальным обработчикам; условные данные.",
+          "note_en": "Flow illustration based on actual handlers; sample data."
+        },
+        {
+          "url": "/assets/projects/payment-broadcast-bot/04-technical-8fca03258b.webp",
+          "width": 1600,
+          "height": 1200,
+          "variants": [
+            {
+              "url": "/assets/projects/payment-broadcast-bot/04-technical-8fca03258b-640.webp",
+              "width": 640
+            },
+            {
+              "url": "/assets/projects/payment-broadcast-bot/04-technical-8fca03258b-960.webp",
+              "width": 960
+            }
+          ],
+          "caption_ru": "Проверка срока подписки",
+          "caption_en": "Subscription expiry checks",
+          "note_ru": "Иллюстрация сценария по реальным обработчикам; условные данные.",
+          "note_en": "Flow illustration based on actual handlers; sample data."
+        },
+        {
+          "url": "/assets/projects/payment-broadcast-bot/05-architecture-1ce979d804.webp",
+          "width": 1600,
+          "height": 1200,
+          "variants": [
+            {
+              "url": "/assets/projects/payment-broadcast-bot/05-architecture-1ce979d804-640.webp",
+              "width": 640
+            },
+            {
+              "url": "/assets/projects/payment-broadcast-bot/05-architecture-1ce979d804-960.webp",
+              "width": 960
+            }
+          ],
+          "caption_ru": "Архитектура решения",
+          "caption_en": "Solution architecture",
+          "note_ru": "Схема из предоставленных материалов проекта.",
+          "note_en": "Architecture diagram supplied with the project materials."
+        }
+      ],
+      "problem_en": "Remove manual checks for subscription payments and channel access.",
+      "solution_en": "Connected YooKassa payments to subscription records, personal invite links, expiry checks and notifications in a Django/Telegram backend.",
+      "result_en": "One workflow covers payment, activation, renewal and expiry. Images are handler-based flow illustrations.",
+      "detail_en": "Payment, access and renewal for private Telegram channels. Connected YooKassa payments to subscription records, personal invite links, expiry checks and notifications in a Django/Telegram backend.",
+      "role_en": "Architecture, backend implementation, integrations and workflow design.",
+      "categories": [
+        "telegram",
+        "integrations"
+      ],
+      "showcase_en": [
+        {
+          "title": "Payment",
+          "text": ""
+        },
+        {
+          "title": "Personal invite link",
+          "text": ""
+        },
+        {
+          "title": "Subscription status",
+          "text": ""
+        },
+        {
+          "title": "Broadcasts",
+          "text": ""
+        },
+        {
+          "title": "Expiry handling",
+          "text": ""
+        }
+      ]
     },
     {
       "slug": "freelance-bot",
@@ -931,7 +2148,7 @@
       "title_ru": "Freelance Bot",
       "title_en": "Freelance Bot",
       "description_ru": "Telegram-система поиска и публикации фриланс-заявок.",
-      "description_en": "",
+      "description_en": "Collecting and distributing freelance inquiries in Telegram.",
       "detail_ru": "Telegram-система поиска и публикации фриланс-заявок.",
       "problem_ru": "Автоматизировать сбор заявок из каналов и выдавать пользователям релевантные предложения по подписке.",
       "solution_ru": "Парсер каналов, категории, тарифы, промокоды, рефералы, модерация, рассылки и Django Admin.",
@@ -965,7 +2182,38 @@
         "админка."
       ],
       "doc_title": "",
-      "screenshots": []
+      "screenshots": [],
+      "problem_en": "Gather inquiries from channels and deliver relevant opportunities to subscribers.",
+      "solution_en": "Built channel parsing, categories, plans, promo codes, referrals, moderation, messaging and Django Admin.",
+      "result_en": "A completed inquiry collection and subscription workflow handed over after implementation.",
+      "detail_en": "Collecting and distributing freelance inquiries in Telegram. Built channel parsing, categories, plans, promo codes, referrals, moderation, messaging and Django Admin.",
+      "role_en": "Architecture, backend implementation, integrations and workflow design.",
+      "categories": [
+        "telegram",
+        "backend"
+      ],
+      "showcase_en": [
+        {
+          "title": "Inquiry feed",
+          "text": ""
+        },
+        {
+          "title": "Category subscriptions",
+          "text": ""
+        },
+        {
+          "title": "Subscription plans",
+          "text": ""
+        },
+        {
+          "title": "Moderation",
+          "text": ""
+        },
+        {
+          "title": "Administration",
+          "text": ""
+        }
+      ]
     },
     {
       "slug": "repair-requests-bot",
@@ -977,7 +2225,7 @@
       "title_ru": "Repair Requests Bot",
       "title_en": "Repair Requests Bot",
       "description_ru": "Нишевой Telegram-userbot для поиска заявок на ремонт и бытовые услуги.",
-      "description_en": "",
+      "description_en": "A Telegram userbot for finding service inquiries.",
       "detail_ru": "Нишевой Telegram-userbot для поиска заявок на ремонт и бытовые услуги.",
       "problem_ru": "Находить потенциальных клиентов в Telegram по темам ремонта, мебели, кондиционеров, потолков, приемки квартир и смежных услуг.",
       "solution_ru": "Мониторинг чатов, проекты и фильтры, ключевые/минус-слова, лиды, уведомления, админка и аналитика.",
@@ -1011,7 +2259,38 @@
         "аналитика."
       ],
       "doc_title": "",
-      "screenshots": []
+      "screenshots": [],
+      "problem_en": "Find relevant messages about repairs and household services without checking chats manually.",
+      "solution_en": "Built chat monitoring, project filters, positive and negative keywords, lead records, notifications and administration.",
+      "result_en": "Repeated searches are handled through a configurable inquiry pipeline.",
+      "detail_en": "A Telegram userbot for finding service inquiries. Built chat monitoring, project filters, positive and negative keywords, lead records, notifications and administration.",
+      "role_en": "Architecture, backend implementation, integrations and workflow design.",
+      "categories": [
+        "telegram",
+        "backend"
+      ],
+      "showcase_en": [
+        {
+          "title": "Project settings",
+          "text": ""
+        },
+        {
+          "title": "Collected inquiries",
+          "text": ""
+        },
+        {
+          "title": "Filters",
+          "text": ""
+        },
+        {
+          "title": "Notifications",
+          "text": ""
+        },
+        {
+          "title": "Analytics",
+          "text": ""
+        }
+      ]
     },
     {
       "slug": "church-bot",
@@ -1023,7 +2302,7 @@
       "title_ru": "Church Bot",
       "title_en": "Church Bot",
       "description_ru": "Telegram-бот для оформления и оплаты церковных записок.",
-      "description_en": "",
+      "description_en": "A Telegram payment workflow for prayer notes.",
       "detail_ru": "Telegram-бот для оформления и оплаты церковных записок.",
       "problem_ru": "Перенести привычный офлайн-сценарий подачи записок в понятный цифровой процесс с оплатой.",
       "solution_ru": "Пользовательский Telegram-сценарий, формы записок, Django REST API, интеграция YooKassa, тесты и Docker-развертывание.",
@@ -1058,7 +2337,38 @@
         "админка заказов."
       ],
       "doc_title": "",
-      "screenshots": []
+      "screenshots": [],
+      "problem_en": "Offer a digital version of submitting and paying for prayer notes.",
+      "solution_en": "Built Telegram forms, a Django REST API, YooKassa payment integration, tests and Docker deployment.",
+      "result_en": "A complete submission and payment workflow with an explicit user result.",
+      "detail_en": "A Telegram payment workflow for prayer notes. Built Telegram forms, a Django REST API, YooKassa payment integration, tests and Docker deployment.",
+      "role_en": "Architecture, backend implementation, integrations and workflow design.",
+      "categories": [
+        "telegram",
+        "backend"
+      ],
+      "showcase_en": [
+        {
+          "title": "Request type",
+          "text": ""
+        },
+        {
+          "title": "Names form",
+          "text": ""
+        },
+        {
+          "title": "Payment",
+          "text": ""
+        },
+        {
+          "title": "Confirmation",
+          "text": ""
+        },
+        {
+          "title": "Administrative processing",
+          "text": ""
+        }
+      ]
     },
     {
       "slug": "contact-parser-multi-tenant",
@@ -1068,9 +2378,9 @@
       "status_label": "Завершён",
       "client": "BOTTEC",
       "title_ru": "Contact Parser Multi Tenant",
-      "title_en": "Contact Parser Multi Tenant",
+      "title_en": "Contact Parser — Multiple Installations",
       "description_ru": "Мульти-инсталляционная система поиска и сбора контактов/лидов из Telegram.",
-      "description_en": "",
+      "description_en": "Isolated Telegram contact collection workflows.",
       "detail_ru": "Мульти-инсталляционная система поиска и сбора контактов/лидов из Telegram.",
       "problem_ru": "Нужно было параллельно обслуживать несколько независимых контуров парсинга: отдельные userbot-аккаунты, админки и базы для разных задач или клиентов.",
       "solution_ru": "Мониторинг чатов и каналов, ключевые и минус-слова, фильтрация сообщений, создание лидов, уведомления, несколько изолированных инсталляций и администрирование.",
@@ -1103,27 +2413,54 @@
         "фильтры."
       ],
       "doc_title": "",
-      "screenshots": []
+      "screenshots": [],
+      "problem_en": "Operate separate userbot accounts, administration and databases for independent collection tasks.",
+      "solution_en": "Implemented chat and channel monitoring, keyword filters, lead creation, notifications and multiple isolated installations.",
+      "result_en": "Telegram messages become a managed inquiry pipeline with separate operating environments.",
+      "detail_en": "Isolated Telegram contact collection workflows. Implemented chat and channel monitoring, keyword filters, lead creation, notifications and multiple isolated installations.",
+      "role_en": "Architecture, backend implementation, integrations and workflow design.",
+      "categories": [
+        "parsing",
+        "telegram"
+      ],
+      "showcase_en": [
+        {
+          "title": "Project administration",
+          "text": ""
+        },
+        {
+          "title": "Multi-user bot deployment",
+          "text": ""
+        },
+        {
+          "title": "Lead record",
+          "text": ""
+        },
+        {
+          "title": "Filters",
+          "text": ""
+        }
+      ]
     },
     {
       "slug": "priceflow-ai",
-      "featured": false,
+      "featured": true,
       "order": 146,
       "source": "Сторонние и ТЗ",
       "status_label": "Завершён",
       "client": "ТЗ / портфолио",
-      "title_ru": "PriceFlow AI",
+      "title_ru": "PriceFlow AI — обработка прайсов",
       "title_en": "PriceFlow AI",
       "description_ru": "Веб-приложение для работы с прайс-листами поставщиков, каталогом товаров и сметами.",
-      "description_en": "",
+      "description_en": "Excel price-list processing and a normalized purchasing catalog.",
       "detail_ru": "Веб-приложение для работы с прайс-листами поставщиков, каталогом товаров и сметами.",
       "problem_ru": "Автоматизировать загрузку неоднородных Excel-прайсов и смет, сопоставление позиций и получение сводной закупочной аналитики.",
       "solution_ru": "CRUD поставщиков, Excel upload/preview/mapping, фоновой парсинг, каталог, проекты и сметы, автоматическое и ручное сопоставление, аналитика закупки.",
-      "result_ru": "Сильный прикладной full-stack кейс на стыке импорта данных, фоновой обработки и закупочной аналитики.",
+      "result_ru": "Загрузка новых форматов стала повторяемой: позиции нормализуются, ошибки строк видны, связь с исходным прайсом сохраняется.",
       "role_ru": "Разработал backend, React-интерфейс, Excel ingestion, фоновые задачи, алгоритм сопоставления и сводную аналитику.",
       "year": "2026",
-      "cover_image_url": "",
-      "cover_alt_ru": "Тематическая обложка проекта «PriceFlow AI»",
+      "cover_image_url": "/assets/projects/priceflow-ai/upload-preview-0b32496ee2.webp",
+      "cover_alt_ru": "PriceFlow AI — Реальный интерфейс проекта; обезличенные данные.",
       "tags": [
         "Django",
         "DRF",
@@ -1153,8 +2490,136 @@
         "сводка закупки."
       ],
       "doc_title": "",
-      "screenshots": [
-        "https://github.com/user-attachments/assets/e1b7f9ce-b74f-4b7a-875f-644c33cc449e"
+      "screenshots": [],
+      "cover_asset": {
+        "url": "/assets/projects/priceflow-ai/upload-preview-0b32496ee2.webp",
+        "width": 1265,
+        "height": 712,
+        "variants": [
+          {
+            "url": "/assets/projects/priceflow-ai/upload-preview-0b32496ee2-640.webp",
+            "width": 640
+          },
+          {
+            "url": "/assets/projects/priceflow-ai/upload-preview-0b32496ee2-960.webp",
+            "width": 960
+          }
+        ],
+        "caption_ru": "PriceFlow AI — обработка прайсов",
+        "caption_en": "PriceFlow AI",
+        "note_ru": "Реальный интерфейс проекта; обезличенные данные.",
+        "note_en": "Actual project interface with anonymized data."
+      },
+      "cover_alt_en": "PriceFlow AI — Actual project interface with anonymized data.",
+      "media_assets": [
+        {
+          "url": "/assets/projects/priceflow-ai/parsed-items-d31cf187e5.webp",
+          "width": 1280,
+          "height": 720,
+          "variants": [
+            {
+              "url": "/assets/projects/priceflow-ai/parsed-items-d31cf187e5-640.webp",
+              "width": 640
+            },
+            {
+              "url": "/assets/projects/priceflow-ai/parsed-items-d31cf187e5-960.webp",
+              "width": 960
+            }
+          ],
+          "caption_ru": "Результат фонового разбора",
+          "caption_en": "Background parsing results",
+          "note_ru": "Реальный интерфейс проекта; обезличенные данные.",
+          "note_en": "Actual project interface with anonymized data."
+        },
+        {
+          "url": "/assets/projects/priceflow-ai/catalog-72b7f61b11.webp",
+          "width": 1280,
+          "height": 720,
+          "variants": [
+            {
+              "url": "/assets/projects/priceflow-ai/catalog-72b7f61b11-640.webp",
+              "width": 640
+            },
+            {
+              "url": "/assets/projects/priceflow-ai/catalog-72b7f61b11-960.webp",
+              "width": 960
+            }
+          ],
+          "caption_ru": "Нормализованный каталог",
+          "caption_en": "Normalized catalog",
+          "note_ru": "Реальный интерфейс проекта; обезличенные данные.",
+          "note_en": "Actual project interface with anonymized data."
+        },
+        {
+          "url": "/assets/projects/priceflow-ai/project-a972f60212.webp",
+          "width": 1280,
+          "height": 720,
+          "variants": [
+            {
+              "url": "/assets/projects/priceflow-ai/project-a972f60212-640.webp",
+              "width": 640
+            },
+            {
+              "url": "/assets/projects/priceflow-ai/project-a972f60212-960.webp",
+              "width": 960
+            }
+          ],
+          "caption_ru": "Проект и загрузка сметы",
+          "caption_en": "Project and estimate upload",
+          "note_ru": "Реальный интерфейс проекта; обезличенные данные.",
+          "note_en": "Actual project interface with anonymized data."
+        },
+        {
+          "url": "/assets/projects/priceflow-ai/05-architecture-65e5d86a42.webp",
+          "width": 1600,
+          "height": 1200,
+          "variants": [
+            {
+              "url": "/assets/projects/priceflow-ai/05-architecture-65e5d86a42-640.webp",
+              "width": 640
+            },
+            {
+              "url": "/assets/projects/priceflow-ai/05-architecture-65e5d86a42-960.webp",
+              "width": 960
+            }
+          ],
+          "caption_ru": "Архитектура решения",
+          "caption_en": "Solution architecture",
+          "note_ru": "Схема из предоставленных материалов проекта.",
+          "note_en": "Architecture diagram supplied with the project materials."
+        }
+      ],
+      "problem_en": "Supplier price lists arrive in different formats and need repeated manual preparation.",
+      "solution_en": "Built file upload, safe previews, column mapping, background parsing, supplier and catalog models, project estimates and matching.",
+      "result_en": "New formats can be processed repeatedly; parsed positions and row errors retain their source context.",
+      "detail_en": "Excel price-list processing and a normalized purchasing catalog. Built file upload, safe previews, column mapping, background parsing, supplier and catalog models, project estimates and matching.",
+      "role_en": "Architecture, backend implementation, integrations and workflow design.",
+      "categories": [
+        "parsing",
+        "backend",
+        "integrations"
+      ],
+      "showcase_en": [
+        {
+          "title": "Excel upload",
+          "text": ""
+        },
+        {
+          "title": "Column mapping",
+          "text": ""
+        },
+        {
+          "title": "Catalog",
+          "text": ""
+        },
+        {
+          "title": "Item matching",
+          "text": ""
+        },
+        {
+          "title": "Purchasing summary",
+          "text": ""
+        }
       ]
     },
     {
@@ -1165,9 +2630,9 @@
       "status_label": "Завершён",
       "client": "ТЗ",
       "title_ru": "TZ Mini CRM Lead Distribution",
-      "title_en": "TZ Mini CRM Lead Distribution",
+      "title_en": "Mini CRM — Lead Routing",
       "description_ru": "Мини-CRM для автоматического распределения лидов между операторами.",
-      "description_en": "",
+      "description_en": "A FastAPI service for assigning inquiries to operators.",
       "detail_ru": "Мини-CRM для автоматического распределения лидов между операторами.",
       "problem_ru": "Распределять новые лиды с учетом источника, активности операторов, лимитов текущей нагрузки и весов/компетенций.",
       "solution_ru": "FastAPI API, сущности операторов/источников/лидов, правила выбора исполнителя, ограничения нагрузки и Swagger-документация.",
@@ -1199,7 +2664,34 @@
         "пример результата распределения."
       ],
       "doc_title": "",
-      "screenshots": []
+      "screenshots": [],
+      "problem_en": "Assign new inquiries using source, operator availability, workload and selection weights.",
+      "solution_en": "Built operator/source/lead entities, routing rules, workload limits and Swagger documentation.",
+      "result_en": "An explicit API-driven routing workflow with controllable assignment rules.",
+      "detail_en": "A FastAPI service for assigning inquiries to operators. Built operator/source/lead entities, routing rules, workload limits and Swagger documentation.",
+      "role_en": "Architecture, backend implementation, integrations and workflow design.",
+      "categories": [
+        "backend",
+        "integrations"
+      ],
+      "showcase_en": [
+        {
+          "title": "Swagger API",
+          "text": ""
+        },
+        {
+          "title": "Lead creation",
+          "text": ""
+        },
+        {
+          "title": "Operator rules",
+          "text": ""
+        },
+        {
+          "title": "Assignment result",
+          "text": ""
+        }
+      ]
     },
     {
       "slug": "any-parse-bot",
@@ -1211,7 +2703,7 @@
       "title_ru": "Any Parse Bot",
       "title_en": "Any Parse Bot",
       "description_ru": "Telegram + REST API сервис обычного и AI-парсинга веб-страниц.",
-      "description_en": "",
+      "description_en": "Telegram and REST workflows for standard and AI-assisted parsing.",
       "detail_ru": "Telegram + REST API сервис обычного и AI-парсинга веб-страниц.",
       "problem_ru": "Сделать универсальный инструмент: получить страницу по ссылке, извлечь данные обычным парсингом или по инструкции для LLM и сохранить историю.",
       "solution_ru": "Endpoints /parse, /pwai, /ask, /history, Telegram-команды, Swagger/ReDoc, PostgreSQL, retry, логирование и тесты.",
@@ -1249,7 +2741,39 @@
         "архитектура API+bot."
       ],
       "doc_title": "",
-      "screenshots": []
+      "screenshots": [],
+      "problem_en": "Extract data from a URL with normal parsing or an LLM instruction, while preserving history.",
+      "solution_en": "Built /parse, /pwai, /ask and /history endpoints, Telegram commands, API documentation, PostgreSQL, retries and logging.",
+      "result_en": "A technical parsing-as-a-service prototype. The registry records that development was paused.",
+      "detail_en": "Telegram and REST workflows for standard and AI-assisted parsing. Built /parse, /pwai, /ask and /history endpoints, Telegram commands, API documentation, PostgreSQL, retries and logging.",
+      "role_en": "Architecture, backend implementation, integrations and workflow design.",
+      "categories": [
+        "parsing",
+        "ai",
+        "telegram"
+      ],
+      "showcase_en": [
+        {
+          "title": "Swagger API",
+          "text": ""
+        },
+        {
+          "title": "Telegram commands",
+          "text": ""
+        },
+        {
+          "title": "AI extraction",
+          "text": ""
+        },
+        {
+          "title": "Request history",
+          "text": ""
+        },
+        {
+          "title": "API and bot architecture",
+          "text": ""
+        }
+      ]
     },
     {
       "slug": "real-estate-parser",
@@ -1261,7 +2785,7 @@
       "title_ru": "Real Estate Parser",
       "title_en": "Real Estate Parser",
       "description_ru": "Личный локальный парсер недвижимости.",
-      "description_en": "",
+      "description_en": "A local experiment in property listing collection.",
       "detail_ru": "Личный локальный парсер недвижимости.",
       "problem_ru": "Экспериментальная автоматизация сбора объявлений недвижимости и их фильтрации.",
       "solution_ru": "По словам пользователя, реализован локальный парсер; подробности архитектуры, источников и функций пока не зафиксированы.",
@@ -1274,11 +2798,18 @@
         "Нужно уточнить"
       ],
       "links": [],
-      "showcase": [
-        "После поиска исходников: фильтры, карточка объекта, результат парсинга, архитектура."
-      ],
+      "showcase": [],
       "doc_title": "",
-      "screenshots": []
+      "screenshots": [],
+      "problem_en": "Experiment with collecting and filtering property listings.",
+      "solution_en": "Implemented a local parser. Its source interfaces and detailed architecture are not documented in the registry.",
+      "result_en": "An existing personal prototype that needs further source review before a detailed case study.",
+      "detail_en": "A local experiment in property listing collection. Implemented a local parser. Its source interfaces and detailed architecture are not documented in the registry.",
+      "role_en": "Source review is needed before describing the implementation in more detail.",
+      "categories": [
+        "parsing"
+      ],
+      "showcase_en": []
     },
     {
       "slug": "wallet-risk-scorer",
@@ -1290,7 +2821,7 @@
       "title_ru": "Wallet Risk Scorer",
       "title_en": "Wallet Risk Scorer",
       "description_ru": "Сервис оценки риска Ethereum-кошельков с ML-моделью Isolation Forest.",
-      "description_en": "",
+      "description_en": "An Ethereum wallet assessment API with Isolation Forest.",
       "detail_ru": "Сервис оценки риска Ethereum-кошельков с ML-моделью Isolation Forest.",
       "problem_ru": "По адресу кошелька собрать on-chain признаки и выдать понятный score риска с объяснениями и исходными фичами.",
       "solution_ru": "FastAPI /score и /health, извлечение баланса, транзакций, возраста, gas, contract/EOA и token activity, обучение/инференс Isolation Forest, Docker и Dozzle.",
@@ -1328,6 +2859,33 @@
       "screenshots": [
         "https://github.com/user-attachments/assets/49b4b39a-267b-44ed-a985-c7c669c16cc1",
         "https://github.com/user-attachments/assets/cb601e7e-ff05-40e9-ae36-3c7d4f030977"
+      ],
+      "problem_en": "Collect on-chain features and return an interpretable risk assessment.",
+      "solution_en": "Built FastAPI /score and /health, wallet feature extraction, Isolation Forest training/inference, Docker and Dozzle.",
+      "result_en": "External blockchain data is converted into a score with the underlying features and explanation. No financial suitability claims are made.",
+      "detail_en": "An Ethereum wallet assessment API with Isolation Forest. Built FastAPI /score and /health, wallet feature extraction, Isolation Forest training/inference, Docker and Dozzle.",
+      "role_en": "Architecture, backend implementation, integrations and workflow design.",
+      "categories": [
+        "backend",
+        "integrations"
+      ],
+      "showcase_en": [
+        {
+          "title": "API response",
+          "text": ""
+        },
+        {
+          "title": "Score and rationale",
+          "text": ""
+        },
+        {
+          "title": "Feature table",
+          "text": ""
+        },
+        {
+          "title": "Feature extraction → model → response",
+          "text": ""
+        }
       ]
     },
     {
@@ -1340,7 +2898,7 @@
       "title_ru": "Shopi",
       "title_en": "Shopi",
       "description_ru": "E-commerce платформа на Django с корзиной, заказами и платежами.",
-      "description_en": "",
+      "description_en": "A Django e-commerce platform.",
       "detail_ru": "E-commerce платформа на Django с корзиной, заказами и платежами.",
       "problem_ru": "Собрать полноценный интернет-магазин с пользовательским интерфейсом, API, оплатой и административным управлением.",
       "solution_ru": "Каталог, корзина, заказы, Stripe и YooKassa, JWT через Djoser/Simple JWT, отзывы, Celery/Redis, HTMX-интерфейс, Swagger/ReDoc и Docker deploy.",
@@ -1384,7 +2942,46 @@
         "Swagger."
       ],
       "doc_title": "",
-      "screenshots": []
+      "screenshots": [],
+      "problem_en": "Connect the storefront, API, orders, payments and administration.",
+      "solution_en": "Built catalog and cart workflows, Stripe/YooKassa payments, JWT auth, reviews, background tasks, an HTMX interface and Docker deployment.",
+      "result_en": "A personal full-stack project covering the connected workflow of an online store.",
+      "detail_en": "A Django e-commerce platform. Built catalog and cart workflows, Stripe/YooKassa payments, JWT auth, reviews, background tasks, an HTMX interface and Docker deployment.",
+      "role_en": "Architecture, backend implementation, integrations and workflow design.",
+      "categories": [
+        "backend",
+        "integrations"
+      ],
+      "showcase_en": [
+        {
+          "title": "Catalog",
+          "text": ""
+        },
+        {
+          "title": "Product details",
+          "text": ""
+        },
+        {
+          "title": "Cart",
+          "text": ""
+        },
+        {
+          "title": "Checkout",
+          "text": ""
+        },
+        {
+          "title": "Payment",
+          "text": ""
+        },
+        {
+          "title": "Administration",
+          "text": ""
+        },
+        {
+          "title": "Swagger API",
+          "text": ""
+        }
+      ]
     }
   ]
 }

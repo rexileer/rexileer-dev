@@ -1,0 +1,354 @@
+[
+  {
+    "source": "ai-leads\\raw\\analytics.png",
+    "project": "ai-lead-scoring",
+    "placement": "card and case hero",
+    "output": "/assets/projects/ai-lead-scoring/analytics-47fdb8bc20.webp",
+    "source_bytes": 94502,
+    "output_bytes": 262420
+  },
+  {
+    "source": "ai-leads\\raw\\leads-list.png",
+    "project": "ai-lead-scoring",
+    "placement": "case gallery",
+    "output": "/assets/projects/ai-lead-scoring/leads-list-e567cbf506.webp",
+    "source_bytes": 161433,
+    "output_bytes": 540200
+  },
+  {
+    "source": "ai-leads\\raw\\lead-ai-score.png",
+    "project": "ai-lead-scoring",
+    "placement": "case gallery",
+    "output": "/assets/projects/ai-lead-scoring/lead-ai-score-14d9f5d633.webp",
+    "source_bytes": 101283,
+    "output_bytes": 279610
+  },
+  {
+    "source": "ai-leads\\raw\\project-settings.png",
+    "project": "ai-lead-scoring",
+    "placement": "case gallery",
+    "output": "/assets/projects/ai-lead-scoring/project-settings-6bcc2abe71.webp",
+    "source_bytes": 100184,
+    "output_bytes": 262312
+  },
+  {
+    "source": "ai-leads\\05-architecture.png",
+    "project": "ai-lead-scoring",
+    "placement": "case gallery",
+    "output": "/assets/projects/ai-lead-scoring/05-architecture-d4a1615885.webp",
+    "source_bytes": 50135,
+    "output_bytes": 18138
+  },
+  {
+    "source": "ai-consultant\\raw\\products.png",
+    "project": "ai-consultant-bitrix-rag",
+    "placement": "card and case hero",
+    "output": "/assets/projects/ai-consultant-bitrix-rag/products-220e16ff7f.webp",
+    "source_bytes": 69362,
+    "output_bytes": 217846
+  },
+  {
+    "source": "ai-consultant\\raw\\swagger.png",
+    "project": "ai-consultant-bitrix-rag",
+    "placement": "case gallery",
+    "output": "/assets/projects/ai-consultant-bitrix-rag/swagger-10b55953bb.webp",
+    "source_bytes": 57311,
+    "output_bytes": 126128
+  },
+  {
+    "source": "ai-consultant\\raw\\messages.png",
+    "project": "ai-consultant-bitrix-rag",
+    "placement": "case gallery",
+    "output": "/assets/projects/ai-consultant-bitrix-rag/messages-7b09690ebd.webp",
+    "source_bytes": 72683,
+    "output_bytes": 224832
+  },
+  {
+    "source": "ai-consultant\\raw\\prompts.png",
+    "project": "ai-consultant-bitrix-rag",
+    "placement": "case gallery",
+    "output": "/assets/projects/ai-consultant-bitrix-rag/prompts-e6e4a71c0c.webp",
+    "source_bytes": 63899,
+    "output_bytes": 211964
+  },
+  {
+    "source": "ai-consultant\\05-architecture.png",
+    "project": "ai-consultant-bitrix-rag",
+    "placement": "case gallery",
+    "output": "/assets/projects/ai-consultant-bitrix-rag/05-architecture-cc2dc67529.webp",
+    "source_bytes": 55807,
+    "output_bytes": 18966
+  },
+  {
+    "source": "avito-parser\\raw\\flower.png",
+    "project": "avito-parts-parser",
+    "placement": "card and case hero",
+    "output": "/assets/projects/avito-parts-parser/flower-582ff0ddb7.webp",
+    "source_bytes": 72270,
+    "output_bytes": 211094
+  },
+  {
+    "source": "avito-parser\\raw\\swagger.png",
+    "project": "avito-parts-parser",
+    "placement": "case gallery",
+    "output": "/assets/projects/avito-parts-parser/swagger-48f829d587.webp",
+    "source_bytes": 81576,
+    "output_bytes": 350874
+  },
+  {
+    "source": "avito-parser\\raw\\health-response.png",
+    "project": "avito-parts-parser",
+    "placement": "case gallery",
+    "output": "/assets/projects/avito-parts-parser/health-response-c0269577b6.webp",
+    "source_bytes": 58524,
+    "output_bytes": 117014
+  },
+  {
+    "source": "avito-parser\\05-architecture.png",
+    "project": "avito-parts-parser",
+    "placement": "case gallery",
+    "output": "/assets/projects/avito-parts-parser/05-architecture-55a76afcf0.webp",
+    "source_bytes": 48971,
+    "output_bytes": 16870
+  },
+  {
+    "source": "meatbot\\raw\\workstation-weighing.png",
+    "project": "meatbot-production-crm",
+    "placement": "card and case hero",
+    "output": "/assets/projects/meatbot-production-crm/workstation-weighing-b54b50aaec.webp",
+    "source_bytes": 73079,
+    "output_bytes": 193074
+  },
+  {
+    "source": "meatbot\\raw\\raw-batches.png",
+    "project": "meatbot-production-crm",
+    "placement": "case gallery",
+    "output": "/assets/projects/meatbot-production-crm/raw-batches-b51770656b.webp",
+    "source_bytes": 49934,
+    "output_bytes": 153858
+  },
+  {
+    "source": "meatbot\\raw\\workstation-result.png",
+    "project": "meatbot-production-crm",
+    "placement": "case gallery",
+    "output": "/assets/projects/meatbot-production-crm/workstation-result-9874d37802.webp",
+    "source_bytes": 57612,
+    "output_bytes": 174488
+  },
+  {
+    "source": "meatbot\\05-architecture.png",
+    "project": "meatbot-production-crm",
+    "placement": "case gallery",
+    "output": "/assets/projects/meatbot-production-crm/05-architecture-c97ba50ab6.webp",
+    "source_bytes": 52934,
+    "output_bytes": 18208
+  },
+  {
+    "source": "taxi-analytics\\raw\\dashboard-overview.png",
+    "project": "underground-taxi-analytics",
+    "placement": "card and case hero",
+    "output": "/assets/projects/underground-taxi-analytics/dashboard-overview-c969725965.webp",
+    "source_bytes": 88441,
+    "output_bytes": 268526
+  },
+  {
+    "source": "taxi-analytics\\raw\\drivers.png",
+    "project": "underground-taxi-analytics",
+    "placement": "case gallery",
+    "output": "/assets/projects/underground-taxi-analytics/drivers-46362e04a7.webp",
+    "source_bytes": 69976,
+    "output_bytes": 197358
+  },
+  {
+    "source": "taxi-analytics\\raw\\cities.png",
+    "project": "underground-taxi-analytics",
+    "placement": "case gallery",
+    "output": "/assets/projects/underground-taxi-analytics/cities-8d08bed466.webp",
+    "source_bytes": 72672,
+    "output_bytes": 215498
+  },
+  {
+    "source": "taxi-analytics\\raw\\anomalies.png",
+    "project": "underground-taxi-analytics",
+    "placement": "case gallery",
+    "output": "/assets/projects/underground-taxi-analytics/anomalies-a6673d5311.webp",
+    "source_bytes": 62536,
+    "output_bytes": 192300
+  },
+  {
+    "source": "taxi-analytics\\05-architecture.png",
+    "project": "underground-taxi-analytics",
+    "placement": "case gallery",
+    "output": "/assets/projects/underground-taxi-analytics/05-architecture-d786f1327d.webp",
+    "source_bytes": 49782,
+    "output_bytes": 17668
+  },
+  {
+    "source": "priceflow-ai\\raw\\upload-preview.png",
+    "project": "priceflow-ai",
+    "placement": "card and case hero",
+    "output": "/assets/projects/priceflow-ai/upload-preview-0b32496ee2.webp",
+    "source_bytes": 79036,
+    "output_bytes": 212772
+  },
+  {
+    "source": "priceflow-ai\\raw\\parsed-items.png",
+    "project": "priceflow-ai",
+    "placement": "case gallery",
+    "output": "/assets/projects/priceflow-ai/parsed-items-d31cf187e5.webp",
+    "source_bytes": 58807,
+    "output_bytes": 152760
+  },
+  {
+    "source": "priceflow-ai\\raw\\catalog.png",
+    "project": "priceflow-ai",
+    "placement": "case gallery",
+    "output": "/assets/projects/priceflow-ai/catalog-72b7f61b11.webp",
+    "source_bytes": 49514,
+    "output_bytes": 123102
+  },
+  {
+    "source": "priceflow-ai\\raw\\project.png",
+    "project": "priceflow-ai",
+    "placement": "case gallery",
+    "output": "/assets/projects/priceflow-ai/project-a972f60212.webp",
+    "source_bytes": 38203,
+    "output_bytes": 89150
+  },
+  {
+    "source": "priceflow-ai\\05-architecture.png",
+    "project": "priceflow-ai",
+    "placement": "case gallery",
+    "output": "/assets/projects/priceflow-ai/05-architecture-65e5d86a42.webp",
+    "source_bytes": 52288,
+    "output_bytes": 18346
+  },
+  {
+    "source": "miyoumi-analytics\\raw\\publications.png",
+    "project": "miyoumi-vk-analytics",
+    "placement": "card and case hero",
+    "output": "/assets/projects/miyoumi-vk-analytics/publications-4cf6e998b9.webp",
+    "source_bytes": 53367,
+    "output_bytes": 136458
+  },
+  {
+    "source": "miyoumi-analytics\\raw\\anomalies.png",
+    "project": "miyoumi-vk-analytics",
+    "placement": "case gallery",
+    "output": "/assets/projects/miyoumi-vk-analytics/anomalies-62798d3435.webp",
+    "source_bytes": 56841,
+    "output_bytes": 165238
+  },
+  {
+    "source": "miyoumi-analytics\\raw\\sheets.png",
+    "project": "miyoumi-vk-analytics",
+    "placement": "case gallery",
+    "output": "/assets/projects/miyoumi-vk-analytics/sheets-7b1a565812.webp",
+    "source_bytes": 33846,
+    "output_bytes": 93266
+  },
+  {
+    "source": "miyoumi-analytics\\05-architecture.png",
+    "project": "miyoumi-vk-analytics",
+    "placement": "case gallery",
+    "output": "/assets/projects/miyoumi-vk-analytics/05-architecture-8cf0d9d653.webp",
+    "source_bytes": 54003,
+    "output_bytes": 19082
+  },
+  {
+    "source": "payment-bot\\02-workflow.png",
+    "project": "payment-broadcast-bot",
+    "placement": "card and case hero",
+    "output": "/assets/projects/payment-broadcast-bot/02-workflow-71f1fb23a5.webp",
+    "source_bytes": 48214,
+    "output_bytes": 16924
+  },
+  {
+    "source": "payment-bot\\03-result.png",
+    "project": "payment-broadcast-bot",
+    "placement": "case gallery",
+    "output": "/assets/projects/payment-broadcast-bot/03-result-ee45c77710.webp",
+    "source_bytes": 49003,
+    "output_bytes": 18048
+  },
+  {
+    "source": "payment-bot\\04-technical.png",
+    "project": "payment-broadcast-bot",
+    "placement": "case gallery",
+    "output": "/assets/projects/payment-broadcast-bot/04-technical-8fca03258b.webp",
+    "source_bytes": 49182,
+    "output_bytes": 18312
+  },
+  {
+    "source": "payment-bot\\05-architecture.png",
+    "project": "payment-broadcast-bot",
+    "placement": "case gallery",
+    "output": "/assets/projects/payment-broadcast-bot/05-architecture-1ce979d804.webp",
+    "source_bytes": 50514,
+    "output_bytes": 17570
+  },
+  {
+    "source": "steps-bot\\02-workflow.png",
+    "project": "steps-corporate-gamification",
+    "placement": "card and case hero",
+    "output": "/assets/projects/steps-corporate-gamification/02-workflow-2716ccee4f.webp",
+    "source_bytes": 48914,
+    "output_bytes": 17456
+  },
+  {
+    "source": "steps-bot\\03-result.png",
+    "project": "steps-corporate-gamification",
+    "placement": "case gallery",
+    "output": "/assets/projects/steps-corporate-gamification/03-result-6b91a51c59.webp",
+    "source_bytes": 45549,
+    "output_bytes": 16202
+  },
+  {
+    "source": "steps-bot\\04-technical.png",
+    "project": "steps-corporate-gamification",
+    "placement": "case gallery",
+    "output": "/assets/projects/steps-corporate-gamification/04-technical-3f9e663c45.webp",
+    "source_bytes": 48571,
+    "output_bytes": 17220
+  },
+  {
+    "source": "steps-bot\\05-architecture.png",
+    "project": "steps-corporate-gamification",
+    "placement": "case gallery",
+    "output": "/assets/projects/steps-corporate-gamification/05-architecture-c9afb4ec82.webp",
+    "source_bytes": 48771,
+    "output_bytes": 17410
+  },
+  {
+    "source": "mexc-scalping\\02-workflow.png",
+    "project": "mexc-scalping-autobuy",
+    "placement": "card and case hero",
+    "output": "/assets/projects/mexc-scalping-autobuy/02-workflow-572a218cf2.webp",
+    "source_bytes": 67129,
+    "output_bytes": 24562
+  },
+  {
+    "source": "mexc-scalping\\03-result.png",
+    "project": "mexc-scalping-autobuy",
+    "placement": "case gallery",
+    "output": "/assets/projects/mexc-scalping-autobuy/03-result-12c8c73e34.webp",
+    "source_bytes": 63194,
+    "output_bytes": 20864
+  },
+  {
+    "source": "mexc-scalping\\04-technical.png",
+    "project": "mexc-scalping-autobuy",
+    "placement": "case gallery",
+    "output": "/assets/projects/mexc-scalping-autobuy/04-technical-156ac69adf.webp",
+    "source_bytes": 54900,
+    "output_bytes": 20310
+  },
+  {
+    "source": "mexc-scalping\\05-architecture.png",
+    "project": "mexc-scalping-autobuy",
+    "placement": "case gallery",
+    "output": "/assets/projects/mexc-scalping-autobuy/05-architecture-4b05d68829.webp",
+    "source_bytes": 58407,
+    "output_bytes": 20576
+  }
+]

@@ -1,0 +1,3 @@
+<div class="service-grid">
+  {% for service in services %}<a class="service-card" href="{{ service.url }}" data-reveal><span class="service-code">{{ service.code }}</span><span class="service-symbol" aria-hidden="true">{{ service.icon }}</span><h3>{{ service.title }}</h3><p>{{ service.summary }}</p><span class="service-arrow" aria-hidden="true">↗</span></a>{% endfor %}
+</div>

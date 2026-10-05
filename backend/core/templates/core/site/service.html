@@ -1,0 +1,16 @@
+{% extends 'core/site/base.html' %}
+{% block content %}
+<section class="page-hero service-hero shell">
+  <a class="project-back" href="{{ services_url }}">← {{ ui.all_services }}</a>
+  <div class="service-hero-layout"><div><p class="eyebrow">{{ service.code }}</p><h1 class="display-title">{{ service.headline }}</h1><p class="hero-lead">{{ service.lead }}</p><div class="hero-actions"><a class="button primary" href="https://t.me/rexileer" target="_blank" rel="noopener noreferrer" data-event="telegram_click" data-location="service">{{ ui.telegram }} <span aria-hidden="true">↗</span></a><a class="text-link" href="#relevant-cases">{{ ui.see_cases }} ↓</a></div></div><div class="service-flow"><p class="service-code">{{ ui.pipeline_label }}</p>{% for node in service.flow %}<div><span>{{ forloop.counter|stringformat:'02d' }}</span><b>{{ node }}</b></div>{% if not forloop.last %}<i aria-hidden="true">↓</i>{% endif %}{% endfor %}</div></div>
+</section>
+<section class="section shell"><div class="section-head"><div><p class="eyebrow">{{ service.title }}</p><h2 class="section-title">{{ ui.service_problems }}</h2></div></div><div class="problem-grid">{% for problem in service.problems %}<div data-reveal><span>{{ forloop.counter|stringformat:'02d' }}</span><h3>{{ problem }}</h3></div>{% endfor %}</div></section>
+<section class="section expertise"><div class="shell"><div class="section-head"><h2 class="section-title">{{ ui.service_deliver }}</h2><p class="section-intro">{{ service.summary }}</p></div><div class="expertise-grid">{% for item in service.deliverables %}<article class="expertise-item" data-reveal><span class="expertise-number">{{ forloop.counter|stringformat:'02d' }}</span><div class="expertise-icon" aria-hidden="true">{{ service.icon }}</div><h3>{{ item.title }}</h3><p>{{ item.text }}</p></article>{% endfor %}</div></div></section>
+{% if service.slug == 'python-backend' or service.slug == 'telegram-bots' %}{% include 'core/site/includes/rescue.html' %}{% endif %}
+<section class="section shell" id="relevant-cases"><div class="section-head"><div><p class="eyebrow">{{ ui.selected }}</p><h2 class="section-title">{{ ui.relevant }}</h2></div><p class="section-intro">{{ ui.cases_lead }}</p></div><div class="service-case-grid">{% for project in selected %}{% include 'core/site/includes/card.html' %}{% endfor %}</div></section>
+<section class="section shell service-stack"><p class="eyebrow">{{ ui.stack }}</p><h2 class="section-title">{{ service.title }}</h2><div class="tag-list">{% for tag in service.tags %}<span class="tag">{{ tag }}</span>{% endfor %}</div></section>
+{% include 'core/site/includes/process.html' %}
+<section class="section shell faq-section"><div class="section-head"><div><p class="eyebrow">FAQ</p><h2 class="section-title">{{ ui.faq }}</h2></div></div><div class="faq-list">{% for item in service.faq %}<details><summary>{{ item.q }}<span aria-hidden="true">+</span></summary><p>{{ item.a }}</p></details>{% endfor %}</div></section>
+<section class="section shell related-services"><p class="eyebrow">{{ ui.related }}</p>{% include 'core/site/includes/services.html' with services=related_services %}</section>
+{% include 'core/site/includes/contact.html' %}
+{% endblock %}

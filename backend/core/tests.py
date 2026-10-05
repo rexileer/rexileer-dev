@@ -1,10 +1,14 @@
-from django.test import TestCase
+import json
+
+from django.core.management import call_command
+from django.test import Client, TestCase
 
 from .models import (
     AIProviderConfig,
     Project,
     ProjectDraft,
     ProjectMedia,
+    SiteEvent,
     TelegramPostDraft,
     VisitLog,
 )
@@ -67,6 +71,9 @@ class PortfolioWorkflowTests(TestCase):
         self.assertNotIn("year", data[0])
 
     def test_project_routes_serve_the_portfolio_app(self):
+        Project.objects.create(
+            slug="demo-crm", title_ru="Демо CRM", title_en="Demo CRM"
+        )
         self.assertEqual(self.client.get("/projects/").status_code, 200)
         self.assertEqual(self.client.get("/projects/demo-crm/").status_code, 200)
         self.assertEqual(self.client.get("/work/").status_code, 200)
@@ -188,3 +195,109 @@ class VisitLoggingTests(TestCase):
         self.assertIn("User-agent: *", response.content.decode())
         self.assertIn("Disallow: /admin/", response.content.decode())
         self.assertEqual(VisitLog.objects.count(), 0)
+
+
+class PublicPagesTests(TestCase):
+    @classmethod
+    def setUpTestData(cls):
+        call_command("sync_portfolio_registry", verbosity=0)
+
+    def test_service_pages_are_localized_and_have_server_rendered_metadata(self):
+        slugs = ("python-backend", "telegram-bots", "parsers-automation", "ai-rag")
+        titles = set()
+        for lang, prefix in (("ru", ""), ("en", "/en")):
+            for slug in slugs:
+                with self.subTest(lang=lang, slug=slug):
+                    path = f"{prefix}/services/{slug}/"
+                    response = self.client.get(path)
+                    self.assertEqual(response.status_code, 200)
+                    html = response.content.decode()
+                    self.assertIn(f'<html lang="{lang}">', html)
+                    self.assertIn(
+                        f'<link rel="canonical" href="https://rexileer.ru{path}"', html
+                    )
+                    self.assertIn('hreflang="ru"', html)
+                    self.assertIn('hreflang="en"', html)
+                    self.assertEqual(html.count("<h1"), 1)
+                    self.assertIn("FAQPage", html)
+                    self.assertIn('data-event="telegram_click"', html)
+                    titles.add(response.context["title"])
+                    if lang == "en":
+                        self.assertNotIn("Обсудить задачу", html)
+                        self.assertNotIn("Управление промптами", html)
+                    json.loads(response.context["schema"])
+        self.assertEqual(len(titles), 8)
+
+    def test_unknown_projects_and_services_return_real_404(self):
+        for path in (
+            "/projects/missing/",
+            "/services/missing/",
+            "/en/projects/missing/",
+        ):
+            response = self.client.get(path)
+            self.assertEqual(response.status_code, 404)
+            self.assertContains(response, 'content="noindex, follow"', status_code=404)
+
+    def test_gallery_assets_and_original_easter_egg_are_in_html(self):
+        response = self.client.get("/projects/ai-lead-scoring/")
+        self.assertContains(response, "data-gallery")
+        self.assertContains(response, "/assets/projects/ai-lead-scoring/")
+        self.assertContains(response, "radiokp.ru/sites/default/files/")
+        self.assertNotContains(response, "images.unsplash.com")
+        self.assertNotContains(response, "BottecRu/")
+        self.assertNotContains(response, "/site/assets/")
+
+    def test_sitemap_contains_both_languages_and_published_projects(self):
+        response = self.client.get("/sitemap.xml")
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "https://rexileer.ru/services/ai-rag/")
+        self.assertContains(
+            response, "https://rexileer.ru/en/projects/ai-lead-scoring/"
+        )
+        self.assertContains(self.client.get("/robots.txt"), "Sitemap:")
+
+    def test_sync_preserves_custom_covers_media_and_publication_date(self):
+        project = Project.objects.get(slug="ai-lead-scoring")
+        published_at = project.published_at
+        project.cover_image_url = "https://example.com/custom-cover.webp"
+        project.save()
+        media = project.media.first()
+        media.caption_en = "Edited in admin"
+        media.save()
+        before = project.media.count()
+        call_command("sync_portfolio_registry", verbosity=0)
+        project.refresh_from_db()
+        media.refresh_from_db()
+        self.assertEqual(
+            project.cover_image_url, "https://example.com/custom-cover.webp"
+        )
+        self.assertEqual(project.published_at, published_at)
+        self.assertEqual(media.caption_en, "Edited in admin")
+        self.assertEqual(project.media.count(), before)
+
+
+class SiteEventTests(TestCase):
+    def test_event_requires_csrf_and_stores_only_allowed_fields(self):
+        client = Client(enforce_csrf_checks=True)
+        data = {"name": "telegram_click", "location": "hero", "path": "/", "lang": "ru"}
+        self.assertEqual(client.post("/api/events/", data).status_code, 403)
+        client.get("/")
+        data["csrfmiddlewaretoken"] = client.cookies["csrftoken"].value
+        self.assertEqual(client.post("/api/events/", data).status_code, 204)
+        self.assertEqual(SiteEvent.objects.get().location, "hero")
+        data["name"] = "unexpected"
+        self.assertEqual(client.post("/api/events/", data).status_code, 400)
+        self.assertEqual(SiteEvent.objects.count(), 1)
+
+    def test_event_endpoint_does_not_accept_get_or_private_query_strings(self):
+        self.assertEqual(self.client.get("/api/events/").status_code, 405)
+        response = self.client.post(
+            "/api/events/",
+            {
+                "name": "telegram_click",
+                "location": "hero",
+                "path": "/?password=hidden",
+                "lang": "en",
+            },
+        )
+        self.assertEqual(response.status_code, 400)

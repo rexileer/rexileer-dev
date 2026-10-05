@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="{{ lang }}">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0b0c0a" />
+    <meta name="description" content="{{ description }}" />
+    <meta name="csrf-token" content="{{ csrf_token }}" />
+    {% if noindex %}<meta name="robots" content="noindex, follow" />{% endif %}
+    <title>{{ title }}</title>
+    <link rel="canonical" href="{{ canonical }}" />
+    <link rel="alternate" hreflang="ru" href="{{ ru_url }}" />
+    <link rel="alternate" hreflang="en" href="{{ en_url }}" />
+    <link rel="alternate" hreflang="x-default" href="{{ ru_url }}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="{{ title }}" />
+    <meta property="og:description" content="{{ description }}" />
+    <meta property="og:url" content="{{ canonical }}" />
+    <meta property="og:image" content="{{ og_image }}" />
+    <meta property="og:site_name" content="Rexileer" />
+    <meta property="og:locale" content="{% if lang == 'en' %}en_US{% else %}ru_RU{% endif %}" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="{{ title }}" />
+    <meta name="twitter:description" content="{{ description }}" />
+    <meta name="twitter:image" content="{{ og_image }}" />
+    <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/assets/fonts/fonts.css?v={{ asset_version }}" />
+    <link rel="stylesheet" href="/styles.css?v={{ asset_version }}" />
+    <script src="/script.js?v={{ asset_version }}" defer></script>
+    {% if schema %}<script type="application/ld+json">{{ schema|safe }}</script>{% endif %}
+  </head>
+  <body>
+    <a class="skip-link" href="#app">{{ ui.skip }}</a>
+    <header class="site-header" data-header>
+      <a class="brand" href="{{ home_url }}" aria-label="Rexileer">
+        <span class="brand-mark" aria-hidden="true">R</span>
+        <span class="brand-name">rexileer<span>.dev</span></span>
+      </a>
+      <nav class="site-nav" id="site-nav" aria-label="{{ ui.menu }}">
+        <a href="{{ services_url }}" {% if '/services/' in request.path %}aria-current="page"{% endif %}>{{ ui.services }}</a>
+        <a href="{{ projects_url }}" {% if '/projects/' in request.path %}aria-current="page"{% endif %}>{{ ui.cases }}</a>
+        <a href="{{ work_url }}" {% if '/work/' in request.path %}aria-current="page"{% endif %}>{{ ui.work }}</a>
+        <a href="#contact">{{ ui.contact }}</a>
+      </nav>
+      <div class="header-actions">
+        <a class="language-toggle" href="{{ language_url }}" lang="{% if lang == 'en' %}ru{% else %}en{% endif %}" aria-label="{% if lang == 'en' %}Русская версия{% else %}English version{% endif %}">{% if lang == 'en' %}RU{% else %}EN{% endif %}</a>
+        <a class="header-cta" href="https://t.me/rexileer" target="_blank" rel="noopener noreferrer" data-event="telegram_click" data-location="header">{{ ui.discuss }} <span aria-hidden="true">↗</span></a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav"><span></span><span></span><span class="sr-only">{{ ui.menu }}</span></button>
+      </div>
+    </header>
+    <main id="app" tabindex="-1">{% block content %}{% endblock %}</main>
+    <footer class="site-footer">
+      <a class="brand footer-brand" href="{{ home_url }}"><span class="brand-mark" aria-hidden="true">R</span><span class="brand-name">rexileer<span>.dev</span></span></a>
+      <p>{{ ui.footer }}</p>
+      <div class="footer-links">
+        <a href="mailto:rexileer@mail.ru" data-event="email_click" data-location="footer">Email</a>
+        <a href="https://t.me/rexileer" target="_blank" rel="noopener noreferrer" data-event="telegram_click" data-location="footer">Telegram</a>
+        <a href="https://github.com/rexileer" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://t.me/rexileerdev" target="_blank" rel="noopener noreferrer">{% if lang == 'en' %}Channel{% else %}Канал{% endif %}</a>
+      </div>
+      <!-- Intentional author easter egg. Preserve this link and the year target. -->
+      <span class="footer-year"><a class="footer-easter-egg" href="https://radiokp.ru/sites/default/files/styles/kp_fullnode_730_486/public/2021-01/1-laptop-qoav8r7u-2_0.webp?itok=nt1Gz8sU" target="_blank" rel="noopener noreferrer" aria-label="{% if lang == 'en' %}Secret link{% else %}Секретная ссылка{% endif %}">©</a> <a class="footer-easter-egg" href="https://radiokp.ru/sites/default/files/styles/kp_fullnode_730_486/public/2021-01/1-laptop-qoav8r7u-2_0.webp?itok=nt1Gz8sU" target="_blank" rel="noopener noreferrer" aria-label="{% if lang == 'en' %}Secret link{% else %}Секретная ссылка{% endif %}">{% now "Y" %}</a></span>
+    </footer>
+    <dialog class="lightbox" aria-label="{{ ui.gallery }}">
+      <div class="lightbox-bar"><span data-lightbox-caption></span><button type="button" data-lightbox-close aria-label="{{ ui.close }}">×</button></div>
+      <div class="lightbox-image-wrap"><img data-lightbox-image alt="" /></div>
+      <div class="lightbox-controls"><button type="button" data-lightbox-prev aria-label="{{ ui.prev_image }}">←</button><span data-lightbox-position aria-live="polite"></span><button type="button" data-lightbox-next aria-label="{{ ui.next_image }}">→</button></div>
+    </dialog>
+  </body>
+</html>

@@ -1,0 +1,10 @@
+{% if asset.url %}
+  <img src="{{ asset.url }}" {% if asset.srcset %}srcset="{{ asset.srcset }}" sizes="{% if large %}(max-width: 650px) calc(100vw - 28px), 1040px{% else %}(max-width: 650px) calc(100vw - 28px), (max-width: 980px) calc(50vw - 30px), 600px{% endif %}"{% endif %} width="{{ asset.width|default:1600 }}" height="{{ asset.height|default:900 }}" alt="{{ asset.alt }}" loading="{% if eager %}eager{% else %}lazy{% endif %}" decoding="async" {% if eager %}fetchpriority="high"{% endif %} />
+{% else %}
+  <div class="technical-placeholder" aria-label="{{ ui.diagram }}">
+    <span class="placeholder-corner">{{ project.category_label }}</span>
+    <span class="placeholder-glyph" aria-hidden="true">{% if 'ai' in project.categories %}✳{% elif 'telegram' in project.categories %}↗{% elif 'parsing' in project.categories %}⇄{% else %}{ }{% endif %}</span>
+    <div class="placeholder-tech">{% for tag in project.tags|slice:':4' %}<span>{{ tag }}</span>{% endfor %}</div>
+    <span class="placeholder-caption">{{ ui.overview }}</span>
+  </div>
+{% endif %}

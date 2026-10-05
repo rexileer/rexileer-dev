@@ -1,0 +1,9 @@
+__pycache__/
+*.py[cod]
+*.sqlite3
+backend/staticfiles/
+.local/
+.env
+AGENTS.md
+agents.md
+ai-context/

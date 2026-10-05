@@ -44,15 +44,15 @@ class Command(BaseCommand):
                 "description_ru": item["description_ru"],
                 "description_en": item["description_en"] or item["description_ru"],
                 "detail_ru": item["detail_ru"],
-                "detail_en": item["detail_ru"],
+                "detail_en": item.get("detail_en", item["detail_ru"]),
                 "problem_ru": item["problem_ru"],
-                "problem_en": item["problem_ru"],
+                "problem_en": item.get("problem_en", item["problem_ru"]),
                 "solution_ru": item["solution_ru"],
-                "solution_en": item["solution_ru"],
+                "solution_en": item.get("solution_en", item["solution_ru"]),
                 "result_ru": item["result_ru"],
-                "result_en": item["result_ru"],
+                "result_en": item.get("result_en", item["result_ru"]),
                 "role_ru": item["role_ru"][:160],
-                "role_en": item["role_ru"][:160],
+                "role_en": item.get("role_en", item["role_ru"])[:160],
                 "year": item["year"],
                 "tags": item["tags"],
                 "highlights": item["showcase"],
@@ -72,7 +72,7 @@ class Command(BaseCommand):
             ):
                 project.cover_image_url = item["cover_image_url"]
                 project.cover_alt_ru = item["cover_alt_ru"]
-                project.cover_alt_en = item["cover_alt_ru"]
+                project.cover_alt_en = item.get("cover_alt_en", item["cover_alt_ru"])
                 preserved_fields.extend(
                     ["cover_image_url", "cover_alt_ru", "cover_alt_en"]
                 )
@@ -92,6 +92,19 @@ class Command(BaseCommand):
                         "title_en": f"Project screen {order + 1}",
                         "caption_ru": item["title_ru"],
                         "caption_en": item["title_en"],
+                        "order": order,
+                    },
+                )
+            for order, asset in enumerate(item.get("media_assets", [])):
+                ProjectMedia.objects.get_or_create(
+                    project=project,
+                    url=asset["url"],
+                    defaults={
+                        "media_type": ProjectMedia.MediaType.IMAGE,
+                        "title_ru": asset["caption_ru"],
+                        "title_en": asset["caption_en"],
+                        "caption_ru": asset["caption_ru"],
+                        "caption_en": asset["caption_en"],
                         "order": order,
                     },
                 )

@@ -341,6 +341,19 @@ class AIProviderConfig(models.Model):
         )
 
 
+class SiteEvent(models.Model):
+    name = models.CharField(max_length=40)
+    location = models.CharField(max_length=40)
+    path = models.CharField(max_length=255)
+    lang = models.CharField(max_length=2)
+    created_at = models.DateTimeField(auto_now_add=True, db_index=True)
+
+    class Meta:
+        ordering = ["-created_at"]
+        verbose_name = "Событие сайта"
+        verbose_name_plural = "События сайта"
+
+
 class VisitLog(models.Model):
     """Логи визитов для простой аналитики."""
 
