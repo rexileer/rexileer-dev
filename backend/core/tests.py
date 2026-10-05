@@ -274,6 +274,75 @@ class PublicPagesTests(TestCase):
         self.assertEqual(project.published_at, published_at)
         self.assertEqual(media.caption_en, "Edited in admin")
         self.assertEqual(project.media.count(), before)
+        from core.presentation import present_project
+
+        self.assertIn(
+            "Edited in admin",
+            [item["caption"] for item in present_project(project, "en")["media"]],
+        )
+
+    def test_all_cases_have_complete_copy_and_no_empty_decision_cards(self):
+        from core.presentation import present_project, registry
+
+        for project in Project.objects.filter(status=Project.Status.PUBLISHED):
+            source = registry()[project.slug]
+            for lang in ("ru", "en"):
+                with self.subTest(project=project.slug, lang=lang):
+                    case = present_project(project, lang)
+                    self.assertEqual(case["role"], source[f"role_{lang}"])
+                    for field in ("card_problem", "card_solution", "card_result"):
+                        self.assertTrue(case[field].endswith((".", "!", "?")))
+                        self.assertNotIn("…", case[field])
+                    for decision in case["highlights"]:
+                        self.assertTrue(decision["title"].strip())
+                        self.assertTrue(decision["text"].strip())
+                    self.assertFalse(case["features"] and case["highlights"])
+                    self.assertNotIn("добавить скриншот", case["result"].lower())
+        self.assertGreater(
+            len(Project.objects.get(slug="hr-corporate-platform").role_ru), 160
+        )
+
+    def test_language_switch_keeps_only_known_category_without_polluting_canonical(
+        self,
+    ):
+        for path, alternate in (
+            ("/projects/", "/en/projects/"),
+            ("/en/work/", "/work/"),
+        ):
+            response = self.client.get(path, {"category": "ai", "private": "discard"})
+            self.assertEqual(
+                response.context["language_url"], alternate + "?category=ai"
+            )
+            self.assertEqual(
+                response.context["canonical"], "https://rexileer.ru" + path
+            )
+            self.assertNotIn("?", response.context["ru_url"])
+        invalid = self.client.get("/projects/", {"category": "unexpected"})
+        self.assertEqual(invalid.context["language_url"], "/en/projects/")
+
+    def test_demo_covers_are_labelled_and_can_open_at_full_resolution(self):
+        for slug in ("hr-corporate-platform", "bozon-medpreds"):
+            response = self.client.get(f"/projects/{slug}/")
+            self.assertContains(response, "cover-zoom")
+            self.assertContains(response, "демонстрационные")
+        response = self.client.get("/projects/payment-broadcast-bot/")
+        self.assertContains(response, 'class="feature-list"')
+        self.assertNotContains(response, 'class="highlight-item"')
+
+    def test_screenshot_mirrors_keep_source_records_without_gallery_duplicates(self):
+        from core.presentation import present_project, registry
+
+        project = Project.objects.get(slug="wallet-risk-scorer")
+        sources = registry()[project.slug]["screenshots"]
+        call_command("sync_portfolio_registry", verbosity=0)
+        self.assertEqual(set(project.media.values_list("url", flat=True)), set(sources))
+        for lang in ("ru", "en"):
+            case = present_project(project, lang)
+            self.assertTrue(case["cover"]["url"].startswith("/assets/projects/"))
+            self.assertEqual(len(case["media"]), 1)
+            self.assertEqual(case["media"][0]["width"], 605)
+            self.assertEqual(case["media"][0]["height"], 385)
+            self.assertNotEqual(case["cover"]["url"], case["media"][0]["url"])
 
 
 class SiteEventTests(TestCase):

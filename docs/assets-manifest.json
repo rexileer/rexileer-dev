@@ -350,5 +350,61 @@
     "output": "/assets/projects/mexc-scalping-autobuy/05-architecture-4b05d68829.webp",
     "source_bytes": 58407,
     "output_bytes": 20576
+  },
+  {
+    "source": "docs/media-source/hr-analytics.png",
+    "project": "hr-corporate-platform",
+    "placement": "cover and gallery",
+    "output": "/assets/projects/hr-corporate-platform/hr-analytics-fab184116a.webp",
+    "source_bytes": 170885,
+    "output_bytes": 53042,
+    "provenance": "actual app in local isolated installation, synthetic demo records"
+  },
+  {
+    "source": "docs/media-source/hr-acknowledgements.png",
+    "project": "hr-corporate-platform",
+    "placement": "gallery",
+    "output": "/assets/projects/hr-corporate-platform/hr-acknowledgements-006e2aa81a.webp",
+    "source_bytes": 167254,
+    "output_bytes": 50790,
+    "provenance": "actual app in local isolated installation, synthetic demo records"
+  },
+  {
+    "source": "docs/media-source/med-visits.png",
+    "project": "bozon-medpreds",
+    "placement": "cover and gallery",
+    "output": "/assets/projects/bozon-medpreds/med-visits-60a505f1d8.webp",
+    "source_bytes": 55180,
+    "output_bytes": 24778,
+    "provenance": "actual app in local isolated installation, synthetic demo records"
+  },
+  {
+    "source": "docs/media-source/med-visit-detail.png",
+    "project": "bozon-medpreds",
+    "placement": "gallery",
+    "output": "/assets/projects/bozon-medpreds/med-visit-detail-ed55375e8e.webp",
+    "source_bytes": 117660,
+    "output_bytes": 46810,
+    "provenance": "actual app in local isolated installation, synthetic demo records"
+  },
+  {
+    "source": "docs/media-source/wallet-screen-1.png",
+    "source_url": "https://github.com/user-attachments/assets/49b4b39a-267b-44ed-a985-c7c669c16cc1",
+    "project": "wallet-risk-scorer",
+    "placement": "cover and gallery",
+    "output": "/assets/projects/wallet-risk-scorer/wallet-screen-1-a8e8077fa3.webp",
+    "source_bytes": 90642,
+    "output_bytes": 17112,
+    "provenance": "existing screenshot explicitly linked in the project registry; locally hosted to avoid external availability failures"
+  },
+  {
+    "source": "docs/media-source/wallet-screen-2.png",
+    "source_url": "https://github.com/user-attachments/assets/cb601e7e-ff05-40e9-ae36-3c7d4f030977",
+    "project": "wallet-risk-scorer",
+    "placement": "gallery",
+    "output": "/assets/projects/wallet-risk-scorer/wallet-screen-2-8d03ad3627.webp",
+    "source_bytes": 34055,
+    "output_bytes": 8046,
+    "provenance": "existing screenshot explicitly linked in the project registry; locally hosted to avoid external availability failures"
   }
 ]

@@ -52,7 +52,7 @@ def serve_page(request, lang):
     base_path = request.path[3:] if request.path.startswith("/en/") else request.path
     path = base_path.rstrip("/") or "/"
     ui = context["ui"]
-    context["title"] = "Python Backend / AI Integration Developer — Rexileer"
+    context["title"] = ui["home_seo"]
     context["description"] = ui["hero_lead"]
     context["projects"] = projects
     context["asset_version"] = hashlib.sha256(
@@ -77,7 +77,7 @@ def serve_page(request, lang):
         ]
     elif path == "/services":
         template = "services"
-        context["title"] = ui["services_title"] + " — Rexileer"
+        context["title"] = ui["services_seo"]
         context["description"] = ui["services_lead"]
         kind = "CollectionPage"
     elif path.startswith("/services/"):
@@ -134,6 +134,8 @@ def serve_page(request, lang):
             raise Http404
         template = "project"
         context["project"] = project
+        context["contact_title"] = ui["similar"]
+        context["contact_lead"] = ui["case_inquiry"]
         context["title"] = project["title"] + " — Rexileer"
         context["description"] = project["description"]
         index = projects.index(project)

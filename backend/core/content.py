@@ -29,6 +29,24 @@ UI = {
         "Разрабатываю Python-сервисы, Telegram-ботов, парсеры и AI-интеграции. Подключаюсь к существующим проектам: разбираюсь в коде, исправляю проблемы и довожу систему до запуска.",
         "I build Python services, Telegram bots, data pipelines and AI integrations. I also take over existing projects: understand the code, fix what's broken and get the system running.",
     ),
+    "home_seo": pair(
+        "Python-разработчик — backend, Telegram-боты и AI-интеграции | Rexileer",
+        "Python developer — backends, Telegram bots & AI integrations | Rexileer",
+    ),
+    "services_seo": pair(
+        "Разработка на Python — API, Telegram-боты, парсеры и AI | Rexileer",
+        "Python development — APIs, Telegram bots, parsing & AI | Rexileer",
+    ),
+    "inquiry_hint": pair(
+        "Пришлите задачу и желаемый результат; если проект уже есть — ссылку и описание проблемы. Я уточню вопросы и предложу формат работы и оценки.",
+        "Send the task and the result you need; for an existing project, include a link and the issue. I'll clarify the open questions and suggest how to scope and estimate the work.",
+    ),
+    "email_alternative": pair("Или напишите на email", "Or write by email"),
+    "similar": pair("Обсудить похожую задачу", "Discuss a similar project"),
+    "case_inquiry": pair(
+        "Опишите ваш процесс и нужный результат. Я уточню различия с этим кейсом и предложу следующий шаг.",
+        "Describe your workflow and the result you need. I'll clarify how it differs from this case and suggest the next step.",
+    ),
     "pipeline_label": pair("От запроса — до результата", "From request to result"),
     "pipeline_note": pair(
         "Типовой контур системы. Архитектура подбирается под задачу.",
@@ -81,8 +99,8 @@ UI = {
         ],
     ),
     "audit": pair(
-        "Если объём пока неясен, начнём с небольшого платного аудита. На выходе — причины проблем, приоритеты и следующий шаг.",
-        "If the scope is unclear, we can start with a small paid diagnostic review. You get the causes, priorities and a practical next step.",
+        "Если объём неясен, предлагаю платный аудит. Сначала согласуем границы и стоимость. Передам письменный разбор: воспроизведённые сбои и причины, риски, что можно сохранить, список исправлений по приоритету и план этапов с оценкой объёма. Неизвестные обозначу отдельно; разработку согласуем после разбора.",
+        "If the scope is unclear, I suggest a paid review. We agree its boundaries and price first. You receive written findings: reproduced failures and causes, risks, what can be kept, prioritized fixes and an estimated implementation plan. I make remaining uncertainties explicit; development is agreed after the review.",
     ),
     "send_code": pair(
         "Прислать задачу или текущий код", "Send the task or existing code"
@@ -102,8 +120,8 @@ UI = {
         {
             "title": pair("Фиксируем объём", "Agree the scope"),
             "text": pair(
-                "Выбираем архитектуру, этапы и критерии готовности. Отдельно обозначаем неизвестные.",
-                "We agree the approach, milestones and acceptance criteria, and make uncertainties explicit.",
+                "После уточнения задачи предлагаю этапы, результат каждого, стоимость и сроки. Фиксируем критерии приёмки и ограничения. Если код или интеграции ещё не изучены — сначала согласуем аудит; изменения объёма обсуждаем отдельно.",
+                "After clarifying the task, I propose milestones, their deliverables, price and timeline. We agree acceptance criteria and constraints. If the code or integrations need investigation, we scope a review first; scope changes are agreed separately.",
             ),
         },
         {
@@ -116,8 +134,8 @@ UI = {
         {
             "title": pair("Запускаем и передаём", "Launch and hand over"),
             "text": pair(
-                "Развёртывание, настройки, документация и передача кода. Дальнейшую поддержку обсуждаем отдельно.",
-                "Deployment, configuration, documentation and source handover. Ongoing support is agreed separately.",
+                "Запускаю и проверяю согласованные сценарии. Передаю код, настройки окружения, инструкции запуска и обновления, описание интеграций и доступов. Поддержку, исправления после приёмки и новые функции обсуждаем отдельно.",
+                "I deploy and verify the agreed workflows, then hand over the code, environment configuration, startup and update instructions, and integration/access notes. Support, fixes after acceptance and new features are agreed separately.",
             ),
         },
     ],
@@ -126,8 +144,8 @@ UI = {
         "Расскажите, что должно работать.", "Tell me what needs to work."
     ),
     "contact_lead": pair(
-        "Пришлите описание задачи, ссылку на проект или текущий код. Посмотрю и предложу следующий шаг.",
-        "Send a brief, a project link or your existing code. I'll take a look and suggest the next step.",
+        "Пришлите задачу, желаемый результат и ограничения. Для доработки — ссылку на проект и описание сбоя. Уточню вопросы и предложу план оценки или аудит, если без изучения кода объём неясен.",
+        "Send the task, the result you need and any constraints. For existing projects, include a link and the issue. I'll clarify the questions and suggest how to estimate the work, or a review if the code needs investigation.",
     ),
     "contact_hint": pair(
         "Для новой разработки, доработки проекта или предложения о работе.",
@@ -149,6 +167,7 @@ UI = {
     "faq": pair("Перед началом работы", "Before we start"),
     "related": pair("Смежные задачи", "Related services"),
     "engineering": pair("Инженерные решения", "Engineering decisions"),
+    "features": pair("Возможности", "Features"),
     "gallery": pair("Как устроен продукт", "Inside the product"),
     "gallery_hint": pair(
         "Нажмите на изображение, чтобы рассмотреть детали.",
@@ -188,6 +207,10 @@ CATEGORIES = [
 SERVICES = [
     {
         "slug": "python-backend",
+        "inquiry": pair(
+            "Пришлите нужный сценарий, текущий стек и ссылку на проект или описание сбоя. Уточню ограничения и предложу этапы оценки и разработки.",
+            "Send the workflow you need, your current stack and a project link or issue description. I'll clarify constraints and propose how to estimate and build the work.",
+        ),
         "code": "01 / BACKEND",
         "icon": "{ }",
         "title": pair("Python backend", "Python backends"),
@@ -299,6 +322,10 @@ SERVICES = [
     },
     {
         "slug": "telegram-bots",
+        "inquiry": pair(
+            "Опишите, что пользователь делает в боте, какие оплаты и интеграции нужны. Для доработки добавьте ссылку на бота и проблему; предложу следующий шаг.",
+            "Describe what users do in the bot and which payments or integrations are needed. For improvements, include the bot link and issue; I'll suggest the next step.",
+        ),
         "code": "02 / TELEGRAM",
         "icon": "↗",
         "title": pair("Telegram-боты", "Telegram bots"),
@@ -405,6 +432,10 @@ SERVICES = [
     },
     {
         "slug": "parsers-automation",
+        "inquiry": pair(
+            "Пришлите примеры источников, нужные поля, частоту сбора и формат результата. Проверю доступный способ получения данных и предложу объём работ.",
+            "Send example sources, the fields you need, collection frequency and output format. I'll assess how the data can be obtained and propose the scope.",
+        ),
         "code": "03 / DATA",
         "icon": "⇄",
         "title": pair("Парсинг и автоматизация", "Parsing & automation"),
@@ -515,6 +546,10 @@ SERVICES = [
     },
     {
         "slug": "ai-rag",
+        "inquiry": pair(
+            "Опишите сценарий и пришлите примеры документов и вопросов без закрытых данных. Предложу, как проверить качество на небольшом примере и оценить интеграцию.",
+            "Describe the workflow and send sample documents and questions without confidential data. I'll propose a small quality check and how to estimate the integration.",
+        ),
         "code": "04 / AI",
         "icon": "✳",
         "title": pair("AI / RAG-интеграции", "AI / RAG integrations"),
@@ -526,8 +561,8 @@ SERVICES = [
             "Knowledge bases, document retrieval, AI scoring and CRMs. A model inside a defined workflow.",
         ),
         "lead": pair(
-            "Интегрирую LLM в конкретные процессы: консультант по каталогу и документам, оценка заявок, ответы в CRM. Проектирую загрузку знаний, retrieval, управление промптами и передачу человеку.",
-            "I integrate LLMs into specific workflows: answering from a catalog and documents, scoring inquiries and replying in a CRM. The work includes ingestion, retrieval, prompt management and human handoff.",
+            "Подключаю AI к рабочим процессам: ответы по вашим документам и каталогу, оценка заявок, помощь сотрудникам в CRM. Настраиваю обновление знаний, правила ответа и передачу вопроса человеку.",
+            "I connect AI to working processes: answers from your documents and catalog, inquiry scoring and assistance inside a CRM. I set up knowledge updates, answer rules and human handoff.",
         ),
         "problems": pair(
             [

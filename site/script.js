@@ -4,16 +4,29 @@ document.documentElement.classList.add('enhanced');
 const header = document.querySelector('[data-header]');
 const menuToggle = document.querySelector('.menu-toggle');
 const nav = document.querySelector('.site-nav');
+const mobileMenu = window.matchMedia('(max-width: 980px)');
 const closeMenu = () => {
   menuToggle?.setAttribute('aria-expanded', 'false');
   nav?.classList.remove('open');
   document.body.classList.remove('menu-open');
+  if (nav) {
+    nav.inert = mobileMenu.matches;
+    if (mobileMenu.matches) nav.setAttribute('aria-hidden', 'true');
+    else nav.removeAttribute('aria-hidden');
+  }
 };
+closeMenu();
+mobileMenu.addEventListener('change', closeMenu);
 menuToggle?.addEventListener('click', () => {
   const open = menuToggle.getAttribute('aria-expanded') !== 'true';
   menuToggle.setAttribute('aria-expanded', String(open));
   nav?.classList.toggle('open', open);
   document.body.classList.toggle('menu-open', open);
+  if (nav) {
+    nav.inert = !open;
+    if (open) nav.removeAttribute('aria-hidden');
+    else nav.setAttribute('aria-hidden', 'true');
+  }
   if (open) nav?.querySelector('a')?.focus();
 });
 nav?.addEventListener('click', (event) => {
@@ -53,12 +66,20 @@ if (catalog) {
       else url.searchParams.set('category', category);
       history.replaceState(null, '', url);
     }
+    const languageLink = document.querySelector('.language-toggle');
+    if (languageLink) {
+      const alternate = new URL(languageLink.href, location.origin);
+      if (category === 'all') alternate.searchParams.delete('category');
+      else alternate.searchParams.set('category', category);
+      languageLink.setAttribute('href', alternate.pathname + alternate.search);
+    }
   }
   buttons.forEach((button) => button.addEventListener('click', () => filter(button.dataset.filter, true)));
   filter(new URLSearchParams(location.search).get('category') || 'all');
 }
 
-const gallery = [...document.querySelectorAll('[data-gallery]')];
+const galleryLinks = [...document.querySelectorAll('[data-gallery]')];
+const gallery = galleryLinks.filter((link, index, links) => links.findIndex((item) => item.href === link.href) === index);
 const lightbox = document.querySelector('.lightbox');
 let imageIndex = 0;
 let imageOpener = null;
@@ -72,10 +93,10 @@ function showImage(index) {
   lightbox.querySelector('[data-lightbox-position]').textContent = `${imageIndex + 1} / ${gallery.length}`;
 }
 if (lightbox && typeof lightbox.showModal === 'function') {
-  gallery.forEach((link, index) => link.addEventListener('click', (event) => {
+  galleryLinks.forEach((link) => link.addEventListener('click', (event) => {
     event.preventDefault();
     imageOpener = link;
-    showImage(index);
+    showImage(gallery.findIndex((item) => item.href === link.href));
     lightbox.showModal();
     document.body.classList.add('image-open');
   }));

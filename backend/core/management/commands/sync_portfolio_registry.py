@@ -51,8 +51,8 @@ class Command(BaseCommand):
                 "solution_en": item.get("solution_en", item["solution_ru"]),
                 "result_ru": item["result_ru"],
                 "result_en": item.get("result_en", item["result_ru"]),
-                "role_ru": item["role_ru"][:160],
-                "role_en": item.get("role_en", item["role_ru"])[:160],
+                "role_ru": item["role_ru"],
+                "role_en": item.get("role_en", item["role_ru"]),
                 "year": item["year"],
                 "tags": item["tags"],
                 "highlights": item["showcase"],
@@ -96,6 +96,8 @@ class Command(BaseCommand):
                     },
                 )
             for order, asset in enumerate(item.get("media_assets", [])):
+                if asset.get("source_url") in item["screenshots"]:
+                    continue
                 ProjectMedia.objects.get_or_create(
                     project=project,
                     url=asset["url"],

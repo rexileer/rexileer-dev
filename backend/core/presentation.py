@@ -1,6 +1,7 @@
 import json
 from functools import lru_cache
 from pathlib import Path
+from urllib.parse import urlencode
 
 from .content import CATEGORIES, SERVICES, UI, localize
 from .models import Project
@@ -36,7 +37,10 @@ def present_project(project, lang):
         }[service["slug"]]
         in categories
     ]
-    media_lookup = {item["url"]: item for item in source.get("media_assets", [])}
+    media_lookup = {
+        item.get("source_url", item["url"]): item
+        for item in source.get("media_assets", [])
+    }
     cover = source.get("cover_asset", {})
     if project.cover_image_url != cover.get("url"):
         cover = {"url": project.cover_image_url, "width": 1600, "height": 900}
@@ -45,19 +49,23 @@ def present_project(project, lang):
     media = []
     for item in project.media.all():
         asset = media_lookup.get(item.url, {})
+        caption = getattr(item, f"caption_{lang}")
+        if asset.get("source_url") and caption == source.get(f"title_{lang}"):
+            caption = asset.get(f"caption_{lang}", caption)
         media.append(
             {
                 **asset,
-                "url": item.url,
+                "url": asset.get("url", item.url),
                 "type": item.media_type,
                 "title": getattr(item, f"title_{lang}"),
-                "caption": getattr(item, f"caption_{lang}"),
+                "caption": caption,
                 "note": asset.get(f"note_{lang}", ""),
                 "width": asset.get("width", 1600),
                 "height": asset.get("height", 900),
                 "srcset": image_srcset(asset),
             }
         )
+    media = [item for item in media if item["url"] != cover.get("url")]
     return {
         "id": project.slug,
         "url": public_path(f"/projects/{project.slug}/", lang),
@@ -67,6 +75,15 @@ def present_project(project, lang):
         "problem": getattr(project, f"problem_{lang}"),
         "solution": getattr(project, f"solution_{lang}"),
         "result": getattr(project, f"result_{lang}"),
+        "card_problem": source.get(f"card_problem_{lang}")
+        or getattr(project, f"problem_{lang}"),
+        "card_solution": source.get(f"card_solution_{lang}")
+        or getattr(project, f"solution_{lang}"),
+        "card_result": source.get(f"card_result_{lang}")
+        or getattr(project, f"result_{lang}"),
+        "features": source.get(f"features_{lang}", []),
+        "flow": source.get(f"flow_{lang}", []),
+        "flow_note": source.get(f"flow_note_{lang}", ""),
         "role": getattr(project, f"role_{lang}"),
         "featured": project.featured,
         "tags": [
@@ -122,6 +139,12 @@ def page_context(request, lang):
     lang = lang if lang in ("ru", "en") else "ru"
     path = request.path
     base_path = path[3:] if path.startswith("/en/") else path
+    language_url = public_path(base_path, "ru" if lang == "en" else "en")
+    category = request.GET.get("category", "")
+    if base_path in ("/projects/", "/work/") and category in {
+        c["id"] for c in CATEGORIES
+    }:
+        language_url += "?" + urlencode({"category": category})
     return {
         "lang": lang,
         "ui": localize(UI, lang),
@@ -134,7 +157,7 @@ def page_context(request, lang):
         "canonical": BASE_URL + public_path(base_path, lang),
         "ru_url": BASE_URL + base_path,
         "en_url": BASE_URL + public_path(base_path, "en"),
-        "language_url": public_path(base_path, "ru" if lang == "en" else "en"),
+        "language_url": language_url,
         "og_image": BASE_URL + "/assets/social-card.png",
     }
 

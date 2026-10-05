@@ -1,8 +1,8 @@
 <section class="section contact-section shell" id="contact">
   <div class="contact-card" data-reveal>
     <p class="eyebrow">{{ ui.contact_eyebrow }}</p>
-    <h2>{{ ui.contact_title }}</h2>
-    <p class="contact-lead">{{ ui.contact_lead }}</p>
+    <h2>{{ contact_title|default:ui.contact_title }}</h2>
+    <p class="contact-lead">{{ contact_lead|default:ui.contact_lead }}</p>
     <div class="contact-links">
       <a class="button primary" href="https://t.me/rexileer" target="_blank" rel="noopener noreferrer" data-event="telegram_click" data-location="contact">{{ ui.telegram }} <span aria-hidden="true">↗</span></a>
       <a class="button" href="mailto:rexileer@mail.ru" data-event="email_click" data-location="contact">rexileer@mail.ru <span aria-hidden="true">↗</span></a>
