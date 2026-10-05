@@ -62,7 +62,7 @@
 - 20 Django tests; Ruff format/check; Django check и migration consistency;
   JavaScript syntax и static collection.
 - Все 68 страниц sitemap RU/EN: HTTP, H1, метаданные, JSON-LD, canonical и ссылки.
-- 117 внутренних ссылок, 148 WebP-файлов и соответствие размеров responsive assets.
+- 119 внутренних ссылок, 148 WebP-файлов и соответствие размеров responsive assets.
 - 52 сочетания страницы/ширины: 320/390/768/1440; дополнительно все 52 страницы
   кейсов в RU/EN проверены на 320 px.
 - Фильтры reload/RU↔EN в обоих каталогах; меню и клавиатурный фокус; якоря, FAQ,
