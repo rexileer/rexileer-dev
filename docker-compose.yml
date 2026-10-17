@@ -8,7 +8,7 @@ services:
       - ./site:/app/site:ro
       - portfolio_data:/app/db
     environment:
-      - DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY:-change-me-in-production}
+      - DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY:?Configure the private production signing key in .env}
       - DJANGO_DEBUG=0
       - DJANGO_DB_PATH=/app/db/db.sqlite3
       - SITE_DIR=/app/site

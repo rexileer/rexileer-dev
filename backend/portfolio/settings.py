@@ -1,9 +1,12 @@
 import os
 from pathlib import Path
 
+from .signing_config import load_secret_key
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "change-me-in-production")
+SECRET_KEY = load_secret_key(os.environ)
+SECRET_KEY_FALLBACKS = []
 DEBUG = os.environ.get("DJANGO_DEBUG", "0") == "1"
 ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", "*").split(",")
 

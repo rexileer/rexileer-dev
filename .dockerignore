@@ -1,0 +1,10 @@
+.git
+.env
+.env.*
+.local
+AGENTS.md
+agents.md
+ai-context
+**/__pycache__
+**/*.sqlite3
+backend/staticfiles
