@@ -1,0 +1,37 @@
+{% extends "core/site/base.html" %}
+{% block content %}
+<article class="section shell" style="max-width:850px">
+{% if lang == 'en' %}
+  <p class="eyebrow">Data on this website · updated 17 October 2026</p><h1 class="section-title">Privacy & analytics</h1>
+  <p class="section-intro">I use small first-party counters to understand which pages and sources bring visitors to my services. There are no external trackers, session recordings or browser fingerprints.</p>
+  <section class="section"><h2>What is recorded</h2>
+  <p>Successful public page views and, with JavaScript, clicks on Telegram, email and case links: page path without query parameters, timestamp, language, click type and placement. A click does not mean that a message or inquiry was received. Telegram conversations and email delivery are not tracked.</p>
+  <p>Only utm_source, utm_medium and utm_campaign are accepted, as technical labels of at most 64/32/64 characters: Latin letters, digits, underscores and hyphens, starting with a letter. Other query parameters and full referrer URLs are not stored in analytics. External referrers are reduced to their domain. Do not put names, contacts or other personal information in campaign labels.</p></section>
+  <section class="section"><h2>Attribution and cookies</h2>
+  <p>The signed first-party cookie rex_attribution keeps the first observed page and source for a fixed 30-minute window. It is HttpOnly and SameSite=Lax, and Secure over HTTPS. A new external arrival or changed valid campaign labels starts a new window. It has no permanent visitor ID. These windows are not unique people or verified sessions; missing cookies, consent signals and separate browsers affect the counts. This is not cross-device or end-to-end inquiry attribution.</p>
+  <p>Without JavaScript page counts and this cookie still work, but click events do not. If cookies are blocked, event attribution and entry detection are incomplete. Missing source labels/referrer mean “unlabelled / unknown”, not a proven direct visit. DNT: 1 and Sec-GPC: 1 disable these counters. Authenticated staff, known scanners and marked technical checks are excluded from the working report.</p>
+  <p>Django also uses csrftoken for request protection and sessionid for authenticated administration. These are separate from the attribution cookie.</p></section>
+  <section class="section"><h2>Storage and limits</h2>
+  <p>New analytics rows do not retain raw IP addresses or User-Agent strings. The server temporarily reads them to filter traffic and uses a daily rotating keyed IP hash to limit request frequency. This is pseudonymous technical data, not fully anonymous analytics; shared networks may share a limit.</p>
+  <p>Older page-counter records can contain IP addresses and User-Agent strings. They are excluded from the new summary. Both old and new detailed analytics rows are automatically deleted after 90 days by daily cleanup and at application startup. Access is restricted to authorized administrators.</p>
+  <p>The reverse proxy has separate technical access/error logs, which can contain IP addresses, request URLs and browser headers. They are not the acquisition report and have separate server rotation and backup policies. Do not send secrets in URLs. Analytics cleanup does not erase server logs or historical backups.</p>
+  <p>Questions about these data: <a href="mailto:rexileer@mail.ru">rexileer@mail.ru</a>.</p></section>
+{% else %}
+  <p class="eyebrow">Данные на сайте · обновлено 17 октября 2026</p><h1 class="section-title">Данные и аналитика</h1>
+  <p class="section-intro">Я использую небольшие счётчики на своём сервере, чтобы понимать, какие страницы и источники приводят посетителей к услугам. Внешних трекеров, записи экрана и отпечатков браузера нет.</p>
+  <section class="section"><h2>Что записывается</h2>
+  <p>Успешные просмотры публичных страниц и, при включённом JavaScript, клики по Telegram, email и ссылкам кейсов: путь без параметров запроса, время, язык, тип и расположение ссылки. Клик не означает полученное сообщение или обращение. Личные диалоги Telegram и доставку email сайт не отслеживает.</p>
+  <p>Из параметров принимаются только utm_source, utm_medium и utm_campaign — технические метки длиной до 64/32/64 символов: латинские буквы, цифры, подчёркивания и дефисы, начиная с буквы. Другие параметры и полные адреса referrer в аналитику не сохраняются. От внешнего referrer остаётся только домен. Не указывайте в метках имена, контакты и другие персональные сведения.</p></section>
+  <section class="section"><h2>Источники и cookies</h2>
+  <p>Подписанный cookie rex_attribution сохраняет первый наблюдаемый экран и источник на фиксированные 30 минут. Он HttpOnly, SameSite=Lax и Secure при HTTPS. Новый внешний переход или изменённые корректные метки начинают новое окно. Постоянного идентификатора посетителя нет. Такие окна не равны уникальным людям или достоверным сессиям: блокировка cookies, настройки приватности и разные браузеры влияют на счётчики. Сквозной атрибуции обращений и связи между устройствами нет.</p>
+  <p>Без JavaScript просмотры и этот cookie работают, клики не учитываются. Если cookies заблокированы, связь событий с источником и определение первого экрана неполны. Отсутствие меток/referrer означает «без метки / неизвестно», а не доказанный прямой заход. Заголовки DNT: 1 и Sec-GPC: 1 отключают эти счётчики. Авторизованные сотрудники, известные сканеры и помеченные технические проверки исключаются из рабочего отчёта.</p>
+  <p>Django также использует csrftoken для защиты запросов и sessionid для входа в админку. Это отдельные cookies, не метки привлечения.</p></section>
+  <section class="section"><h2>Хранение и ограничения</h2>
+  <p>В новых записях аналитики не хранятся исходные IP и строки User-Agent. Сервер кратковременно читает их для фильтрации и использует меняющийся раз в сутки HMAC IP для ограничения частоты запросов. Это псевдонимизированные технические данные, а не полностью анонимная аналитика; общий сетевой адрес может иметь общий лимит.</p>
+  <p>Старые записи счётчика могут содержать IP и User-Agent. Они не входят в новую сводку. Подробные записи обоих счётчиков, старые и новые, автоматически удаляются после 90 дней при ежедневной очистке и при запуске приложения. Доступ ограничен авторизованными администраторами.</p>
+  <p>У reverse proxy есть отдельные технические журналы доступа и ошибок: они могут содержать IP, адреса запросов и заголовки браузера. Это не отчёт привлечения; у них отдельная серверная ротация и правила резервного копирования. Не передавайте секреты в URL. Очистка аналитики не стирает серверные журналы и исторические резервные копии.</p>
+  <p>По вопросам данных: <a href="mailto:rexileer@mail.ru">rexileer@mail.ru</a>.</p></section>
+{% endif %}
+</article>
+{% include 'core/site/includes/contact.html' %}
+{% endblock %}

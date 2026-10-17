@@ -1,53 +1,24 @@
-{% extends "admin/change_list.html" %}
-
-{% block content_title %}
-  <h1>Аналитика визитов</h1>
+{% extends "admin/base_site.html" %}
+{% block content %}
+<style>
+.rex-report{max-width:1200px;line-height:1.6}.rex-report h2{font-size:1.2rem;font-weight:700;margin:1.5rem 0 .5rem}.rex-controls{display:flex;gap:16px;flex-wrap:wrap;align-items:center;margin-bottom:20px}.rex-controls select,.rex-controls button{padding:8px;border:1px solid #94a3b8;border-radius:6px;background:transparent;color:inherit}.rex-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:12px}.rex-cards div{border:1px solid #94a3b8;border-radius:8px;padding:14px}.rex-cards strong{display:block;font-size:1.8rem}.rex-scroll{overflow-x:auto;max-width:100%}.rex-sources{min-width:750px}.rex-table{width:100%;border-collapse:collapse}.rex-table th,.rex-table td{padding:9px;text-align:left;border-bottom:1px solid #94a3b8;overflow-wrap:anywhere}.rex-note{padding:12px;border-left:3px solid #94a3b8;margin:16px 0}.rex-test{border-color:#f59e0b}.rex-report a{text-decoration:underline}.rex-report p{margin:.7rem 0}
+</style>
+<div class="rex-report">
+<form class="rex-controls" method="get"><label>Период <select name="period"><option value="7" {% if days == 7 %}selected{% endif %}>7 дней</option><option value="30" {% if days == 30 %}selected{% endif %}>30 дней</option></select></label><label>Данные <select name="traffic"><option value="live" {% if not is_test %}selected{% endif %}>Рабочие</option><option value="test" {% if is_test %}selected{% endif %}>Проверочные</option></select></label><button type="submit">Показать</button></form>
+<p>Последние {{ days }} дней, начиная с {{ cutoff|date:"d.m.Y H:i" }} UTC. Учитываются только записи нового счётчика. В таблицах — до 30 строк, RU/EN показаны отдельными путями.</p>
+{% if is_test %}<p class="rex-note rex-test"><strong>Проверочные данные.</strong> Эти записи не входят в рабочий отчёт.</p>{% endif %}
+<div class="rex-cards"><div>Просмотры<strong>{{ totals.views }}</strong></div><div>Первые экраны цепочек<strong>{{ totals.entries }}</strong></div><div>Клики Telegram<strong>{{ totals.telegram }}</strong></div><div>Клики email<strong>{{ totals.email }}</strong></div><div>Клики на кейсы<strong>{{ totals.cases }}</strong></div></div>
+{% if sample_small %}<p class="rex-note">Малая выборка: {{ totals.views }} просмотров и {{ totals.telegram|add:totals.email }} контактных кликов. Для вывода об эффективности источника данных пока мало.</p>{% endif %}
+<h2>Источники и кампании</h2><p>На телефоне эту таблицу можно прокрутить вправо.</p><div class="rex-scroll"><table class="rex-table rex-sources"><thead><tr><th>utm_source / medium / campaign</th><th>Внешний домен</th><th>Просмотры</th><th>Первые экраны</th><th>Telegram</th><th>Email</th></tr></thead><tbody>{% for row in sources %}<tr><td>{{ row.utm_source|default:"Без метки / неизвестно" }} / {{ row.utm_medium|default:"—" }} / {{ row.utm_campaign|default:"—" }}</td><td>{{ row.referrer_domain|default:"—" }}</td><td>{{ row.views }}</td><td>{{ row.entries }}</td><td>{{ row.telegram }}</td><td>{{ row.email }}</td></tr>{% empty %}<tr><td colspan="6">Наблюдений пока нет.</td></tr>{% endfor %}</tbody></table></div>
+<h2>Первые наблюдаемые экраны</h2><p>Страница, открытая без действующего cookie атрибуции, либо при новом внешнем/помеченном переходе. Это не достоверные сессии и не уникальные посетители.</p>{% include 'admin/includes/acquisition_paths.html' with rows=entries %}
+<h2>Услуги по числу просмотров</h2>{% include 'admin/includes/acquisition_paths.html' with rows=services %}
+<h2>Кейсы по числу просмотров</h2>{% include 'admin/includes/acquisition_paths.html' with rows=cases %}
+<h2>Откуда нажимают на контакты</h2><div class="rex-scroll"><table class="rex-table"><thead><tr><th>Страница</th><th>Telegram</th><th>Email</th></tr></thead><tbody>{% for row in contact_pages %}<tr><td>{{ row.path }}</td><td>{{ row.telegram }}</td><td>{{ row.email }}</td></tr>{% empty %}<tr><td colspan="3">Кликов пока нет.</td></tr>{% endfor %}</tbody></table></div>
+<h2>Как читать показатели</h2>
+<p><strong>Просмотр</strong> — успешный GET публичной HTML-страницы после фильтрации. Перезагрузка — ещё один просмотр. Это не люди и не сессии. Счётчик включает RU/EN, исключает админку/API/assets/404, известных сканеров, staff, DNT/GPC и помеченные проверки.</p>
+<p><strong>Источник</strong> — первые корректные UTM и домен referrer в фиксированном окне cookie 30 минут. Новый внешний переход или изменённые метки начинают новое окно. Без cookies связь неполна; неизвестный источник не означает прямой заход. Источник клика может быть записан до начала выбранного периода; показаны события внутри периода. Сквозной атрибуции между устройствами и полученными обращениями нет.</p>
+<p><strong>Клик</strong> — действие в браузере с JavaScript. Telegram/email не подтверждают отправку сообщения, а case_open — загрузку страницы кейса. Фактически полученные обращения учитываются отдельно от этого отчёта. Повтор одинакового клика за 2 секунды подавляется. Без JavaScript работают просмотры, но не клики.</p>
+<p><strong>Защита и хранение:</strong> до 60 просмотров и 30 событий в минуту на суточный HMAC сетевого IP, отдельно для рабочих/проверочных данных. При общей сети лимит может быть общим; параллельные запросы могут слегка превысить его. Детальные записи удаляются после 90 дней, ежедневно и при запуске приложения. Сбой счётчика не блокирует сайт.</p>
+<p>До обновления за выбранный период: {{ legacy_views }} старых записей главной, {{ legacy_events }} старых кликов. Они исключены из сводки: прежний счётчик имел другую методику, а записи могут содержать IP/User-Agent. Новый счётчик хранит только суточный HMAC для ограничения частоты; данные нельзя назвать полностью анонимными. <a href="/privacy/" target="_blank" rel="noopener">Описание данных на сайте</a>.</p>
+</div>
 {% endblock %}
-
-{% block result_list %}
-  <style>
-    .analytics-table {
-      border-collapse: collapse;
-      margin-bottom: 1.5rem;
-      width: 100%;
-      max-width: 600px;
-    }
-    .analytics-table th,
-    .analytics-table td {
-      border: 1px solid #ddd;
-      padding: 8px 10px;
-      text-align: left;
-    }
-    .analytics-table th {
-      background: #f9f9f9;
-      font-weight: 600;
-    }
-  </style>
-
-  <h2>Сводка по дням</h2>
-  <table class="analytics-table">
-    <thead>
-      <tr>
-        <th>Дата</th>
-        <th>Всего визитов</th>
-        <th>Уникальных IP</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for row in daily_stats %}
-        <tr>
-          <td>{{ row.day }}</td>
-          <td>{{ row.visits }}</td>
-          <td>{{ row.unique_ips }}</td>
-        </tr>
-      {% empty %}
-        <tr>
-          <td colspan="3">Данных пока нет.</td>
-        </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-
-  {{ block.super }}
-{% endblock %}
-

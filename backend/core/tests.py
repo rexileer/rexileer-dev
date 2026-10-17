@@ -157,7 +157,9 @@ class VisitLoggingTests(TestCase):
 
         visit = VisitLog.objects.get()
         self.assertEqual(visit.path, "/")
-        self.assertEqual(visit.ip, "203.0.113.10")
+        self.assertIsNone(visit.ip)
+        self.assertEqual(visit.user_agent, "")
+        self.assertEqual(len(visit.client_key), 64)
 
     def test_scanner_homepage_request_is_not_logged(self):
         response = self.client.get(
@@ -169,7 +171,7 @@ class VisitLoggingTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(VisitLog.objects.count(), 0)
 
-    def test_repeated_homepage_request_from_same_client_is_logged_once(self):
+    def test_repeated_views_are_not_called_unique_visitors(self):
         headers = {
             "HTTP_USER_AGENT": (
                 "Mozilla/5.0 (Macintosh; Intel Mac OS X 13_1) "
@@ -181,7 +183,8 @@ class VisitLoggingTests(TestCase):
         self.client.get("/", **headers)
         self.client.get("/", **headers)
 
-        self.assertEqual(VisitLog.objects.count(), 1)
+        self.assertEqual(VisitLog.objects.count(), 2)
+        self.assertEqual(VisitLog.objects.filter(is_entry=True).count(), 1)
 
     def test_robots_txt_is_served_without_visit_log(self):
         response = self.client.get(
@@ -347,7 +350,9 @@ class PublicPagesTests(TestCase):
 
 class SiteEventTests(TestCase):
     def test_event_requires_csrf_and_stores_only_allowed_fields(self):
-        client = Client(enforce_csrf_checks=True)
+        client = Client(
+            enforce_csrf_checks=True, HTTP_USER_AGENT="Mozilla/5.0 Chrome/120"
+        )
         data = {"name": "telegram_click", "location": "hero", "path": "/", "lang": "ru"}
         self.assertEqual(client.post("/api/events/", data).status_code, 403)
         client.get("/")

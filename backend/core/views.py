@@ -8,8 +8,10 @@ from django.shortcuts import render
 from django.views.decorators.csrf import ensure_csrf_cookie
 from django.views.decorators.http import require_POST
 
+from .analytics import logger as analytics_logger
+from .analytics import public_path, record_event
 from .content import SERVICES
-from .models import Project, SiteEvent
+from .models import Project
 from .presentation import (
     BASE_URL,
     page_context,
@@ -75,6 +77,18 @@ def serve_page(request, lang):
         context["selected"] = [
             p for slug in selected for p in projects if p["id"] == slug
         ]
+    elif path == "/privacy":
+        template = "privacy"
+        context["title"] = (
+            "Privacy and analytics — Rexileer"
+            if lang == "en"
+            else "Данные и аналитика — Rexileer"
+        )
+        context["description"] = (
+            "How first-party counters, attribution and cookies work."
+            if lang == "en"
+            else "Какие данные сохраняются, как работают счётчики, метки и cookies."
+        )
     elif path == "/services":
         template = "services"
         context["title"] = ui["services_seo"]
@@ -179,19 +193,23 @@ def site_event(request):
             "footer",
         }
         or lang not in {"ru", "en"}
-        or not path.startswith("/")
+        or not public_path(path)
+        or (path.startswith("/en/")) != (lang == "en")
         or len(path) > 255
         or any(char in path for char in "?\r\n")
     ):
         return JsonResponse({"error": "invalid event"}, status=400)
-    SiteEvent.objects.create(name=name, location=location, path=path, lang=lang)
+    try:
+        record_event(request, name, location, path, lang)
+    except Exception:
+        analytics_logger.warning("Click analytics unavailable")
     return HttpResponse(status=204)
 
 
 def sitemap(request):
     from xml.sax.saxutils import escape
 
-    paths = ["/", "/services/", "/projects/", "/work/"]
+    paths = ["/", "/services/", "/projects/", "/work/", "/privacy/"]
     paths += [f"/services/{s['slug']}/" for s in SERVICES]
     paths += [
         f"/projects/{slug}/"

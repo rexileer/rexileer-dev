@@ -114,17 +114,19 @@ if (lightbox && typeof lightbox.showModal === 'function') {
   });
 }
 
-// Lightweight first-party events. No third-party scripts or personal details.
+// First-party click counters; attribution is bounded on the server.
 document.addEventListener('click', (event) => {
-  const target = event.target.closest('[data-event]');
-  if (!target) return;
-  const detail = { name: target.dataset.event, location: target.dataset.location, path: location.pathname, lang: document.documentElement.lang };
-  window.dispatchEvent(new CustomEvent('rexileer:event', { detail }));
-  const token = document.querySelector('meta[name="csrf-token"]')?.content;
-  if (!token) return;
-  const body = new FormData();
-  Object.entries(detail).forEach(([key, value]) => body.append(key, value));
-  body.append('csrfmiddlewaretoken', token);
-  if (navigator.sendBeacon?.('/api/events/', body)) return;
-  fetch('/api/events/', { method: 'POST', body, credentials: 'same-origin', keepalive: true }).catch(() => {});
+  try {
+    const target = event.target.closest('[data-event]');
+    if (!target) return;
+    const detail = { name: target.dataset.event, location: target.dataset.location, path: location.pathname, lang: document.documentElement.lang };
+    window.dispatchEvent(new CustomEvent('rexileer:event', { detail }));
+    const token = document.querySelector('meta[name="csrf-token"]')?.content;
+    if (!token) return;
+    const body = new FormData();
+    Object.entries(detail).forEach(([key, value]) => body.append(key, value));
+    body.append('csrfmiddlewaretoken', token);
+    if (navigator.sendBeacon?.('/api/events/', body)) return;
+    fetch('/api/events/', { method: 'POST', body, credentials: 'same-origin', keepalive: true }).catch(() => {});
+  } catch { /* Counters must never interrupt a link or email action. */ }
 });

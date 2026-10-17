@@ -1,9 +1,11 @@
 from django.contrib import admin, messages
-from django.db.models import Count, QuerySet
-from django.db.models.functions import TruncDate
+from django.core.exceptions import PermissionDenied
+from django.db.models import QuerySet
 from django.http import HttpRequest
+from django.template.response import TemplateResponse
 from unfold.admin import ModelAdmin, TabularInline
 
+from .analytics_report import acquisition_report
 from .models import (
     AIProviderConfig,
     Project,
@@ -23,7 +25,7 @@ class SiteEventAdmin(ModelAdmin):
     list_display = ("created_at", "name", "location", "path", "lang")
     list_filter = ("name", "location", "lang")
     date_hierarchy = "created_at"
-    readonly_fields = ("created_at", "name", "location", "path", "lang")
+    readonly_fields = tuple(field.name for field in SiteEvent._meta.fields)
 
     def has_add_permission(self, request):
         return False
@@ -336,32 +338,24 @@ class AIProviderConfigAdmin(ModelAdmin):
 
 @admin.register(VisitLog)
 class VisitAnalyticsAdmin(ModelAdmin):
-    change_list_template = "admin/visit_analytics.html"
-    date_hierarchy = "created_at"
-    list_display = ("created_at", "path", "ip", "user_agent")
-    readonly_fields = ("created_at", "path", "ip", "user_agent")
+    readonly_fields = tuple(field.name for field in VisitLog._meta.fields)
 
     def has_add_permission(self, request):
         return False
 
     def has_change_permission(self, request, obj=None):
-        if request.method in ("GET", "HEAD"):
-            return True
         return False
 
     def changelist_view(self, request, extra_context=None):
-        qs = VisitLog.objects.all()
-        daily_stats = (
-            qs.annotate(day=TruncDate("created_at"))
-            .values("day")
-            .annotate(
-                visits=Count("id"),
-                unique_ips=Count("ip", distinct=True),
-            )
-            .order_by("-day")
-        )
-
-        extra_context = extra_context or {}
-        extra_context["daily_stats"] = daily_stats
-
-        return super().changelist_view(request, extra_context=extra_context)
+        if not self.has_view_permission(request):
+            raise PermissionDenied
+        days = 30 if request.GET.get("period") == "30" else 7
+        is_test = request.GET.get("traffic") == "test"
+        context = {
+            **self.admin_site.each_context(request),
+            "opts": self.model._meta,
+            "title": "Аналитика привлечения",
+            **acquisition_report(days, is_test),
+            **(extra_context or {}),
+        }
+        return TemplateResponse(request, "admin/visit_analytics.html", context)

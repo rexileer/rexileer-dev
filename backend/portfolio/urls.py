@@ -18,6 +18,8 @@ urlpatterns = [
     path("projects/", serve_site, {"path": "index.html"}),
     path("projects/<slug:slug>/", serve_site, {"path": "index.html"}),
     path("work/", serve_site, {"path": "index.html"}),
+    path("privacy/", serve_site),
+    path("en/privacy/", serve_site, {"lang": "en"}),
     path("services/", serve_site),
     path("services/<slug:slug>/", serve_site),
     path("en/", serve_site, {"lang": "en"}),

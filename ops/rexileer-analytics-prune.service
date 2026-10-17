@@ -1,0 +1,9 @@
+[Unit]
+Description=Remove Rexileer analytics older than 90 days
+Requires=docker.service
+After=docker.service
+
+[Service]
+Type=oneshot
+WorkingDirectory=/root/rexileer-dev
+ExecStart=/usr/bin/docker compose exec -T app python manage.py prune_analytics

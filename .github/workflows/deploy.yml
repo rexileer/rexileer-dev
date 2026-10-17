@@ -140,6 +140,11 @@ jobs:
           for i in $(seq 1 30); do
             if curl -fsS http://127.0.0.1:8080/ >/dev/null; then
               docker compose ps
+              install -m 0644 ops/rexileer-analytics-prune.service /etc/systemd/system/
+              install -m 0644 ops/rexileer-analytics-prune.timer /etc/systemd/system/
+              systemctl daemon-reload
+              systemctl enable --now rexileer-analytics-prune.timer
+              systemctl is-active --quiet rexileer-analytics-prune.timer
               exit 0
             fi
             sleep 2

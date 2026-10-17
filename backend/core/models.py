@@ -341,7 +341,27 @@ class AIProviderConfig(models.Model):
         )
 
 
-class SiteEvent(models.Model):
+class AnalyticsKey(models.Model):
+    """Private singleton; independent of the application's existing signing key."""
+
+    key = models.CharField(max_length=64)
+
+
+class AnalyticsFields(models.Model):
+    utm_source = models.CharField(max_length=64, blank=True)
+    utm_medium = models.CharField(max_length=32, blank=True)
+    utm_campaign = models.CharField(max_length=64, blank=True)
+    referrer_domain = models.CharField(max_length=253, blank=True)
+    entry_path = models.CharField(max_length=255, blank=True)
+    client_key = models.CharField(max_length=64, blank=True)
+    is_test = models.BooleanField(default=False, db_index=True)
+    version = models.PositiveSmallIntegerField(default=0)
+
+    class Meta:
+        abstract = True
+
+
+class SiteEvent(AnalyticsFields):
     name = models.CharField(max_length=40)
     location = models.CharField(max_length=40)
     path = models.CharField(max_length=255)
@@ -352,12 +372,16 @@ class SiteEvent(models.Model):
         ordering = ["-created_at"]
         verbose_name = "Событие сайта"
         verbose_name_plural = "События сайта"
+        indexes = [
+            models.Index(fields=["client_key", "created_at"], name="site_event_rate")
+        ]
 
 
-class VisitLog(models.Model):
+class VisitLog(AnalyticsFields):
     """Логи визитов для простой аналитики."""
 
     path = models.CharField(max_length=255)
+    is_entry = models.BooleanField(default=False)
     ip = models.GenericIPAddressField(null=True, blank=True)
     user_agent = models.TextField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True, db_index=True)
@@ -365,7 +389,10 @@ class VisitLog(models.Model):
     class Meta:
         ordering = ["-created_at"]
         verbose_name = "Запись визита"
-        verbose_name_plural = "Записи визитов"
+        verbose_name_plural = "Аналитика привлечения"
+        indexes = [
+            models.Index(fields=["client_key", "created_at"], name="page_view_rate")
+        ]
 
     def __str__(self):
         return f"{self.ip} {self.path} {self.created_at}"

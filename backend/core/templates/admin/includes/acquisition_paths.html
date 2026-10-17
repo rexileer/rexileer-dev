@@ -1,0 +1,1 @@
+<div class="rex-scroll"><table class="rex-table"><thead><tr><th>Страница</th><th>Наблюдений</th></tr></thead><tbody>{% for row in rows %}<tr><td>{{ row.path }}</td><td>{{ row.total }}</td></tr>{% empty %}<tr><td colspan="2">Наблюдений пока нет.</td></tr>{% endfor %}</tbody></table></div>
