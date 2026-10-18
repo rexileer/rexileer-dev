@@ -178,7 +178,8 @@ if (root) {
     for (const [selector, key, convert] of [['[data-confirmed]', 'confirmed', e => e.checked], ['[data-term]', 'expired', e => e.value === 'expired'], ['[data-question]', 'question', e => Number(e.value)], ['[data-source]', 'source', e => e.checked]]) panel.querySelector(selector)?.addEventListener('change', event => dispatch(panel, { type: 'input', key, value: convert(event.target) }));
   });
   tabs.forEach((tab, index) => {
-    tab.addEventListener('click', () => choose(index));
+    tab.setAttribute('role', 'tab');
+    tab.addEventListener('click', event => { event.preventDefault(); choose(index); });
     tab.addEventListener('keydown', event => {
       const next = event.key === 'ArrowRight' ? (index + 1) % tabs.length : event.key === 'ArrowLeft' ? (index - 1 + tabs.length) % tabs.length : event.key === 'Home' ? 0 : event.key === 'End' ? tabs.length - 1 : null;
       if (next !== null) { event.preventDefault(); choose(next, true); }
@@ -186,7 +187,7 @@ if (root) {
   });
   document.addEventListener('visibilitychange', () => { if (document.hidden) pause(); });
   reduced.addEventListener('change', () => pause());
-  root.querySelector('[data-scenario-tabs]').hidden = false; root.classList.add('is-enhanced-lab'); choose(0);
+  root.querySelector('[data-scenario-tabs]').setAttribute('role', 'tablist'); root.classList.add('is-enhanced-lab'); choose(0);
   if ('IntersectionObserver' in window) new IntersectionObserver(entries => { visible = entries[0].isIntersecting; if (!visible) pause(); }, { threshold: .05 }).observe(root);
   else visible = true;
   if ('ResizeObserver' in window) new ResizeObserver(() => {

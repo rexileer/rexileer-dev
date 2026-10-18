@@ -1,7 +1,8 @@
 <section class="process-lab" data-process-lab aria-label="{{ ui.lab_title }}">
+  <noscript><style>.lab-scenario > summary { display: list-item; }</style></noscript>
   <div class="lab-top"><h2>{{ ui.lab_title }}</h2><span>{{ ui.lab_note }}</span></div>
-  <div class="lab-tabs" role="tablist" aria-label="{{ ui.lab_title }}" data-scenario-tabs hidden>{% for scenario in scenarios %}<button type="button" id="lab-tab-{{ scenario.id }}" role="tab" data-scenario-tab="{{ scenario.id }}" aria-controls="lab-{{ scenario.id }}" aria-selected="{% if forloop.first %}true{% else %}false{% endif %}">{{ scenario.label }}</button>{% endfor %}</div>
-  {% for scenario in scenarios %}<details class="lab-scenario" id="lab-{{ scenario.id }}" data-scenario="{{ scenario.id }}" {% if forloop.first %}open{% endif %}><summary>{{ scenario.label }}</summary>
+  <nav class="lab-tabs" aria-label="{{ ui.lab_title }}" data-scenario-tabs>{% for scenario in scenarios %}<a id="lab-tab-{{ scenario.id }}" href="#lab-{{ scenario.id }}" data-scenario-tab="{{ scenario.id }}" aria-controls="lab-{{ scenario.id }}">{{ scenario.label }}</a>{% endfor %}</nav>
+  {% for scenario in scenarios %}<details class="lab-scenario" id="lab-{{ scenario.id }}" data-scenario="{{ scenario.id }}" open><summary>{{ scenario.label }}</summary>
     <div class="lab-fallback" data-lab-fallback><p>{{ scenario.input }}</p><ol>{% for step in scenario.steps %}<li><strong>{{ step.title }}</strong> — {{ step.detail }}</li>{% endfor %}</ol><p><strong>{{ scenario.output }}</strong> {{ scenario.result }}</p></div>
     <div class="lab-interactive" data-lab-interactive hidden>
       <div class="lab-controls">

@@ -58,6 +58,8 @@ class PortfolioExperienceTests(TestCase):
             self.assertContains(response, "data-source")
             self.assertContains(response, 'id="lab-copy"')
             self.assertContains(response, "process-lab.mjs?v=")
+            for kind in ("collection", "access", "knowledge"):
+                self.assertContains(response, f'href="#lab-{kind}"')
             self.assertNotContains(response, "https://t.me/+")
         for name in ("lab-model", "process-lab"):
             response = self.client.get(f"/assets/js/{name}.mjs?v=verification")

@@ -53,6 +53,12 @@ quiet completion/user-action announcements are preserved. Controls, including
 recovery, precede the diagram. Without JS, native disclosures retain all three
 complete four-step explanations and their real case links.
 
+Scenario navigation begins as ordinary fragment links to open disclosures.
+The controller enhances it to keyboard tabs without adding a new layout row.
+An early enhancement flag prevents the expanded no-JS mobile navigation from
+flashing before its menu initializes. The lab reserves space only during
+initialization; no-JS keeps its natural disclosure layout.
+
 Large site surfaces in the lab, featured MeatBot spread and service audit block
 now use dark colors. Real screenshots, original media, galleries and their
 provenance remain unchanged. No bitmap assets were added or removed in this
