@@ -10,7 +10,8 @@ from django.views.decorators.http import require_POST
 
 from .analytics import logger as analytics_logger
 from .analytics import public_path, record_event
-from .content import SERVICES
+from .content import SERVICES, localize
+from .experience import FEATURED, SCENARIOS
 from .models import Project
 from .presentation import (
     BASE_URL,
@@ -66,16 +67,19 @@ def serve_page(request, lang):
     kind = "WebPage"
     extra = None
     if path == "/":
-        selected = [
-            "ai-lead-scoring",
-            "ai-consultant-bitrix-rag",
-            "meatbot-production-crm",
-            "avito-parts-parser",
-            "priceflow-ai",
-            "payment-broadcast-bot",
-        ]
         context["selected"] = [
-            p for slug in selected for p in projects if p["id"] == slug
+            {**project, **localize(FEATURED[slug], lang)}
+            for slug in FEATURED
+            for project in projects
+            if project["id"] == slug
+        ]
+        context["scenarios"] = [
+            {
+                **localize(scenario, lang),
+                "case_url": ("/en" if lang == "en" else "")
+                + f"/projects/{scenario['project']}/",
+            }
+            for scenario in SCENARIOS
         ]
     elif path == "/privacy":
         template = "privacy"

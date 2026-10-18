@@ -78,6 +78,117 @@ if (catalog) {
   filter(new URLSearchParams(location.search).get('category') || 'all');
 }
 
+// A finite, user-started process model. No network calls or background playback.
+const processLab = document.querySelector('[data-process-lab]');
+if (processLab) {
+  const tabs = [...processLab.querySelectorAll('[data-scenario-tab]')];
+  const panels = [...processLab.querySelectorAll('[data-scenario]')];
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+  let selected = 0, stage = 0, phase = 'idle', timer = null;
+  const clearTimer = () => { if (timer !== null) clearInterval(timer); timer = null; };
+  function render() {
+    const panel = panels[selected];
+    const steps = [...panel.querySelectorAll('[data-lab-step]')];
+    steps.forEach((button, index) => {
+      button.setAttribute('aria-pressed', String(index === stage));
+      button.closest('[data-lab-node]').dataset.state = index < stage ? 'done' : index === stage ? 'current' : 'waiting';
+    });
+    panel.querySelector('[data-lab-position]').textContent = `${processLab.dataset.stepLabel} 0${stage + 1} / 04`;
+    panel.querySelector('[data-lab-detail]').textContent = steps[stage].dataset.detail;
+    panel.dataset.complete = String(stage === steps.length - 1);
+    const button = panel.querySelector('[data-lab-run]');
+    button.textContent = phase === 'running' ? processLab.dataset.pause : phase === 'paused' ? processLab.dataset.resume : phase === 'finished' ? processLab.dataset.again : processLab.dataset.run;
+  }
+  function pause() {
+    clearTimer();
+    if (phase === 'running') { phase = 'paused'; render(); }
+  }
+  function selectScenario(index, focus = false) {
+    clearTimer(); selected = index; stage = reduced.matches ? 3 : 0; phase = reduced.matches ? 'finished' : 'idle';
+    tabs.forEach((tab, i) => { tab.setAttribute('aria-selected', String(i === selected)); tab.tabIndex = i === selected ? 0 : -1; });
+    panels.forEach((panel, i) => { panel.hidden = i !== selected; panel.open = i === selected; });
+    render();
+    if (focus) tabs[index].focus();
+  }
+  processLab.querySelector('[data-scenario-tabs]').hidden = false;
+  processLab.classList.add('is-enhanced-lab');
+  panels.forEach((panel, index) => {
+    panel.setAttribute('role', 'tabpanel'); panel.setAttribute('aria-labelledby', tabs[index].id);
+    panel.querySelectorAll('.lab-static-step').forEach(span => { span.hidden = true; });
+    panel.querySelector('[data-lab-explanation]').hidden = false;
+    panel.querySelectorAll('[data-lab-step]').forEach((button, step) => {
+      button.hidden = false;
+      button.addEventListener('click', () => { clearTimer(); stage = step; phase = stage === 3 ? 'finished' : 'paused'; render(); });
+    });
+    const run = panel.querySelector('[data-lab-run]'); run.hidden = false;
+    run.addEventListener('click', () => {
+      if (phase === 'running') { pause(); return; }
+      if (reduced.matches) { clearTimer(); stage = 3; phase = 'finished'; render(); return; }
+      if (phase !== 'paused' || stage === 3) stage = 0;
+      phase = 'running'; render();
+      timer = setInterval(() => { stage += 1; if (stage >= 3) { clearTimer(); phase = 'finished'; } render(); }, 1100);
+    });
+  });
+  tabs.forEach((tab, index) => {
+    tab.addEventListener('click', () => selectScenario(index));
+    tab.addEventListener('keydown', event => {
+      let next = index;
+      if (event.key === 'ArrowRight') next = (index + 1) % tabs.length;
+      else if (event.key === 'ArrowLeft') next = (index - 1 + tabs.length) % tabs.length;
+      else if (event.key === 'Home') next = 0;
+      else if (event.key === 'End') next = tabs.length - 1;
+      else return;
+      event.preventDefault(); selectScenario(next, true);
+    });
+  });
+  document.addEventListener('visibilitychange', () => { if (document.hidden) pause(); });
+  if ('IntersectionObserver' in window) new IntersectionObserver(entries => { if (!entries[0].isIntersecting) pause(); }, { threshold: .1 }).observe(processLab);
+  reduced.addEventListener('change', () => { if (reduced.matches) { pause(); stage = 3; phase = 'finished'; render(); } });
+  selectScenario(0);
+}
+
+// The full image list remains native HTML without JavaScript.
+document.querySelectorAll('[data-study-viewer]').forEach(viewer => {
+  const frames = [...viewer.querySelectorAll('[data-study-frame]')];
+  const tablist = viewer.querySelector('[data-study-tabs]');
+  if (frames.length < 2) return;
+  const tabs = frames.map((frame, index) => {
+    const button = document.createElement('button'); button.type = 'button'; button.id = `screen-tab-${index}`;
+    button.setAttribute('role', 'tab'); button.setAttribute('aria-controls', frame.id);
+    const image = frame.querySelector('img');
+    if (image?.srcset) {
+      const thumb = document.createElement('img'); thumb.src = image.srcset.split(',')[0].trim().split(' ')[0]; thumb.alt = ''; thumb.width = 96; thumb.height = 60; thumb.loading = 'lazy'; button.append(thumb);
+    }
+    const label = document.createElement('span'); label.textContent = `0${index + 1} / ${frame.querySelector('figcaption strong')?.textContent || ''}`; button.append(label);
+    frame.setAttribute('role', 'tabpanel'); frame.setAttribute('aria-labelledby', button.id); frame.tabIndex = 0;
+    tablist.append(button); return button;
+  });
+  let frameTransition = null;
+  const stopTransition = () => { frameTransition?.cancel(); frameTransition = null; };
+  document.addEventListener('visibilitychange', () => { if (document.hidden) stopTransition(); });
+  if ('IntersectionObserver' in window) new IntersectionObserver(entries => { if (!entries[0].isIntersecting) stopTransition(); }).observe(viewer);
+  function select(index, focus = false, motion = false) {
+    stopTransition();
+    frames.forEach((frame, i) => { frame.hidden = i !== index; });
+    tabs.forEach((tab, i) => { tab.setAttribute('aria-selected', String(i === index)); tab.tabIndex = i === index ? 0 : -1; });
+    if (motion && !document.hidden && !matchMedia('(prefers-reduced-motion: reduce)').matches && frames[index].animate) frameTransition = frames[index].animate([{ opacity: .65 }, { opacity: 1 }], { duration: 180 });
+    if (focus) tabs[index].focus();
+  }
+  tabs.forEach((tab, index) => {
+    tab.addEventListener('click', () => select(index, false, true));
+    tab.addEventListener('keydown', event => {
+      let next = index;
+      if (event.key === 'ArrowRight') next = (index + 1) % tabs.length;
+      else if (event.key === 'ArrowLeft') next = (index - 1 + tabs.length) % tabs.length;
+      else if (event.key === 'Home') next = 0;
+      else if (event.key === 'End') next = tabs.length - 1;
+      else return;
+      event.preventDefault(); select(next, true, true);
+    });
+  });
+  tablist.hidden = false; viewer.classList.add('is-enhanced-viewer'); select(0);
+});
+
 const galleryLinks = [...document.querySelectorAll('[data-gallery]')];
 const gallery = galleryLinks.filter((link, index, links) => links.findIndex((item) => item.href === link.href) === index);
 const lightbox = document.querySelector('.lightbox');

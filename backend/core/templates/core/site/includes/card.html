@@ -1,7 +1,7 @@
-<article class="case-card" data-categories="{{ project.category_ids }}" data-reveal>
+<article class="case-card{% if compact %} catalog-entry{% endif %}" data-categories="{{ project.category_ids }}" data-reveal>
   <a class="case-media-link" href="{{ project.url }}" tabindex="-1" aria-hidden="true" data-event="case_open" data-location="cases">
-    <div class="media-toolbar"><span class="window-dots" aria-hidden="true"><i></i><i></i><i></i></span><span>{{ project.category_label }}</span><span>{{ forloop.counter|stringformat:'02d' }}</span></div>
-    <div class="case-media">{% include 'core/site/includes/image.html' with asset=project.cover %}</div>
+    {% if not compact %}<div class="media-toolbar"><span class="window-dots" aria-hidden="true"><i></i><i></i><i></i></span><span>{{ project.category_label }}</span><span>{{ forloop.counter|stringformat:'02d' }}</span></div>
+    {% endif %}<div class="case-media">{% include 'core/site/includes/image.html' with asset=project.cover %}</div>
     {% if project.cover.demo or 'Иллюстрация' in project.cover.note or 'Flow illustration' in project.cover.note %}<p class="card-visual-note">{{ project.cover.note }}</p>{% endif %}
   </a>
   <div class="case-body">
@@ -9,7 +9,7 @@
     <h3 class="case-title"><a href="{{ project.url }}" data-event="case_open" data-location="cases">{{ project.title }}</a></h3>
     <p class="case-description"><span class="case-problem-label">{{ ui.problem }}</span> {{ project.card_problem|default:project.description }}</p>
     <dl class="case-outcome"><dt>{{ ui.solution }}</dt><dd>{{ project.card_solution }}</dd><dt>{{ ui.result }}</dt><dd>{{ project.card_result }}</dd></dl>
-    <div class="tag-list">{% for tag in project.tags|slice:':4' %}<span class="tag">{{ tag }}</span>{% endfor %}</div>
-    <a class="case-read" href="{{ project.url }}" data-event="case_open" data-location="cases">{{ ui.read_case }} <span aria-hidden="true">→</span></a>
+    {% if not compact %}<div class="tag-list">{% for tag in project.tags|slice:':4' %}<span class="tag">{{ tag }}</span>{% endfor %}</div>
+    {% endif %}<a class="case-read" href="{{ project.url }}" data-event="case_open" data-location="cases">{{ ui.read_case }} <span aria-hidden="true">→</span></a>
   </div>
 </article>

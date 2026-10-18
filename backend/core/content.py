@@ -16,6 +16,46 @@ def localize(value, lang):
 
 
 UI = {
+    "intro_title": pair("Сложная задача.", "Complex problem."),
+    "intro_accent": pair("Рабочая система.", "Working system."),
+    "intro_copy": pair(
+        "Проектирую Python backend, связываю сервисы и автоматизирую процессы. Новая разработка или доработка существующего кода.",
+        "I design Python backends, connect services and automate workflows. New products and existing codebases alike.",
+    ),
+    "intro_hint": pair(
+        "Опишите процесс и нужный результат — уточню детали и предложу следующий шаг.",
+        "Describe your workflow and desired result. I'll clarify the details and suggest the next step.",
+    ),
+    "lab_title": pair(
+        "Как задача становится системой", "How a problem becomes a system"
+    ),
+    "lab_note": pair(
+        "Демонстрация процесса · без внешних запросов",
+        "Process demonstration · no external requests",
+    ),
+    "lab_input": pair("На входе", "Input"),
+    "lab_output": pair("На выходе", "Output"),
+    "lab_run": pair("Запустить разбор", "Run walkthrough"),
+    "lab_pause": pair("Пауза", "Pause"),
+    "lab_resume": pair("Продолжить", "Continue"),
+    "lab_again": pair("Ещё раз", "Run again"),
+    "lab_step": pair("Шаг", "Step"),
+    "lab_case": pair(
+        "Кейс, на котором основан сценарий", "The case behind this workflow"
+    ),
+    "selected_title": pair("Разобрать по делу.", "See how it works."),
+    "implemented": pair("Реализованный сценарий", "Implemented workflow"),
+    "catalog_title": pair("Работы и решения.", "Work & systems."),
+    "technical_view": pair("Технический контур", "Technical outline"),
+    "technical_hint": pair(
+        "Подтверждённый стек проекта. Разбор реализации — ниже.",
+        "The documented project stack. Implementation details follow below.",
+    ),
+    "screens": pair("Экраны и архитектура", "Screens & architecture"),
+    "screens_hint": pair(
+        "Выберите экран. Нажмите на изображение, чтобы открыть целиком.",
+        "Choose a screen. Open the image to inspect it at full size.",
+    ),
     "cases": pair("Проекты", "Projects"),
     "services": pair("Услуги", "Services"),
     "work": pair("Другие работы", "More work"),
@@ -68,7 +108,7 @@ UI = {
         "Задача. Решение. Рабочий результат.", "Real problems. Working systems."
     ),
     "cases_lead": pair(
-        "Интерфейсы, сценарии и архитектурные решения из реальных проектов. Без выдуманных отзывов и показателей.",
+        "Интерфейсы, рабочие сценарии и архитектура. От задачи и моего вклада — к тому, как устроен продукт.",
         "Actual interfaces, workflows and engineering decisions. Each case explains the problem, my contribution and the resulting system.",
     ),
     "all_cases": pair("Все кейсы", "All case studies"),
