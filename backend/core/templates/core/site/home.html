@@ -1,4 +1,10 @@
 {% extends 'core/site/base.html' %}
+{% block extra_scripts %}
+<link rel="preload" href="/assets/fonts/a30ddcd34970.woff2" as="font" type="font/woff2" crossorigin />
+{% if lang == 'ru' %}<link rel="preload" href="/assets/fonts/c268b459a932.woff2" as="font" type="font/woff2" crossorigin />{% endif %}
+<link rel="modulepreload" href="/assets/js/lab-model.mjs?v={{ asset_version }}" />
+<script type="module" src="/assets/js/process-lab.mjs?v={{ asset_version }}"></script>
+{% endblock %}
 {% block content %}
 <section class="intro shell" aria-labelledby="intro-title">
   <div class="intro-top"><div><p class="intro-kicker">REXILEER <span>/</span> PYTHON ENGINEERING</p><h1 id="intro-title">{{ ui.intro_title }} <em>{{ ui.intro_accent }}</em></h1></div>

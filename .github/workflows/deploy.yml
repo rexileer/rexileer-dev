@@ -69,7 +69,12 @@ jobs:
       - name: Check migration consistency
         run: python backend/manage.py makemigrations --check --dry-run
       - name: Check JavaScript syntax
-        run: node --check site/script.js
+        run: |
+          node --check site/script.js
+          node --check site/assets/js/lab-model.mjs
+          node --check site/assets/js/process-lab.mjs
+      - name: Check deterministic process models
+        run: node --test tests/lab-model.test.mjs
       - name: Collect static assets
         run: python backend/manage.py collectstatic --noinput
       - name: Run existing tests

@@ -11,7 +11,7 @@ from django.views.decorators.http import require_POST
 from .analytics import logger as analytics_logger
 from .analytics import public_path, record_event
 from .content import SERVICES, localize
-from .experience import FEATURED, SCENARIOS
+from .experience import FEATURED, LAB_COPY, SCENARIOS
 from .models import Project
 from .presentation import (
     BASE_URL,
@@ -62,11 +62,14 @@ def serve_page(request, lang):
         (SITE_DIR / "styles.css").read_bytes()
         + (SITE_DIR / "script.js").read_bytes()
         + (SITE_DIR / "assets" / "fonts" / "fonts.css").read_bytes()
+        + (SITE_DIR / "assets" / "js" / "lab-model.mjs").read_bytes()
+        + (SITE_DIR / "assets" / "js" / "process-lab.mjs").read_bytes()
     ).hexdigest()[:12]
     template = "home"
     kind = "WebPage"
     extra = None
     if path == "/":
+        context["lab_copy"] = localize(LAB_COPY, lang)
         context["selected"] = [
             {**project, **localize(FEATURED[slug], lang)}
             for slug in FEATURED
@@ -79,7 +82,9 @@ def serve_page(request, lang):
                 "case_url": ("/en" if lang == "en" else "")
                 + f"/projects/{scenario['project']}/",
             }
-            for scenario in SCENARIOS
+            for scenario in sorted(
+                SCENARIOS, key=lambda item: item["id"] != "collection"
+            )
         ]
     elif path == "/privacy":
         template = "privacy"
@@ -254,6 +259,7 @@ def serve_asset(request, path):
             ".webp": "image/webp",
             ".woff2": "font/woff2",
             ".svg": "image/svg+xml",
+            ".mjs": "text/javascript",
         }.get(file_path.suffix.lower())
         or mimetypes.guess_type(file_path.name)[0]
         or "application/octet-stream"

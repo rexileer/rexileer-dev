@@ -1,8 +1,36 @@
-<section class="process-lab" data-process-lab aria-label="{{ ui.lab_title }}" data-run="{{ ui.lab_run }}" data-pause="{{ ui.lab_pause }}" data-resume="{{ ui.lab_resume }}" data-again="{{ ui.lab_again }}" data-step-label="{{ ui.lab_step }}">
+<section class="process-lab" data-process-lab aria-label="{{ ui.lab_title }}">
   <div class="lab-top"><h2>{{ ui.lab_title }}</h2><span>{{ ui.lab_note }}</span></div>
   <div class="lab-tabs" role="tablist" aria-label="{{ ui.lab_title }}" data-scenario-tabs hidden>{% for scenario in scenarios %}<button type="button" id="lab-tab-{{ scenario.id }}" role="tab" data-scenario-tab="{{ scenario.id }}" aria-controls="lab-{{ scenario.id }}" aria-selected="{% if forloop.first %}true{% else %}false{% endif %}">{{ scenario.label }}</button>{% endfor %}</div>
-  {% for scenario in scenarios %}<details class="lab-scenario" id="lab-{{ scenario.id }}" data-scenario="{{ scenario.id }}" {% if forloop.first %}open{% endif %}><summary>{{ scenario.label }}</summary><div class="lab-body">
-    <div class="lab-route"><p class="lab-input"><span>{{ ui.lab_input }}</span>{{ scenario.input }}</p><ol class="lab-chain">{% for step in scenario.steps %}<li data-lab-node><span class="lab-static-step"><b>0{{ forloop.counter }} / {{ step.title }}</b><span>{{ step.detail }}</span></span><button type="button" data-lab-step="{{ forloop.counter0 }}" data-detail="{{ step.detail }}" hidden><span class="lab-node" aria-hidden="true">0{{ forloop.counter }}</span><span>{{ step.title }}</span></button></li>{% endfor %}</ol><div class="lab-explanation" hidden data-lab-explanation><span data-lab-position></span><p data-lab-detail aria-live="polite"></p></div><a class="lab-case" href="{{ scenario.case_url }}" data-event="case_open" data-location="hero">{{ ui.lab_case }} ↗</a></div>
-    <div class="lab-result"><span class="lab-result-mark" aria-hidden="true">↳</span><p class="lab-output-label">{{ ui.lab_output }}</p><h3>{{ scenario.output }}</h3><p>{{ scenario.result }}</p><button class="lab-run" type="button" data-lab-run hidden>{{ ui.lab_run }} <span aria-hidden="true">→</span></button></div>
-  </div></details>{% endfor %}
+  {% for scenario in scenarios %}<details class="lab-scenario" id="lab-{{ scenario.id }}" data-scenario="{{ scenario.id }}" {% if forloop.first %}open{% endif %}><summary>{{ scenario.label }}</summary>
+    <div class="lab-fallback" data-lab-fallback><p>{{ scenario.input }}</p><ol>{% for step in scenario.steps %}<li><strong>{{ step.title }}</strong> — {{ step.detail }}</li>{% endfor %}</ol><p><strong>{{ scenario.output }}</strong> {{ scenario.result }}</p></div>
+    <div class="lab-interactive" data-lab-interactive hidden>
+      <div class="lab-controls">
+        <div class="lab-inputs">{% if scenario.id == 'collection' %}<label class="batch-input">{{ lab_copy.size }} <output data-size-output>4</output><input type="range" min="1" max="12" step="1" value="4" data-batch-size /></label><label class="check-input"><input type="checkbox" data-fault />{{ lab_copy.fault }}</label>{% elif scenario.id == 'access' %}<label class="check-input"><input type="checkbox" data-confirmed />{{ lab_copy.confirmed }}</label><label>{{ lab_copy.term }} <select data-term><option value="valid">{{ lab_copy.validTerm }}</option><option value="expired">{{ lab_copy.expiredTerm }}</option></select></label>{% else %}<label>{{ lab_copy.question }} <select data-question>{% for question in lab_copy.questions %}<option value="{{ forloop.counter0 }}">{{ question }}</option>{% endfor %}</select></label><label class="check-input"><input type="checkbox" data-source checked />{{ lab_copy.source }}</label>{% endif %}</div>
+        <div class="lab-actions"><button type="button" class="lab-run" data-run>{{ lab_copy.run }}</button><button type="button" data-step>{{ lab_copy.step }}</button><button type="button" data-reset>{{ lab_copy.reset }}</button>{% if scenario.id == 'collection' %}<button type="button" class="lab-repair" data-retry hidden>{{ lab_copy.repair }}</button>{% endif %}</div>
+      </div>
+      <div class="lab-workspace">
+        <div class="lab-machine">
+        {% if scenario.id == 'collection' %}
+          <div class="sim-node-labels"><span>{{ lab_copy.request }}<b data-total>4</b></span><span>{{ lab_copy.queue }}<b data-count="queued">4</b></span><span>{{ lab_copy.worker }}<b data-count="working">0</b></span><span>{{ lab_copy.output }}<b data-count="done">0</b></span></div>
+          <svg class="sim-network" data-network role="img" aria-label="{{ lab_copy.chartTitle }}"><g data-network-lines></g><g data-packets></g></svg>
+          <div class="sim-counts"><span>{{ lab_copy.queued }} <b data-count="queued">4</b></span><span>{{ lab_copy.working }} <b data-count="working">0</b></span><span>{{ lab_copy.done }} <b data-count="done">0</b></span><span>{{ lab_copy.error }} <b data-count="error">0</b></span></div>
+          <div class="sim-chart-head"><h3>{{ lab_copy.chartTitle }}</h3><span><i class="queue-key"></i>{{ lab_copy.queued }} <i class="done-key"></i>{{ lab_copy.done }}</span></div>
+          <svg class="sim-chart" data-chart role="img"><title>{{ lab_copy.chartTitle }}</title></svg><p class="sim-chart-caption">{{ lab_copy.chartHint }}</p>
+          <details class="sim-chart-data"><summary>{{ lab_copy.chartData }}</summary><table><thead><tr><th>{{ lab_copy.step }}</th><th>{{ lab_copy.queued }}</th><th>{{ lab_copy.working }}</th><th>{{ lab_copy.done }}</th><th>{{ lab_copy.error }}</th></tr></thead><tbody data-history></tbody></table></details>
+        {% elif scenario.id == 'access' %}
+          <div class="access-path"><div><span>01</span><b>{{ lab_copy.payment }}</b><p data-payment-state></p></div><span aria-hidden="true">→</span><div><span>02</span><b>{{ lab_copy.subscription }}</b><p data-term-state></p></div><span aria-hidden="true">→</span><div><span>03</span><b>{{ lab_copy.invitation }}</b><p data-invite-state></p></div></div>
+          <div class="demo-telegram"><p><span aria-hidden="true">↗</span>{{ lab_copy.demoChannel }}</p><div class="demo-message"><strong data-access-title></strong><span data-invite-code></span></div><small>{{ lab_copy.demo }}</small></div>
+        {% else %}
+          <div class="knowledge-question"><span>{{ lab_copy.question }}</span><p data-question-text></p></div>
+          <div class="demo-documents">{% for document in lab_copy.documents %}<article data-document="{{ forloop.counter0 }}"><span aria-hidden="true">0{{ forloop.counter }}</span><h3>{{ document.title }}</h3><p><mark>{{ document.text }}</mark></p></article>{% endfor %}</div>
+        {% endif %}
+        </div>
+        <aside class="lab-result"><span class="lab-output-label">{{ ui.lab_output }}</span><h3 data-result-title></h3><p data-result-detail></p>{% if scenario.id == 'collection' %}<div data-output-records class="demo-records"></div>{% elif scenario.id == 'knowledge' %}<div class="demo-answer" data-answer></div>{% endif %}</aside>
+      </div>
+      <p class="lab-hint">{% if scenario.id == 'collection' %}{{ lab_copy.collectionHint }}{% elif scenario.id == 'knowledge' %}{{ lab_copy.knowledgeHint }}{% else %}{{ lab_copy.accessHint }}{% endif %}</p>
+      <p class="sr-only" data-announcement aria-live="polite" aria-atomic="true"></p>
+    </div>
+    <a class="lab-case" href="{{ scenario.case_url }}" data-event="case_open" data-location="hero">{{ ui.lab_case }} ↗</a>
+  </details>{% endfor %}
+  {{ lab_copy|json_script:'lab-copy' }}
 </section>

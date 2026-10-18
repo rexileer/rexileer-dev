@@ -47,3 +47,19 @@ class PortfolioExperienceTests(TestCase):
                     self.assertContains(
                         response, 'data-event="email_click" data-location="project"'
                     )
+
+    def test_lab_has_localized_fallback_and_versioned_browser_modules(self):
+        for prefix in ("", "/en"):
+            response = self.client.get(prefix + "/")
+            self.assertEqual(response.context["scenarios"][0]["id"], "collection")
+            self.assertContains(response, "data-lab-fallback", count=3)
+            self.assertContains(response, "data-batch-size")
+            self.assertContains(response, "data-confirmed")
+            self.assertContains(response, "data-source")
+            self.assertContains(response, 'id="lab-copy"')
+            self.assertContains(response, "process-lab.mjs?v=")
+            self.assertNotContains(response, "https://t.me/+")
+        for name in ("lab-model", "process-lab"):
+            response = self.client.get(f"/assets/js/{name}.mjs?v=verification")
+            self.assertEqual(response.status_code, 200)
+            self.assertEqual(response["Content-Type"], "text/javascript")

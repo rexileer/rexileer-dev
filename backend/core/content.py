@@ -30,8 +30,8 @@ UI = {
         "Как задача становится системой", "How a problem becomes a system"
     ),
     "lab_note": pair(
-        "Демонстрация процесса · без внешних запросов",
-        "Process demonstration · no external requests",
+        "Интерактивный пример · демонстрационные данные",
+        "Interactive example · demonstration data",
     ),
     "lab_input": pair("На входе", "Input"),
     "lab_output": pair("На выходе", "Output"),
