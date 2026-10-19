@@ -1,6 +1,7 @@
 """Run on the VPS only; secrets stay outside checkout and build context."""
 
 import base64
+import json
 import os
 import secrets
 import subprocess
@@ -72,3 +73,28 @@ if running.returncode == 0 and running.stdout.strip() == "true":
         check=True,
     )
 print("Private Desk configuration ready; existing keys and owner retained.")
+network_name = "rexileer-dev_desk_private"
+network = subprocess.run(
+    ["docker", "network", "inspect", network_name], capture_output=True, text=True
+)
+if network.returncode == 0:
+    current = json.loads(network.stdout)[0]
+    if current.get("Internal"):
+        names = {v["Name"] for v in current.get("Containers", {}).values()}
+        if names - {"rexileer-desk"}:
+            raise RuntimeError(
+                "Desk network contains an unrelated endpoint; refusing to change it."
+            )
+        # Internal bridge suppresses published ports. Replace only this owned
+        # container/network, after backup; named data/blob volumes are retained.
+        if "rexileer-desk" in names:
+            subprocess.run(
+                ["docker", "rm", "-f", "rexileer-desk"],
+                check=True,
+                stdout=subprocess.DEVNULL,
+            )
+        subprocess.run(
+            ["docker", "network", "rm", network_name],
+            check=True,
+            stdout=subprocess.DEVNULL,
+        )

@@ -28,6 +28,14 @@ cat ops/desk-http.conf ops/desk-https.conf > "$target"
 ln -sfn "$target" /etc/nginx/sites-enabled/desk.rexileer.ru.conf
 nginx -t
 systemctl reload nginx
-curl -fsS -o /dev/null https://desk.rexileer.ru/login/
+https_ready=0
+for attempt in $(seq 1 20); do
+  if curl -fsS -o /dev/null https://desk.rexileer.ru/login/; then
+    https_ready=1
+    break
+  fi
+  sleep 1
+done
+test "$https_ready" = 1
 curl -fsS -o /dev/null http://127.0.0.1:8080/
 docker compose ps

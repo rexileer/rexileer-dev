@@ -60,5 +60,4 @@ volumes:
   desk_documents:
 
 networks:
-  desk_private:
-    internal: true
+  desk_private: {}

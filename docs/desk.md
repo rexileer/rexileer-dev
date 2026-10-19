@@ -10,7 +10,9 @@ in the portfolio. There is no registration, mail sending, bank integration or AI
 - `desk_config.settings` installs auth/contenttypes/sessions/messages/desk only;
   it never imports portfolio settings, core models or analytics middleware.
 - `rexileer-desk`: one Gunicorn worker, two threads, UID10001 worker,256MB memory,
-  0.35CPU,64PIDs; loopback8081 maps internal8080. Separate internal Docker network.
+  0.35CPU,64PIDs; loopback8081 maps internal8080. Separate bridge network;
+  no public host binding. Internal-only bridges suppress published ports and
+  therefore cannot be used for the host nginx connection.
 - `desk_data` is a private SQLite volume; `desk_documents` contains immutable
   encrypted blobs. Neither is mounted in `rexileer-portfolio`.
 - Private configuration stays outside checkout at `/root/rexileer-private/`.
