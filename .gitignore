@@ -7,3 +7,8 @@ backend/staticfiles/
 AGENTS.md
 agents.md
 ai-context/
+backend/desk-documents/
+*.fernet
+*.desk
+*.sqlite3-wal
+*.sqlite3-shm

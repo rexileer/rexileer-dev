@@ -55,12 +55,19 @@ jobs:
           python - <<'PY'
           import os
           import secrets
+          import base64
           from pathlib import Path
           key_file = Path(os.environ["RUNNER_TEMP"]) / "django-signing.key"
           key_file.write_text(secrets.token_urlsafe(64), encoding="utf-8")
           key_file.chmod(0o600)
           with open(os.environ["GITHUB_ENV"], "a", encoding="utf-8") as env_file:
               env_file.write(f"DJANGO_SECRET_KEY_FILE={key_file}\n")
+              env_file.write(f"DESK_SECRET_KEY_FILE={key_file}\n")
+              doc_file = Path(os.environ["RUNNER_TEMP"]) / "desk-documents.key"
+              doc_file.write_bytes(base64.urlsafe_b64encode(secrets.token_bytes(32)))
+              doc_file.chmod(0o600)
+              env_file.write(f"DESK_DOCUMENT_KEY_FILE={doc_file}\n")
+              env_file.write(f"DESK_DOCUMENT_ROOT={os.environ['RUNNER_TEMP']}/desk-documents\n")
           PY
       - name: Install application dependencies
         run: python -m pip install -r backend/requirements.txt
@@ -79,6 +86,11 @@ jobs:
         run: python backend/manage.py collectstatic --noinput
       - name: Run existing tests
         run: python backend/manage.py test core
+      - name: Check isolated Desk
+        run: |
+          python backend/manage.py check --settings=desk_config.settings
+          python backend/manage.py makemigrations --check --dry-run --settings=desk_config.settings
+          python backend/manage.py test desk --settings=desk_config.settings
 
   deploy:
     name: Deploy
@@ -152,6 +164,7 @@ jobs:
           grep -qxF 'agents.md' .git/info/exclude || echo 'agents.md' >> .git/info/exclude
           grep -qxF 'ai-context/' .git/info/exclude || echo 'ai-context/' >> .git/info/exclude
 
+          python3 ops/prepare-desk.py
           docker compose config --quiet
           docker compose up -d --build --remove-orphans
 
@@ -163,6 +176,7 @@ jobs:
               systemctl daemon-reload
               systemctl enable --now rexileer-analytics-prune.timer
               systemctl is-active --quiet rexileer-analytics-prune.timer
+              bash ops/deploy-desk.sh
               exit 0
             fi
             sleep 2

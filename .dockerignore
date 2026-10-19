@@ -7,4 +7,9 @@ agents.md
 ai-context
 **/__pycache__
 **/*.sqlite3
+**/*.sqlite3-wal
+**/*.sqlite3-shm
+**/*.fernet
+**/*.desk
+backend/desk-documents
 backend/staticfiles

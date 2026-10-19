@@ -1,6 +1,7 @@
 services:
   app:
     build: .
+    image: rexileer-dev-app
     container_name: rexileer-portfolio
     ports:
       - "127.0.0.1:8080:8080"
@@ -22,5 +23,42 @@ services:
       retries: 3
       start_period: 10s
 
+  desk:
+    image: rexileer-dev-app
+    container_name: rexileer-desk
+    env_file:
+      - /root/rexileer-private/desk.env
+      - /root/rexileer-private/document.env
+    environment:
+      - DJANGO_SETTINGS_MODULE=desk_config.settings
+      - DESK_DB_PATH=/app/desk-db/desk.sqlite3
+      - DESK_DOCUMENT_ROOT=/app/desk-documents
+    ports:
+      - "127.0.0.1:8081:8080"
+    volumes:
+      - desk_data:/app/desk-db
+      - desk_documents:/app/desk-documents
+      - /root/rexileer-private/bootstrap:/run/desk-bootstrap
+    networks:
+      - desk_private
+    mem_limit: 256m
+    cpus: 0.35
+    pids_limit: 64
+    security_opt:
+      - no-new-privileges:true
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen(urllib.request.Request('http://127.0.0.1:8080/health/',headers={'Host':'desk.rexileer.ru','X-Forwarded-Proto':'https'}))"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 20s
+
 volumes:
   portfolio_data:
+  desk_data:
+  desk_documents:
+
+networks:
+  desk_private:
+    internal: true

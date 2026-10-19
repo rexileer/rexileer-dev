@@ -1,0 +1,14 @@
+{% extends 'desk/base.html' %}{% block content %}<div class="heading"><div><p class="eyebrow">Контролируемый перенос</p><h1>Ваши данные</h1><a href="/history/">Журнал изменений ↗</a></div><a class="button" href="/data/export/">Скачать JSON</a></div><p class="context">Здесь загружаются только структурированные JSON/CSV. Произвольные документы и банковские доступы не поддерживаются. Оригинальные таблицы не меняются. Сначала проверка без записи, затем отдельное подтверждение. Повтор того же source + external_id обновляет запись вместо дубля.</p>
+<p><a href="/records/reference/">Справки, отказы и ожидающие заявки — отдельный реестр вне денежного учёта ↗</a></p><div class="edit-layout"><section><h2>Проверить импорт</h2><form class="editor" method="post" enctype="multipart/form-data">{% csrf_token %}{{ form.as_p }}<button class="primary">Показать предпросмотр</button></form>{% if preview %}<section class="preview"><h2>Готово к переносу: {{ preview|length }} строк</h2><p>Проверка прошла в транзакции с откатом. Сейчас рабочая база не изменилась. Подтверждение действительно 15 минут.</p><ul>{% for row in preview %}<li>{{ row.entity }} · {{ row.external_id }} · {{ row.title }}{% if not row.changed %} — без изменений{% endif %}</li>{% endfor %}</ul><form method="post">{% csrf_token %}<input type="hidden" name="token" value="{{ token }}"><button class="primary">Подтвердить перенос</button></form></section>{% endif %}</section><aside class="record-aside"><h2>Формат JSON</h2><pre>{
+  "version": 1,
+  "records": [{
+    "entity": "task",
+    "source": "my_source",
+    "external_id": "stable-id",
+    "import_batch": "snapshot-date",
+    "fields": {
+      "title": "Следующий шаг",
+      "status": "planned"
+    }
+  }]
+}</pre><p class="small muted">Связи: объект с source и external_id соответствующей записи. Суммы — строки, например "1250.50". Даты — YYYY-MM-DD. В CSV — эти же поля колонками, с entity/source/external_id. Полное описание и команды SSH находятся в эксплуатационной инструкции.</p><h2>Резервные копии</h2><p class="muted">JSON содержит рабочие записи и метаданные документов, без файлов и ключей. Полная копия .desk содержит базу и зашифрованные вложения; ключ хранится отдельно. Полная закрытая копия SQLite дополнительно хранит историю и учётную запись. Резервирование и проверенное восстановление доступны через отдельную команду на сервере.</p><p class="small muted">Скачанный файл содержит личные данные — храните его закрыто. Исторические накопленные оплаты не импортируются как сегодняшний приход.</p></aside></div>{% endblock %}
