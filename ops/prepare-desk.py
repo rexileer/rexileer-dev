@@ -40,7 +40,9 @@ if not env.exists():
 env.chmod(0o600)
 document_env = root / "document.env"
 if not document_env.exists():
-    if existing_volume_files("rexileer-dev_desk_documents", "*.fernet"):
+    if existing_volume_files(
+        "rexileer-dev_desk_documents", "*.fernet"
+    ) or existing_volume_files("rexileer-dev_desk_data", "desk.sqlite3"):
         raise RuntimeError(
             "Existing encrypted files have no key file. Restore the original document key; do not rotate silently."
         )
