@@ -153,7 +153,9 @@ docker compose exec -T desk python manage.py desk_backup verify /app/desk-db/bac
 ```
 
 `.desk` is a strict tar bundle: a consistent SQLite snapshot, exactly its
-referenced immutable ciphertext files, and a hash manifest. No configuration or
+referenced immutable ciphertext files, and an authenticated encrypted hash manifest.
+The document key authenticates the DB hash as well as file hashes; a rewritten
+plain manifest cannot substitute another database. No configuration or
 key files are included. Verification copies to a private temporary directory,
 checks archive paths/types/size, SQLite integrity, manifests and decryption hashes
 using the **separate** key. No decrypted attachment is written to disk. Missing

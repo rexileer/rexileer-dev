@@ -79,8 +79,8 @@ def backup_bundle(database, target):
                 tarfile.open(fileobj=output, mode="w") as archive,
             ):
                 archive.add(snapshot, arcname="database.sqlite3", recursive=False)
-                data = json.dumps(manifest).encode()
-                info = tarfile.TarInfo("manifest.json")
+                data = cipher().encrypt(json.dumps(manifest).encode())
+                info = tarfile.TarInfo("manifest.fernet")
                 info.size, info.mode = len(data), 0o600
                 archive.addfile(info, io.BytesIO(data))
                 for key, path in paths:
@@ -107,17 +107,19 @@ def verify_bundle(source, *, restore_to=None):
                 raise ValueError
             if any(not m.isfile() or m.size < 0 for m in members):
                 raise ValueError
-            manifest_file = archive.getmember("manifest.json")
+            manifest_file = archive.getmember("manifest.fernet")
             database_file = archive.getmember("database.sqlite3")
             if (
                 manifest_file.size > 2 * 1024 * 1024
                 or database_file.size > 128 * 1024 * 1024
             ):
                 raise ValueError
-            manifest = json.loads(archive.extractfile(manifest_file).read())
+            manifest = json.loads(
+                cipher().decrypt(archive.extractfile(manifest_file).read())
+            )
             if manifest.get("format") != "rexileer-desk-1":
                 raise ValueError
-            expected_names = {"manifest.json", "database.sqlite3"} | {
+            expected_names = {"manifest.fernet", "database.sqlite3"} | {
                 f"blobs/{key}.fernet" for key in manifest["blobs"]
             }
             if set(names) != expected_names:

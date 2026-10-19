@@ -50,6 +50,14 @@ class AccessTests(TestCase):
             response = self.client.get("/data/export/", secure=True, HTTP_HOST=host)
             self.assertEqual(response.status_code, 400)
             self.assertNotContains(response, "Synthetic private task", status_code=400)
+        response = self.client.get(
+            "/data/export/",
+            secure=True,
+            HTTP_HOST="desk.rexileer.ru",
+            HTTP_ORIGIN="https://rexileer.ru",
+        )
+        self.assertEqual(response.status_code, 403)
+        self.assertNotContains(response, "Synthetic private task", status_code=403)
 
     def test_owner_pages_export_and_cookie_isolation(self):
         self.client.post(

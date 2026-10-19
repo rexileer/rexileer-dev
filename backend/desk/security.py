@@ -24,11 +24,20 @@ class PrivateHeadersMiddleware:
         self.get_response = get_response
 
     def __call__(self, request):
-        request.get_host()  # Validate before sessions, CSRF or health exceptions.
-        response = self.get_response(request)
+        host = (
+            request.get_host()
+        )  # Validate before sessions, CSRF or health exceptions.
+        origin = request.headers.get("Origin")
+        expected = f"{'https' if request.is_secure() else 'http'}://{host}"
+        response = (
+            HttpResponse("Источник запроса отклонён.", status=403)
+            if origin and origin != expected
+            else self.get_response(request)
+        )
         response["Cache-Control"] = "no-store, private, max-age=0"
         response["Pragma"] = "no-cache"
         response["X-Robots-Tag"] = "noindex, nofollow, noarchive"
+        response["Cross-Origin-Resource-Policy"] = "same-origin"
         response.setdefault(
             "Content-Security-Policy",
             "default-src 'self'; script-src 'none'; style-src 'self'; font-src 'self'; img-src 'self' data:; object-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'",
