@@ -162,7 +162,7 @@ class AccountingTests(TestCase):
             self.expense(payment=plan.pk, obligation=other.pk)
         self.assertFalse(Transaction.objects.exists())
 
-    def test_draft_and_unknown_dates_do_not_become_overdue(self):
+    def test_dated_drafts_are_visible_without_creating_money(self):
         debt = self.save(
             "obligation",
             title="Unverified amount",
@@ -176,7 +176,11 @@ class AccountingTests(TestCase):
             amount="100.00",
             due_date=timezone.localdate() - timedelta(days=100),
         )
-        self.assertEqual(calendar_rows(), [])
+        rows = calendar_rows()
+        self.assertEqual(len(rows), 1)
+        self.assertTrue(rows[0]["unverified"])
+        self.assertIn("уточнить", rows[0]["detail"])
+        self.assertEqual(today_context()["expense"], Decimal("0.00"))
         self.assertIsNone(current_balance(debt))
         self.save("task", title="Complete task", status="done")
         self.assertFalse(Transaction.objects.exists())

@@ -9,6 +9,7 @@ from django.utils.http import content_disposition_header
 from .documents import DOCUMENT_FIELDS, decrypt_document, edit_document, upload_document
 from .forms import DocumentForm
 from .models import Addon, Change, Document, Obligation
+from .obligation_presentation import document_obligation_filter
 from .views import page
 
 
@@ -19,7 +20,11 @@ def documents(request):
         records = records.filter(Q(title__icontains=q) | Q(notes__icontains=q))
     if request.GET.get("kind"):
         records = records.filter(kind=request.GET["kind"])
-    for key in ("obligation", "addon"):
+    if request.GET.get("obligation", "").isdigit():
+        records = records.filter(
+            document_obligation_filter(int(request.GET["obligation"]))
+        ).distinct()
+    for key in ("addon",):
         if request.GET.get(key, "").isdigit():
             records = records.filter(**{key + "_id": request.GET[key]})
     for key, lookup in (("from", "document_date__gte"), ("to", "document_date__lte")):

@@ -33,10 +33,43 @@ def calendar_rows(days=30):
             }
         )
     for payment in PlannedPayment.objects.filter(
-        archived=False, confirmed=True, due_date__lte=end
-    ):
+        archived=False,
+        obligation__archived=False,
+        due_date__isnull=False,
+        due_date__lte=end,
+    ).select_related("obligation"):
         left = remaining(payment)
-        if left > ZERO:
+        meta = payment.metadata if isinstance(payment.metadata, dict) else {}
+        debt_meta = (
+            payment.obligation.metadata
+            if isinstance(payment.obligation.metadata, dict)
+            else {}
+        )
+        source_hint = (
+            "Дата по сообщённому графику; зачисление прошлого платежа проверить"
+            if meta.get("date_status", debt_meta.get("date_status"))
+            == "derived_from_reported_schedule"
+            else ""
+        )
+        if not payment.confirmed:
+            if left is not None and left <= ZERO:
+                continue
+            rows.append(
+                {
+                    "date": payment.due_date,
+                    "title": payment.title,
+                    "kind": "Из заметки · проверить",
+                    "detail": (
+                        money(left) + " — сумма из заметки, уточнить"
+                        if left is not None
+                        else "Уточнить сумму"
+                    ),
+                    "url": href("payment", payment),
+                    "unverified": True,
+                    "source_hint": source_hint,
+                }
+            )
+        elif left > ZERO:
             rows.append(
                 {
                     "date": payment.due_date,
@@ -44,6 +77,7 @@ def calendar_rows(days=30):
                     "kind": "Плановый расход",
                     "detail": money(left) + " осталось",
                     "url": href("payment", payment),
+                    "source_hint": source_hint,
                 }
             )
     for expected in ExpectedIncome.objects.filter(

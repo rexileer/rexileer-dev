@@ -1,4 +1,5 @@
 import json
+from datetime import date
 from pathlib import Path
 
 from django.conf import settings
@@ -18,11 +19,11 @@ from .forms import DeskAuthenticationForm, ImportForm, record_form
 from .models import (
     Change,
 )
+from .obligation_presentation import obligation_data, prepare_obligations
 from .presentation import calendar_rows, href, money, today_context
 from .security import is_owner, reserve_login, reset_login_guard, safe_next
 from .services import (
     ENTITIES,
-    current_balance,
     dump,
     export_records,
     import_records,
@@ -117,15 +118,12 @@ def row_data(entity, record):
     elif entity == "contact":
         detail = record.channel + (" · " + record.next_step if record.next_step else "")
     elif entity == "obligation":
-        amount = money(current_balance(record))
-        detail = (
-            "Расчёт без начислений. Снимок: "
-            + money(record.balance)
-            + " на "
-            + record.balance_as_of.strftime("%d.%m.%Y")
-            if record.balance_as_of
-            else "Остаток и дата неизвестны"
-        )
+        return {
+            "record": record,
+            "url": href(entity, record),
+            "title": str(record),
+            "obligation": obligation_data(record),
+        }
     elif entity in ("payment", "expected"):
         paid = paid_amount(record)
         left = remaining(record)
@@ -175,15 +173,13 @@ def row_data(entity, record):
 
 def records(request, entity):
     model, plural, singular = entity_info(entity)
-    query = model.objects.filter(archived=request.GET.get("archived") == "1")
+    query = model.objects.all()
+    if entity != "obligation":
+        query = query.filter(archived=request.GET.get("archived") == "1")
     q = request.GET.get("q", "")[:120]
-    if q:
-        query = query.filter(
-            **{
-                ("name" if entity in ("contact", "project") else "title")
-                + "__icontains": q
-            }
-        )
+    if q and entity != "obligation":
+        field = "name" if entity in ("contact", "project") else "title"
+        query = query.filter(**{field + "__icontains": q})
     filters = {}
     for field in ("status", "track"):
         if any(f.name == field for f in model._meta.fields):
@@ -192,8 +188,6 @@ def records(request, entity):
                 query = query.filter(**{field: request.GET[field]})
     if entity == "transaction" and request.GET.get("date"):
         try:
-            from datetime import date
-
             query = query.filter(date=date.fromisoformat(request.GET["date"]))
         except ValueError:
             query = query.none()
@@ -202,7 +196,59 @@ def records(request, entity):
     for field in model._meta.fields:
         if field.is_relation and request.GET.get(field.name, "").isdigit():
             query = query.filter(**{field.attname: int(request.GET[field.name])})
-    objects = Paginator(query, 50).get_page(request.GET.get("page"))
+    if entity == "obligation":
+        rows = [row_data(entity, obj) for obj in prepare_obligations(query)]
+        if q:
+            # SQLite LIKE does not case-fold Cyrillic, and raw JSON may escape it.
+            needle = q.casefold()
+            rows = [
+                row
+                for row in rows
+                if needle
+                in (
+                    row["title"]
+                    + " "
+                    + row["record"].notes
+                    + " "
+                    + json.dumps(row["record"].metadata, ensure_ascii=False)
+                ).casefold()
+            ]
+        state = request.GET.get(
+            "state", "archived" if request.GET.get("archived") == "1" else "active"
+        )
+        if state == "paid":
+            rows = [r for r in rows if r["obligation"]["paid_reported"]]
+        elif state == "archived":
+            rows = [r for r in rows if r["record"].archived]
+        elif state != "all":
+            rows = [
+                r
+                for r in rows
+                if not r["record"].archived and not r["obligation"]["paid_reported"]
+            ]
+        check = request.GET.get("check")
+        if check in ("needs_check", "has_balance"):
+            rows = [r for r in rows if r["obligation"][check]]
+        elif check == "service":
+            rows = [r for r in rows if r["obligation"]["service_note"]]
+        order = request.GET.get("order", "date")
+        if order == "name":
+            rows.sort(key=lambda r: (r["title"].casefold(), r["record"].pk))
+        else:
+            rows.sort(
+                key=lambda r: (
+                    r["obligation"]["next_date"] or date.max,
+                    r["title"].casefold(),
+                    r["record"].pk,
+                )
+            )
+        objects = Paginator(rows, 50).get_page(request.GET.get("page"))
+        page_rows = list(objects)
+    else:
+        objects = Paginator(query, 50).get_page(request.GET.get("page"))
+        page_rows = [row_data(entity, obj) for obj in objects]
+    params = request.GET.copy()
+    params.pop("page", None)
     return page(
         request,
         "records",
@@ -210,10 +256,16 @@ def records(request, entity):
             "title": plural,
             "entity": entity,
             "singular": singular,
-            "rows": [row_data(entity, obj) for obj in objects],
+            "rows": page_rows,
             "objects": objects,
             "filters": filters,
             "q": q,
+            "query_params": params.urlencode(),
+            "form_relations": [
+                {"name": f.name, "value": request.GET[f.name]}
+                for f in model._meta.fields
+                if f.is_relation and request.GET.get(f.name, "").isdigit()
+            ],
         },
     )
 
