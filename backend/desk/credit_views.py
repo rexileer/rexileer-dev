@@ -10,6 +10,7 @@ from django.shortcuts import render
 from openpyxl import Workbook
 from openpyxl.styles import Alignment, Font, PatternFill
 
+from .credit_facts import source_facts
 from .models import CreditContract, CreditSnapshot, Obligation
 from .obligation_presentation import obligation_data, prepare_obligations
 
@@ -63,6 +64,8 @@ def query_rows(request):
         )
         for obj in query:
             source = obj.source_snapshots[0] if obj.source_snapshots else None
+            facts = source_facts(source)
+            source_next = obj.next_due is None and obj.next_amount is None
             documents = [d for d in obj.document_set.all() if not d.archived]
             rows.append(
                 {
@@ -76,10 +79,27 @@ def query_rows(request):
                     "contract_number": obj.contract_number,
                     "uid": obj.uid,
                     "signed_on": obj.signed_on,
-                    "borrowed": obj.borrowed,
-                    "paid": obj.paid_reported,
-                    "next_due": obj.next_due,
-                    "next_amount": obj.next_amount,
+                    "borrowed": obj.borrowed
+                    if obj.borrowed is not None
+                    else facts.get("issued"),
+                    "paid": obj.paid_reported
+                    if obj.paid_reported is not None
+                    else facts.get("paid_total"),
+                    "borrowed_source": facts.get("label", "")
+                    if obj.borrowed is None and facts.get("issued") is not None
+                    else "",
+                    "paid_source": facts.get("label", "")
+                    if obj.paid_reported is None and facts.get("paid_total") is not None
+                    else "",
+                    "next_due": facts.get("next_date") if source_next else obj.next_due,
+                    "next_amount": facts.get("next_total")
+                    if source_next
+                    else obj.next_amount,
+                    "next_source": facts.get("label", "")
+                    if source_next and facts.get("next_date")
+                    else "",
+                    "interest_balance_source": facts.get("interest_balance"),
+                    "financial_source_label": facts.get("label", ""),
                     "schedule": obj.schedule,
                     "rate": obj.rate,
                     "interest_accrued": obj.interest_accrued,
@@ -103,6 +123,7 @@ def query_rows(request):
                     "bureau": source.bureau if source else "",
                     "overdue": source.overdue_reported if source else None,
                     "source_note": source.notes if source else "",
+                    "financial_facts": facts,
                     "url": f"/records/credit/{obj.pk}/",
                     "documents": len(documents),
                     "upload": f"/documents/new/?credit={obj.pk}",
@@ -238,13 +259,18 @@ EXPORT_COLUMNS = [
     ("УИД (не номер договора)", "uid"),
     ("Дата оформления", "signed_on"),
     ("Выдано, ₽", "borrowed"),
+    ("Источник выданной суммы", "borrowed_source"),
     ("Погашено по источнику, ₽", "paid"),
-    ("Ближайший срок (ручной)", "next_due"),
-    ("Взнос (ручной), ₽", "next_amount"),
+    ("Источник погашения", "paid_source"),
+    ("Ближайший срок (ручной / источник)", "next_due"),
+    ("Взнос, ₽ (ручной / источник)", "next_amount"),
+    ("Источник даты и взноса, если не ручной", "next_source"),
     ("График", "schedule"),
     ("Ставка и период", "rate"),
     ("Начисленные проценты, ₽", "interest_accrued"),
     ("Просроченные проценты, ₽", "interest_overdue"),
+    ("Проценты в остатке по источнику, ₽", "interest_balance_source"),
+    ("Источник компонентов остатка", "financial_source_label"),
     ("Остаток в снимке, ₽ — не текущий", "reported_balance"),
     ("Обновление у источника", "updated"),
     ("Дата отчёта / сверки", "report_date"),

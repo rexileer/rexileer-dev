@@ -287,3 +287,45 @@ class CreditRegisterTests(TestCase):
         self.assertEqual(CreditContract.objects.count(), 3)
         self.assertEqual(CreditSnapshot.objects.count(), 3)
         self.assertContains(self.get("/credits/"), "Synthetic legal B")
+
+    def test_explicit_dated_financing_and_paid_facts_are_visible_without_cash_or_inference(
+        self,
+    ):
+        bundle = self.bundle()
+        bundle["records"][0]["snapshot"]["metadata"]["verified_financial_facts"] = {
+            "verification": "checked_source",
+            "source_label": "Synthetic bureau",
+            "as_of": "2026-10-15",
+            "issued": "2000.00",
+            "paid_total": "500.00",
+            "next_date": "2026-11-21",
+            "next_principal": "100.00",
+            "next_interest": "20.00",
+            "interest_balance": "30.00",
+            "limit": "9000.00",
+        }
+        import_bureau(bundle, actor="test", dry_run=False)
+        response = self.get("/credits/")
+        row = response.context["rows"][0]
+        self.assertEqual(row["borrowed"], Decimal("2000.00"))
+        self.assertEqual(row["paid"], Decimal("500.00"))
+        self.assertEqual(row["next_amount"], Decimal("120.00"))
+        self.assertIn("15.10.2026", row["paid_source"])
+        credit = CreditContract.objects.get()
+        self.assertIsNone(credit.borrowed)
+        self.assertIsNone(credit.paid_reported)
+        self.assertFalse(Transaction.objects.exists())
+        self.assertEqual(today_context()["expense"], Decimal("0.00"))
+        self.assertContains(
+            self.get(f"/records/credit/{credit.pk}/"), "Первоначальное финансирование"
+        )
+        save_record(
+            "credit",
+            {"paid_reported": "700.00", "next_amount": "200.00"},
+            instance=credit,
+            actor="owner",
+        )
+        row = self.get("/credits/").context["rows"][0]
+        self.assertEqual(row["paid"], Decimal("700.00"))
+        self.assertEqual(row["paid_source"], "")
+        self.assertIsNone(row["next_due"])

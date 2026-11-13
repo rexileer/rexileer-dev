@@ -199,6 +199,14 @@ automatic settlement or assignment detection is performed. These records never
 create actual transactions or expected income. A zero source balance does not
 prove current closure.
 
+Explicit independently checked source facts can supply a labelled read-only
+display of initial financing, cumulative reported payments and dated schedule
+components when the manual field is blank. Manual refinements take precedence.
+The source/date is shown beside each such value and in XLSX. Source interest in
+the remaining balance is distinct from total accrued or overdue interest; the
+sum of remaining future installments is distinct from the reported balance.
+Neither reported past payments nor a source schedule create ledger entries.
+
 `CreditSnapshot` is append-only dated evidence, with separate report and creditor
 update dates, reported balance, limit, principal not due, overdue amount, dispute
 marker and private provenance. Raw extracted fields/pages can be inspected in the

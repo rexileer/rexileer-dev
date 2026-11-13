@@ -15,6 +15,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.utils import timezone
 from django.views.decorators.http import require_POST
 
+from .credit_facts import source_facts
 from .forms import DeskAuthenticationForm, ImportForm, record_form
 from .models import (
     Change,
@@ -375,6 +376,7 @@ def edit(request, entity, pk=None):
     if instance and entity == "credit":
         credit_snapshots = list(instance.snapshots.order_by("-report_date", "-pk"))
         for source in credit_snapshots:
+            source.financial_facts = source_facts(source)
             pages = source.metadata.get("source_pages", {})
             source.extracted_pages = (
                 [
