@@ -26,6 +26,7 @@ DOCUMENT_FIELDS = [
     "kind",
     "document_date",
     "obligation",
+    "credit",
     "payment",
     "addon",
     "letter",

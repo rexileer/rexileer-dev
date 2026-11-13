@@ -432,6 +432,13 @@ class Document(Record):
         ("other", "Прочее"),
     ]
     title = models.CharField("Название", max_length=250)
+    credit = models.ForeignKey(
+        "CreditContract",
+        verbose_name="Договор / UID",
+        null=True,
+        blank=True,
+        on_delete=models.PROTECT,
+    )
     kind = models.CharField("Тип", max_length=20, choices=KINDS)
     document_date = models.DateField("Дата документа", null=True, blank=True)
     obligation = models.ForeignKey(
@@ -502,3 +509,230 @@ class Document(Record):
             if self.obligation_id and self.obligation_id != self.addon.obligation_id:
                 raise ValidationError("Допуслуга относится к другому обязательству.")
             self.obligation_id = self.addon.obligation_id
+        if self.credit_id and self.obligation_id:
+            if (
+                self.credit.link_status != "confirmed"
+                or self.credit.manual_obligation_id != self.obligation_id
+            ):
+                raise ValidationError(
+                    "Не связывайте файл одновременно с UID и ручной записью без сверки конкретного договора."
+                )
+
+
+class CreditContract(Record):
+    KINDS = [
+        ("unknown", "Не уточнён"),
+        ("mfo", "МФО / МКК / МФК"),
+        ("bank", "Банк"),
+        ("sfo", "СФО"),
+        ("installment", "Рассрочка"),
+        ("collector", "Взыскатель"),
+        ("family", "Родители / частный заём"),
+        ("other", "Другое"),
+    ]
+    title = models.CharField("Кредитор в источнике / название", max_length=250)
+    uid = models.CharField(
+        "УИД обязательства (не номер договора)",
+        max_length=100,
+        unique=True,
+        null=True,
+        blank=True,
+    )
+    contract_number = models.CharField(
+        "Номер договора, если известен", max_length=160, blank=True
+    )
+    product_kind = models.CharField(
+        "Вид договора в источнике", max_length=300, blank=True
+    )
+    brand = models.CharField("Бренд", max_length=200, blank=True)
+    kind = models.CharField(
+        "Тип организации", max_length=20, choices=KINDS, default="unknown"
+    )
+    signed_on = models.DateField("Дата оформления из источника", null=True, blank=True)
+    borrowed = models.DecimalField(
+        "Фактически выданная сумма, ₽",
+        max_digits=14,
+        decimal_places=2,
+        null=True,
+        blank=True,
+        validators=[MinValueValidator(ZERO)],
+    )
+    paid_reported = models.DecimalField(
+        "Погашено по подтверждению / источнику, ₽",
+        max_digits=14,
+        decimal_places=2,
+        null=True,
+        blank=True,
+        validators=[MinValueValidator(ZERO)],
+    )
+    schedule = models.TextField("График и источник", max_length=5000, blank=True)
+    next_due = models.DateField(
+        "Ближайший срок, уточнённый вручную", null=True, blank=True
+    )
+    next_amount = models.DecimalField(
+        "Ближайший взнос, ₽",
+        max_digits=14,
+        decimal_places=2,
+        null=True,
+        blank=True,
+        validators=[MinValueValidator(ZERO)],
+    )
+    rate = models.CharField(
+        "Ставка: значение, период и источник", max_length=300, blank=True
+    )
+    interest_accrued = models.DecimalField(
+        "Начисленные проценты, ₽ (источник)",
+        max_digits=14,
+        decimal_places=2,
+        null=True,
+        blank=True,
+        validators=[MinValueValidator(ZERO)],
+    )
+    interest_overdue = models.DecimalField(
+        "Просроченные проценты, ₽ (источник)",
+        max_digits=14,
+        decimal_places=2,
+        null=True,
+        blank=True,
+        validators=[MinValueValidator(ZERO)],
+    )
+    original_creditor = models.CharField(
+        "Первоначальный кредитор (если установлен)", max_length=250, blank=True
+    )
+    assignee = models.CharField(
+        "Новый кредитор по уступке (если установлен)", max_length=250, blank=True
+    )
+    representative = models.CharField(
+        "Представитель / коллектор", max_length=250, blank=True
+    )
+    assignment_status = models.CharField(
+        "Сведения о передаче",
+        max_length=20,
+        default="unknown",
+        choices=[
+            ("unknown", "Неизвестно"),
+            ("representative", "Представитель, без подтверждения уступки"),
+            ("reported", "Сообщено об уступке"),
+            ("documented", "Есть документ об уступке"),
+        ],
+    )
+    assignment_basis = models.TextField(
+        "Основание / источник сведений о передаче", max_length=5000, blank=True
+    )
+    calls = models.CharField(
+        "Звонки — ручная оценка владельца",
+        max_length=20,
+        blank=True,
+        choices=[
+            ("quiet", "Не беспокоят"),
+            ("occasional", "Иногда"),
+            ("persistent", "Назойливо"),
+        ],
+    )
+    call_notes = models.TextField("Заметки о звонках", max_length=5000, blank=True)
+    status = models.CharField(
+        "Текущее состояние — ручная отметка",
+        max_length=20,
+        default="unknown",
+        choices=[
+            ("unknown", "Нужна актуализация"),
+            ("active", "Действует со слов владельца"),
+            ("closed", "Погашение подтверждено владельцем"),
+        ],
+    )
+    manual_obligation = models.ForeignKey(
+        Obligation,
+        verbose_name="Связь с ручной записью",
+        null=True,
+        blank=True,
+        on_delete=models.PROTECT,
+    )
+    link_status = models.CharField(
+        "Точность связи",
+        max_length=20,
+        default="unverified",
+        choices=[
+            ("unverified", "Только совпадение названия / проверить UID"),
+            ("confirmed", "Владелец сверил конкретный договор"),
+        ],
+    )
+    notes = models.TextField(
+        "Текущие уточнения и заметки", max_length=10000, blank=True
+    )
+
+    def __str__(self):
+        return (
+            self.title
+            + (f" · {self.signed_on:%d.%m.%Y}" if self.signed_on else "")
+            + (f" · UID {self.uid}" if self.uid else "")
+        )
+
+    def clean(self):
+        if (
+            self.assignment_status in ("reported", "documented")
+            and not self.assignment_basis.strip()
+        ):
+            raise ValidationError(
+                "Укажите источник сведений об уступке; звонок и название взыскателя её не подтверждают."
+            )
+        if self.link_status == "confirmed" and not self.manual_obligation_id:
+            raise ValidationError("Для подтверждённой связи выберите ручную запись.")
+
+
+class CreditSnapshot(Record):
+    credit = models.ForeignKey(
+        CreditContract,
+        verbose_name="Договор",
+        on_delete=models.PROTECT,
+        related_name="snapshots",
+    )
+    bureau = models.CharField("Основной источник", max_length=40)
+    report_date = models.DateField("Дата отчёта / сверки")
+    information_updated = models.DateField(
+        "Обновление сведений кредитором", null=True, blank=True
+    )
+    reported_balance = models.DecimalField(
+        "Остаток в снимке, ₽",
+        max_digits=14,
+        decimal_places=2,
+        null=True,
+        blank=True,
+        validators=[MinValueValidator(ZERO)],
+    )
+    limit_amount = models.DecimalField(
+        "Лимит в источнике, ₽ (не выданная сумма)",
+        max_digits=14,
+        decimal_places=2,
+        null=True,
+        blank=True,
+        validators=[MinValueValidator(ZERO)],
+    )
+    principal_not_due = models.DecimalField(
+        "Срочный основной долг, ₽",
+        max_digits=14,
+        decimal_places=2,
+        null=True,
+        blank=True,
+        validators=[MinValueValidator(ZERO)],
+    )
+    overdue_reported = models.DecimalField(
+        "Просрочка по отчёту, ₽",
+        max_digits=14,
+        decimal_places=2,
+        null=True,
+        blank=True,
+        validators=[MinValueValidator(ZERO)],
+    )
+    disputed = models.BooleanField("Владелец оспаривает запись", default=False)
+    notes = models.TextField("Пояснение к источнику", max_length=10000, blank=True)
+
+    class Meta(Record.Meta):
+        abstract = False
+        constraints = Record.Meta.constraints + [
+            models.UniqueConstraint(
+                fields=["credit", "bureau", "report_date"], name="credit_report_unique"
+            )
+        ]
+
+    def __str__(self):
+        return f"{self.bureau} · {self.report_date}"

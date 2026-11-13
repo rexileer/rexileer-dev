@@ -37,6 +37,8 @@ def record_form(entity, *, data=None, instance=None):
     ]
     form_type = forms.modelform_factory(model, fields=fields)
     form = form_type(data=data, instance=instance)
+    if entity == "credit" and instance:
+        form.fields["uid"].disabled = True
     form.fields["revision"] = forms.CharField(
         required=False,
         widget=forms.HiddenInput,
@@ -108,6 +110,7 @@ class DocumentForm(forms.ModelForm):
                 "kind",
                 "document_date",
                 "obligation",
+                "credit",
                 "evidence_status",
                 "notes",
                 "payment",

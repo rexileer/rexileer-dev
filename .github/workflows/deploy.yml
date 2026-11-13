@@ -78,6 +78,7 @@ jobs:
       - name: Check JavaScript syntax
         run: |
           node --check site/script.js
+          node --check backend/desk/static/credit.js
           node --check site/assets/js/lab-model.mjs
           node --check site/assets/js/process-lab.mjs
       - name: Check deterministic process models

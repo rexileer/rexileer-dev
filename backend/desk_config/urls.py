@@ -1,4 +1,4 @@
-from desk import document_views, views
+from desk import credit_views, document_views, views
 from django.urls import path
 
 urlpatterns = [
@@ -7,6 +7,8 @@ urlpatterns = [
     path("logout/", views.sign_out),
     path("password/", views.password),
     path("calendar/", views.calendar),
+    path("credits/", credit_views.register),
+    path("credits/export.xlsx", credit_views.xlsx),
     path("records/<str:entity>/", views.records),
     path("records/<str:entity>/new/", views.edit),
     path("records/<str:entity>/<int:pk>/", views.edit),

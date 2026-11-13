@@ -161,6 +161,8 @@ def row_data(entity, record):
         )
     elif entity == "reference":
         detail = record.get_kind_display() + " · Вне денежных расчётов"
+    elif entity == "credit":
+        detail = record.get_kind_display() + " · " + record.get_status_display()
     return {
         "record": record,
         "url": href(entity, record),
@@ -172,6 +174,8 @@ def row_data(entity, record):
 
 
 def records(request, entity):
+    if entity in ("credit", "credit_snapshot"):
+        return redirect("/credits/")
     model, plural, singular = entity_info(entity)
     query = model.objects.all()
     if entity != "obligation":
@@ -271,6 +275,8 @@ def records(request, entity):
 
 
 def edit(request, entity, pk=None):
+    if entity == "credit_snapshot":
+        raise Http404
     model, plural, singular = entity_info(entity)
     instance = get_object_or_404(model, pk=pk) if pk else None
     form = record_form(
@@ -332,6 +338,8 @@ def edit(request, entity, pk=None):
     document_link = ""
     if instance:
         for kind, (related_model, _, _) in ENTITIES.items():
+            if kind == "credit_snapshot":
+                continue
             field = next(
                 (
                     f
@@ -363,6 +371,30 @@ def edit(request, entity, pk=None):
                 archived=False, **{field.name: instance}
             )
             document_link = f"/documents/new/?{field.name}={instance.pk}"
+    credit_snapshots = []
+    if instance and entity == "credit":
+        credit_snapshots = list(instance.snapshots.order_by("-report_date", "-pk"))
+        for source in credit_snapshots:
+            pages = source.metadata.get("source_pages", {})
+            source.extracted_pages = (
+                [
+                    {"bureau": bureau, **row}
+                    for bureau, items in pages.items()
+                    for row in items
+                    if isinstance(row, dict)
+                ]
+                if isinstance(pages, dict)
+                else []
+            )
+            source.extracted_fields = json.dumps(
+                {
+                    key: value
+                    for key, value in source.metadata.items()
+                    if key != "source_pages"
+                },
+                ensure_ascii=False,
+                indent=2,
+            )
     return page(
         request,
         "edit",
@@ -382,6 +414,7 @@ def edit(request, entity, pk=None):
             "related": related,
             "documents": documents,
             "document_link": document_link,
+            "credit_snapshots": credit_snapshots,
         },
     )
 
@@ -458,6 +491,10 @@ def asset(request, name):
         fonts = Path(settings.BASE_DIR) / "site" / "assets" / "fonts"
     allowed = {
         "desk.css": (Path(__file__).parent / "static" / "desk.css", "text/css"),
+        "credit.js": (
+            Path(__file__).parent / "static" / "credit.js",
+            "text/javascript",
+        ),
         "fonts/fonts.css": (fonts / "fonts.css", "text/css"),
     }
     for file in ("7635422bd10d", "08949f728dc5", "c268b459a932", "a30ddcd34970"):

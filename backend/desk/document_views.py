@@ -24,7 +24,7 @@ def documents(request):
         records = records.filter(
             document_obligation_filter(int(request.GET["obligation"]))
         ).distinct()
-    for key in ("addon",):
+    for key in ("addon", "credit"):
         if request.GET.get(key, "").isdigit():
             records = records.filter(**{key + "_id": request.GET[key]})
     for key, lookup in (("from", "document_date__gte"), ("to", "document_date__lte")):
@@ -38,6 +38,8 @@ def documents(request):
             except ValueError:
                 records = records.none()
     objects = Paginator(records, 50).get_page(request.GET.get("page"))
+    params = request.GET.copy()
+    params.pop("page", None)
     return page(
         request,
         "documents",
@@ -47,6 +49,10 @@ def documents(request):
             "kinds": Document.KINDS,
             "obligations": Obligation.objects.filter(archived=False),
             "addons": Addon.objects.filter(archived=False),
+            "query_params": params.urlencode(),
+            "credit_filter": request.GET.get("credit", "")
+            if request.GET.get("credit", "").isdigit()
+            else "",
         },
     )
 
@@ -55,7 +61,15 @@ def document(request, pk=None):
     record = get_object_or_404(Document, pk=pk) if pk else None
     initial = {
         name: request.GET[name]
-        for name in ("obligation", "addon", "payment", "letter", "email", "transaction")
+        for name in (
+            "obligation",
+            "credit",
+            "addon",
+            "payment",
+            "letter",
+            "email",
+            "transaction",
+        )
         if request.GET.get(name, "").isdigit()
     }
     form = DocumentForm(

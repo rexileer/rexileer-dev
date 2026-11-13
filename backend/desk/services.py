@@ -14,7 +14,9 @@ from .models import (
     Addon,
     Change,
     Contact,
+    CreditContract,
     CreditorEmail,
+    CreditSnapshot,
     ExpectedIncome,
     Letter,
     Obligation,
@@ -37,6 +39,8 @@ ENTITIES = {
     "addon": (Addon, "Допуслуги и возвраты", "Допуслуга"),
     "email": (CreditorEmail, "Почты кредиторов", "Контактный адрес"),
     "letter": (Letter, "Письма и ответы", "Письмо / ответ"),
+    "credit": (CreditContract, "Договоры и БКИ", "Договор"),
+    "credit_snapshot": (CreditSnapshot, "Снимки БКИ", "Снимок БКИ"),
 }
 ORDER = {name: index for index, name in enumerate(ENTITIES)}
 SYSTEM = {"id", "created_at", "updated_at"}
@@ -159,6 +163,12 @@ def save_record(entity, fields, *, actor, instance=None):
         if isinstance(field, models.ForeignKey) and getattr(instance, field.attname):
             related = getattr(instance, field.name)
             if related.archived and before.get(field.name) != related.pk:
+                if (
+                    isinstance(instance, CreditContract)
+                    and field.name == "manual_obligation"
+                    and instance.link_status == "unverified"
+                ):
+                    continue  # A source-name candidate does not revive an old obligation.
                 raise ValidationError(
                     f"Связанная запись «{field.verbose_name}» в архиве."
                 )
@@ -173,6 +183,16 @@ def save_record(entity, fields, *, actor, instance=None):
         instance.project_id = instance.project_id or instance.expected.project_id
     if before == snapshot(instance):
         return instance, False
+    if isinstance(instance, CreditSnapshot) and before:
+        raise ValidationError(
+            "Снимок источника неизменяемый. Добавьте новый датированный снимок."
+        )
+    if (
+        isinstance(instance, CreditContract)
+        and before
+        and before.get("uid") != instance.uid
+    ):
+        raise ValidationError("UID сохранённого договора неизменяемый.")
     instance.save()
     # A dated confirmed snapshot is independent of plans. Only explicit actual
     # principal AFTER that date adjusts it. Unknown remains unknown.

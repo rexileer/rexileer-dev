@@ -182,6 +182,57 @@ legacy path; use `.desk` for normal backup/restore so files are not omitted.
 
 ## Deployment and verification
 
+### Private contract register and bureau snapshots
+
+`/credits/` is the dense owner-only contract table. It preserves one row per UID,
+including multiple contracts at the same organization. Organization category and
+source-reported product type are separate. `/credits/?scope=manual` retains the
+original manual obligations; these are not added to bureau contract balances.
+Source-name candidate links never transfer schedules, archive status or documents
+to a UID automatically. The owner can explicitly verify a particular link.
+
+`CreditContract` holds editable refinements (issued/paid figures, schedule, rate,
+upcoming payment, original creditor, assignee and representative separately,
+assignment source, and the owner's own call assessment). Unknown values stay NULL
+or blank. No issued-minus-balance paid inference, limit conversion, accrual,
+automatic settlement or assignment detection is performed. These records never
+create actual transactions or expected income. A zero source balance does not
+prove current closure.
+
+`CreditSnapshot` is append-only dated evidence, with separate report and creditor
+update dates, reported balance, limit, principal not due, overdue amount, dispute
+marker and private provenance. Raw extracted fields/pages can be inspected in the
+closed detail view; unvalidated parser sections are explicitly labelled and do
+not fill confirmed payment/interest fields. New evidence requires a new dated
+snapshot. It is never a current-day payoff or minimum debt estimate.
+
+Use the private command with a package kept outside Git:
+
+```sh
+docker compose exec -T desk python manage.py desk_bki /private/path/package.json
+docker compose exec -T desk python manage.py desk_bki /private/path/package.json --apply
+docker compose exec -T desk python manage.py desk_bki /private/path/package.json
+```
+
+The first/default call rolls back; apply is atomic and audits changes. UID is the
+idempotency key. Re-import preserves all current manual contract refinements and
+rejects mutation of existing source snapshots. Back up before migrations/import,
+check actual records after apply and require a repeated preview with zero changes.
+Never replay an older manual-list adapter over a newer register.
+
+`/credits/export.xlsx` exports the entire filtered/sorted set, independently of
+pagination. It contains real numeric/date cells, blank unknowns, filters and frozen
+name/header, plus scope notes. Text cells are forced to literal strings (including
+formula-like input), with no generated formulas or hyperlinks. Export is covered
+by the same owner/host/origin/no-store controls as the table. The optional copy
+control copies only the displayed plain-text questionnaire draft; no third party
+receives it. Non-dated/manual records are listed separately.
+
+PDF contracts use the existing encrypted Document service and an explicit credit
+foreign key, so a file attaches to one exact UID. UID is never labelled a contract
+number. Existing obligation/file associations and immutable encrypted originals
+remain intact; Office upload/preview is not added.
+
 ### Reading source information
 
 Obligation cards show the creditor, reported reference/payoff figures, next active
