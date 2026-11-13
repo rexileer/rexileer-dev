@@ -163,10 +163,12 @@ class CreditRegisterTests(TestCase):
         with self.assertRaises(ValidationError):
             Document(credit=credit, obligation=manual).clean()
 
-    def test_filters_dates_unicode_and_full_xlsx_not_just_page(self):
+    def test_filters_dates_show_all_rows_and_export_same_set(self):
         import_bureau(self.bundle(61), actor="test", dry_run=False)
         page = self.get("/credits/")
-        self.assertEqual(len(page.context["rows"]), 50)
+        self.assertEqual(len(page.context["rows"]), 61)
+        self.assertNotContains(page, 'class="pagination"')
+        self.assertEqual(len(self.get("/credits/?page=999").context["rows"]), 61)
         response = self.get("/credits/export.xlsx?page=2")
         book = load_workbook(BytesIO(response.content))
         self.assertEqual(book.active.max_row, 62)

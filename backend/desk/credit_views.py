@@ -3,7 +3,6 @@
 from datetime import date
 from io import BytesIO
 
-from django.core.paginator import Paginator
 from django.db.models import Prefetch
 from django.http import HttpResponse
 from django.shortcuts import render
@@ -208,7 +207,6 @@ def query_rows(request):
 
 def register(request):
     scope, rows, creditors = query_rows(request)
-    objects = Paginator(rows, 50).get_page(request.GET.get("page"))
     params = request.GET.copy()
     params.pop("page", None)
     complete, incomplete = [], []
@@ -227,8 +225,7 @@ def register(request):
         {
             "title": "Договоры и БКИ",
             "scope": scope,
-            "rows": objects,
-            "objects": objects,
+            "rows": rows,
             "kinds": CreditContract.KINDS,
             "creditors": creditors,
             "query_params": params.urlencode(),
