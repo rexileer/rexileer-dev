@@ -46,7 +46,13 @@ class AccessTests(TestCase):
 
     def test_wrong_hosts_never_get_private_records(self):
         self.client.force_login(self.user)
-        for host in ["rexileer.ru", "www.rexileer.ru", "attacker.invalid"]:
+        for host in [
+            "rexileer.tech",
+            "www.rexileer.tech",
+            "rexileer.ru",
+            "www.rexileer.ru",
+            "attacker.invalid",
+        ]:
             response = self.client.get("/data/export/", secure=True, HTTP_HOST=host)
             self.assertEqual(response.status_code, 400)
             self.assertNotContains(response, "Synthetic private task", status_code=400)

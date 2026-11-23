@@ -7,7 +7,7 @@ from .content import CATEGORIES, SERVICES, UI, localize
 from .models import Project
 
 REGISTRY_PATH = Path(__file__).parent / "data" / "portfolio_projects.json"
-BASE_URL = "https://rexileer.ru"
+BASE_URL = "https://rexileer.tech"
 
 
 @lru_cache(maxsize=1)

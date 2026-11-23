@@ -97,7 +97,7 @@ class AcquisitionTests(TestCase):
                 "utm_medium": "https://example.com/",
                 "utm_campaign": "x" * 65,
             },
-            HTTP_REFERER="https://rexileer.ru/?secret=hidden",
+            HTTP_REFERER="https://www.rexileer.tech/?secret=hidden",
         )
         view = VisitLog.objects.get()
         self.assertEqual(

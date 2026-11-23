@@ -30,7 +30,9 @@ nginx -t
 systemctl reload nginx
 https_ready=0
 for attempt in $(seq 1 20); do
-  if curl -fsS -o /dev/null https://desk.rexileer.ru/login/; then
+  # Verify this VPS's isolated vhost even when the old domain's DNS is unavailable.
+  # External DNS/renewal availability is checked separately, never bypass TLS.
+  if curl -fsS --resolve desk.rexileer.ru:443:127.0.0.1 -o /dev/null https://desk.rexileer.ru/login/; then
     https_ready=1
     break
   fi

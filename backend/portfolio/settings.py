@@ -8,14 +8,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = load_secret_key(os.environ)
 SECRET_KEY_FALLBACKS = []
 DEBUG = os.environ.get("DJANGO_DEBUG", "0") == "1"
-ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", "*").split(",")
+ALLOWED_HOSTS = os.environ.get(
+    "DJANGO_ALLOWED_HOSTS",
+    "rexileer.tech,www.rexileer.tech,rexileer.ru,www.rexileer.ru,localhost,127.0.0.1",
+).split(",")
 
 # За nginx: считать запрос HTTPS по заголовку и доверять origin для CSRF
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 CSRF_TRUSTED_ORIGINS = [
     s.strip()
     for s in os.environ.get(
-        "DJANGO_CSRF_TRUSTED_ORIGINS", "https://rexileer.ru,https://www.rexileer.ru"
+        "DJANGO_CSRF_TRUSTED_ORIGINS", "https://rexileer.tech,https://www.rexileer.tech"
     ).split(",")
     if s.strip()
 ]

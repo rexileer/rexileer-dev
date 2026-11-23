@@ -178,6 +178,7 @@ jobs:
               systemctl enable --now rexileer-analytics-prune.timer
               systemctl is-active --quiet rexileer-analytics-prune.timer
               bash ops/deploy-desk.sh
+              bash ops/deploy-public.sh
               exit 0
             fi
             sleep 2

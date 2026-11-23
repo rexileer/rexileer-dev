@@ -217,7 +217,8 @@ class PublicPagesTests(TestCase):
                     html = response.content.decode()
                     self.assertIn(f'<html lang="{lang}">', html)
                     self.assertIn(
-                        f'<link rel="canonical" href="https://rexileer.ru{path}"', html
+                        f'<link rel="canonical" href="https://rexileer.tech{path}"',
+                        html,
                     )
                     self.assertIn('hreflang="ru"', html)
                     self.assertIn('hreflang="en"', html)
@@ -253,11 +254,13 @@ class PublicPagesTests(TestCase):
     def test_sitemap_contains_both_languages_and_published_projects(self):
         response = self.client.get("/sitemap.xml")
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "https://rexileer.ru/services/ai-rag/")
+        self.assertContains(response, "https://rexileer.tech/services/ai-rag/")
         self.assertContains(
-            response, "https://rexileer.ru/en/projects/ai-lead-scoring/"
+            response, "https://rexileer.tech/en/projects/ai-lead-scoring/"
         )
-        self.assertContains(self.client.get("/robots.txt"), "Sitemap:")
+        self.assertContains(
+            self.client.get("/robots.txt"), "Sitemap: https://rexileer.tech/sitemap.xml"
+        )
 
     def test_sync_preserves_custom_covers_media_and_publication_date(self):
         project = Project.objects.get(slug="ai-lead-scoring")
@@ -317,7 +320,7 @@ class PublicPagesTests(TestCase):
                 response.context["language_url"], alternate + "?category=ai"
             )
             self.assertEqual(
-                response.context["canonical"], "https://rexileer.ru" + path
+                response.context["canonical"], "https://rexileer.tech" + path
             )
             self.assertNotIn("?", response.context["ru_url"])
         invalid = self.client.get("/projects/", {"category": "unexpected"})

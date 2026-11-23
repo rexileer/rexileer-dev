@@ -159,7 +159,10 @@ def referrer_domain(request):
         )
         if url.scheme not in {"http", "https"} or len(host) > 253:
             return ""
-        if host == "rexileer.ru" or host.endswith(".rexileer.ru"):
+        if any(
+            host == domain or host.endswith("." + domain)
+            for domain in ("rexileer.tech", "rexileer.ru")
+        ):
             return ""
         if host == request.get_host().split(":")[0].removeprefix("www."):
             return ""
