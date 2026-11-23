@@ -102,7 +102,8 @@ if overrides:
         if (
             actual["Image"] != image
             or dict(item.split("=", 1) for item in actual["Config"]["Env"]) != env
-            or actual["Mounts"] != mounts
+            or sorted(actual["Mounts"], key=lambda mount: mount["Destination"])
+            != sorted(mounts, key=lambda mount: mount["Destination"])
         ):
             raise RuntimeError("AI runtime changed beyond the requested domains.")
 print("AI public domain settings updated; credentials, images and volumes preserved.")
