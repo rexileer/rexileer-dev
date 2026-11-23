@@ -39,7 +39,11 @@ for service, container in zip(services, containers, strict=True):
         raise RuntimeError(
             "Live image differs from its tag; refuse an unrelated update."
         )
-    overrides[service] = {"environment": revised}
+    # Compose interpolates dollars even inside JSON string values. Escape them
+    # so existing credentials remain byte-for-byte unchanged in the container.
+    overrides[service] = {
+        "environment": {key: value.replace("$", "$$") for key, value in revised.items()}
+    }
     expected[service] = (container["Image"], revised, container["Mounts"])
 
 dotenv = root / ".env"
