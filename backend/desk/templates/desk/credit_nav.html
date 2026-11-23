@@ -1,0 +1,7 @@
+<div class="subnav" aria-label="Режимы реестра">
+  <a href="/credits/?scope=debt-review" {% if review_mode %}aria-current="page"{% endif %}>Текущие долги МФО</a>
+  <a href="/credits/" {% if scope == 'contracts' %}aria-current="page"{% endif %}>Договоры из БКИ</a>
+  <a href="/credits/?scope=manual" {% if scope == 'manual' %}aria-current="page"{% endif %}>Ручной список</a>
+  <a href="/records/obligation/">Подробные карточки и планы</a>
+  {% if review_mode %}<a href="/calendar/">Календарь платежей</a>{% else %}<a class="button" href="/credits/export.xlsx?{{ query_params }}">Скачать XLSX · {{ total }} строк</a>{% endif %}
+</div>

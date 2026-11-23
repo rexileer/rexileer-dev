@@ -1,0 +1,39 @@
+{% extends 'desk/base.html' %}
+{% load desk_tags %}
+{% block content %}
+<div class="heading credit-heading"><h1>Текущие долги МФО</h1></div>
+{% include 'desk/credit_nav.html' with review_mode=True %}
+<p class="context credit-context">Остатки показаны на дату сверки. Дата и условия источника указаны в строке. В итог входят только известные остатки за одну дату.</p>
+{% for group in groups %}
+<section class="section debt-review">
+  <h2>{% if group.as_of %}Сверка на {{ group.as_of|date:'d.m.Y' }}{% else %}Дата сверки неизвестна{% endif %}</h2>
+  {% if group.as_of %}
+  <dl class="debt-totals">
+    <div><dt>Итого по известным{% if group.unknown or group.excluded %} · неполное покрытие{% endif %}</dt><dd>{{ group.total|money }}</dd></div>
+    <div><dt>По источникам</dt><dd>{{ group.reported|money }}</dd></div>
+    <div><dt>Расчётные</dt><dd>{{ group.estimated|money }}</dd></div>
+    <div><dt>Неизвестных остатков</dt><dd>{{ group.unknown }}</dd></div>
+  </dl>
+  {% if group.excluded %}<p class="small muted">Из итога исключено записей с повторяющимся номером сверки: {{ group.excluded }}.</p>{% endif %}
+  {% else %}<p class="small muted">Записи без даты показаны отдельно. Неизвестных остатков: {{ group.unknown }}.</p>{% endif %}
+  <div class="credit-scroll">
+    <table class="credit-table debt-table" aria-label="Долги МФО{% if group.as_of %} на {{ group.as_of|date:'d.m.Y' }}{% endif %}">
+      <thead><tr><th scope="col">Кредитор</th><th scope="col">Остаток и источник</th><th scope="col">Ставка</th><th scope="col">Проценты за сутки</th><th scope="col">Потолок начислений</th><th scope="col">Максимум остатка</th><th scope="col">Что уточнить</th></tr></thead>
+      <tbody>
+        {% for row in group.rows %}
+        <tr>
+          <th scope="row"><a href="/records/credit/{{ row.contract.pk }}/">{{ row.contract.title }}</a>{% if row.contract.brand %}<small>{{ row.contract.brand }}</small>{% endif %}{% if row.folder_conflict %}<small>Номер сверки повторяется. Остаток вне итога.</small>{% endif %}</th>
+          <td data-label="Остаток и источник"><b>{{ row.balance|money }}</b>{% if row.balance is not None %}<small>{% if row.balance_kind == 'reported' %}По источнику{% else %}Расчётный{% endif %}</small>{% endif %}<small>{{ row.balance_source|default:'Источник и дата не указаны'|linebreaksbr }}</small></td>
+          <td data-label="Ставка">{% if row.daily_rate is not None %}<b>{{ row.daily_rate|review_number }} %/день</b>{% endif %}{% if row.rate_label %}<span>{{ row.rate_label|linebreaksbr }}</span>{% elif row.daily_rate is None %}Неизвестно{% endif %}</td>
+          <td data-label="Проценты за сутки">{% if row.daily_accrual is not None %}<b>{{ row.daily_accrual|review_number }} ₽/сутки</b>{% else %}Неизвестно{% endif %}</td>
+          <td data-label="Потолок начислений">{% if row.cap_pct is not None %}<b>{{ row.cap_pct|review_number }} %</b>{% endif %}{% if row.cap_amount is not None %}<span>{{ row.cap_amount|money }}</span>{% elif row.cap_pct is None %}Неизвестно{% endif %}{% if row.cap_note %}<small>{{ row.cap_note|linebreaksbr }}</small>{% endif %}</td>
+          <td data-label="Максимум остатка"><b>{{ row.max_remaining|money }}</b>{% if row.max_remaining is not None %}<small>Верхняя граница по данным сверки</small>{% endif %}</td>
+          <td data-label="Что уточнить">{{ row.note|default:'Уточнений пока нет'|linebreaksbr }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+{% empty %}<p class="notice">Данных сверки пока нет. Выбранные договоры появятся здесь после загрузки.</p>{% endfor %}
+{% endblock %}

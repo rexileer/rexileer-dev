@@ -10,6 +10,7 @@ from openpyxl import Workbook
 from openpyxl.styles import Alignment, Font, PatternFill
 
 from .credit_facts import source_facts
+from .debt_review import review
 from .models import CreditContract, CreditSnapshot, Obligation
 from .obligation_presentation import obligation_data, prepare_obligations
 
@@ -206,6 +207,8 @@ def query_rows(request):
 
 
 def register(request):
+    if request.GET.get("scope") == "debt-review":
+        return review(request)
     scope, rows, creditors = query_rows(request)
     params = request.GET.copy()
     params.pop("page", None)

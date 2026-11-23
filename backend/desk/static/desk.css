@@ -47,3 +47,14 @@ body:has(.credit-scroll) header{min-height:60px}body:has(.credit-scroll) nav{pad
   .credit-table tbody td::before{content:attr(data-label);display:block;font-size:12px;font-weight:500;color:#d4ed9d;margin-bottom:5px}
   .credit-table tbody tr:nth-child(even) td,.credit-table tbody tr:nth-child(even) th{background:transparent}
 }
+
+.debt-review{margin-top:28px}
+.debt-review h2{font-size:1.15rem;margin:0 0 12px}
+.debt-totals{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:0 0 14px}
+.debt-totals div{background:var(--panel);border:1px solid var(--line);border-radius:7px;padding:12px;overflow-wrap:anywhere}
+.debt-totals dt{font-size:.78rem;color:#becbb4}
+.debt-totals dd{margin:4px 0 0;font-weight:700;font-variant-numeric:tabular-nums}
+.debt-table b{font-variant-numeric:tabular-nums}
+.debt-table th:last-child{width:19%}
+@media(max-width:900px){.debt-table th:last-child{width:auto}}
+@media(max-width:620px){.debt-totals{grid-template-columns:repeat(2,minmax(0,1fr))}}

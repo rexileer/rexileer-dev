@@ -276,3 +276,23 @@ archive and complete restore. Full suites run only in CI. Private/source data is
 never shipped as fixtures or screenshots; local UI captures use a separate
 synthetic database. Public portfolio routes and server invariants are rechecked
 after deployment. Real addresses/documents still require supplied evidence.
+
+### Current microloan review
+
+Open `/credits/?scope=debt-review` from the contract register. Only contracts
+with an object at `CreditContract.metadata.debt_review_v1` enter this review.
+The private importer selects one issued loan or tranche per creditor and gives
+each selection a unique integer `folder`. Known amounts in duplicate folders
+or rows without a valid review date are excluded from totals.
+
+`as_of` is the ISO review date for `balance`. `balance_kind` is `reported`,
+`estimated`, or `unknown`. Include the original source date in `balance_source`
+and use `estimated` for a calculated balance at the review date. Dates have
+separate subtotals. An unknown balance remains unknown even if an older BKI
+snapshot has an amount. For `balance`, `daily_rate`, `daily_accrual`, `cap_pct`,
+`cap_amount` and `max_remaining`, pass nonnegative decimal strings (dot decimal
+separator) or null. `daily_rate` is in percent per day and `daily_accrual`
+is interest in rubles per day. `cap_amount` is the aggregate accrual ceiling.
+Use `rate_label`, `cap_note` and `note` for contractual conditions and questions.
+The page displays supplied amounts and sums reviewed balances. The standard
+contract and manual registers, schedules and filtered XLSX remain independent.
