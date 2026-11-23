@@ -24,7 +24,7 @@ class PresentationTests(TestCase):
 
     def get(self, path):
         self.client.force_login(self.user)
-        response = self.client.get(path, secure=True, HTTP_HOST="desk.rexileer.ru")
+        response = self.client.get(path, secure=True, HTTP_HOST="desk.rexileer.tech")
         self.assertEqual(response.status_code, 200)
         return response
 

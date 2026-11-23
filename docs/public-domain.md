@@ -23,16 +23,17 @@ from its URL configuration. Public metadata, sitemap and robots use the fixed
 canonical origin; request Host never determines SEO URLs. Contacts, email,
 external links and author easter eggs retain their original destinations.
 
-Desk remains isolated at `desk.rexileer.ru`, loopback 8081, with its existing
-certificate, credentials, keys and volumes. Deployment probes that vhost with
-verified TLS against loopback, independently of external DNS. This does not
-repair an expired domain or guarantee external availability/renewal.
+Desk is isolated at `https://desk.rexileer.tech`, loopback 8081, with its own
+certificate and unchanged credentials, keys and volumes. AI Leads uses
+`https://ai-leads.rexileer.tech`; authenticated logs use
+`https://logs.rexileer.tech`. Each name needs its own A record to the VPS.
+Deployment verifies each exact vhost with trusted TLS against loopback.
 
 On 23 November 2026 the old `rexileer.ru` zone delegates to
 `ns1.expired.reg.ru` / `ns2.expired.reg.ru`; public A records point elsewhere.
 Some recursive caches still return the VPS for Desk, while the VPS resolver
 already returns an unrelated address. Old public redirects cannot be served
-reliably until the owner renews/restores that zone. Existing old-domain and
-neighboring nginx vhosts are preserved. No `desk.rexileer.tech` host is enabled:
-moving Desk requires an explicit DNS record and a separately coordinated
-host/session/certificate migration.
+reliably. The owner chose to abandon that domain. The following subdomain
+migration disables old enabled vhosts and archives their renewal jobs, retaining
+the configuration and certificate history. Active services depend only on
+`.tech`. See [subdomains.md](subdomains.md) for the private-host cutover.

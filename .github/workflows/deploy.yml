@@ -166,6 +166,7 @@ jobs:
           grep -qxF 'ai-context/' .git/info/exclude || echo 'ai-context/' >> .git/info/exclude
 
           python3 ops/prepare-desk.py
+          bash ops/prepare-tech-domains.sh
           docker compose config --quiet
           docker compose up -d --build --remove-orphans
 
@@ -178,7 +179,9 @@ jobs:
               systemctl enable --now rexileer-analytics-prune.timer
               systemctl is-active --quiet rexileer-analytics-prune.timer
               bash ops/deploy-desk.sh
+              bash ops/deploy-tech-services.sh
               bash ops/deploy-public.sh
+              python3 ops/retire-ru-hosts.py
               exit 0
             fi
             sleep 2

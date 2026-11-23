@@ -87,12 +87,12 @@ class DocumentTests(TransactionTestCase):
             url = f"/documents/{record.pk}/{mode}/"
             self.assertEqual(
                 self.client.get(
-                    url, secure=True, HTTP_HOST="desk.rexileer.ru"
+                    url, secure=True, HTTP_HOST="desk.rexileer.tech"
                 ).status_code,
                 302,
             )
             self.client.force_login(self.user)
-            response = self.client.get(url, secure=True, HTTP_HOST="desk.rexileer.ru")
+            response = self.client.get(url, secure=True, HTTP_HOST="desk.rexileer.tech")
             self.assertEqual(response.content, self.raw)
             self.assertIn("no-store", response["Cache-Control"])
             self.assertEqual(response["X-Content-Type-Options"], "nosniff")
@@ -111,7 +111,7 @@ class DocumentTests(TransactionTestCase):
             response = self.client.get(
                 f"/documents/{record.pk}/preview/",
                 secure=True,
-                HTTP_HOST="desk.rexileer.ru",
+                HTTP_HOST="desk.rexileer.tech",
             )
             self.assertEqual(response.status_code, 503)
             self.assertNotIn(self.raw, response.content)

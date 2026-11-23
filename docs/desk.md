@@ -1,6 +1,6 @@
 # Rexileer Desk
 
-An owner workspace at `https://desk.rexileer.ru/`. The public portfolio and Desk
+An owner workspace at `https://desk.rexileer.tech/`. The public portfolio and Desk
 use the same repository/image but separate Django settings, URLconf, application,
 database, key, account, session and container. No personal-data API is installed
 in the portfolio. There is no registration, mail sending, bank integration or AI.
@@ -18,7 +18,7 @@ in the portfolio. There is no registration, mail sending, bank integration or AI
 - Private configuration stays outside checkout at `/root/rexileer-private/`.
   `desk.env` and `document.env` are separate root0600 files in a0700 directory.
   They are not build arguments, image files, Git files or backup members.
-- Exact host `desk.rexileer.ru`, trusted HTTPS proxy, independent `__Host-` Secure/
+- Exact host `desk.rexileer.tech`, trusted HTTPS proxy, independent `__Host-` Secure/
   HttpOnly/Strict cookies, CSRF, safe login next, POST logout, no-store, noindex,
   CSP and frame restrictions. Only local health probing bypasses login; nginx
   blocks `/health/` externally. CSS/fonts contain no personal data.

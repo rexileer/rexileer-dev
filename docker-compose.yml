@@ -48,7 +48,7 @@ services:
       - no-new-privileges:true
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen(urllib.request.Request('http://127.0.0.1:8080/health/',headers={'Host':'desk.rexileer.ru','X-Forwarded-Proto':'https'}))"]
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen(urllib.request.Request('http://127.0.0.1:8080/health/',headers={'Host':'desk.rexileer.tech','X-Forwarded-Proto':'https'}))"]
       interval: 30s
       timeout: 5s
       retries: 3

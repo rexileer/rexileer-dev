@@ -10,7 +10,7 @@ SECRET_KEY_FALLBACKS = []
 DEBUG = os.environ.get("DJANGO_DEBUG", "0") == "1"
 ALLOWED_HOSTS = os.environ.get(
     "DJANGO_ALLOWED_HOSTS",
-    "rexileer.tech,www.rexileer.tech,rexileer.ru,www.rexileer.ru,localhost,127.0.0.1",
+    "rexileer.tech,www.rexileer.tech,localhost,127.0.0.1",
 ).split(",")
 
 # За nginx: считать запрос HTTPS по заголовку и доверять origin для CSRF

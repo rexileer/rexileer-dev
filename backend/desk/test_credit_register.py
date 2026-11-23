@@ -60,7 +60,7 @@ class CreditRegisterTests(TestCase):
 
     def get(self, route):
         self.client.force_login(self.owner)
-        return self.client.get(route, secure=True, HTTP_HOST="desk.rexileer.ru")
+        return self.client.get(route, secure=True, HTTP_HOST="desk.rexileer.tech")
 
     def test_preview_idempotence_keeps_manual_ledger_and_does_not_infer_money(self):
         manual, _ = save_record(
@@ -223,7 +223,7 @@ class CreditRegisterTests(TestCase):
         ):
             self.assertEqual(
                 self.client.get(
-                    route, secure=True, HTTP_HOST="desk.rexileer.ru"
+                    route, secure=True, HTTP_HOST="desk.rexileer.tech"
                 ).status_code,
                 302,
             )
@@ -238,7 +238,7 @@ class CreditRegisterTests(TestCase):
             self.client.get(
                 "/credits/export.xlsx",
                 secure=True,
-                HTTP_HOST="desk.rexileer.ru",
+                HTTP_HOST="desk.rexileer.tech",
                 HTTP_ORIGIN="https://rexileer.ru",
             ).status_code,
             403,
@@ -275,7 +275,7 @@ class CreditRegisterTests(TestCase):
                 self.client.get(
                     f"/documents/{doc.pk}/download/",
                     secure=True,
-                    HTTP_HOST="desk.rexileer.ru",
+                    HTTP_HOST="desk.rexileer.tech",
                 ).status_code,
                 302,
             )

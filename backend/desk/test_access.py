@@ -22,7 +22,7 @@ class AccessTests(TestCase):
 
     def request(self, path, **kwargs):
         return self.client.get(
-            path, secure=True, HTTP_HOST="desk.rexileer.ru", **kwargs
+            path, secure=True, HTTP_HOST="desk.rexileer.tech", **kwargs
         )
 
     def test_anonymous_and_other_account_cannot_read_or_export(self):
@@ -51,6 +51,9 @@ class AccessTests(TestCase):
             "www.rexileer.tech",
             "rexileer.ru",
             "www.rexileer.ru",
+            "desk.rexileer.ru",
+            "ai-leads.rexileer.tech",
+            "logs.rexileer.tech",
             "attacker.invalid",
         ]:
             response = self.client.get("/data/export/", secure=True, HTTP_HOST=host)
@@ -59,8 +62,8 @@ class AccessTests(TestCase):
         response = self.client.get(
             "/data/export/",
             secure=True,
-            HTTP_HOST="desk.rexileer.ru",
-            HTTP_ORIGIN="https://rexileer.ru",
+            HTTP_HOST="desk.rexileer.tech",
+            HTTP_ORIGIN="https://rexileer.tech",
         )
         self.assertEqual(response.status_code, 403)
         self.assertNotContains(response, "Synthetic private task", status_code=403)
@@ -73,7 +76,7 @@ class AccessTests(TestCase):
                 "password": "Synthetic-owner-password-123",
             },
             secure=True,
-            HTTP_HOST="desk.rexileer.ru",
+            HTTP_HOST="desk.rexileer.tech",
         )
         for route in [
             "/",
@@ -111,11 +114,11 @@ class AccessTests(TestCase):
                     "password": "Synthetic-owner-password-123",
                 },
                 secure=True,
-                HTTP_HOST="desk.rexileer.ru",
+                HTTP_HOST="desk.rexileer.tech",
             ).status_code,
             403,
         )
-        csrf.get("/login/", secure=True, HTTP_HOST="desk.rexileer.ru")
+        csrf.get("/login/", secure=True, HTTP_HOST="desk.rexileer.tech")
         token = csrf.cookies[settings.CSRF_COOKIE_NAME].value
         response = csrf.post(
             "/login/",
@@ -126,13 +129,15 @@ class AccessTests(TestCase):
                 "next": "https://attacker.invalid/stolen",
             },
             secure=True,
-            HTTP_HOST="desk.rexileer.ru",
-            HTTP_ORIGIN="https://desk.rexileer.ru",
+            HTTP_HOST="desk.rexileer.tech",
+            HTTP_ORIGIN="https://desk.rexileer.tech",
         )
         self.assertEqual(response.status_code, 302)
         self.assertEqual(response["Location"], "/")
         self.assertEqual(
-            csrf.get("/logout/", secure=True, HTTP_HOST="desk.rexileer.ru").status_code,
+            csrf.get(
+                "/logout/", secure=True, HTTP_HOST="desk.rexileer.tech"
+            ).status_code,
             405,
         )
         self.assertEqual(
@@ -140,7 +145,7 @@ class AccessTests(TestCase):
                 "/records/task/new/",
                 {"title": "CSRF violation"},
                 secure=True,
-                HTTP_HOST="desk.rexileer.ru",
+                HTTP_HOST="desk.rexileer.tech",
                 HTTP_ORIGIN="https://attacker.invalid",
             ).status_code,
             403,
@@ -150,13 +155,13 @@ class AccessTests(TestCase):
             "/logout/",
             {"csrfmiddlewaretoken": token},
             secure=True,
-            HTTP_HOST="desk.rexileer.ru",
-            HTTP_ORIGIN="https://desk.rexileer.ru",
+            HTTP_HOST="desk.rexileer.tech",
+            HTTP_ORIGIN="https://desk.rexileer.tech",
         )
         self.assertEqual(response.status_code, 302)
         self.assertEqual(
             csrf.get(
-                "/data/export/", secure=True, HTTP_HOST="desk.rexileer.ru"
+                "/data/export/", secure=True, HTTP_HOST="desk.rexileer.tech"
             ).status_code,
             302,
         )
@@ -168,7 +173,7 @@ class AccessTests(TestCase):
                 "/login/",
                 {"username": "unknown-" + str(index), "password": "synthetic-invalid"},
                 secure=True,
-                HTTP_HOST="desk.rexileer.ru",
+                HTTP_HOST="desk.rexileer.tech",
             )
             self.assertEqual(response.status_code, 200)
         response = self.client.post(
@@ -178,7 +183,7 @@ class AccessTests(TestCase):
                 "password": "Synthetic-owner-password-123",
             },
             secure=True,
-            HTTP_HOST="desk.rexileer.ru",
+            HTTP_HOST="desk.rexileer.tech",
         )
         self.assertEqual(response.status_code, 429)
         self.assertEqual(LoginGuard.objects.get().attempts, 9)
@@ -193,7 +198,7 @@ class AccessTests(TestCase):
                     "password": "Synthetic-owner-password-123",
                 },
                 secure=True,
-                HTTP_HOST="desk.rexileer.ru",
+                HTTP_HOST="desk.rexileer.tech",
             )
             self.assertEqual(response.status_code, 302)
 
